@@ -1,0 +1,38 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+<h3>Login</h3>
+</div>
+
+<div class="row justify-content-md-center">
+
+<form action="" method="POST">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        <label> Username</label>
+
+          <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+            {{form.username(class="form-control",
+            placeholder="yourusername") }}
+          </div>
+
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        {{ form.password(class="form-control") }}
+    </div>
+    <div class="checkbox">
+        <label>
+              {{ form.remeber_me }} Remember me
+        </label>
+    </div>
+    <div class="row justify-content-md-center">
+      <button type="submit" class = "btn btn-outline-secondary">Submit</button>
+    </div>
+</form>
+
+</div>
+{% endblock %}

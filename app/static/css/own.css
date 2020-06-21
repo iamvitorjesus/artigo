@@ -1,0 +1,36 @@
+<style>
+  .bg-greyshadow {
+    background-color: #333333 !important;
+  }
+
+  a.bg-greyshadow:hover, a.bg-greyshadow:focus,
+  button.bg-greyshadow:hover,
+  button.bg-greyshadow:focus {
+    background-color: #333333 !important;
+  }
+
+  .btn-template {
+    color: #d3d9df;
+    background-color: #343a40;
+    border-color: #343a40;
+  }
+
+  .btn-template:hover {
+    color: #343a40;
+    background-color: #d3d9df;
+    border-color: #d3d9df;
+  }
+
+  .btn-rust {
+    color: #fff;
+    background-color: #b32d00;
+    border-color: #b32d00;
+  }
+
+  .btn-rust:hover {
+    color: #fff;
+    background-color: #999999;
+    border-color: #ffffff;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+  }
+</style>
