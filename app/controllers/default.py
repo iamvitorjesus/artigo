@@ -4,6 +4,7 @@ from app import app, db
 from app.models.tables import User
 from app.models.forms import LoginForm
 
+
 #model_prediction = False
 @app.route("/")
 def index():
