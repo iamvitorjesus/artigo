@@ -401,20 +401,19 @@
 
       </div> <!-- COLUMN 3 -->
       <div class="container text-center">
-        <p id="test"></p>
-          <button type="button" class="btn btn-template" href = "results">Next</button>
+          <p id="test"></p>
+          {% block contect %}
+          <div> <!-- CHAMANDO CODIGOS PYTHON USANDO SYNTAX JINJA2 -->
+            {% from viga.run import run %}
+            {{x = run() }}
+          </div>
+          {% block %}
+          <button type="button" class="btn btn-template" href = "results" onclick = "{{ x }}" >Next</button>
+          {% endblock %}
         </div>
       </div>
 
 
-      <div>
-        <script type="text/javascript">
-          chamar1('l')
-
-        </script>
-
-
-      </div>
 
     </div> <!-- container -->
 
