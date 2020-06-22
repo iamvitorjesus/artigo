@@ -277,7 +277,7 @@
             </div>
 
               <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Segurança do Concreto">
+              (with dot and two decimal places)" placeholder="Segurança do Concreto" id="yc">
 
           </div>
         </div><p></p>
@@ -290,7 +290,7 @@
             </div>
 
               <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Segurança do Aço">
+              (with dot and two decimal places)" placeholder="Segurança do Aço" id="ys">
 
           </div>
         </div><p></p>
@@ -309,10 +309,10 @@
             </div>
 
               <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Base">
+              (with dot and two decimal places)" placeholder="Base" id="bw">
 
             <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
+              <select class="custom-select" id="unitbw">
                 <option selected>cm</option>
                 <option value="1">m</option>
               </select>
@@ -328,7 +328,7 @@
             </div>
 
               <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Height">
+              (with dot and two decimal places)" placeholder="Height" id="h">
 
             <div class="input-group-append">
               <select class="custom-select" id="inputGroupSelect01">
@@ -348,10 +348,10 @@
             </div>
 
             <input type="text" class="form-control" aria-label="Dollar amount
-            (with dot and two decimal places)" placeholder= "Vão Livre">
+            (with dot and two decimal places)" placeholder= "Vão Livre" id="l">
 
             <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
+              <select class="custom-select" id="unitl">
                 <option selected>cm</option>
                 <option value="1">m</option>
               </select>
@@ -370,7 +370,7 @@
             </div>
 
               <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Apoio da Direita">
+              (with dot and two decimal places)" placeholder="Apoio da Direita" id="t1">
 
             <div class="input-group-append">
               <select class="custom-select" id="inputGroupSelect01">
@@ -407,10 +407,15 @@
       </div>
 
 
-    </div>
+      <div>
+        <script type="text/javascript">
+          chamar1('l')
+
+        </script>
 
 
+      </div>
 
-  </div> <!-- container -->
+    </div> <!-- container -->
 
 {% endblock %}

@@ -1,15 +1,14 @@
 <script>
 
 function chamar1(id){
-  captar = document.getElementById(id).value;
+  var captar = document.getElementById(id).value;
   return Number(captar);
 
 }
 
 function chamar2(id,unit){
-  captar = document.getElementById(id).value;
-  unit = document.getElementById(id).value;
-
+  var captar = document.getElementById(id).value;
+  va captarunit = document.getElementById(unit).value;
   return ([Number(captar), unit]);
 
 }
