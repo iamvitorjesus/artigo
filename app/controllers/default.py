@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from app import app, db
 
 from app.models.tables import User
@@ -15,15 +15,19 @@ def index():
 
 @app.route("/newproject", methods = ["POST", "GET"])
 def newproject():
+    l = ["fk", "unitfk","fyk", "unitfyk", "fywk", "unitfywk", "Es",
+        "unitEs", "ot", "unitot", "ol", "unitol", "a", "Dmax", "Modelo",
+        "CAA", "Mk", "unitMk", "Vk", "unitVk", "yc", "ys", "bw", "unitbw",
+        "h", "unith", "l", "unitl", "t1", "unitt1", "t2", "unitt2"]
+    dict = {}
     if request.method == "POST":
-        fk = request.form["fk"]
-        fyk = request.form["fyk"]
-        fywk = request.form["fywk"]
-        Es = request.form["Es"]
-        ot = request.form["ot"]
-        ol = request.form["ol"]
-
-    return render_template('newproject.html')
+        for name in l:
+            value = request.form[name]
+            dict[name] = value
+        
+        return redirect(url_for("results"))
+    else:
+        return render_template('newproject.html')
 
 @app.route("/about")
 def about():
