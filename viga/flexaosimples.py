@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import math
 
-def viga_flexaosimples():
+def flexaosimples():
     Sec = {}
     #DADOS DE ENTRADA
 
@@ -127,7 +127,7 @@ def viga_flexaosimples():
         print('Erro: Redimencionar Ac')
         print()
         print("SUGESTÃO: Aumentar a Altura")
-        return viga_flexaosimples()
+        return flexaosimples()
     else:
         print('\n\nArmadura Longitudinal Positiva: As = %.2fcm²\nArmadura Longitudinal Negativa: Ass = %.2fcm²\n' %(As, Ass))
         Sec["As"] = As

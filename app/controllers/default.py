@@ -1,9 +1,9 @@
-from flask import render_template
+from flask import render_template, request
 from app import app, db
 
 from app.models.tables import User
 from app.models.forms import LoginForm
-
+from viga.detalhamento_flexao import detalhamento_flexao
 
 #model_prediction = False
 @app.route("/")
@@ -13,8 +13,16 @@ def index():
       #show_predictions_modal=True
       )
 
-@app.route("/newproject")
+@app.route("/newproject", methods = ["POST", "GET"])
 def newproject():
+    if request.method == "POST":
+        fk = request.form["fk"]
+        fyk = request.form["fyk"]
+        fywk = request.form["fywk"]
+        Es = request.form["Es"]
+        ot = request.form["ot"]
+        ol = request.form["ol"]
+
     return render_template('newproject.html')
 
 @app.route("/about")
@@ -28,15 +36,6 @@ def contact():
 @app.route("/results")
 def results():
     return render_template('results.html')
-
-
-
-
-
-@app.route("/t1")
-def t1():
-    return render_template('t1.html')
-
 
 
 

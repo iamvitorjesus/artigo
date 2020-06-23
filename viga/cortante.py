@@ -3,9 +3,9 @@ import math
 
 'CORTANTE'
 'Método de calculo I'
-def viga_cortanteM1():
-    from viga_flexaosimples import viga_flexaosimples
-    Sec = viga_flexaosimples()
+def cortanteM1():
+    from viga.flexaosimples import flexaosimples
+    Sec = flexaosimples()
 
     # Tratamento de Dados
     Vk = int(input("Esforço Cortante (kN): "))
@@ -45,7 +45,7 @@ def viga_cortanteM1():
         print('''As bielas serão esmagadas.
 
         É necessário um redimencionamento ou aumento da resistência do concreto''')
-        return viga_cortante() #recursividade
+        return cortanteM1() #recursividade
 
     else:
         Vc0 = 0.6*fctd*Sec['bw']*Sec['d']
@@ -81,9 +81,9 @@ def viga_cortanteM1():
 
 
 'Método de calculo II'
-def viga_cortanteM2():
-    from viga_flexaosimples import viga_flexaosimples
-    Sec = viga_flexaosimples()
+def cortanteM2():
+    from viga.flexaosimples import flexaosimples
+    Sec = flexaosimples()
 
         # Seção longitudinal
     Vk = float(input("Esforço Cortante (kN): "))
@@ -131,7 +131,7 @@ def viga_cortanteM2():
     if Vsd >= Vrd2:
         print('''As bielas serão esmagadas.
         É necessário um redimencionamento ou aumento do fck''')
-        return viga_cortanteM2()
+        return cortanteM2()
 
     else:
         Vc0 = 0.6*fctd*Sec['bw']*Sec['d']

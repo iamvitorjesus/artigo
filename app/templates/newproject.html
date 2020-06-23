@@ -15,406 +15,410 @@
     </div>
   </div>
 
-  <div class="progress" style="height: 3px;">
-    <div class="progress-bar bg-grey" role="progressbar" style="width: 25%;"
+  <div class="progress" style="height: 9px;">
+    <div class="progress-bar bg-grey" role="progressbar" style="width: 0%;"
       aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" id = progress >
     </div>
   </div>
   <p></p>
 
+  <form action="results.html" method="post">
 
-  <div class="container">
-    <div class="row marketing">
+    <div class="container">
+      <div class="row marketing">
 
-      <div class="col-lg-5"> <!-- COLUMN 1 - INICIO -->
-        <h5 class="text-center">Dados dos Materiais</h5>
-        <div class="row marketing">
-
-
-          <div class="input-group">
-              <div class="input-group-prepend"><span class="input-group-text">&#402<sub>ck</sub></span></div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Resistência Característica do Concreto">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>kN/cm²</option>
-                <option value="1">MPa</option>
-                <option value="2">kPa</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
+        <div class="col-lg-5"> <!-- COLUMN 1 - INICIO -->
+          <h5 class="text-center">Dados dos Materiais</h5>
+          <div class="row marketing">
 
 
-        <div class="row marketing">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">&#402<sub>ck</sub></span>
+              </div>
 
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">&#402<sub>yk</sub></span>
-            </div>
+              <input name="fk" type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Resistência Característica do Concreto">
 
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Resistência Característica do Aço">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>kN/cm²</option>
-                <option value="1">MPa</option>
-                <option value="2">kPa</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <div class="row marketing">
-
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">&#402<sub>ywk</sub></span>
-            </div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Resistência Característica do Estribo">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>kN/cm²</option>
-                <option value="1">MPa</option>
-                <option value="2">kPa</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <div class="row marketing">
-
-          <div class="input-group">
-              <div class="input-group-prepend"><span class="input-group-text">E<sub>s</sub></span></div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Módulo de Elasticidade do Aço">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>GPa</option>
-                <option value="1">MPa</option>
-                <option value="2">kPa</option>
-                <option value="3">kN/cm²</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-        <div class="row marketing">
-
-          <div class="input-group">
-              <div class="input-group-prepend"><span class="input-group-text">&Oslash<sub>t</sub></span></div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Diâmetro da Armadura Transversal">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>mm</option>
-                <option value="1">cm</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <div class="row marketing">
-
-          <div class="input-group">
-              <div class="input-group-prepend"><span class="input-group-text">&Oslash<sub>l</sub></span></div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Diâmetro da Armadura Longitudinal">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>mm</option>
-                <option value="1">cm</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <div class="row marketing">
-
-          <div class="input-group">
-              <div class="input-group-prepend"><span class="input-group-text">&#593</span></div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Ângulo do Estribo ">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>GPa</option>
-                <option value="1">MPa</option>
-                <option value="2">kPa</option>
-                <option value="3">kN/cm²</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <div class="row marketing">
-          <div class="input-group">
-              <div class="input-group-prepend"><span class="input-group-text">Agregado Graudo</span></div>
-
-            <div class="input-group-append">
+              <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>Brita 0</option>
-                    <option value="1">Brita 1</option>
-                    <option value="2">Brita 2</option>
-                    <option value="3">Brita 3</option>
+                  <option selected>kN/cm²</option>
+                  <option value="1">MPa</option>
+                  <option value="2">kPa</option>
                 </select>
-            </div>
-          </div>
-        </div>
-
-
-      </div> <!-- COLUMN 1 - FIM -->
-
-
-      <div class="col-lg-4"> <!-- COLUMN 2 - INICIO -->
-        <h5 class="text-center">Dados de Projeto</h5>
-
-
-        <div class="row mx-lg-4">
-          <label for="basic-url">Cálculo do Cisalhamento</label>
-          <div class="input-group">
-            <div class="input-group-append"><p></p>
-              <select class="custom-select" id="inputGroupSelect01">
-                  <option selected>Modelo de Cálculo &#8544</option>
-                  <option value="1">Modelo de Cálculo &#8545</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-        <div class="row mx-lg-4">
-          <label for="basic-url">Classe de Agressividade Ambiental</label>
-          <div class="input-group">
-
-
-            <div class="input-group-append"><p></p>
-                <select class="custom-select" id="inputGroupSelect01">
-                  <option selected>Classe &#8544</option>
-                  <option value="1">Classe &#8545</option>
-                  <option value="2">Classe &#8546</option>
-                  <option value="3">Classe &#8547</option>
-                </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <h5 class="text-center">Esforços Solicitantes</h5>
-
-
-        <div class="row mx-lg-4">
-
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">M<sub>k</sub></span>
-            </div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Momento Fletor ">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>kN•m</option>
-                <option value="1">kN•cm</option>
-                <option value="2">kgf•m</option>
-                <option value="3">kgf•cm</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <div class="row mx-lg-4">
-
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">V<sub>k</sub></span>
-            </div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Cortante">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>kN</option>
-                <option value="1">N</option>
-                <option value="2">kgf</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <div class="row marketing">
-          <div class="container">
-            <h5 class="text-center">Coeficientes</h5>
-          </div>
-        </div><p></p><p></p>
-
-
-        <div class="row mx-lg-4">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">&#611<sub>c</sub></span>
-            </div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Segurança do Concreto" id="yc">
-
-          </div>
-        </div><p></p>
-
-
-        <div class="row mx-lg-4">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">&#611<sub>s</sub></span>
-            </div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Segurança do Aço" id="ys">
-
-          </div>
-        </div><p></p>
-
-      </div> <!-- COLUMN 2 - FIM -->
-
-
-      <div class="col-lg-3"> <!-- COLUMN 3 - INICIO -->
-        <h5 class="text-center">Seção Transversal</h5>
-
-        <div class="row marketing">
-
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">b<sub>w</sub></span>
-            </div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Base" id="bw">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="unitbw">
-                <option selected>cm</option>
-                <option value="1">m</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <div class="row marketing">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">h</span>
-            </div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Height" id="h">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>cm</option>
-                <option value="1">m</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-        <div class="row marketing">
-
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">l<sub>0</sub></span>
-            </div>
-
-            <input type="text" class="form-control" aria-label="Dollar amount
-            (with dot and two decimal places)" placeholder= "Vão Livre" id="l">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="unitl">
-                <option selected>cm</option>
-                <option value="1">m</option>
-              </select>
-            </div>
-          </div>
-        </div><p></p>
-
-
-
-        <div class="row marketing">
-
-
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">t<sub>1</sub></span>
-            </div>
-
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Apoio da Direita" id="t1">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
-                  <option selected>cm</option>
-                  <option value="1">m</option>
-              </select>
-            </div>
+              </div>
             </div>
           </div><p></p>
 
-        <div class="row marketing">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">t<sub>2</sub></span>
+
+          <div class="row marketing">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">&#402<sub>yk</sub></span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                  (with dot and two decimal places)" placeholder="Resistência Característica do Aço"
+                  name="fyk">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>kN/cm²</option>
+                  <option value="1">MPa</option>
+                  <option value="2">kPa</option>
+                </select>
+              </div>
             </div>
+          </div><p></p>
 
-              <input type="text" class="form-control"aria-label="Dollar amount
-              (with dot and two decimal places)" placeholder="Apoio da Esquerda">
 
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01">
+          <div class="row marketing">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">&#402<sub>ywk</sub></span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)"
+                placeholder="Resistência Característica do Estribo" name="fywk">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>kN/cm²</option>
+                  <option value="1">MPa</option>
+                  <option value="2">kPa</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <div class="row marketing">
+
+            <div class="input-group">
+                <div class="input-group-prepend"><span class="input-group-text">E<sub>s</sub></span></div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                  (with dot and two decimal places)"
+                  placeholder="Módulo de Elasticidade do Aço" name="Es">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>GPa</option>
+                  <option value="1">MPa</option>
+                  <option value="2">kPa</option>
+                  <option value="3">kN/cm²</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+          <div class="row marketing">
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">&Oslash<sub>t</sub></span>
+                </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                  (with dot and two decimal places)"
+                  placeholder="Diâmetro da Armadura Transversal" name="ot">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>mm</option>
+                  <option value="1">cm</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <div class="row marketing">
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">&Oslash<sub>l</sub></span>
+                </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)"
+                placeholder="Diâmetro da Armadura Longitudinal" name="ol">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>mm</option>
+                  <option value="1">cm</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <div class="row marketing">
+
+            <div class="input-group">
+                <div class="input-group-prepend"><span class="input-group-text">&#593</span></div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Ângulo do Estribo ">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>GPa</option>
+                  <option value="1">MPa</option>
+                  <option value="2">kPa</option>
+                  <option value="3">kN/cm²</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <div class="row marketing">
+            <div class="input-group">
+                <div class="input-group-prepend"><span class="input-group-text">Agregado Graudo</span></div>
+
+              <div class="input-group-append">
+                  <select class="custom-select" id="inputGroupSelect01">
+                      <option selected>Brita 0</option>
+                      <option value="1">Brita 1</option>
+                      <option value="2">Brita 2</option>
+                      <option value="3">Brita 3</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+
+
+        </div> <!-- COLUMN 1 - FIM -->
+
+
+        <div class="col-lg-4"> <!-- COLUMN 2 - INICIO -->
+          <h5 class="text-center">Dados de Projeto</h5>
+
+
+          <div class="row mx-lg-4">
+            <label for="basic-url">Cálculo do Cisalhamento</label>
+            <div class="input-group">
+              <div class="input-group-append"><p></p>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>Modelo de Cálculo &#8544</option>
+                    <option value="1">Modelo de Cálculo &#8545</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+          <div class="row mx-lg-4">
+            <label for="basic-url">Classe de Agressividade Ambiental</label>
+            <div class="input-group">
+
+
+              <div class="input-group-append"><p></p>
+                  <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>Classe &#8544</option>
+                    <option value="1">Classe &#8545</option>
+                    <option value="2">Classe &#8546</option>
+                    <option value="3">Classe &#8547</option>
+                  </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <h5 class="text-center">Esforços Solicitantes</h5>
+
+
+          <div class="row mx-lg-4">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">M<sub>k</sub></span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Momento Fletor ">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>kN•m</option>
+                  <option value="1">kN•cm</option>
+                  <option value="2">kgf•m</option>
+                  <option value="3">kgf•cm</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <div class="row mx-lg-4">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">V<sub>k</sub></span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Cortante">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>kN</option>
+                  <option value="1">N</option>
+                  <option value="2">kgf</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <div class="row marketing">
+            <div class="container">
+              <h5 class="text-center">Coeficientes</h5>
+            </div>
+          </div><p></p><p></p>
+
+
+          <div class="row mx-lg-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">&#611<sub>c</sub></span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Segurança do Concreto" id="yc">
+
+            </div>
+          </div><p></p>
+
+
+          <div class="row mx-lg-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">&#611<sub>s</sub></span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Segurança do Aço" id="ys">
+
+            </div>
+          </div><p></p>
+
+        </div> <!-- COLUMN 2 - FIM -->
+
+
+        <div class="col-lg-3"> <!-- COLUMN 3 - INICIO -->
+          <h5 class="text-center">Seção Transversal</h5>
+
+          <div class="row marketing">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">b<sub>w</sub></span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Base" id="bw">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="unitbw">
                   <option selected>cm</option>
                   <option value="1">m</option>
-              </select>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <div class="row marketing">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">h</span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Height" id="h">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>cm</option>
+                  <option value="1">m</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <div class="row marketing">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">l<sub>0</sub></span>
+              </div>
+
+              <input type="text" class="form-control" aria-label="Dollar amount
+              (with dot and two decimal places)" placeholder= "Vão Livre" id="l">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="unitl">
+                  <option selected>cm</option>
+                  <option value="1">m</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+
+          <div class="row marketing">
+
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">t<sub>1</sub></span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Apoio da Direita" id="t1">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>cm</option>
+                    <option value="1">m</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+          <div class="row marketing">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">t<sub>2</sub></span>
+              </div>
+
+                <input type="text" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Apoio da Esquerda">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>cm</option>
+                    <option value="1">m</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
 
-      </div> <!-- COLUMN 3 -->
-      <div class="container text-center">
-          <p id="test"></p>
-          {% block contect %}
-          <div> <!-- CHAMANDO CODIGOS PYTHON USANDO SYNTAX JINJA2 -->
-            {% from viga.run import run %}
-            {{x = run() }}
-          </div>
-          {% block %}
-          <button type="button" class="btn btn-template" href = "results" onclick = "{{ x }}" >Next</button>
-          {% endblock %}
+        </div> <!-- COLUMN 3 -->
+        <div class="container text-center">
+
+            <button type="submit" class="btn btn-template" href = "results" >Next</button>
+
         </div>
       </div>
-
-
-
     </div> <!-- container -->
 
+  </form>
 {% endblock %}

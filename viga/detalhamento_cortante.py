@@ -6,12 +6,12 @@ def viga_detalhamento_cortante():
     while True:
         metodo = int(input("Método de cálculo de armadura transversal: "))
         if metodo == 1:
-            from viga_cortante import viga_cortanteM1
-            Sec = viga_cortanteM1()
+            from viga.cortante import cortanteM1
+            Sec = cortanteM1()
             break
         elif metodo == 2:
-            from viga_cortante import viga_cortanteM2
-            Sec = viga_cortanteM2()
+            from viga.cortante import cortanteM2
+            Sec = cortanteM2()
             break
         else:
             continue
