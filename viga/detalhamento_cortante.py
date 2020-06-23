@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-def viga_detalhamento_cortante():
+def viga_detalhamento_cortante(Dic):
     import math
     '''Detalhamento da Seção Longitudinal'''
 
     while True:
-        metodo = int(input("Método de cálculo de armadura transversal: "))
+        metodo = Dic['Modelo']
         if metodo == 1:
             from viga.cortante import cortanteM1
-            Sec = cortanteM1()
+            Sec = cortanteM1(Dic)
             break
         elif metodo == 2:
             from viga.cortante import cortanteM2
-            Sec = cortanteM2()
+            Sec = cortanteM2(Dic)
             break
         else:
             continue

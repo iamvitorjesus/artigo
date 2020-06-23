@@ -17,7 +17,10 @@ dict = {}
 def newproject():
     if request.method == "POST":
         for info in request.form:
-            dict[info] = request.form[info] #retira informação dos inputs
+            value = request.form[info]
+            if value.isnumeric() == True:
+                value = float(value)
+            dict[info] = value #retira informação dos inputs
         return redirect(url_for("results"))
     else:
         return render_template('newproject.html')
@@ -32,7 +35,6 @@ def contact():
 
 @app.route("/results", methods = ["POST", "GET"])
 def results():
-    
 
     return render_template('results.html', usr = dict)
 

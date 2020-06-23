@@ -1,9 +1,9 @@
-def detalhamento_flexao():
+def detalhamento_flexao(Dic):
     import math
     from viga.detalhamento_cortante import detalhamento_cortante
 
 
-    Sec = detalhamento_cortante()
+    Sec = detalhamento_cortante(Dic)
 
     Barras = [4.2,5,6.3,8,10,12.5,16,20,22,25,32,40]#Opções comerciais de diametro (mm) de barra
 

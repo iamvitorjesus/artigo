@@ -3,15 +3,15 @@ import math
 
 'CORTANTE'
 'Método de calculo I'
-def cortanteM1():
+def cortanteM1(Dic):
     from viga.flexaosimples import flexaosimples
-    Sec = flexaosimples()
+    Sec = flexaosimples(Dic)
 
     # Tratamento de Dados
-    Vk = int(input("Esforço Cortante (kN): "))
-    t1 = int(input("Espessura do pilar de apoio da esquerda (cm): "))
-    t2 = int(input("Espessura do pilar de apoio da direita (cm): "))
-    l0 = int(input("Comprimento do vão livre entre os pilares (cm): "))
+    Vk = Sec['Vk']
+    t1 = Sec['t1']
+    t2 = Sec['t2']
+    l0 = Sec['l0']
     a1 = min(t1/2,0.3*h)
     a2 = min(t2/2,0.3*h)
     lef = 100*l0 + a1 + a2

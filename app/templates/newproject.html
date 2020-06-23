@@ -37,14 +37,14 @@
                 <span class="input-group-text">&#402<sub>ck</sub></span>
               </div>
 
-              <input type="text" class="form-control"aria-label="Dollar amount
+              <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)"
-                placeholder="Resistência Característica do Concreto" name="fk">
+                placeholder="Resistência Característica do Concreto" name="fck">
 
               <div class="input-group-append">
-                <select class="custom-select" id="inputGroupSelect01" name="unitfk">
-                  <option selected>kN/cm²</option>
+                <select class="custom-select" id="inputGroupSelect01" name="unitfck">
                   <option value="1">MPa</option>
+                  <option value="2">kN/cm²</option>
                   <option value="2">kPa</option>
                 </select>
               </div>
@@ -59,15 +59,15 @@
                 <span class="input-group-text">&#402<sub>yk</sub></span>
               </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                   (with dot and two decimal places)"
                   placeholder="Resistência Característica do Aço" name="fyk">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitfyk">
-                  <option selected>kN/cm²</option>
                   <option value="1">MPa</option>
-                  <option value="2">kPa</option>
+                  <option value="2">kN/cm²</option>
+                  <option value="3">kPa</option>
                 </select>
               </div>
             </div>
@@ -81,15 +81,15 @@
                 <span class="input-group-text">&#402<sub>ywk</sub></span>
               </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)"
                 placeholder="Resistência Característica do Estribo" name="fywk">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitfywk">
-                  <option selected>kN/cm²</option>
-                  <option value="1">MPa</option>
-                  <option value="2">kPa</option>
+                  <option value="1">kN/cm²</option>
+                  <option value="2">MPa</option>
+                  <option value="3">kPa</option>
                 </select>
               </div>
             </div>
@@ -101,16 +101,16 @@
             <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text">E<sub>s</sub></span></div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                   (with dot and two decimal places)"
                   placeholder="Módulo de Elasticidade do Aço" name="Es">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitEs">
-                  <option selected>GPa</option>
-                  <option value="1">MPa</option>
-                  <option value="2">kPa</option>
-                  <option value="3">kN/cm²</option>
+                  <option value="1">GPa</option>
+                  <option value="2">MPa</option>
+                  <option value="3">kPa</option>
+                  <option value="4">kN/cm²</option>
                 </select>
               </div>
             </div>
@@ -123,14 +123,14 @@
                   <span class="input-group-text">&Oslash<sub>t</sub></span>
                 </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                   (with dot and two decimal places)"
                   placeholder="Diâmetro da Armadura Transversal" name="ot">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitot">
-                  <option selected>mm</option>
-                  <option value="1">cm</option>
+                  <option value="1">mm</option>
+                  <option value="2">cm</option>
                 </select>
               </div>
             </div>
@@ -144,14 +144,14 @@
                   <span class="input-group-text">&Oslash<sub>l</sub></span>
                 </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)"
                 placeholder="Diâmetro da Armadura Longitudinal" name="ol">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitol">
-                  <option selected>mm</option>
-                  <option value="1">cm</option>
+                  <option value="1">mm</option>
+                  <option value="2">cm</option>
                 </select>
               </div>
             </div>
@@ -165,7 +165,7 @@
                 <span class="input-group-text">&#593</span>
               </div>
 
-              <input type="text" class="form-control"aria-label="Dollar amount
+              <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)"
                 placeholder="Ângulo do Estribo " name="a">
 
@@ -182,7 +182,7 @@
 
               <div class="input-group-append">
                   <select class="custom-select" id="inputGroupSelect01" name="Dmax">
-                      <option selected>Brita 0</option>
+                      <option value="0">Brita 0</option>
                       <option value="1">Brita 1</option>
                       <option value="2">Brita 2</option>
                       <option value="3">Brita 3</option>
@@ -204,8 +204,8 @@
             <div class="input-group">
               <div class="input-group-append"><p></p>
                 <select class="custom-select" id="inputGroupSelect01" name="Modelo">
-                    <option selected>Modelo de Cálculo &#8544</option>
-                    <option value="1">Modelo de Cálculo &#8545</option>
+                    <option value="1">Modelo de Cálculo &#8544</option>
+                    <option value="2">Modelo de Cálculo &#8545</option>
                 </select>
               </div>
             </div>
@@ -218,10 +218,10 @@
 
               <div class="input-group-append"><p></p>
                   <select class="custom-select" id="inputGroupSelect01" name="CAA">
-                    <option selected>Classe &#8544</option>
-                    <option value="1">Classe &#8545</option>
-                    <option value="2">Classe &#8546</option>
-                    <option value="3">Classe &#8547</option>
+                    <option value="1">Classe &#8544</option>
+                    <option value="2">Classe &#8545</option>
+                    <option value="3">Classe &#8546</option>
+                    <option value="4">Classe &#8547</option>
                   </select>
               </div>
             </div>
@@ -238,15 +238,18 @@
                 <span class="input-group-text">M<sub>k</sub></span>
               </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)" placeholder="Momento Fletor " name="Mk">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitMk">
-                  <option selected>kN•m</option>
-                  <option value="1">kN•cm</option>
-                  <option value="2">kgf•m</option>
-                  <option value="3">kgf•cm</option>
+                  <option value="1">kN•m</option>
+                  <option value="2">kN•cm</option>
+                  <option value="3">tf•m</option>
+                  <option value="4">tf•cm</option>
+                  <option value="5">kgf•m</option>
+                  <option value="6">kgf•cm</option>
+
                 </select>
               </div>
             </div>
@@ -260,12 +263,12 @@
                 <span class="input-group-text">V<sub>k</sub></span>
               </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)" placeholder="Cortante" name="Vk">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitVk">
-                  <option selected>kN</option>
+                  <option value="0">kN</option>
                   <option value="1">N</option>
                   <option value="2">kgf</option>
                 </select>
@@ -288,7 +291,7 @@
               </div>
 
                 <input type="text" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Segurança do Concreto" name="yc">
+                (with dot and two decimal places)" placeholder="Segurança do Concreto" name="gc">
 
             </div>
           </div><p></p>
@@ -301,7 +304,7 @@
               </div>
 
                 <input type="text" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Segurança do Aço" name="ys">
+                (with dot and two decimal places)" placeholder="Segurança do Aço" name="gs">
 
             </div>
           </div><p></p>
@@ -319,7 +322,7 @@
                 <span class="input-group-text">b<sub>w</sub></span>
               </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)" placeholder="Base" name="bw">
 
               <div class="input-group-append">
@@ -338,7 +341,7 @@
                 <span class="input-group-text">h</span>
               </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)" placeholder="Height" name="h">
 
               <div class="input-group-append">
@@ -358,7 +361,7 @@
                 <span class="input-group-text">l<sub>0</sub></span>
               </div>
 
-              <input type="text" class="form-control" aria-label="Dollar amount
+              <input type="number" class="form-control" aria-label="Dollar amount
               (with dot and two decimal places)" placeholder= "Vão Livre" name="l">
 
               <div class="input-group-append">
@@ -380,7 +383,7 @@
                 <span class="input-group-text">t<sub>1</sub></span>
               </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)" placeholder="Apoio da Direita" name="t1">
 
               <div class="input-group-append">
@@ -398,7 +401,7 @@
                 <span class="input-group-text">t<sub>2</sub></span>
               </div>
 
-                <input type="text" class="form-control"aria-label="Dollar amount
+                <input type="number" class="form-control"aria-label="Dollar amount
                 (with dot and two decimal places)" placeholder="Apoio da Esquerda" name="t2">
 
               <div class="input-group-append">

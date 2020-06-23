@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 import math
 
-def flexaosimples():
-    Sec = {}
-    #DADOS DE ENTRADA
-
+def flexaosimples(Dic):
     #Seção Transversal
-    print("     Dimenções")
-    bw = int(input("Espessura da Seção Transversal da Viga (cm): "))
-    h = int(input("Altura da Seção Transversal da Viga (cm): "))
-    CAA = int(input("Classe de Agressividade Ambiental: "))
+
+        # CONVERSÃO DE UNIDADES
+    if Dic['unitbw'] == 'm':
+        Dic['bw'] = Dic['bw']*100
+        Dic['unitbw'] = 'cm'
+
+    if Dic['unith'] == 'm':
+        Dic['h'] = Dic['h']*100
+        Dic['unith'] = 'cm'
+
+    CAA = Dic['CAA']
 
     #Escolha do cobrimento
     if CAA == 1:
@@ -24,18 +28,50 @@ def flexaosimples():
     d2 = d1
 
     #Materiais
-    Es = int(input("Módulo de Elasticidade do Aço (GPa): ")) #210 GPa
-    gc = float(input("Coeficiente de Segurança do Concreto: ")) #
+    gc = Dic["gc"] #
     gf = gc # Coeficiente de Majoração do Esforço de Flexão
-    gs = float(input("Coeficiente de Segurança do Aço: "))
-    fck = int(input("Resistência Caracteristica do Concreto (MPa): "))
-    Dmax = int(input("Classe de agregado graudo (Brita 0, 1, 2, 3): "))
-    fyk = int(input("Resistência Caracteristica do Aço (MPa): "))
+    gs = Dic["gs"]
+
+    Es = Dic['Es'] #210 GPa
+    unitEs = Dic['unitEs']
+    if unitEs == 2:
+        Es = Es/1000
+    elif unitEs == 3:
+        Es = Es/1000000
+    elif unitEs == 4:
+        Es = Es/100
+
+    fck = Dic["fck"]
+    unitfck = Dic['unitfck']
+    if unitfck == 2:
+        fck = fck*10
+    elif unitfck == 3:
+        fck = fck/1000
+
+    fyk = Dic["fyk"]
+    unitfyk = Dic['unitfyk']
+    if unitfyk == 2:
+        fyk = fyk*10
+    elif unitfck == 3:
+        fyk = fyk/1000
+
+    Dmax = Dic["Dmax"]
+
 
     #Esforços
-    Mk = float(input("Esforço Fletor (kN.m): "))
-    Mk = Mk*100
-
+    Mk = Dic['Mk']
+    unitMk = Dic['unitMk']
+    if unitMk == 1:
+        Mk = Mk*100
+    elif unitMk == 3:
+        Mk = (Mk*10)*100
+    elif unitMk == 4:
+        Mk = (Mk*10)
+    elif unitMk == 5:
+        Mk = ((Mk*10)*1000)*100
+    elif unitMk == 6:
+        Mk = (Mk*10)*1000
+        
     # TRATAMENTO DE DADOS
     Msd = Mk*gf
     d = h - d1
