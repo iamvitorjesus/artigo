@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from app import app, db
 
 from app.models.tables import User
@@ -8,7 +8,7 @@ from viga.detalhamento_flexao import detalhamento_flexao
 #model_prediction = False
 @app.route("/")
 def index():
-    return render_template('index.html',
+    return render_template('index.html'
      # prediction=model_prediction,
       #show_predictions_modal=True
       )
@@ -24,8 +24,8 @@ def newproject():
         for name in l:
             value = request.form[name]
             dict[name] = value
-        
-        return redirect(url_for("results"))
+        #detalhamento_flexao(dict)
+        return redirect(url_for("results", usr=dict))
     else:
         return render_template('newproject.html')
 
@@ -38,8 +38,8 @@ def contact():
     return render_template('contact.html')
 
 @app.route("/results")
-def results():
-    return render_template('results.html')
+def results(usr):
+    return ("<h1>{usr}</h1>")
 
 
 
