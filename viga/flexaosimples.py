@@ -71,7 +71,7 @@ def flexaosimples(Dic):
         Mk = ((Mk*10)*1000)*100
     elif unitMk == 6:
         Mk = (Mk*10)*1000
-        
+
     # TRATAMENTO DE DADOS
     Msd = Mk*gf
     d = h - d1
@@ -134,26 +134,30 @@ def flexaosimples(Dic):
         Ass = Md2/(Dsd*(d-d2))
         As = As1 + As2
 
-    Sec["bw"] = bw
-    Sec["h"] = h
-    Sec["d"] = d
-    Sec["d1"] = d1
-    Sec["d2"] = d2
+    Dic["bw"] = bw
+    Dic["h"] = h
+    Dic["d"] = d
+    Dic["d1"] = d1
+    Dic["d2"] = d2
+    Dic["x"] = x
+    Dic["c"] = c
 
-    Sec["CAA"] = CAA
-    Sec["c"] = c
-    Sec["Es"] = Es
-    Sec["gc"] = gc
-    Sec["gf"] = gf
-    Sec["gs"] = gs
+    Dic['x2lim'] = x2lim
+    Dic['x3lim'] = x3lim
 
-    Sec["Msd"] = Msd
+    Dic["CAA"] = CAA
+    Dic["Es"] = Es
+    Dic["gc"] = gc
+    Dic["gf"] = gf
+    Dic["gs"] = gs
 
-    Sec["fck"] = fck
-    Sec["fyk"] = fyk
-    Sec["fcd"] = fcd
-    Sec["fyd"] = fyd
-    Sec['Dmax'] = Dmax
+    Dic["Msd"] = Msd
+
+    Dic["fck"] = fck
+    Dic["fyk"] = fyk
+    Dic["fcd"] = fcd
+    Dic["fyd"] = fyd
+    Dic['Dmax'] = Dmax
         #Armadura Minima
     if 0.0015*bw*d >= As:
         As = 0.0015*bw*d
@@ -166,8 +170,8 @@ def flexaosimples(Dic):
         return flexaosimples()
     else:
         print('\n\nArmadura Longitudinal Positiva: As = %.2fcm²\nArmadura Longitudinal Negativa: Ass = %.2fcm²\n' %(As, Ass))
-        Sec["As"] = As
-        Sec["Ass"] = Ass
+        Dic["As"] = As
+        Dic["Ass"] = Ass
 
     x = round(x, 2)
 

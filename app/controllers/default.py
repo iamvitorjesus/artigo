@@ -16,11 +16,15 @@ dict = {}
 @app.route("/newproject", methods = ["POST", "GET"])
 def newproject():
     if request.method == "POST":
-        for info in request.form:
+        for info in request.form:           #retira informação dos inputs
             value = request.form[info]
             if value.isnumeric() == True:
                 value = float(value)
-            dict[info] = value #retira informação dos inputs
+            dict[info] = value
+
+        Dic = flexaosimples(dict)
+        if Dic['As'] + Dic['Ass'] >= 0.04*bw*h: # é preciso redimencionar a viga
+            return redirect(url_for("newproject")) #falta exibir a mensagem explicando o erro
         return redirect(url_for("results"))
     else:
         return render_template('newproject.html')
