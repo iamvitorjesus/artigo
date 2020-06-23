@@ -12,20 +12,13 @@ def index():
      # prediction=model_prediction,
       #show_predictions_modal=True
       )
-
+dict = {}
 @app.route("/newproject", methods = ["POST", "GET"])
 def newproject():
-    l = ["fk", "unitfk","fyk", "unitfyk", "fywk", "unitfywk", "Es",
-        "unitEs", "ot", "unitot", "ol", "unitol", "a", "Dmax", "Modelo",
-        "CAA", "Mk", "unitMk", "Vk", "unitVk", "yc", "ys", "bw", "unitbw",
-        "h", "unith", "l", "unitl", "t1", "unitt1", "t2", "unitt2"]
-    dict = {}
     if request.method == "POST":
-        for name in l:
-            value = request.form[name]
-            dict[name] = value
-        #detalhamento_flexao(dict)
-        return redirect(url_for("results", usr=dict))
+        for info in request.form:
+            dict[info] = request.form[info] #retira informação dos inputs
+        return redirect(url_for("results"))
     else:
         return render_template('newproject.html')
 
@@ -37,9 +30,11 @@ def about():
 def contact():
     return render_template('contact.html')
 
-@app.route("/results")
-def results(usr):
-    return ("<h1>{usr}</h1>")
+@app.route("/results", methods = ["POST", "GET"])
+def results():
+    
+
+    return render_template('results.html', usr = dict)
 
 
 
