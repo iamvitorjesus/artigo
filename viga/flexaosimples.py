@@ -66,7 +66,9 @@ def flexaosimples(Dic):
 
     'Cálculo da Armadura'
     xlim = nlim*d
+    Dic['xlim'] = xlim
     Msdlim = y*ac*nlim*(d**2)*bw*fcd*(1-(0.4*nlim))
+    Dic['Msdlim'] = Msdlim
     if Msdlim >= Msd:
         #Armadura simples
         x = (d/y)*(1-((1-((2*Msd)/(bw*(d**2)*ac*fcd)))**(0.5))) # Linha Neutra
@@ -76,16 +78,24 @@ def flexaosimples(Dic):
         #Armadura dupla
         x = xlim
         Md1 = Msdlim
+        Dic['Md1'] = Md1
         Md2 = Msd - Md1
+        Dic['Md2'] = Md2
         As1 = Md1/(fyd*(d-(0.4*x)))
         As2 = Msd/(fyd*(d-d2))
-        es = ((xlim - d2)*eu)/xlim
+        es = ((xlim - d2)*eu)/xlim # deformação sofrida pela armadura superior
+        Dic['As1'] = As1
+        Dic['As2'] = As2
+        Dic['es'] = es
         if es >= eyd:
             Dsd = fyd
+            Dic['Dsd'] = Dsd
         else:
             Dsd = es*(Es*100) #kN/cm²
+            Dic['Dsd'] = Dsd # Tensão proporcional a deformação sofrida pela armadura superior (Lei de Hooke)
         Ass = Md2/(Dsd*(d-d2))
         As = As1 + As2
+
 
     x = round(x, 2)
     Dic["x"] = x
