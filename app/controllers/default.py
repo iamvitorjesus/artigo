@@ -41,7 +41,7 @@ def contact():
 @app.route("/results", methods = ["POST", "GET"])
 def results():
 
-    return render_template('results.html', usr = dict)
+    return render_template('results.html', info = dict)
 
 
 

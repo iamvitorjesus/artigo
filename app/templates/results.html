@@ -3,31 +3,83 @@
 {% block title %}{{ super() }} - Results {% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="row marketing">
-    <div class="col">
+  <div class="container flex-auto">
+    <div class="p-3 mb-5 bg-grey rounded row">
 
-      <h1>
-        {{usr}}
-      </h1>
+      <h3 class="text-muted text-center">Results</h3>
 
     </div>
-
-
-    <div class="col">
-
-
-
-    </div>
-
   </div>
 
   <div class="container">
-    <canvas id="myCanvas">
-    </canvas>
-  </div>
+    <div class="row marketing">
 
-</div>
+      <div class="col-lg-6">
+        <h5 class="text-center">Dimensionamento à Flexão</h5>
+        <p>Pela NBR 6118 a Classe de Agressividade Ambiental (CAA) </p>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Elemento</th>
+              <th scope="col">&#8544</th>
+              <th scope="col">&#8545</th>
+              <th scope="col">&#8546</th>
+              <th scope="col">&#8547</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Laje</th>
+              <td>2,0</td>
+              <td>2,5</td>
+              <td>3,5</td>
+              <td>4,5</td>
+            </tr>
+            <tr class="table-secondary">
+              <th scope="row">Viga e Pilar</th>
+              <td>2,5</td>
+              <td>3,0</td>
+              <td>4,0</td>
+              <td>5,0</td>
+            </tr>
+            <tr>
+              <th scope="row">Em Contato com o Solo</th>
+              <td>3,0</td>
+              <td>3,0</td>
+              <td>4,0</td>
+              <td>5,0</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Como a classe escolhida foi {{info['']}}Logo, c = </p>
+        <h4>Subheading</h4>
+        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+        <h4>Subheading</h4>
+        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+      </div>
+
+      <div class="col-lg-6">
+        <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
+        <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+        <h4>Subheading</h4>
+        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+        <h4>Subheading</h4>
+        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+      </div>
+
+    </div>
+
+
+    <div class="container">
+      <canvas id="myCanvas">
+      </canvas>
+    </div>
+
+  </div>
 
 
 

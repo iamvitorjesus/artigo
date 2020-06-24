@@ -92,12 +92,16 @@ def conversao_unidades(Dic):
     CAA = Dic['CAA']
     if CAA == 1:
         c = 2.5#cm
+        classe = 'Classe &#8544'
     elif CAA == 2:
         c = 3 #cm
+        classe = 'Classe &#8545'
     elif CAA == 3:
         c = 4 #cm
+        classe = 'Classe &#8546'
     elif CAA == 4:
         c = 5 #cm
+        classe = 'Classe &#8546'
     Dic["c"] = c ####
 
     Brita = Dic["Brita"]
