@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-def viga_detalhamento_cortante(Dic):
+def detalhamento_cortante(Dic):
     import math
     '''Detalhamento da Seção Longitudinal'''
 
@@ -20,7 +20,7 @@ def viga_detalhamento_cortante(Dic):
     Barras = [5,6.3,8,10,12.5,16,20,22,25,32,40]# Opções comerciais de diametro (mm) de barra
 
     otmax = Sec['bw'] #mm
-    ot = 0.5 #Escolha inicial
+    ot = Sec['ot'] #Escolha inicial
 
     #Espaçamento máximo entre estribos
     if Sec['Vsd'] <= 0.67*Sec['Vrd2']:
@@ -74,14 +74,14 @@ def viga_detalhamento_cortante(Dic):
         di = round((di/10),2)
         M[di]= [S , Smin, ne] #Output
 
-    print("Escolha uma das opções abaixo.")
-    for k in M:
-        print(k)
+    #print("Escolha uma das opções abaixo.")
+    #for k in M:
+    #    print(k)
 
-    ot = float(input("Diâmetro do estribo: "))
-    Sec['ot'] = ot
-    Sec['S'] = M[ot][0]
-    Sec['Smin'] = M[ot][1]
-    Sec['ne'] = M[ot][2]
+    #ot = float(input("Diâmetro do estribo: "))
+    #Sec['ot'] = ot
+    #Sec['S'] = M[ot][0]
+    #Sec['Smin'] = M[ot][1]
+    #Sec['ne'] = M[ot][2]
 
     return(Sec)

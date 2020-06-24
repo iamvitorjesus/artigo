@@ -7,20 +7,26 @@ def cortanteM1(Dic):
     from viga.flexaosimples import flexaosimples
     Sec = flexaosimples(Dic)
 
-    # Tratamento de Dados
-    Vk = Sec['Vk']
     t1 = Sec['t1']
     t2 = Sec['t2']
-    l0 = Sec['l0']
     a1 = min(t1/2,0.3*h)
     a2 = min(t2/2,0.3*h)
-    lef = 100*l0 + a1 + a2
+    Sec['a1'] = a1
+    Sec['a2'] = a2
+
+    l0 = Sec['l0']
+    lef = (100*l0) + a1 + a2
+    Sec['lef'] = lef
 
     fctm = 0.3*(Sec['fck']**(2/3))/10 #kN/cm²
+    Sec['fctm'] = fctm
 
-    fywk = int(input("Resistência Caracteristica do Estribo (MPa): "))
+    fywk = Sec['fywk']
     fywd = fywk/(Sec['gs']*10)# kN/cm²
+    Sec['fywd'] = fywd
 
+
+    Vk = Sec['Vk']
     Vsd = Vk*Sec['gf']
         #Redução do cortante
     reduzir = False
@@ -34,7 +40,8 @@ def cortanteM1(Dic):
     av =(1 - (Sec['fck']/250))
     fcd2 = 0.6*av*Sec['fcd'] #Tensão resistente na biela
 
-    a = int(input("Ângulo do estribo (graus): "))
+    a = Sec['a']
+
 
     if a == 90:
         Vrd2 = (fcd2*Sec['bw']*0.9*Sec['d'])/2
@@ -45,7 +52,8 @@ def cortanteM1(Dic):
         print('''As bielas serão esmagadas.
 
         É necessário um redimencionamento ou aumento da resistência do concreto''')
-        return cortanteM1() #recursividade
+        return redirect(url_for("newproject")) #recursividade
+
 
     else:
         Vc0 = 0.6*fctd*Sec['bw']*Sec['d']
@@ -54,6 +62,11 @@ def cortanteM1(Dic):
         Asw = Vsw/(0.9*Sec['d']*fywd*(math.sin(math.radians(a))
                                + math.cos(math.radians(a))))
 
+    Sec['Vrd2'] = Vrd2
+    Sec['Vsd'] = Vsd
+    Sec['Vsdmin'] = Vsdmin
+
+
     Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywd
     if Asw <= Aswmin:
         Asw = Aswmin
@@ -61,60 +74,58 @@ def cortanteM1(Dic):
     Sec["Asw"] = Asw
     Sec["Aswmin"] = Aswmin
 
-    Sec['t1'] = t1
-    Sec['t2'] = t2
-    Sec['l0'] = l0
-    Sec['lef'] = lef
-    Sec['a1'] = a1
-    Sec['a2'] = a2
-
-    Sec['fctm'] = fctm
-    Sec['fywk'] = fywk
-    Sec['fywd'] = fywd
-
-    Sec['Vsd'] = Vsd
-    Sec['Vsdmin'] = Vsdmin
-    Sec['Vrd2'] = Vrd2
-    Sec['a'] = a
-
     return(Sec)
 
 
 'Método de calculo II'
-def cortanteM2():
+def cortanteM2(Dic):
     from viga.flexaosimples import flexaosimples
-    Sec = flexaosimples()
+    Sec = flexaosimples(Dic)
 
         # Seção longitudinal
-    Vk = float(input("Esforço Cortante (kN): "))
-    t1 = int(input("Espessura do pilar de apoio da esquerda (cm): "))
-    t2 = int(input("Espessura do pilar de apoio da direita (cm): "))
-    l0 = int(input("Comprimento do vão livre entre os pilares (cm): "))
+    t1 = Sec['t1']
+    t2 = Sec['t2']
     a1 = min(t1/2,0.3*Sec['h'])
     a2 = min(t2/2,0.3*Sec['h'])
+    Sec['a1'] = a1
+    Sec['a2'] = a2
+
+    l0 = Sec['l0']
     lef = 100*l0 + a1 + a2
+    Sec['lef'] = lef
 
     t = 30 # Angulo da Biela de Compressão
     Sec['t'] = t
 
+    Vk = Sec['Vk']
     Vsd = Vk*Sec['gf']
+    Sec['Vsd'] = Vsd
         #Redução do cortante
     reduzir = False
     if reduzir == True:
         Vsd = Vsd*(lef-Sec['d'])/lef
 
-    fywk = int(input("Resistência Caracteristica do Estribo (MPa): "))
+    fywk = Sec['fywk']
 
     fctm = 0.3*(Sec['fck']**(2/3))/10 #kN/cm²
+    Sec['fctm'] = fctm
     fywd = fywk/(Sec['gs']*10)# kN/cm²
+    Sec['fywd'] = fywd
 
         # Concreto
     fcd = Sec['fck']/(Sec['gc']*10) # kN/cm²
-    fctd = 0.7*fctm/Sec['gc']
-    av =(1 - (Sec['fck']/250))
-    fcd2 = 0.6*av*fcd #Tensão resistente na biela
+    Sec['fcd'] = fcd
 
-    a = int(input("Ângulo do estribo (graus): "))
+    fctd = 0.7*fctm/Sec['gc']
+    Sec['fctd'] = fctd
+
+    av =(1 - (Sec['fck']/250))
+    Sec['av'] = av
+
+    fcd2 = 0.6*av*fcd #Tensão resistente na biela
+    Sec['fcd2'] = fcd2
+
+    a = Sec['a']
 
     if a == 90:
         Vrd2 = (fcd2*Sec['bw']*0.9*Sec['d']*
@@ -127,11 +138,12 @@ def cortanteM2():
     Vsdmin = 0.2*0.3*(Sec['fck']**(2/3))*Sec['bw']*0.9*Sec['d']*(((1/math.tan(math.radians(t)))
                                     +(1/math.tan(math.radians(a))))
                                      *((math.sin(math.radians(t)))**2))/(Sec['gs']*10)
-
+    Sec['Vsdmin'] = Vsdmin
+    Sec['Vrd2'] = Vrd2
     if Vsd >= Vrd2:
-        print('''As bielas serão esmagadas.
-        É necessário um redimencionamento ou aumento do fck''')
-        return cortanteM2()
+        #print('''As bielas serão esmagadas.
+        #É necessário um redimencionamento ou aumento do fck''')
+        return redirect(url_for("newproject"))
 
     else:
         Vc0 = 0.6*fctd*Sec['bw']*Sec['d']
@@ -141,34 +153,20 @@ def cortanteM2():
             Vc1 = 0
         elif Vsd > Vc0:
             Vc1 = Vc0*(Vrd2-Vsd)/(Vrd2-Vc0)
-        Vc = Vc1
-        Vsw = Vsd - Vc
-        Asw = Vsw/(0.9*Sec['d']*fywd*(((1/math.tan(math.radians(t)))+
-                                (1/math.tan(math.radians(a))))
-                               *((math.sin(math.radians(a))))))
+    Vc = Vc1
+    Vsw = Vsd - Vc
+    Asw = Vsw/(0.9*Sec['d']*fywd*(((1/math.tan(math.radians(t)))+
+                            (1/math.tan(math.radians(a))))
+                           *((math.sin(math.radians(a))))))
+    Sec['Vc'] = Vc
+    Sec['Vsw'] = Vsw
 
     Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywd
+    Sec["Aswmin"] = Aswmin
     if Asw <= Aswmin:
         Asw = Aswmin
-
     Sec["Asw"] = Asw
-    Sec["Aswmin"] = Aswmin
 
-    Sec['t1'] = t1
-    Sec['t2'] = t2
-    Sec['l0'] = l0
-    Sec['lef'] = lef
-    Sec['a1'] = a1
-    Sec['a2'] = a2
-
-    Sec['fctm'] = fctm
-    Sec['fywk'] = fywk
-    Sec['fywd'] = fywd
-
-    Sec['Vsd'] = Vsd
-    Sec['Vsdmin'] = Vsdmin
-    Sec['Vrd2'] = Vrd2
-    Sec['a'] = a
 
     return(Sec)
 '''def susp():

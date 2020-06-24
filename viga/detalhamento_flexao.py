@@ -19,20 +19,22 @@ def detalhamento_flexao(Dic):
         print(d)
 
     print('Sugestão de Diâmetro - entre 8mm e 16mm')
-    x = float(input('Escolha um diâmetro (mm): '))
-    o = M[x][0]
+    ol = Sec['ol']
+    o = M[ol][0]
     ave = max(2, o, 0.5*Sec['Dmax']) #Espaçamento vertical mínimo
 
     aho = max(2, o, 1.2*Sec['Dmax']) #Espaçamento horizontal mínimo
 
     nbmax = math.floor((Sec['bw'] - (2*(Sec['c']+0.5)) + aho)/(o+aho))
     print('\nNúmero máximo de barras por camada: %d'%nbmax)
-    nc = math.ceil((M[x][1])/nbmax)
+    nc = math.ceil((M[ol][1])/nbmax)
 
     print ('\nNúmero de camadas necessárias: %d' %nc)
-    if nc*nbmax == M[x][1]:
+    if nc*nbmax == M[ol][1]:
         print ('\n%d camadas com %d barras' %(nc,nbmax))
     else:
         k = nc - 1
-        n = M[x][1] - (k*nbmax)
+        n = M[ol][1] - (k*nbmax)
         print('\n%d camadas com %d barras e 1 camada com %d barras' %(k,nbmax,n))
+
+    return (Sec)

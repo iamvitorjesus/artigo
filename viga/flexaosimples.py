@@ -3,90 +3,40 @@ import math
 
 def flexaosimples(Dic):
     #Seção Transversal
+    h = Dic['h']
+    bw = Dic['bw']
 
-        # CONVERSÃO DE UNIDADES
-    if Dic['unitbw'] == 'm':
-        Dic['bw'] = Dic['bw']*100
-        Dic['unitbw'] = 'cm'
-
-    if Dic['unith'] == 'm':
-        Dic['h'] = Dic['h']*100
-        Dic['unith'] = 'cm'
-
-    CAA = Dic['CAA']
-
-    #Escolha do cobrimento
-    if CAA == 1:
-        c = 2.5#cm
-    elif CAA == 2:
-        c = 3 #cm
-    elif CAA == 3:
-        c = 4 #cm
-    elif CAA == 4:
-        c = 5 #cm
-    d1 = c+1
+    c = Dic['c']
+    d1 = c + 1
     d2 = d1
+    Dic["d1"] = d1
+    Dic["d2"] = d2
 
     #Materiais
-    gc = Dic["gc"] #
+    gc = Dic["gc"] # Coeficiente de Minoração da Resistência do Concreto
     gf = gc # Coeficiente de Majoração do Esforço de Flexão
-    gs = Dic["gs"]
+    Dic["gf"] = gf
+    gs = Dic["gs"] # Coeficiente de Minoração da Resistência do Aço
 
-    Es = Dic['Es'] #210 GPa
-    unitEs = Dic['unitEs']
-    if unitEs == 2:
-        Es = Es/1000
-    elif unitEs == 3:
-        Es = Es/1000000
-    elif unitEs == 4:
-        Es = Es/100
+    Es = Dic['Es'] # GPa
 
-    fck = Dic["fck"]
-    unitfck = Dic['unitfck']
-    if unitfck == 2:
-        fck = fck*10
-    elif unitfck == 3:
-        fck = fck/1000
-
-    fyk = Dic["fyk"]
-    unitfyk = Dic['unitfyk']
-    if unitfyk == 2:
-        fyk = fyk*10
-    elif unitfck == 3:
-        fyk = fyk/1000
-
-    Dmax = Dic["Dmax"]
-
+    fck = Dic["fck"] # MPa
+    fyk = Dic["fyk"] # MPa
 
     #Esforços
-    Mk = Dic['Mk']
-    unitMk = Dic['unitMk']
-    if unitMk == 1:
-        Mk = Mk*100
-    elif unitMk == 3:
-        Mk = (Mk*10)*100
-    elif unitMk == 4:
-        Mk = (Mk*10)
-    elif unitMk == 5:
-        Mk = ((Mk*10)*1000)*100
-    elif unitMk == 6:
-        Mk = (Mk*10)*1000
-
+    Mk = Dic['Mk'] # kN.cm
     # TRATAMENTO DE DADOS
-    Msd = Mk*gf
-    d = h - d1
-
-    if Dmax == 0:
-        Dmax = 0.95 #cm
-    elif Dmax == 1:
-        Dmax = 1.90 #cm
-    elif Dmax == 2:
-        Dmax = 2.50 #cm
-    elif Dmax == 3:
-        Dmax = 5.00 #cm
+    Msd = Mk*gf # kN.cm
+    Dic["Msd"] = Msd
+    d = h - d1 # cm
+    Dic["d"] = d
 
     fcd = fck/(gc*10) # kN/cm²
-    fyd = fyk/(gs*10)# kN/cm²
+    Dic["fcd"] = fcd
+
+    fyd = fyk/(gs*10) # kN/cm²
+    Dic["fyd"] = fyd
+
 
     if fck <= 50:
         ac = 0.85
@@ -110,6 +60,9 @@ def flexaosimples(Dic):
     # Modo de Ruptura
     x2lim = (eu/(eu+(10/1000)))*d
     x3lim = (eu/(eu+eyd))*d
+    Dic['x2lim'] = x2lim
+    Dic['x3lim'] = x3lim
+
 
     'Cálculo da Armadura'
     xlim = nlim*d
@@ -118,7 +71,7 @@ def flexaosimples(Dic):
         #Armadura simples
         x = (d/y)*(1-((1-((2*Msd)/(bw*(d**2)*ac*fcd)))**(0.5))) # Linha Neutra
         As = Msd/(fyd*(d-(0.4*x)))
-        Ass = 2*(math.pi)*((1.2)**2)/4
+        Ass = 2*(math.pi)*((0.8)**2)/4 # Porta estribo
     else:
         #Armadura dupla
         x = xlim
@@ -134,47 +87,23 @@ def flexaosimples(Dic):
         Ass = Md2/(Dsd*(d-d2))
         As = As1 + As2
 
-    Dic["bw"] = bw
-    Dic["h"] = h
-    Dic["d"] = d
-    Dic["d1"] = d1
-    Dic["d2"] = d2
+    x = round(x, 2)
     Dic["x"] = x
-    Dic["c"] = c
 
-    Dic['x2lim'] = x2lim
-    Dic['x3lim'] = x3lim
-
-    Dic["CAA"] = CAA
-    Dic["Es"] = Es
-    Dic["gc"] = gc
-    Dic["gf"] = gf
-    Dic["gs"] = gs
-
-    Dic["Msd"] = Msd
-
-    Dic["fck"] = fck
-    Dic["fyk"] = fyk
-    Dic["fcd"] = fcd
-    Dic["fyd"] = fyd
-    Dic['Dmax'] = Dmax
         #Armadura Minima
     if 0.0015*bw*d >= As:
         As = 0.0015*bw*d
 
         #Armadura Máxima
     if As + Ass >= 0.04*bw*h:
-        print('Erro: Redimencionar Ac')
-        print()
-        print("SUGESTÃO: Aumentar a Altura")
-        return flexaosimples()
+        #print('Erro: Redimencionar Ac')
+        #print()
+        #print("SUGESTÃO: Aumentar a Altura")
+        return redirect(url_for("newproject"))
     else:
-        print('\n\nArmadura Longitudinal Positiva: As = %.2fcm²\nArmadura Longitudinal Negativa: Ass = %.2fcm²\n' %(As, Ass))
+    #print('\n\nArmadura Longitudinal Positiva: As = %.2fcm²\nArmadura Longitudinal Negativa: Ass = %.2fcm²\n' %(As, Ass))
         Dic["As"] = As
         Dic["Ass"] = Ass
-
-    x = round(x, 2)
-
 
     S = '''             DIMENSIONAMENTO
 
@@ -200,4 +129,4 @@ Portanto,
         As = %.2f cm²'''
 
     #print(S %(gf, Mk, Msd, x, d, (0.45*d), As))
-    return(Sec)
+    return(Dic)

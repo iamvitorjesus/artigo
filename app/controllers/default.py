@@ -3,7 +3,10 @@ from app import app, db
 
 from app.models.tables import User
 from app.models.forms import LoginForm
+
+
 from viga.detalhamento_flexao import detalhamento_flexao
+from viga.conversao_unidades import conversao_unidades
 
 #model_prediction = False
 @app.route("/")
@@ -17,14 +20,12 @@ dict = {}
 def newproject():
     if request.method == "POST":
         for info in request.form:           #retira informação dos inputs
-            value = request.form[info]
-            if value.isnumeric() == True:
-                value = float(value)
+            value = float(request.form[info])
             dict[info] = value
 
-        Dic = flexaosimples(dict)
-        if Dic['As'] + Dic['Ass'] >= 0.04*bw*h: # é preciso redimencionar a viga
-            return redirect(url_for("newproject")) #falta exibir a mensagem explicando o erro
+        Dic = conversao_unidades(dict)
+        Dic = detalhamento_flexao(Dic)
+
         return redirect(url_for("results"))
     else:
         return render_template('newproject.html')
