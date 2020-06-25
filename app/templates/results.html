@@ -39,7 +39,7 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Ações Permanentes:
             M<sub>sd</sub>=M<sub>k</sub>•&#611<sub>f</sub>=
-            {{info['Mk']}}•{{info['gf']}}={{info['Msd']}} kN•m.</li>
+            {{info['Mk']}}•{{info['gf']}}={{info['Msd']|round(3,'common')}} kN•m.</li>
         </ul>
 
         <table class="table table-borderless">
@@ -110,21 +110,70 @@
           </tbody>
         </table>
 
-        <p class="text-justify">Como a classe escolhida foi a {{info['c'][1]}}.
-          Logo, c = {{info['c'][0]}} cm.</p>
+        <p class="text-justify">
+          {% if eq(info['CAA'],1,/) %}
+            Como a classe escolhida foi a Classe &#8544. Logo, c = {{info['c']}} cm.
+
+          {% endif %}
+          {% if eq(info['CAA'],2,/) %}
+            Como a classe escolhida foi a Classe &#8545. Logo, c = {{info['c']}} cm.
+
+          {% endif %}
+          {% if eq(info['CAA'],3,/) %}
+            Como a classe escolhida foi a Classe &#8546. Logo, c = {{info['c']}} cm.
+
+          {% endif %}
+          {% if eq(info['CAA'],4,/) %}
+            Como a classe escolhida foi a Classe &#8544. Logo, c = {{info['c']}} cm.
+
+          {% endif %}
+        </p>
 
         <p class="text-justify">Pela lei de Hooke: &#400<sub>yd</sub>=
           &#402<sub>yd</sub>/E<sub>s</sub>. Dado o tipo de aço escolhido
           CA-{{info['fyk']/10}}, temos que &#400<sub>yd</sub>=
-          {{info['eyd']*1000}} &permil.</p>
+          {{info['eyd']*1000|round(2,'common')}} &permil.</p>
 
+        <h6>Algumas considerações a respeito do Concreto</h6>
+        <p class="text-justify">A distribuição de tensões no concreto é feita de acordo
+          com o diagrama parábola-retângulo, definido no item 8.2.10.1 da NBR 6118, com
+          tensão de pico igual a &#593<sub>c</sub>&#402<sub>cd</sub>. Esse diagrama pode
+          ser substituído pelo retângulo de profundidade y = &lambdax, onde o valor do
+          parâmetro &lambda pode ser tomado igual </p>
+        <p class="text-justify">
+          {% if le(info['fck'],50,/) %} <!-- fck <= 50 -->
+            O &#402<sub>ck={{['fck']}} MPa se enquadra na classe de resistência do
+            grupos &#8544. Portanto,
+            <p class="text-center">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Deformação específica do concreto:
+                &#400<sub>u</sub>=3,50 &permil.</li>
+              <li class="list-group-item">Parâmetro de redução da resistência do concreto na compressão:
+                &#593<sub>c</sub>=0,85</li>
+              <li class="list-group-item">Parâmetro de redução da resistência do concreto na compressão:
+                &lambda=0,80</li>
+            </ul></p>
+          {% else %}
 
+            O &#402<sub>ck={{['fck']}} MPa se enquadra na classe de resistência do
+            grupos &#8545. Portanto,
+            <p class="text-center">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Deformação específica do concreto:
+                &#400<sub>u</sub>=3,50 &permil.</li>
+              <li class="list-group-item">Parâmetro de redução da resistência do concreto na compressão:
+                &#593<sub>c</sub>=0,85</li>
+              <li class="list-group-item">Parâmetro de redução da resistência do concreto na compressão:
+                &lambda=0,80</li>
+            </ul></p>
+          {% endif %}
+        </p>
       </div>
       <div class="col-lg-6">
         <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
         <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
-        
+
         <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
 
         <h4>Subheading</h4>
