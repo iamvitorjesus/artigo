@@ -1,26 +1,7 @@
 <script>
-
-function chamar1(id){
-  var captar = document.getElementById(id).value;
-  return Number(captar);
-
-}
-
-function chamar2(id,unit){
-  var captar = document.getElementById(id).value;
-  va captarunit = document.getElementById(unit).value;
-  return ([Number(captar), unit]);
-
-}
-
-function change(id){
-  captar = document.getElementById(id).style;
-  percent = Number(captar.slice(7,9));
-  x = 100/19;
-
-  percent = percent + x;
-  document.getElementById(id).style = percent;
-  document.getElementById(id).innerHTML = "A barra de progresso está Funcionando"
+function updateProgress(element){
+    var weight = element.attributes.weight;
+    weight = weight + (100/19);
 
 }
 
@@ -48,5 +29,20 @@ function draw(bw, h, nbar, n, o, ot ){
   x = draw(200,500,6,2,10,5, 25)
 
 }
+
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#btGerarPDF').click(function () {
+    doc.fromHTML($('#conteudo').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('exemplo-pdf.pdf');
+});
 
 </script>

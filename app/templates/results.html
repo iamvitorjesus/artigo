@@ -5,9 +5,11 @@
 {% block content %}
   <div class="container flex-auto">
     <div class="p-3 mb-5 bg-grey rounded row">
+      <div class="col text-center">
 
-      <h3 class="text-muted text-center">Results</h3>
+        <h3 class="text-muted">Results</h3>
 
+      </div>
     </div>
   </div>
 
@@ -16,9 +18,64 @@
 
       <div class="col-lg-6">
         <h5 class="text-center">Dimensionamento à Flexão</h5>
-        <p>Pela NBR 6118 a Classe de Agressividade Ambiental (CAA) </p>
+        <p></p>
+        <p class="text-justify">As Resistências de Cálculo (ou de Projeto) dos materiais são
+           obtidos dividindo-se as resistências caractéristicas por um coeficiente parcial de
+           segurança.</p>
 
-        <table class="table table-striped">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Concreto:
+            &#402<sub>cd</sub>=&#402<sub>ck</sub>/&#611<sub>c</sub>=
+            {{info['fck']}}/{{info['gc']}}={{(info['fcd']*10)|round(3,'common')}} MPa.</li>
+          <li class="list-group-item">Aço:
+            &#402<sub>yd</sub>=&#402<sub>yk</sub>/&#611<sub>s</sub>=
+            {{info['fyk']}}/{{info['gc']}}={{(info['fyd']*10)|round(3,'common')}} MPa.</li>
+        </ul>
+
+        <p class="text-justify">As ações devem ser majoradas pelo coeficiente &#611<sub>f</sub>,
+          cujos valores encontram-se estabelecidos em 11.7.1, 11.7.2 e Tabelas 11.1 e 11.2
+          da norma.</p>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Ações Permanentes:
+            M<sub>sd</sub>=M<sub>k</sub>•&#611<sub>f</sub>=
+            {{info['Mk']}}•{{info['gf']}}={{info['Msd']}} kN•m.</li>
+        </ul>
+
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">Carregamento</th>
+              <th scope="col">Concreto (/&#611<sub>c</sub>)</th>
+              <th scope="col">Aço (/&#611<sub>s</sub>)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Normais</th>
+              <td>1,40</td>
+              <td>1,15</td>
+            </tr>
+            <tr>
+              <th scope="row">Especiais</th>
+              <td>1,20</td>
+              <td>1,15</td>
+            </tr>
+            <tr>
+              <th scope="row">Excepcionais</th>
+              <td>1,20</td>
+              <td>1,00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="text-justify">A NBR 6118 estabelece uma vida útil de projeto mínima de 50 anos
+          para as estruturas de edifívios convencionais. Para garantir esse requisito a
+          armadura deve estar devidamente protegida de intemperes e ações corrosivas.
+          Nesse sentido a norma estabelece um cobrimento nominal representado pela letra
+          <em>'c'</em> associado a uma determinada Classe de Agressividade Ambiental (CAA).</p>
+
+        <table class="table table-borderless">
           <thead>
             <tr>
               <th scope="col">Elemento</th>
@@ -52,14 +109,17 @@
             </tr>
           </tbody>
         </table>
-        <p>Como a classe escolhida foi {{info['']}}Logo, c = </p>
-        <h4>Subheading</h4>
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
 
-        <h4>Subheading</h4>
-        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        <p class="text-justify">Como a classe escolhida foi a {{info['c'][1]}}.
+          Logo, c = {{info['c'][0]}} cm.</p>
+
+        <p class="text-justify">Pela lei de Hooke: &#400<sub>yd</sub>=
+          &#402<sub>yd</sub>/E<sub>s</sub>. Dado o tipo de aço escolhido
+          CA-{{info['fyk']/10}}, temos que &#400<sub>yd</sub>=
+          {{info['eyd']*1000}} &permil.</p>
+
+
       </div>
-
       <div class="col-lg-6">
         <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
         <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
@@ -80,7 +140,4 @@
     </div>
 
   </div>
-
-
-
 {%endblock %}

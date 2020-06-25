@@ -6,7 +6,7 @@ def flexaosimples(Dic):
     h = Dic['h']
     bw = Dic['bw']
 
-    c = Dic['c']
+    c = Dic['c'][0]
     d1 = c + 1
     d2 = d1
     Dic["d1"] = d1
@@ -47,8 +47,11 @@ def flexaosimples(Dic):
         ac = 0.85 - ((fck - 50)/200)
         nlim = 0.35
         y = 0.8 - ((fck - 50)/400)
-        eu = 2.6 + 35*(((90 - fck)/100)**4)
-
+        eu = (2.6 + 35*(((90 - fck)/100)**4))/1000
+    Dic['ac'] = ac
+    Dic['y'] = y
+    Dic['eu'] = eu
+    Dic['nlim'] = nlim
 
     if fyk == 250:
         eyd = 1.04/1000 # Deformação especifica do Aço
@@ -56,6 +59,7 @@ def flexaosimples(Dic):
         eyd = 2.07/1000
     else:
         eyd = 2.48/1000
+    Dic['eyd'] = eyd
 
     # Modo de Ruptura
     x2lim = (eu/(eu+(10/1000)))*d
@@ -96,8 +100,6 @@ def flexaosimples(Dic):
         Ass = Md2/(Dsd*(d-d2))
         As = As1 + As2
 
-
-    x = round(x, 2)
     Dic["x"] = x
 
         #Armadura Minima
