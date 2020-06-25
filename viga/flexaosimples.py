@@ -6,7 +6,7 @@ def flexaosimples(Dic):
     h = Dic['h']
     bw = Dic['bw']
 
-    c = Dic['c'][0]
+    c = Dic['c']
     d1 = c + 1
     d2 = d1
     Dic["d1"] = d1

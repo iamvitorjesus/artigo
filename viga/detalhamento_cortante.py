@@ -48,7 +48,7 @@ def detalhamento_cortante(Dic):
     #Calculo do número de ramos
     ra = 2
     while True:
-        if((Sec['bw']-(2*Sec['c'][0]))/(ra-1)) < Stmax:
+        if((Sec['bw']-(2*Sec['c']))/(ra-1)) < Stmax:
             break
         else:
             ra +=1
