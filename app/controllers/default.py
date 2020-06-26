@@ -11,13 +11,13 @@ from viga.conversao_unidades import conversao_unidades
 #model_prediction = False
 @app.route("/")
 def index():
-    return render_template('index.html'
+    return render_template('pt/inicio.html'
      # prediction=model_prediction,
       #show_predictions_modal=True
       )
 dict = {}
-@app.route("/newproject", methods = ["POST", "GET"])
-def newproject():
+@app.route("/novoprojeto", methods = ["POST", "GET"])
+def novoprojeto():
     if request.method == "POST":
         for info in request.form:           #retira informação dos inputs
             value = float(request.form[info])
@@ -26,21 +26,17 @@ def newproject():
         Dic = conversao_unidades(dict)
         Dic = detalhamento_flexao(Dic)
 
-        return redirect(url_for("results"))
+        return redirect(url_for("resultados"))
     else:
-        return render_template('newproject.html')
+        return render_template('novoprojeto.html')
 
+@app.route("/resultados", methods = ["POST", "GET"])
+def resultado():
+    return render_template('resultados.html', info = dict)
 
-@app.route("/results", methods = ["POST", "GET"])
-def results():
-
-    return render_template('results.html', info = dict)
-
-
-
-@app.route("/contact")
-def contact():
-    return render_template('contact.html')
+@app.route("/contato")
+def contato():
+    return render_template('contato.html')
 
 
 

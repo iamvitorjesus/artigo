@@ -1,0 +1,75 @@
+{% extends 'pt/padrao.html' %}
+
+{% block title %}{{ super() }} - Contact Us {% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+
+
+    </div>
+
+
+    <div class="col">
+
+      <div class="row">
+        <div class="mx-auto flex-column">
+          <label for="fname">FIRST NAME</label>
+          <div class="input-group">
+            <input type="text" class="form-control"aria-label="Dollar amount
+              (with dot and two decimal places)" placeholder=" ">
+          </div>
+        </div>
+
+        <div class="col">
+          <label for="lname">LAST NAME</label>
+          <div class="input-group">
+            <input type="text" class="form-control auto"aria-label="Dollar amount
+              (with dot and two decimal places)" placeholder=" ">
+          </div>
+        </div>
+
+      </div><p></p>
+
+      <div class="row marketing">
+        <label for="basic-url">E-MAIL</label>
+        <div class="input-group">
+          <input type="email" class="form-control"aria-label="Dollar amount
+            (with dot and two decimal places)" placeholder=" ">
+        </div>
+      </div><p></p>
+
+      <div class="row marketing">
+        <label for="basic-url">TELEFONE <small>(OPTIONAL)</small> </label>
+        <div class="input-group">
+          <input type="tel" class="form-control" aria-label="Dollar amount
+            (with dot and two decimal places)" >
+        </div>
+      </div><p></p>
+
+      <div class="row marketing">
+        <label for="basic-url">MENSAGEM <small>(OPTIONAL)</small></label>
+        <div class="input-group">
+          <textarea class="form-control" id="FormControlTextarea" rows="5"
+            aria-label="Dollar amount (with dot and two decimal places)" ></textarea>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+{%endblock %}

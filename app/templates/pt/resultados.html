@@ -1,13 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'padrao.html' %}
 
-{% block title %}{{ super() }} - Results {% endblock %}
+{% block title %}{{ super() }} - Resultados {% endblock %}
 
 {% block content %}
   <div class="container flex-auto">
     <div class="p-3 mb-5 bg-grey rounded row">
       <div class="col text-center">
 
-        <h3 class="text-muted">Results</h3>
+        <h3 class="text-muted">Resultados</h3>
 
       </div>
     </div>
@@ -146,6 +146,7 @@
           <p></p>
 
         <p class="text-justify">
+
           {% if info['fck']<=50 %} <!-- fck <= 50 -->
             <p>
             O &#402<sub>ck<sub>={{info['fck']}} MPa se enquadra na classe de resistência do
@@ -154,11 +155,11 @@
             <p class="text-center">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Deformação específica do concreto:
-                  &#400<sub>u</sub>=3,50 &#137.</li>
+                  &#400<sub>u</sub>=3.50 &#137.</li>
                 <li class="list-group-item">Parâmetro de redução da resistência do concreto
-                   na compressão: &#593<sub>c</sub>=0,85</li>
+                   na compressão: &#593<sub>c</sub>=0.85</li>
                 <li class="list-group-item">Parâmetro de redução da resistência do concreto
-                  na compressão: &lambda=0,80</li>
+                  na compressão: &lambda=0.80</li>
               </ul>
             </p>
 
@@ -166,31 +167,29 @@
           {% else %}
             <p>
             O &#402<sub>ck<sub>={{info['fck']}} MPa se enquadra na classe de resistência do
-            grupos &#8545. Portanto,</p>
+            grupos &#8545. Portanto,
+            </p>
 
             <p class="text-center">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Deformação específica do concreto:
-                  &#400<sub>u</sub>=3,50 &#137.</li>
+                  &#400<sub>u</sub>=2.60 &#137 + 35 &#137(90-&#402<sub>ck<sub>/100)<sup>4</sup>=
+                    {{info['eu']*1000|round(2,'common')}} &#137.</li>
                 <li class="list-group-item">Parâmetro de redução da resistência do concreto na compressão:
-                  &#593<sub>c</sub>=0,85</li>
+                  &#593<sub>c</sub>=0.85[1-((&#402<sub>ck<sub>-50)/200)]={{info['ac']|round(3,'common')}}</li>
                 <li class="list-group-item">Parâmetro de redução da resistência do concreto na compressão:
-                  &lambda=0,80</li>
+                  &lambda=0,80-[(&#402<sub>ck<sub>-50)/400]={{info['y']}}</li>
               </ul>
             </p>
           {% endif %}
 
         </p>
+
       </div>
       <div class="col-lg-6">
         <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
-        <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
 
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-        <h4>Subheading</h4>
-        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
       </div>
 
 
