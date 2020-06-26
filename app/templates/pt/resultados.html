@@ -1,4 +1,4 @@
-{% extends 'padrao.html' %}
+{% extends 'pt/padrao.html' %}
 
 {% block title %}{{ super() }} - Resultados {% endblock %}
 
@@ -25,11 +25,11 @@
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Concreto:
-            &#402<sub>cd</sub>=&#402<sub>ck</sub>/&#611<sub>c</sub>=
-            {{info['fck']}}/{{info['gc']}}={{(info['fcd']*10)|round(3,'common')}} MPa.</li>
+            &#402<sub>cd</sub> = &#402<sub>ck</sub>/&#611<sub>c</sub> =
+            {{info['fck']}}/{{info['gc']}} = {{(info['fcd']*10)|round(3,'common')}} MPa.</li>
           <li class="list-group-item">Aço:
-            &#402<sub>yd</sub>=&#402<sub>yk</sub>/&#611<sub>s</sub>=
-            {{info['fyk']}}/{{info['gc']}}={{(info['fyd']*10)|round(3,'common')}} MPa.</li>
+            &#402<sub>yd</sub>=&#402<sub>yk</sub>/&#611<sub>s</sub> =
+            {{info['fyk']}}/{{info['gc']}} = {{(info['fyd']*10)|round(3,'common')}} MPa.</li>
         </ul>
 
         <p class="text-justify">As ações devem ser majoradas pelo coeficiente &#611<sub>f</sub>,
@@ -38,8 +38,8 @@
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Ações Permanentes:
-            M<sub>sd</sub>=M<sub>k</sub>•&#611<sub>f</sub>=
-            {{info['Mk']}}•{{info['gf']}}={{info['Msd']|round(3,'common')}} kN•m.</li>
+            M<sub>sd</sub> = M<sub>k</sub>&#611<sub>f</sub>=
+            {{info['Mk']}}•{{info['gf']}} = {{info['Msd']|round(3,'common')}} kN•m.</li>
         </ul>
 
         <table class="table table-borderless">
@@ -128,7 +128,16 @@
 
           {% endif %}
         </p>
+        <p class="text-justify">
+          Sem o conhecimento do diâmetro da armadura transversal e da longitudianal,
+          inicialmente adota-se um diâmetro de 5.0 mm para o estribo e 10.0 mm para
+          as barras longitudinais para o calculo da distância <em>'d'</em> entre a
+          borda mais tracionada da seção e o centro de gravidade da armadura longitudianal.
+          Considerando-se apenas uma camada para a armadura de flexão temos:
+          d = h - (c + Ø<sub>t</sub> + (Ø<sub>l</sub>/2))={{info['h']}} - {{info['d1'] }} =
+          {{info['d']}} cm.
 
+        </p>
         <p class="text-justify">Pela lei de Hooke: &#400<sub>yd</sub>=
           &#402<sub>yd</sub>/E<sub>s</sub>. Dado o tipo de aço escolhido
           CA-{{info['fyk']/10}}, temos que &#400<sub>yd</sub>=
@@ -140,57 +149,85 @@
         <p class="text-justify">A distribuição de tensões no concreto é feita de acordo
           com o diagrama parábola-retângulo, definido no item 8.2.10.1 da NBR 6118, com
           tensão de pico igual a &#593<sub>c</sub>&#402<sub>cd</sub>. Esse diagrama pode
-          ser substituído pelo retângulo de profundidade y = &lambdax, onde o valor do
-          parâmetro &lambda bem como &#593<sub>c</sub> são determinados a partir da
-          resistência caractéristica do concreto.</p>
+          ser substituído pelo retângulo de profundidade y = λx, onde o valor do
+          parâmetro λ bem como &#593<sub>c</sub> são determinados a partir da
+          resistência caractéristica do concreto.
+        </p>
           <p></p>
 
-        <p class="text-justify">
-
-          {% if info['fck']<=50 %} <!-- fck <= 50 -->
-            <p>
-            O &#402<sub>ck<sub>={{info['fck']}} MPa se enquadra na classe de resistência do
-            grupos &#8544. Portanto,</p>
-
-            <p class="text-center">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Deformação específica do concreto:
-                  &#400<sub>u</sub>=3.50 &#137.</li>
-                <li class="list-group-item">Parâmetro de redução da resistência do concreto
-                   na compressão: &#593<sub>c</sub>=0.85</li>
-                <li class="list-group-item">Parâmetro de redução da resistência do concreto
-                  na compressão: &lambda=0.80</li>
-              </ul>
-            </p>
 
 
-          {% else %}
-            <p>
-            O &#402<sub>ck<sub>={{info['fck']}} MPa se enquadra na classe de resistência do
+        {% if info['fck']<=50 %} <!-- fck <= 50 -->
+          <p class="text-justify">
+            O &#402<sub>ck</sub> = {{info['fck']}} MPa se enquadra na classe de resistência do
+            grupos &#8544. Portanto,
+          </p>
+
+          <p class="text-center">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Deformação específica do concreto:
+                &#400<sub>u</sub> = 3.50 &#137.</li>
+              <li class="list-group-item">Parâmetro de redução da resistência do concreto
+                 na compressão: &#593<sub>c</sub> = 0.85</li>
+              <li class="list-group-item">Parâmetro de uniformização do esforço de compressão:
+                λ = 0.80</li>
+            </ul>
+          </p>
+
+        {% else %}
+
+          <p class="text-justify">
+            O &#402<sub>ck</sub> = {{info['fck']}} MPa se enquadra na classe de resistência do
             grupos &#8545. Portanto,
-            </p>
+          </p>
 
-            <p class="text-center">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Deformação específica do concreto:
-                  &#400<sub>u</sub>=2.60 &#137 + 35 &#137(90-&#402<sub>ck<sub>/100)<sup>4</sup>=
-                    {{info['eu']*1000|round(2,'common')}} &#137.</li>
-                <li class="list-group-item">Parâmetro de redução da resistência do concreto na compressão:
-                  &#593<sub>c</sub>=0.85[1-((&#402<sub>ck<sub>-50)/200)]={{info['ac']|round(3,'common')}}</li>
-                <li class="list-group-item">Parâmetro de redução da resistência do concreto na compressão:
-                  &lambda=0,80-[(&#402<sub>ck<sub>-50)/400]={{info['y']}}</li>
-              </ul>
-            </p>
-          {% endif %}
+          <p class="text-center">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">deformação específica do concreto:
+                &#400<sub>u</sub> = 2.60 &#137 + 35 &#137(90-&#402<sub>ck</sub>/100)<sup>4</sup> =
+                  {{(info['eu']*1000)|round(2 ,'common')}} &#137;</li>
+              <li class="list-group-item">parâmetro de redução da resistência do concreto na
+                compressão: &#593<sub>c</sub> = 0.85[1 - ((&#402<sub>ck</sub> - 50)/200)]=
+                {{info['ac']|round(3,'common')}};</li>
+              <li class="list-group-item">parâmetro de uniformização do esforço de compressão:
+                λ = 0,80 - [(&#402<sub>ck</sub> - 50)/400] = {{info['y']|round(2,'common')}};</li>
+              <li class="list-group-item">critério de ductilidade:
+                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230</strong> x<sub>lim</sub> =
+                n<sub>lim</sub>d = {{info['xlim']|round(2,'common')}} cm.</li>
+            </ul>
+          </p>
+        {% endif %}
 
-        </p>
+        {% if info['Msdlim'] >= info['Msd'] %}
+          <p>M<sub>sdlim</sub> ⋝ M<sub>sd</sub>, ou seja, <strong>Armadura Simples</strong>, o que
+            significa que apenas a armadura tração será calculada, a armadura de compreção servirá
+            apenas para garantira a posição da armadura transversal durante a execução, adotado-se
+            2 barras de 8.0 mm.
+          </p>
+          <p>x = 
 
-      </div>
-      <div class="col-lg-6">
-        <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
+
+          </p>
 
 
-      </div>
+        {% else %}
+          <p>M<sub>sdlim</sub> < M<sub>sd</sub>, ou seja, <strong>Armadura Dupla</strong>, o que
+            significa que apenas a armadura tração será calculada, a armadura de compreção servirá
+            apenas para garantira a posição da armadura transversal durante a execução, adotado-se
+            2 barras de 8.0 mm.
+          </p>
+
+
+        {% endif %}
+
+
+        </div>
+
+        <div class="col-lg-6">
+          <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
+
+
+        </div>
 
 
 
@@ -198,7 +235,7 @@
         <canvas id="myCanvas">
         </canvas>
       </div>
-    </div>
 
+    </div>
   </div>
 {%endblock %}
