@@ -38,8 +38,8 @@
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Ações Permanentes:
-            M<sub>sd</sub> = M<sub>k</sub>&#611<sub>f</sub>=
-            {{info['Mk']}}•{{info['gf']}} = {{info['Msd']|round(3,'common')}} kN•m.</li>
+            M<sub>sd</sub> = M<sub>k</sub>&#611<sub>f</sub> =
+            {{info['Mk']}}&#x22C5;{{info['gf']}} = {{info['Msd']|round(3,'common')}} kN&#x22C5;m.</li>
         </ul>
 
         <table class="table table-borderless">
@@ -174,6 +174,28 @@
             </ul>
           </p>
 
+          <h6 class="text-center">Domínio de Deformação</h6>
+          <p class="text-justify">O valor x<sub>2lim</sub> delimita os domínos 2 e 3,
+             \[x_{2lim} =\left(\frac{&#400_{u}}{&#400_{u}+10  &#137}\right)&#x22C5;d,\]
+             e para os concretos do Grupo &#8544; de resistência (f<sub>ck</sub> ⋜ 50 MPa)
+             é fixo e igual a {{(info['eu']/(info['eu']+0.01))|round(3, 'common')}}&#x22C5;d, pois a deformação
+             máxima do concreto para esse grupo é fixo em 3.50 &#137.</p>
+
+          <p class="text-justify">O valor x<sub>3lim</sub> delimita os domínos 3 e 4,
+              \[x_{3lim} =\left(\frac{&#400_{u}}{&#400_{u}+&#400_{yd}}\right)&#x22C5;d,\]
+              e para os concretos do Grupo &#8544; e aço CA-{{(info['fyk']/10)|round|int}}
+              é fixo e igual a {{(info['eu']/(info['eu']+info['eyd']))|round(3, 'common')}}&#x22C5;d.
+          </p>
+
+          <p class="text-justify">x<sub>2lim</sub> = {{(info['eu']/(info['eu']+0.01))|
+            round(3, 'common')}}&#x22C5;{{info['d']}} = {{((info['eu']/(info['eu']+0.01))*info['d'])|
+            round(2, 'common')}} </p>
+
+            <p class="text-justify">x<sub>2lim</sub> = {{(info['eu']/(info['eu']+info['eyd']))|
+              round(3, 'common')}}&#x22C5;{{info['d']}} = {{((info['eu']/(info['eu']+info['eyd']))*info['d'])|
+              round(2, 'common')}} </p>
+
+
         {% else %}
 
           <p class="text-justify">
@@ -196,33 +218,71 @@
                 n<sub>lim</sub>d = {{info['xlim']|round(2,'common')}} cm.</li>
             </ul>
           </p>
+
+          <p>&#8545; (f<sub>ck</sub> > 50 MPa) depende do &#400<sub>u</sub>  </p>
         {% endif %}
 
         {% if info['Msdlim'] >= info['Msd'] %}
-          <p>M<sub>sdlim</sub> ⋝ M<sub>sd</sub>, ou seja, <strong>Armadura Simples</strong>, o que
-            significa que apenas a armadura tração será calculada, a armadura de compreção servirá
-            apenas para garantira a posição da armadura transversal durante a execução, adotado-se
-            2 barras de 8.0 mm.
+          <p class="text-justify">M<sub>sdlim</sub> ⋝ M<sub>sd</sub>, ou seja, <strong>Armadura
+            Simples</strong>, o que significa que apenas a armadura tração será calculada, a
+            armadura de compreção servirá apenas para garantira a posição da armadura transversal
+            durante a execução, adotado-se 2 barras de 8.0 mm (2Ø8mm).
           </p>
-          <p>x = 
-
+          <p class="font-weight-light">
+            \[x =\frac{d}{\lambda}\left(1-\sqrt{1-\frac{2 M_{sd}}{b_{w}\alpha_{c}f_{cd}d^{2}}}\right)\]
+            <math display="block">
+              <mi>x</mi><mo>=</mo><mfrac>
+                <mi>{{info['d']}}</mi>
+                <mi>{{info['y']}}<!-- λ --></mi>
+              </mfrac>
+              <mrow>
+                <mo>(</mo>
+                <mn>1</mn>
+                <mo>&#x2212;<!-- − --></mo>
+                <msqrt>
+                  <mn>1</mn><mo>&#x2212;<!-- − --></mo>
+                  <mfrac>
+                    <mrow>
+                      <mn>2</mn><mi>&#x22C5;{{info['Msd']}}</mi>
+                    </mrow>
+                    <mrow>
+                      <mi>({{info['bw']}})&#x22C5;</mi><mi>({{info['ac']}})&#x22C5;</mi>
+                      <mi>({{info['fcd']|round(3, 'common')}})&#x22C5;</mi>
+                      <msup>
+                        <mi>({{info['d']}})</mi>
+                        <mrow class="MJX-TeXAtom-ORD">
+                          <mn>2</mn>
+                        </mrow>
+                      </msup>
+                    </mrow>
+                  </mfrac>
+                </msqrt>
+                <mo>)</mo>
+                <mo>=</mo>
+                <mi>{{info['x']|round(2, 'common')}} cm</mi>
+              </mrow>
+            </math>
+          </p>
+          <p class="text-justify">
 
           </p>
-
 
         {% else %}
-          <p>M<sub>sdlim</sub> < M<sub>sd</sub>, ou seja, <strong>Armadura Dupla</strong>, o que
-            significa que apenas a armadura tração será calculada, a armadura de compreção servirá
-            apenas para garantira a posição da armadura transversal durante a execução, adotado-se
-            2 barras de 8.0 mm.
+          <p>M<sub>sd</sub> > M<sub>sdlim</sub>, ou seja,
+            <strong>Armadura Dupla</strong>,
+
+
           </p>
 
 
         {% endif %}
+
 
 
         </div>
 
+
+        <p></p>
         <div class="col-lg-6">
           <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
 
