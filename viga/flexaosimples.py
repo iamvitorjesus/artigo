@@ -93,17 +93,16 @@ def flexaosimples(Dic):
         Md2 = Msd - Md1
         Dic['Md2'] = Md2
         As1 = Md1/(fyd*(d-(0.4*x)))
-        As2 = Msd/(fyd*(d-d2))
+        As2 = Md2/(fyd*(d-d2))
         es = ((xlim - d2)*eu)/xlim # deformação sofrida pela armadura superior
         Dic['As1'] = As1
         Dic['As2'] = As2
         Dic['es'] = es
         if es >= eyd:
             Dsd = fyd
-            Dic['Dsd'] = Dsd
         else:
             Dsd = es*(Es*100) #kN/cm²
-            Dic['Dsd'] = Dsd # Tensão proporcional a deformação sofrida pela armadura superior (Lei de Hooke)
+        Dic['Dsd'] = Dsd # Tensão proporcional a deformação sofrida pela armadura superior (Lei de Hooke)
         Ass = Md2/(Dsd*(d-d2))
         As = As1 + As2
 

@@ -278,8 +278,48 @@
             \[x =\frac{d}{\lambda}\left(1-\sqrt{1-\frac{2 M_{sd}}{b_{w}\alpha_{c}f_{cd}d^{2}}}\right)\]
 
         {% else %}
-          <p>M<sub>sd</sub> = {{info['Msd']|round(2,'common')}} kN&#x22C5;m > {{info['Msdlim']|round(2,'common')}} kN&#x22C5;m = M<sub>sdlim</sub>, ou seja,
-            <strong>Armadura Dupla</strong>,
+          <p class="text-justify">M<sub>sd</sub> = {{info['Msd']|round(1,'common')}} kN&#x22C5;cm >
+            {{info['Msdlim']|round(1,'common')}} kN&#x22C5;cm = M<sub>sdlim</sub>,
+            ou seja, <strong>Armadura Dupla</strong>. M<sub>d1</sub> = M<sub>sdlim</sub>
+            <strong>&#10230</strong> M<sub>d2</sub> =  M<sub>sd</sub> - M<sub>d1</sub> =
+            {{info['Msd']|round(1,'common')}} - {{info['Md1']|round(1,'common')}} =
+            {{info['Md2']|round(1,'common')}} kN&#x22C5;m.
+          </p>
+
+          <p>A<sub>s1</sub> = M<sub>d1</sub>/(&#402<sub>yd</sub>&#x22C5;(d - 0.4&#x22C5;x)) =
+          {{info['Md1']|round(1,'common')}}/({{info['fyd']|round(3,'common')}}&#x22C5;
+          ({{info['d']|round(2,'common')}} - 0.4&#x22C5;{{info['x']|round(2,'common')}})) =
+          {{info['As1']|round(2,'common')}} cm²</p>
+          <p>A<sub>s2</sub> = M<sub>sd</sub>/(&#402<sub>yd</sub>&#x22C5;(d - d<sub>2</sub>)) =
+          {{info['Md2']|round(1,'common')}}/({{info['fyd']|round(3,'common')}}&#x22C5;
+          ({{info['d']|round(2,'common')}} - {{info['d2']|round(2,'common')}})) =
+          {{info['As2']|round(2,'common')}} cm²</p>
+
+          {% if info['es'] >= info['eyd'] %}
+            <p>Se a deformação específica da armadura comprimida (&#400<sub>s</sub>) for maior
+              que a deformação específica de escoamento, então A<sub>ss</sub> = A<sub>s2</sub>.
+              &#400<sub>s</sub> = (({{info['xlim']|round(2,'common')}} -
+              {{info['d2']|round(2,'common')}})&#x22C5;{{info['eu']|round(4,'common')}})/
+              {{info['xlim']|round(2,'common')}} </p>
+
+          {% else %}
+          <p>Se a deformação específica da armadura comprimida (&#400<sub>s</sub>) for maior
+            que a deformação específica de escoamento, então A<sub>ss</sub> = A<sub>s2</sub>.
+            &#400<sub>s</sub> = (({{info['xlim']|round(2,'common')}} -
+            {{info['d2']|round(2,'common')}})&#x22C5;{{info['eu']|round(4,'common')}})/
+            {{info['xlim']|round(2,'common')}} </p>
+
+          {% endif %}
+
+          <p class="text-center">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Área da armadura tracionada:
+                A<sub>s</sub> = A<sub>s1</sub> + A<sub>s2</sub> = {{info['As1']|round(2,'common')}} +
+                {{info['As2']|round(2,'common')}} = {{(info['As'])|round(2 ,'common')}} cm²</li>
+              <li class="list-group-item">Área da armadura comprimida:
+                A<sub>ss</sub> = A<sub>s1</sub> + A<sub>s2</sub> = {{info['As1']|round(2,'common')}} +
+                {{info['As2']|round(2,'common')}} = {{(info['As'])|round(2 ,'common')}} cm²</li>
+            </ul>
           </p>
 
 
