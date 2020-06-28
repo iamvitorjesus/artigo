@@ -83,7 +83,8 @@ def flexaosimples(Dic):
         Ass = 2*(math.pi)*((0.8)**2)/4 # Porta estribo
     else:
         #Armadura dupla
-        x = xlim
+        if x > xlim:
+            x = xlim
         Md1 = Msdlim
         Dic['Md1'] = Md1
         Md2 = Msd - Md1
@@ -105,12 +106,18 @@ def flexaosimples(Dic):
 
     Dic["x"] = x
 
-        #Armadura Minima
+        # Armadura Minima
     if 0.0015*bw*d >= As:
         As = 0.0015*bw*d
 
     Dic["As"] = As
     Dic["Ass"] = Ass
+
+        # Armadura de Pele
+    if Dic['h'] > 60:
+        Aspface = (0.1/100)*Dic['bw']*Dic['h']
+        Dic['Aspface'] = Aspface
+
 
     S = '''             DIMENSIONAMENTO
 

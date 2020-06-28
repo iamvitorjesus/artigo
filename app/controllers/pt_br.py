@@ -29,7 +29,7 @@ def novoprojeto():
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
-        if Dic['Vsd'] >= Dic[' Vrd2']: # As bielas serão esmagadas.
+        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
             #É necessário um redimencionamento ou aumento do fck''')
             return redirect(url_for("erroBiela"))
 
@@ -38,11 +38,11 @@ def novoprojeto():
     else:
         return render_template('pt/novoprojeto.html')
 
-@app.route("/erro", methods = ["GET"])
+@app.route("/erroM", methods = ["GET"])
 def erroMomento():
     return render_template('pt/erroMomento.html')
 
-@app.route("/erro", methods = ["GET"])
+@app.route("/erroB", methods = ["GET"])
 def erroBiela():
     return render_template('pt/erroBiela.html')
 

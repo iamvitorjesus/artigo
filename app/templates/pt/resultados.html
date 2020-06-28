@@ -242,14 +242,22 @@
 
         <p>x = {{info['x']|round(2, 'common')}} cm.</p>
 
-        {% if info['x'] < info['xlim'] %}
+        {% if info['x'] <= info['xlim'] %}
           <p>A viga passa também no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
             {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm > x =
             {{info['x']|round(2, 'common')}} cm.</p>
+        {% else %}
+          <p>A viga não passa no critério de ductilidade pois {{info['nlim']}}&#x22C5;d <
+            {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm > x =
+            {{info['x']|round(2, 'common')}} cm.</p>
+
+          <p></p>
 
         {% endif %}
 
         {% if info['Msdlim'] >= info['Msd'] %}
+
+
           <p class="text-justify">M<sub>sdlim</sub> ⋝ M<sub>sd</sub>, ou seja, <strong>Armadura
             Simples</strong>, o que significa que apenas a armadura tração será calculada, a
             armadura de compreção servirá apenas para garantira a posição da armadura transversal
