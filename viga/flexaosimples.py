@@ -114,9 +114,10 @@ def flexaosimples(Dic):
     Dic["Ass"] = Ass
 
         # Armadura de Pele
-    if Dic['h'] > 60:
-        Aspface = (0.1/100)*Dic['bw']*Dic['h']
+    if h > 60:
+        Aspface = (0.1/100)*bw*h
         Dic['Aspface'] = Aspface
+        e = d
 
 
     S = '''             DIMENSIONAMENTO
