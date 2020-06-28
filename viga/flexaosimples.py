@@ -109,14 +109,6 @@ def flexaosimples(Dic):
     if 0.0015*bw*d >= As:
         As = 0.0015*bw*d
 
-        #Armadura Máxima
-    #if As + Ass >= 0.04*bw*h:
-        #print('Erro: Redimencionar Ac')
-        #print()
-        #print("SUGESTÃO: Aumentar a Altura")
-        #return redirect('/')
-    #else:
-    #print('\n\nArmadura Longitudinal Positiva: As = %.2fcm²\nArmadura Longitudinal Negativa: Ass = %.2fcm²\n' %(As, Ass))
     Dic["As"] = As
     Dic["Ass"] = Ass
 

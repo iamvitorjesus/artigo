@@ -1,0 +1,22 @@
+{% extends 'pt/padrao.html' %}
+
+{% block title %}{{ super() }} - Erro {% endblock %}
+
+
+{% block content %}
+  <div class="jumbotron text-center">
+    <div class="row justify-content-center">
+      <h1 class="cover-heading">Algo de Errado não está Certo!</h1>
+      <div class="col-6 ">
+        <p></p>
+        <p class="lead">A Esforço Cortante exercído supera aquilo que estrutura
+          pode suportar. Sugerimos que redimencione a seção transversal nos
+          parametros base (b<sub>w</sub>) e/ou altura (h), ou que aumente a
+          resistência caractéristica do concreto (f<sub>ck</sub>).</p>
+        <p class="lead">
+          <a name="tentar" href="novoprojeto" class="btn btn-lg btn-template">Tentar de Novo</a>
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

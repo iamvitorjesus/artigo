@@ -26,19 +26,25 @@ def novoprojeto():
 
         Dic = conversao_unidades(dict)
         Dic = detalhamento_flexao(Dic)
-        if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']:
-            print('Erro: Redimencionar Ac')
-            #print()
-            #print("SUGESTÃO: Aumentar a Altura")
-            return redirect(url_for("erro"))
+        if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
+            return redirect(url_for("erroMomento"))
+
+        if Dic['Vsd'] >= Dic[' Vrd2']: # As bielas serão esmagadas.
+            #É necessário um redimencionamento ou aumento do fck''')
+            return redirect(url_for("erroBiela"))
+
 
         return redirect(url_for("resultados"))
     else:
         return render_template('pt/novoprojeto.html')
 
 @app.route("/erro", methods = ["GET"])
-def erro():
-    return render_template('pt/erro.html')
+def erroMomento():
+    return render_template('pt/erroMomento.html')
+
+@app.route("/erro", methods = ["GET"])
+def erroBiela():
+    return render_template('pt/erroBiela.html')
 
 
 @app.route("/resultados", methods = ["POST", "GET"])

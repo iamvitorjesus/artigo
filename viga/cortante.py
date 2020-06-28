@@ -25,13 +25,14 @@ def cortanteM1(Dic):
 
     Vk = Sec['Vk']
     Vsd = Vk*Sec['gf']
+    Sec['Vsd'] = Vsd
         #Redução do cortante
     reduzir = False
     if reduzir == True:
         Vsd = Vsd*(lef-Sec['d'])/lef
 
     Vsdmin = 0.06*(Sec['fck']**(2/3))*Sec['bw']*0.9*Sec['d']/(Sec['gs']*10)
-
+    Sec['Vsdmin'] = Vsdmin
         # Concreto
     fctd = 0.7*fctm/Sec['gc']
     av =(1 - (Sec['fck']/250))
@@ -43,34 +44,24 @@ def cortanteM1(Dic):
     if a == 90:
         Vrd2 = (fcd2*Sec['bw']*0.9*Sec['d'])/2
     else:
-        Vrd2 = fcd2*Sec['bw']*0.9*Sec['d']*(1+(1/math.tan(math.radians(Sec['fck']))))
-
-    if Vsd >= Vrd2:
-        print('''As bielas serão esmagadas.
-
-        É necessário um redimencionamento ou aumento da resistência do concreto''')
-        return redirect(url_for("novoprojeto")) #recursividade
-
-
-    else:
-        Vc0 = 0.6*fctd*Sec['bw']*Sec['d']
-        Vc = Vc0
-        Vsw = Vsd - Vc
-        Asw = Vsw/(0.9*Sec['d']*fywd*(math.sin(math.radians(a))
-                               + math.cos(math.radians(a))))
-
+        Vrd2 = (fcd2*Sec['bw']*0.9*Sec['d']*(1+(1/math.tan(math.radians(a)))))/2
     Sec['Vrd2'] = Vrd2
-    Sec['Vsd'] = Vsd
-    Sec['Vsdmin'] = Vsdmin
 
+    # Verificação Vsd >= Vrd2
+    Vc0 = 0.6*fctd*Sec['bw']*Sec['d']
+    Vc = Vc0
+    Vsw = Vsd - Vc
+    Asw = Vsw/(0.9*Sec['d']*fywd*(math.sin(math.radians(a))
+                           + math.cos(math.radians(a))))
+    Sec['Vc'] = Vc
+    Sec['Vsw'] = Vsw
 
     Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywd
+    Sec["Aswmin"] = Aswmin
     if Asw <= Aswmin:
         Asw = Aswmin
 
     Sec["Asw"] = Asw
-    Sec["Aswmin"] = Aswmin
-
     return(Sec)
 
 
@@ -136,19 +127,14 @@ def cortanteM2(Dic):
                                      *((math.sin(math.radians(t)))**2))/(Sec['gs']*10)
     Sec['Vsdmin'] = Vsdmin
     Sec['Vrd2'] = Vrd2
-    if Vsd >= Vrd2:
-        #print('''As bielas serão esmagadas.
-        #É necessário um redimencionamento ou aumento do fck''')
-        return redirect(url_for("novoprojeto"))
-
-    else:
-        Vc0 = 0.6*fctd*Sec['bw']*Sec['d']
-        if Vsd <= Vc0:
-            Vc1 = Vc0
-        elif Vrd2 == Vsd:
-            Vc1 = 0
-        elif Vsd > Vc0:
-            Vc1 = Vc0*(Vrd2-Vsd)/(Vrd2-Vc0)
+    # Verificação Vsd >= Vrd2
+    Vc0 = 0.6*fctd*Sec['bw']*Sec['d']
+    if Vsd <= Vc0:
+        Vc1 = Vc0
+    elif Vrd2 == Vsd:
+        Vc1 = 0
+    elif Vsd > Vc0:
+        Vc1 = Vc0*(Vrd2-Vsd)/(Vrd2-Vc0)
     Vc = Vc1
     Vsw = Vsd - Vc
     Asw = Vsw/(0.9*Sec['d']*fywd*(((1/math.tan(math.radians(t)))+
@@ -162,8 +148,6 @@ def cortanteM2(Dic):
     if Asw <= Aswmin:
         Asw = Aswmin
     Sec["Asw"] = Asw
-
-
     return(Sec)
 '''def susp():
     alinhamento = 0 # face inf. da 2º esta acima da face inf. da 1º
