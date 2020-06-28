@@ -76,14 +76,17 @@ def flexaosimples(Dic):
     Dic['xlim'] = xlim
     Msdlim = y*ac*nlim*(d**2)*bw*fcd*(1-(0.4*nlim))
     Dic['Msdlim'] = Msdlim
+    cal = 0
+    x = (d/y)*(1-((1-((2*Msd)/(bw*(d**2)*ac*fcd)))**(0.5))) # Linha Neutra
+    Dic['xcal'] = x
     if Msdlim >= Msd:
         #Armadura simples
-        x = (d/y)*(1-((1-((2*Msd)/(bw*(d**2)*ac*fcd)))**(0.5))) # Linha Neutra
         As = Msd/(fyd*(d-(0.4*x)))
         Ass = 2*(math.pi)*((0.8)**2)/4 # Porta estribo
     else:
         #Armadura dupla
         if x > xlim:
+            cal = 1
             x = xlim
         Md1 = Msdlim
         Dic['Md1'] = Md1
@@ -104,6 +107,7 @@ def flexaosimples(Dic):
         Ass = Md2/(Dsd*(d-d2))
         As = As1 + As2
 
+    Dic['cal'] = cal
     Dic["x"] = x
 
         # Armadura Minima
@@ -115,9 +119,12 @@ def flexaosimples(Dic):
 
         # Armadura de Pele
     if h > 60:
-        Aspface = (0.1/100)*bw*h
-        Dic['Aspface'] = Aspface
-        e = d
+        Asp_face = (0.1/100)*bw*h
+        Dic['Asp_face'] = Asp_face
+        osp = 8.0   # Diâmetro da Armadura de Pele
+        nsp_face = math.ceil(Asp_face/((math.pi)*((osp/10)**2)/4))
+        e = d/nsp_face
+
 
 
     S = '''             DIMENSIONAMENTO

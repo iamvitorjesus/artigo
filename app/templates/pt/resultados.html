@@ -152,8 +152,6 @@
         </p>
           <p></p>
 
-
-
         {% if info['fck']<=50 %} <!-- fck <= 50 -->
           <p class="text-justify">
             O &#402<sub>ck</sub> = {{info['fck']}} MPa se enquadra na classe de resistência do
@@ -181,7 +179,7 @@
             pois a deformação máxima do concreto para esse grupo é fixo em 3.50 &#137.</p>
 
           <p class="text-justify">x<sub>2lim</sub> = {{(info['eu']/(info['eu']+0.01))|
-            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x2lim']|round(2, 'common')}} </p>
+            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x2lim']|round(2, 'common')}} cm.</p>
 
           <p class="text-justify">O valor x<sub>3lim</sub> delimita os domínos 3 e 4,
             e para os concretos do Grupo &#8544; e aço CA-{{(info['fyk']/10)|round|int}}
@@ -189,7 +187,7 @@
           </p>
 
           <p class="text-justify">x<sub>3lim</sub> = {{(info['eu']/(info['eu']+info['eyd']))|
-            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x3lim']|round(2, 'common')}} </p>
+            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x3lim']|round(2, 'common')}} cm.</p>
 
         {% else %}
 
@@ -233,65 +231,59 @@
 
         {% endif %}
 
-        {% if info['x2lim'] > info['x']  %}
-          <p><strong>Domínio 2</strong></p>
+        {% if info['x2lim'] > info['xcal']  %}
+          <p><strong>Domínio 2: </strong>x<sub>2lim</sub> = {{info['x2lim']|round(2,'common')}} cm >
+            {{info['xcal']|round(2,'common')}} cm = x.</p>
 
-        {% elif info['x'] >= info['x2lim'] and info['x'] <= info['x3lim'] %}
-          <p><strong>Domínio 3</strong></p>
+        {% elif info['xcal'] >= info['x2lim'] and info['xcal'] <= info['x3lim'] %}
+          <p><strong>Domínio 3: </strong>x<sub>2lim</sub> = {{info['x2lim']|round(2,'common')}} cm ⋜
+            {{info['xcal']|round(2,'common')}} cm = x ⋜ {{info['x3lim']|round(2,'common')}} cm = x<sub>3lim</sub>.</p>
+
+        {% elif info['xcal'] > info['x3lim'] %}
+          <p><strong>Domínio 4: </strong>x = {{info['xcal']|round(2,'common')}} cm >
+            {{info['x3lim']|round(2,'common')}} cm = x<sub>3lim</sub>.</p>
+
         {% endif %}
 
-        <p>x = {{info['x']|round(2, 'common')}} cm.</p>
-
-        {% if info['x'] <= info['xlim'] %}
+        {% if info['x'] < info['xlim'] %}
           <p>A viga passa também no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
             {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm > x =
             {{info['x']|round(2, 'common')}} cm.</p>
-        {% else %}
-          <p>A viga não passa no critério de ductilidade pois {{info['nlim']}}&#x22C5;d <
-            {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm > x =
-            {{info['x']|round(2, 'common')}} cm.</p>
+
+        {% elif info['cal'] == 1 %}
+          <p>A viga não passa no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
+            {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm < x =
+            {{info['xcal']|round(2, 'common')}} cm.</p>
 
           <p></p>
+          <p>Portanto para os proximos calculos x = {{info['x']|round(2, 'common')}} cm.</p>
+
+        {% elif info['xcal'] == info['xlim'] %}
+          <p>A viga passa também no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
+            {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm = x =
+            {{info['xcal']|round(2, 'common')}} cm.</p>
 
         {% endif %}
 
         {% if info['Msdlim'] >= info['Msd'] %}
 
 
-          <p class="text-justify">M<sub>sdlim</sub> ⋝ M<sub>sd</sub>, ou seja, <strong>Armadura
-            Simples</strong>, o que significa que apenas a armadura tração será calculada, a
+          <p class="text-justify">M<sub>sdlim</sub> = {{info['Msdlim']|round(2,'common')}} kN&#x22C5;m
+            ⋝ {{info['Msd']|round(2,'common')}} kN&#x22C5;m = M<sub>sd</sub>, ou seja, <strong>Armadura
+            Simples</strong>, o que significa que apenas a armadura de tração será calculada, a
             armadura de compreção servirá apenas para garantira a posição da armadura transversal
-            durante a execução, adotado-se 2 barras de 8.0 mm (2Ø8mm).
+            durante a execução (porta estribo), adotado-se 2 barras de 8.0 mm de diâmetro (2Ø8mm).
           </p>
 
             \[x =\frac{d}{\lambda}\left(1-\sqrt{1-\frac{2 M_{sd}}{b_{w}\alpha_{c}f_{cd}d^{2}}}\right)\]
 
-
-
-
-
-
-
-
-
-
         {% else %}
-          <p>M<sub>sd</sub> > M<sub>sdlim</sub>, ou seja,
+          <p>M<sub>sd</sub> = {{info['Msd']|round(2,'common')}} kN&#x22C5;m > {{info['Msdlim']|round(2,'common')}} kN&#x22C5;m = M<sub>sdlim</sub>, ou seja,
             <strong>Armadura Dupla</strong>,
-
-
           </p>
 
 
         {% endif %}
-
-        {% if info['x2lim'] < info['x'] %}
-
-          {% if info['x'] < info['x3lim'] %}
-
-          {% endif %}
-        {% endif %}
-
 
 
         </div>
