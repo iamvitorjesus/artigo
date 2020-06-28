@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 import math
+from flask import Flask, redirect, url_for,  render_template
+from app.controllers.pt_br import *
+
 
 def flexaosimples(Dic):
     #Seção Transversal
@@ -107,15 +110,15 @@ def flexaosimples(Dic):
         As = 0.0015*bw*d
 
         #Armadura Máxima
-    if As + Ass >= 0.04*bw*h:
+    #if As + Ass >= 0.04*bw*h:
         #print('Erro: Redimencionar Ac')
         #print()
         #print("SUGESTÃO: Aumentar a Altura")
-        return redirect(url_for("newproject"))
-    else:
+        #return redirect('/')
+    #else:
     #print('\n\nArmadura Longitudinal Positiva: As = %.2fcm²\nArmadura Longitudinal Negativa: Ass = %.2fcm²\n' %(As, Ass))
-        Dic["As"] = As
-        Dic["Ass"] = Ass
+    Dic["As"] = As
+    Dic["Ass"] = Ass
 
     S = '''             DIMENSIONAMENTO
 

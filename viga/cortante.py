@@ -6,11 +6,8 @@ import math
 def cortanteM1(Dic):
     from viga.flexaosimples import flexaosimples
     Sec = flexaosimples(Dic)
-
-    t1 = Sec['t1']
-    t2 = Sec['t2']
-    a1 = min(t1/2,0.3*h)
-    a2 = min(t2/2,0.3*h)
+    a1 = min(Sec['t1']/2,0.3*h)
+    a2 = min( Sec['t2']/2,0.3*h)
     Sec['a1'] = a1
     Sec['a2'] = a2
 
@@ -52,7 +49,7 @@ def cortanteM1(Dic):
         print('''As bielas serão esmagadas.
 
         É necessário um redimencionamento ou aumento da resistência do concreto''')
-        return redirect(url_for("newproject")) #recursividade
+        return redirect(url_for("novoprojeto")) #recursividade
 
 
     else:
@@ -80,13 +77,12 @@ def cortanteM1(Dic):
 'Método de calculo II'
 def cortanteM2(Dic):
     from viga.flexaosimples import flexaosimples
-    Sec = flexaosimples(Dic)
 
+    Sec = flexaosimples(Dic)
         # Seção longitudinal
-    t1 = Sec['t1']
-    t2 = Sec['t2']
-    a1 = min(t1/2,0.3*Sec['h'])
-    a2 = min(t2/2,0.3*Sec['h'])
+
+    a1 = min(Sec['t1']/2,0.3*Sec['h'])
+    a2 = min(Sec['t2']/2,0.3*Sec['h'])
     Sec['a1'] = a1
     Sec['a2'] = a2
 
@@ -143,7 +139,7 @@ def cortanteM2(Dic):
     if Vsd >= Vrd2:
         #print('''As bielas serão esmagadas.
         #É necessário um redimencionamento ou aumento do fck''')
-        return redirect(url_for("newproject"))
+        return redirect(url_for("novoprojeto"))
 
     else:
         Vc0 = 0.6*fctd*Sec['bw']*Sec['d']

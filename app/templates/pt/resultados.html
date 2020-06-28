@@ -114,16 +114,13 @@
           {% if info['CAA']==1 %}
             Como a classe escolhida foi a Classe &#8544. Logo, c = {{info['c']}} cm.
 
-          {% endif %}
-          {% if info['CAA']==2 %}
+          {% elif info['CAA']==2 %}
             Como a classe escolhida foi a Classe &#8545. Logo, c = {{info['c']}} cm.
 
-          {% endif %}
-          {% if info['CAA']==3 %}
+          {% elif info['CAA']==3 %}
             Como a classe escolhida foi a Classe &#8546. Logo, c = {{info['c']}} cm.
 
-          {% endif %}
-          {% if info['CAA']==4 %}
+          {% elif info['CAA']==4 %}
             Como a classe escolhida foi a Classe &#8544. Logo, c = {{info['c']}} cm.
 
           {% endif %}
@@ -165,36 +162,34 @@
 
           <p class="text-center">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Deformação específica do concreto:
-                &#400<sub>u</sub> = 3.50 &#137.</li>
-              <li class="list-group-item">Parâmetro de redução da resistência do concreto
-                 na compressão: &#593<sub>c</sub> = 0.85</li>
-              <li class="list-group-item">Parâmetro de uniformização do esforço de compressão:
-                λ = 0.80</li>
+              <li class="list-group-item">deformação específica máxima do concreto:
+                &#400<sub>u</sub> = 3.50 &#137;</li>
+              <li class="list-group-item">parâmetro de redução da resistência do concreto
+                na compressão: &#593<sub>c</sub> = 0.85;</li>
+              <li class="list-group-item">parâmetro de uniformização do esforço de compressão:
+                λ = 0.80.</li>
+              <li class="list-group-item">critério de ductilidade:
+                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230</strong> x<sub>lim</sub> =
+                n<sub>lim</sub>&#x22C5;d = {{info['xlim']|round(2,'common')}} cm.</li>
             </ul>
           </p>
 
           <h6 class="text-center">Domínio de Deformação</h6>
           <p class="text-justify">O valor x<sub>2lim</sub> delimita os domínos 2 e 3,
-             \[x_{2lim} =\left(\frac{&#400_{u}}{&#400_{u}+10  &#137}\right)&#x22C5;d,\]
-             e para os concretos do Grupo &#8544; de resistência (f<sub>ck</sub> ⋜ 50 MPa)
-             é fixo e igual a {{(info['eu']/(info['eu']+0.01))|round(3, 'common')}}&#x22C5;d, pois a deformação
-             máxima do concreto para esse grupo é fixo em 3.50 &#137.</p>
-
-          <p class="text-justify">O valor x<sub>3lim</sub> delimita os domínos 3 e 4,
-              \[x_{3lim} =\left(\frac{&#400_{u}}{&#400_{u}+&#400_{yd}}\right)&#x22C5;d,\]
-              e para os concretos do Grupo &#8544; e aço CA-{{(info['fyk']/10)|round|int}}
-              é fixo e igual a {{(info['eu']/(info['eu']+info['eyd']))|round(3, 'common')}}&#x22C5;d.
-          </p>
+            e para os concretos do Grupo &#8544; de resistência (f<sub>ck</sub> ⋜ 50 MPa)
+            é fixo e igual a {{(info['eu']/(info['eu']+0.01))|round(3, 'common')}}&#x22C5;d,
+            pois a deformação máxima do concreto para esse grupo é fixo em 3.50 &#137.</p>
 
           <p class="text-justify">x<sub>2lim</sub> = {{(info['eu']/(info['eu']+0.01))|
-            round(3, 'common')}}&#x22C5;{{info['d']}} = {{((info['eu']/(info['eu']+0.01))*info['d'])|
-            round(2, 'common')}} </p>
+            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x2lim']|round(2, 'common')}} </p>
 
-            <p class="text-justify">x<sub>2lim</sub> = {{(info['eu']/(info['eu']+info['eyd']))|
-              round(3, 'common')}}&#x22C5;{{info['d']}} = {{((info['eu']/(info['eu']+info['eyd']))*info['d'])|
-              round(2, 'common')}} </p>
+          <p class="text-justify">O valor x<sub>3lim</sub> delimita os domínos 3 e 4,
+            e para os concretos do Grupo &#8544; e aço CA-{{(info['fyk']/10)|round|int}}
+            é fixo e igual a {{(info['eu']/(info['eu']+info['eyd']))|round(3, 'common')}}&#x22C5;d.
+          </p>
 
+          <p class="text-justify">x<sub>3lim</sub> = {{(info['eu']/(info['eu']+info['eyd']))|
+            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x3lim']|round(2, 'common')}} </p>
 
         {% else %}
 
@@ -205,7 +200,7 @@
 
           <p class="text-center">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">deformação específica do concreto:
+              <li class="list-group-item">deformação específica máxima do concreto:
                 &#400<sub>u</sub> = 2.60 &#137 + 35 &#137(90-&#402<sub>ck</sub>/100)<sup>4</sup> =
                   {{(info['eu']*1000)|round(2 ,'common')}} &#137;</li>
               <li class="list-group-item">parâmetro de redução da resistência do concreto na
@@ -215,11 +210,43 @@
                 λ = 0,80 - [(&#402<sub>ck</sub> - 50)/400] = {{info['y']|round(2,'common')}};</li>
               <li class="list-group-item">critério de ductilidade:
                 n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230</strong> x<sub>lim</sub> =
-                n<sub>lim</sub>d = {{info['xlim']|round(2,'common')}} cm.</li>
+                n<sub>lim</sub>&#x22C5;d = {{info['xlim']|round(2,'common')}} cm.</li>
             </ul>
           </p>
 
-          <p>&#8545; (f<sub>ck</sub> > 50 MPa) depende do &#400<sub>u</sub>  </p>
+          <h6 class="text-center">Domínio de Deformação</h6>
+          <p class="text-justify">O valor x<sub>2lim</sub> delimita os domínos 2 e 3,
+            e para os concretos do Grupo &#8545; de resistência (f<sub>ck</sub> > 50 MPa)
+            depende da deformação especifica máxima do concreto
+            {{(info['eu']/(info['eu']+0.01))|round(3, 'common')}}&#x22C5;d</p>
+
+          <p class="text-justify">x<sub>2lim</sub> = {{(info['eu']/(info['eu']+0.01))|
+            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x2lim']|round(2, 'common')}} cm.</p>
+
+          <p class="text-justify">O valor x<sub>3lim</sub> delimita os domínos 3 e 4,
+            e para os concretos do Grupo &#8544; e aço CA-{{(info['fyk']/10)|round|int}}
+            é fixo e igual a {{(info['eu']/(info['eu']+info['eyd']))|round(3, 'common')}}&#x22C5;d.
+          </p>
+
+          <p class="text-justify">x<sub>3lim</sub> = {{(info['eu']/(info['eu']+info['eyd']))|
+            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x3lim']|round(2, 'common')}} cm.</p>
+
+        {% endif %}
+
+        {% if info['x2lim'] > info['x']  %}
+          <p><strong>Domínio 2</strong></p>
+
+        {% elif info['x'] >= info['x2lim'] and info['x'] <= info['x3lim'] %}
+          <p><strong>Domínio 3</strong></p>
+        {% endif %}
+
+        <p>x = {{info['x']|round(2, 'common')}} cm.</p>
+
+        {% if info['x'] < info['xlim'] %}
+          <p>A viga passa também no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
+            {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm > x =
+            {{info['x']|round(2, 'common')}} cm.</p>
+
         {% endif %}
 
         {% if info['Msdlim'] >= info['Msd'] %}
@@ -228,44 +255,17 @@
             armadura de compreção servirá apenas para garantira a posição da armadura transversal
             durante a execução, adotado-se 2 barras de 8.0 mm (2Ø8mm).
           </p>
-          <p class="font-weight-light">
-            \[x =\frac{d}{\lambda}\left(1-\sqrt{1-\frac{2 M_{sd}}{b_{w}\alpha_{c}f_{cd}d^{2}}}\right)\]
-            <math display="block">
-              <mi>x</mi><mo>=</mo><mfrac>
-                <mi>{{info['d']}}</mi>
-                <mi>{{info['y']}}<!-- λ --></mi>
-              </mfrac>
-              <mrow>
-                <mo>(</mo>
-                <mn>1</mn>
-                <mo>&#x2212;<!-- − --></mo>
-                <msqrt>
-                  <mn>1</mn><mo>&#x2212;<!-- − --></mo>
-                  <mfrac>
-                    <mrow>
-                      <mn>2</mn><mi>&#x22C5;{{info['Msd']}}</mi>
-                    </mrow>
-                    <mrow>
-                      <mi>({{info['bw']}})&#x22C5;</mi><mi>({{info['ac']}})&#x22C5;</mi>
-                      <mi>({{info['fcd']|round(3, 'common')}})&#x22C5;</mi>
-                      <msup>
-                        <mi>({{info['d']}})</mi>
-                        <mrow class="MJX-TeXAtom-ORD">
-                          <mn>2</mn>
-                        </mrow>
-                      </msup>
-                    </mrow>
-                  </mfrac>
-                </msqrt>
-                <mo>)</mo>
-                <mo>=</mo>
-                <mi>{{info['x']|round(2, 'common')}} cm</mi>
-              </mrow>
-            </math>
-          </p>
-          <p class="text-justify">
 
-          </p>
+            \[x =\frac{d}{\lambda}\left(1-\sqrt{1-\frac{2 M_{sd}}{b_{w}\alpha_{c}f_{cd}d^{2}}}\right)\]
+
+
+
+
+
+
+
+
+
 
         {% else %}
           <p>M<sub>sd</sub> > M<sub>sdlim</sub>, ou seja,
@@ -275,6 +275,13 @@
           </p>
 
 
+        {% endif %}
+
+        {% if info['x2lim'] < info['x'] %}
+
+          {% if info['x'] < info['x3lim'] %}
+
+          {% endif %}
         {% endif %}
 
 

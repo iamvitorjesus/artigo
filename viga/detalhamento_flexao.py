@@ -37,4 +37,4 @@ def detalhamento_flexao(Dic):
         #n = M[ol][1] - (k*nbmax)
         # print('\n%d camadas com %d barras e 1 camada com %d barras' %(k,nbmax,n))
 
-    return (M)
+    return (Sec)
