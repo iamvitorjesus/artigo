@@ -27,7 +27,11 @@ def flexaosimples(Dic):
     fyk = Dic["fyk"] # MPa
 
     #Esforços
-    Mk = Dic['Mk'] # kN.cm
+    Mk = Dic['Mk']
+    if Mk > 0:
+        Mk = (-1)*Mk
+
+     # kN.cm
     # TRATAMENTO DE DADOS
     Msd = Mk*gf # kN.cm
     Dic["Msd"] = Msd

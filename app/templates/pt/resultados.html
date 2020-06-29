@@ -235,39 +235,38 @@
           <p><strong>Domínio 2: </strong>x<sub>2lim</sub> = {{info['x2lim']|round(2,'common')}} cm >
             {{info['xcal']|round(2,'common')}} cm = x.</p>
 
-        {% elif info['xcal'] >= info['x2lim'] and info['xcal'] <= info['x3lim'] %}
-          <p><strong>Domínio 3: </strong>x<sub>2lim</sub> = {{info['x2lim']|round(2,'common')}} cm ⋜
-            {{info['xcal']|round(2,'common')}} cm = x ⋜ {{info['x3lim']|round(2,'common')}} cm = x<sub>3lim</sub>.</p>
+            {% elif info['xcal'] >= info['x2lim'] and info['xcal'] <= info['x3lim'] %}
+              <p><strong>Domínio 3: </strong>x<sub>2lim</sub> = {{info['x2lim']|round(2,'common')}} cm ⋜
+                {{info['xcal']|round(2,'common')}} cm = x ⋜ {{info['x3lim']|round(2,'common')}} cm = x<sub>3lim</sub>.</p>
 
-        {% elif info['xcal'] > info['x3lim'] %}
-          <p><strong>Domínio 4: </strong>x = {{info['xcal']|round(2,'common')}} cm >
-            {{info['x3lim']|round(2,'common')}} cm = x<sub>3lim</sub>.</p>
+            {% elif info['xcal'] > info['x3lim'] %}
+              <p><strong>Domínio 4: </strong>x = {{info['xcal']|round(2,'common')}} cm >
+                {{info['x3lim']|round(2,'common')}} cm = x<sub>3lim</sub>.</p>
 
         {% endif %}
 
         {% if info['x'] < info['xlim'] %}
           <p>A viga passa também no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
-            {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm > x =
-            {{info['x']|round(2, 'common')}} cm.</p>
+            {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm > <strong>x =
+            {{info['x']|round(2, 'common')}} cm.</strong></p>
 
-        {% elif info['cal'] == 1 %}
-          <p>A viga não passa no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
-            {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm < x =
-            {{info['xcal']|round(2, 'common')}} cm.</p>
+          {% elif info['cal'] == 1 %}
+            <p>A viga não passa no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
+              {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm < x =
+              {{info['xcal']|round(2, 'common')}} cm.</p>
 
-          <p></p>
-          <p>Portanto para os proximos calculos x = {{info['x']|round(2, 'common')}} cm.</p>
+            <p></p>
+            <p>Portanto para os proximos calculos <strong>x = {{info['x']|round(2, 'common')}} cm.</strong></p>
 
-        {% elif info['xcal'] == info['xlim'] %}
-          <p>A viga passa também no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
-            {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm = x =
-            {{info['xcal']|round(2, 'common')}} cm.</p>
+          {% elif info['xcal'] == info['xlim'] %}
+            <p>A viga passa também no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
+              {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm = <strong>x =
+              {{info['xcal']|round(2, 'common')}} cm.</strong></p>
 
         {% endif %}
 
         {% if info['Msdlim'] >= info['Msd'] %}
-
-
+          <h6 class="text-center">Área de Aço</h6>
           <p class="text-justify">M<sub>sdlim</sub> = {{info['Msdlim']|round(2,'common')}} kN&#x22C5;m
             ⋝ {{info['Msd']|round(2,'common')}} kN&#x22C5;m = M<sub>sd</sub>, ou seja, <strong>Armadura
             Simples</strong>, o que significa que apenas a armadura de tração será calculada, a
@@ -275,9 +274,13 @@
             durante a execução (porta estribo), adotado-se 2 barras de 8.0 mm de diâmetro (2Ø8mm).
           </p>
 
-            \[x =\frac{d}{\lambda}\left(1-\sqrt{1-\frac{2 M_{sd}}{b_{w}\alpha_{c}f_{cd}d^{2}}}\right)\]
+          <p>A<sub>s</sub> = M<sub>sd</sub>/(&#402<sub>yd</sub>&#x22C5;(d - 0.4&#x22C5;x)) =
+          {{info['Msd']|round(1,'common')}}/({{info['fyd']|round(3,'common')}}&#x22C5;
+          ({{info['d']|round(2,'common')}} - 0.4&#x22C5;{{info['x']|round(2,'common')}})) =
+          <strong>{{info['As']|round(2,'common')}} cm².</strong></p>
 
         {% else %}
+          <h6 class="text-center">Área de Aço</h6>
           <p class="text-justify">M<sub>sd</sub> = {{info['Msd']|round(1,'common')}} kN&#x22C5;cm >
             {{info['Msdlim']|round(1,'common')}} kN&#x22C5;cm = M<sub>sdlim</sub>,
             ou seja, <strong>Armadura Dupla</strong>. M<sub>d1</sub> = M<sub>sdlim</sub>
@@ -314,8 +317,9 @@
 
           {% else %}
             <p>&#400<sub>s</sub> = {{(info['es']*1000)|round(2,'common')}} &#137; <
-              {{(info['eyd']*1000)|round(2,'common')}} &#137; = &#400<sub>yd</sub>. Então
-              σ<sub>sd</sub> = &#400<sub>s</sub>&#x22C5;E<sub>s</sub> = {{info['Dsd']|round(3, 'common')}} kN/cm² </p>
+              {{(info['eyd']*1000)|round(2,'common')}} &#137; = &#400<sub>yd</sub>.
+              Então σ<sub>sd</sub> = &#400<sub>s</sub>&#x22C5;E<sub>s</sub> =
+              {{info['Dsd']|round(3, 'common')}} kN/cm².</p>
 
           {% endif %}
 
@@ -323,24 +327,71 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Área da armadura tracionada:
                 A<sub>s</sub> = A<sub>s1</sub> + A<sub>s2</sub> = {{info['As1']|round(2,'common')}} +
-                {{info['As2']|round(2,'common')}} = {{(info['As'])|round(2 ,'common')}} cm²</li>
+                {{info['As2']|round(2,'common')}} = <strong>{{(info['As'])|round(2 ,'common')}} cm²</strong></li>
               <li class="list-group-item">Área da armadura comprimida:
-                A<sub>ss</sub> = A<sub>s1</sub> + A<sub>s2</sub> = {{info['As1']|round(2,'common')}} +
-                {{info['As2']|round(2,'common')}} = {{(info['As'])|round(2 ,'common')}} cm²</li>
+                A<sub>ss</sub> = <strong>{{info['Ass']|round(2,'common')}} cm²</strong></li>
             </ul>
           </p>
 
-
         {% endif %}
 
+        {% if info['h'] > 60 %}
+          <h6 class="text-center">Armadura de Pele</h6>
+          <p>A<sub>sp,face</sub> = 0.10 % &#x22C5; b<sub>w</sub>&#x22C5;h =  0.10 % &#x22C5;
+          {{info['bw']|round(2,'common')}}&#x22C5;{{info['h']|round(2,'common')}} =
+          <strong>{{info['Asp_face']|round(2,'common')}} cm²/face.</strong></p>
 
-        </div>
+          <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">&Oslash<sub>p</sub></span>
+              </div>
+
+              <input type="number" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)"
+                placeholder="Diâmetro da Armadura de Pele" name="op">
+
+            <div class="input-group-append">
+              <select class="custom-select" id="inputGroupSelect01" name="unitop">
+                <option value="1">mm</option>
+                <option value="2">cm</option>
+              </select>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
 
 
-        <p></p>
+
         <div class="col-lg-6">
           <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
+          {% if info['modelo'] == 2 %}
+            <p>A NBR 6118 admite que o ângulo de inclinação das diagonais de
+              compressão (&#629;) varie livrimente entre 30̊&#778; e 45&#778;
+              e que a parcela V<sub>c</sub> sofra redução com aumento de Vsd.</p>
 
+          {% else %}
+            <p>A treliça clássica de Ritter-Mörsch é admitida como forma de
+              distribuição dos esforços dentro do concreto. O ângulo de inclinação
+              das bielas comprimidas é fixo em 45&#778;.</p>
+
+          {% endif %}
+
+          <h6 class="text-center">Verificação da Compressão nas Bielas</h6>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Concreto:
+              &#402<sub>ctm</sub> = 0.3 &#x22C5; &#402<sub>ck</sub><sup>2/3</sup> =
+              0.3 &#x22C5; {{info['fck']}} = {{(info['fctd']*10)|round(3,'common')}} MPa.</li>
+            <li class="list-group-item">Aço:
+              &#402<sub>ywd</sub>=&#402<sub>ywk</sub>/&#611<sub>s</sub> =
+              {{info['fywk']}}/{{info['gc']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.</li>
+            <li class="list-group-item">Carregamento:
+              V<sub>sd</sub> = V<sub>k</sub>&#x22C5;&#611<sub>f</sub> =
+              {{info['Vk']}} &#x22C5; {{info['gf']}} = {{(info['Vsd'])|round(3,'common')}} MPa.</li>
+
+
+          </ul>
 
         </div>
 
