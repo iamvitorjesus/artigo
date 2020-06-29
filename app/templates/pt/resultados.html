@@ -377,30 +377,79 @@
 
           {% endif %}
 
-          <h6 class="text-center">Verificação da Compressão nas Bielas</h6>
-
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Concreto:
-              &#402<sub>ctm</sub> = 0.3 &#x22C5; &#402<sub>ck</sub><sup>2/3</sup> =
-              0.3 &#x22C5; {{info['fck']}} = {{(info['fctd']*10)|round(3,'common')}} MPa.</li>
+              &#402<sub>ctd</sub> = 0.7 &#x22C5; &#402<sub>ctm</sub>/&#611<sub>f</sub> =
+              0.7 &#x22C5; 0.3 &#x22C5; (&#402<sub>ck</sub>)<sup>2/3</sup>/&#611<sub>f</sub> =
+              {{(info['fctd']*10)|round(3,'common')}} MPa.</li>
             <li class="list-group-item">Aço:
               &#402<sub>ywd</sub>=&#402<sub>ywk</sub>/&#611<sub>s</sub> =
               {{info['fywk']}}/{{info['gc']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.</li>
             <li class="list-group-item">Carregamento:
               V<sub>sd</sub> = V<sub>k</sub>&#x22C5;&#611<sub>f</sub> =
               {{info['Vk']}} &#x22C5; {{info['gf']}} = {{(info['Vsd'])|round(3,'common')}} MPa.</li>
-
-
           </ul>
+
+          <h6 class="text-center">Verificação da Compressão nas Bielas</h6>
+
+            &#402<sub>ctd</sub>
+
+            <script>
+            var bw = {{info['bw']}}
+            var h = {{info['h']}}
+            var ol = {{info['ol']}}
+            var ot = {{info['ot']}}
+            var c ={{info['c']}}
+            var ave ={{info['ave']}}
+            var aho ={{info['aho']}}
+            var nbr ={{info['nbmax']}}
+            var n ={{info['n']}}
+            function draw(bw, h, c, ah, av, ol, ot ) {
+              c = c*10;
+              bw = bw*10
+              h = h*10;
+              var canv = document.getElementById("myCanvas");
+              var concrete = canv.getContext("2d");
+              var rebar = canv.getContext("2d");
+              var cord1 = c+(ot/2);
+              var cord2 = bw-(c*2)-(ot);
+              var cord3 = h-(c*2)-(ot);
+
+              concrete.fillStyle = "#d3d9df";concrete.fillRect(0, 0, bw, h);
+              concrete.lineWidth = ot;
+              concrete.strokeRect(cord1, cord1, cord2 , cord3);
+              rebar.strokeStyle = 'black';
+              rebar.fillStyle = 'black';
+              rebar.arc(bw/2,h-(c+ot+ot+(ol)),ol/2,0,Math.PI*2);
+              rebar.stroke();rebar.fill();
+
+              for (var i = 0; i < (global_path.length - 1); i++) {
+
+                  cityA = ga.cities[global_path[i]];
+                  cityB = ga.cities[global_path[i+1]];
+
+                  ctx.moveTo(cityA.x,cityA.y);
+                  ctx.lineTo(cityB.x,cityB.y);
+                  ctx.stroke();
+              }
+
+            }
+            </script>
+          <div class="row justify-content-center mb-5">
+            <button onclick="draw(bw,h,ol,ot,c)" type="button" name="button" class="btn btn-template">Desenho</button>
+          </div>
+
+          <div class="row justify-content-center">
+
+              <canvas class="center" id="myCanvas" width="200" height="500">
+              </canvas>
+
+          </div>
 
         </div>
 
 
 
-      <div class="container">
-        <canvas id="myCanvas">
-        </canvas>
-      </div>
 
     </div>
   </div>

@@ -100,8 +100,7 @@ def cortanteM2(Dic):
     Sec['fywd'] = fywd
 
         # Concreto
-    fcd = Sec['fck']/(Sec['gc']*10) # kN/cm²
-    Sec['fcd'] = fcd
+    fcd = Sec['fcd'] # kN/cm²
 
     fctd = 0.7*fctm/Sec['gc']
     Sec['fctd'] = fctd

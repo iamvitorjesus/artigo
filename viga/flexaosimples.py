@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 import math
-from flask import Flask, redirect, url_for,  render_template
-from app.controllers.pt_br import *
-
 
 def flexaosimples(Dic):
     #Seção Transversal
@@ -28,7 +25,7 @@ def flexaosimples(Dic):
 
     #Esforços
     Mk = Dic['Mk']
-    if Mk > 0:
+    if Mk < 0:
         Mk = (-1)*Mk
 
      # kN.cm
