@@ -297,7 +297,8 @@
 
           <p>Se a deformação específica da armadura comprimida (&#400<sub>s</sub>)
             for maior ou igual que a deformação específica de escoamento, então
-            A<sub>ss</sub> = A<sub>s2</sub>. Senão </p>
+            A<sub>ss</sub> = A<sub>s2</sub>. Senão a tenção na armadura é proporcional
+            a deformação (Lei de Hooke).</p>
 
           <p>&#400<sub>s</sub> = (({{info['xlim']|round(2,'common')}} -
             {{info['d2']|round(2,'common')}})&#x22C5;{{info['eu']*1000|round(2,'common')}} &#137;)/
@@ -313,7 +314,8 @@
 
           {% else %}
             <p>&#400<sub>s</sub> = {{(info['es']*1000)|round(2,'common')}} &#137; <
-              {{(info['eyd']*1000)|round(2,'common')}} &#137; = &#400<sub>yd</sub>.</p>
+              {{(info['eyd']*1000)|round(2,'common')}} &#137; = &#400<sub>yd</sub>. Então
+              σ<sub>sd</sub> = &#400<sub>s</sub>&#x22C5;E<sub>s</sub> = {{info['Dsd']|round(3, 'common')}} kN/cm² </p>
 
           {% endif %}
 
