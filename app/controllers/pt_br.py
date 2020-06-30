@@ -5,7 +5,7 @@ from app.models.tables import User
 from app.models.forms import LoginForm
 
 
-from viga.detalhamento_flexao import detalhamento_flexao
+from viga.cortante import cortante
 from viga.conversao_unidades import conversao_unidades
 
 
@@ -16,7 +16,7 @@ def index():
      # prediction=model_prediction,
       #show_predictions_modal=True
       )
-dict = {}
+dimen = {}
 @app.route("/novoprojeto", methods = ["POST", "GET"])
 def novoprojeto():
     if request.method == "POST":
@@ -24,8 +24,8 @@ def novoprojeto():
             value = float(request.form[info])
             dict[info] = value
 
-        Dic = conversao_unidades(dict)
-        Dic = detalhamento_flexao(Dic)
+        Dic = conversao_unidades(dimen)
+        Dic = cortante(Dic)
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
@@ -47,9 +47,20 @@ def erroBiela():
     return render_template('pt/erroBiela.html')
 
 
+from viga.detalhamento_flexao import detalhamento_flexao
+
+detal = {}
 @app.route("/resultados", methods = ["POST", "GET"])
 def resultados():
-    return render_template('pt/resultados.html', info = dict)
+    if request.method == "POST":
+        for info in request.form:
+            value = float(request.form[info])
+            detal[info] = value
+
+        Dic = conversao_unidades(dimen)
+        Dic = cortante(Dic)
+    else:
+        return render_template('pt/resultados.html', info = dimen)
 
 @app.route("/contato")
 def contato():
