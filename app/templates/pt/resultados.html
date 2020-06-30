@@ -442,20 +442,21 @@
 
             <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
             <script>
-            var bw = {{info['bw']}}
-            var h = {{info['h']}}
-            var c ={{info['c']}}
-            var ave ={{info['ave']}}
-            var aho ={{info['aho']}}
-            var x = {{info['x']}}
 
-            var nbmax ={{info['nbmax']}}
-            var nb ={{info['nb']}}
-            var nc = {{info['nc']}}
-
-            var ol = {{info['ol']}}
-            var ot = {{info['ot']}}
             function draw(bw, h, c, aho, ave, x, nb, nbmax, nc, ol, ot) {
+              var bw = {{info['bw']}};
+              var h = {{info['h']}};
+              var c ={{info['c']}};
+              var ave ={{info['ave']}};
+              var aho ={{info['aho']}};
+              var x = {{info['x']}};
+
+              var nbmax ={{info['nbmax']}};
+              var nb ={{info['nb']}};
+              var nc = {{info['nc']}};
+
+              var ol = {{info['ol']}};
+              var ot = {{info['ot']}};
               c = c*10;
               bw = bw*10;
               h = h*10;
@@ -474,14 +475,13 @@
               rebar.strokeStyle = 'black';
 
               rebar.fillStyle = 'black';
-
+              rebar.stroke();
 
               var posy = h-(c+ot+(ol));
               for (var i = 0; i < nb; i++) {
                 var posx = c+ot+(ol/2);
-                for (var k = 0; k == nbmax; k++){
+                for (var k = 0; k < nbmax; k++){
                   rebar.arc(posx, posy, ol/2, 0, Math.PI*2);
-                  rebar.stroke();
                   rebar.fill();
                   posx = posx + x + (ol/2);
                 }
