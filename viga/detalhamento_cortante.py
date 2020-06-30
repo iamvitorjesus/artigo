@@ -39,28 +39,28 @@ def detalhamento_cortante(Sec):
         else:
             ra +=1
     #Menu de opções
-    M = {}
-    for di in Barras:
-        if di > otmax:
-            break
-        A = ra*(math.pi)*((float(di)/10)**2)/4 #Área dos ramos de um estribo em cm² *
-        S = A/Sec["Asw"] #Espaçamento real entre os estribos
-        Smin = A/Sec['Aswmin']
-        S = round(S,1) #Número real de barras
-        Smin = round(Smin,1)
-        if S > Smax:
-            S = Smax
-        if Smin > Smax:
-            Smin = Smax
+    #M = {}
+    #for di in Barras:
+        #if di > otmax:
+            #break
+    A = ra*(math.pi)*((float(ot)/10)**2)/4 #Área dos ramos de um estribo em cm² *
+    S = A/Sec["Asw"] #Espaçamento real entre os estribos
+    Smin = A/Sec['Aswmin']
+    S = round(S,1) #Número real de barras
+    Smin = round(Smin,1)
+    if S > Smax:
+        S = Smax
+    if Smin > Smax:
+        Smin = Smax
 
-        ne = (Sec['l0'] + Sec['t1'] + Sec['t2'])/S
-        di = float(di)
-        di = float(round((di/10),2))
-        M[di]= [S , Smin, ne] #Output
+    ne = (Sec['l0'] + Sec['t1'] + Sec['t2'])/S
+    ne = math.ceil(ne)
+    #di = float(di)
+    #di = float(round((di/10),2))
+    #M[di]= [S , Smin, ne] #Output
     #print(M)
-    ot = str(ot)
-    Sec['S'] = M[ot][0]
-    Sec['Smin'] = M[ot][1]
-    Sec['ne'] = M[ot][2]
+    Sec['S'] = S
+    Sec['Smin'] = Smin
+    Sec['ne'] = ne
 
     return(Sec)
