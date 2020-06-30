@@ -17,7 +17,6 @@ def index():
       )
 
 dimen = {}
-Dic = {}
 @app.route("/novoprojeto", methods = ["POST", "GET"])
 def novoprojeto():
     if request.method == "POST":
@@ -55,12 +54,12 @@ def resultados():
     if request.method == "POST":
         for x in request.form:
             value = float(request.form[x])
-            Dic[x] = value
-
-        Dic = detalhamento_flexao(Dic)
+            dimen[x] = value
+        print dimen
+        Dic = detalhamento_flexao(dimen)
 
     else:
-        return render_template('pt/resultados.html', info = Dic)
+        return render_template('pt/resultados.html', info = dimen)
 
 @app.route("/contato")
 def contato():
