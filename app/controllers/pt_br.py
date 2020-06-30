@@ -5,7 +5,7 @@ from app.models.tables import User
 from app.models.forms import LoginForm
 
 
-from viga.cortante import cortante
+from viga.Dimensionamento import dimensionar
 from viga.conversao_unidades import conversao_unidades
 
 
@@ -25,7 +25,7 @@ def novoprojeto():
             dict[info] = value
 
         Dic = conversao_unidades(dimen)
-        Dic = cortante(Dic)
+        Dic = dimensionar(Dic)
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
@@ -57,7 +57,7 @@ def resultados():
             dimen[info] = value
 
         Dic = detalhamento_flexao(dimen)
-        
+
     else:
         return render_template('pt/resultados.html', info = dimen)
 

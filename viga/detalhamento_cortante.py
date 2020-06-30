@@ -1,21 +1,7 @@
 # -*- coding: utf-8 -*-
-def detalhamento_cortante(Dic):
+def detalhamento_cortante(Sec):
     import math
     '''Detalhamento da Seção Longitudinal'''
-
-    while True:
-        metodo = Dic['Modelo']
-        if metodo == 1:
-            from viga.cortante import cortanteM1
-            Sec = cortanteM1(Dic)
-            break
-        elif metodo == 2:
-            from viga.cortante import cortanteM2
-            Sec = cortanteM2(Dic)
-            break
-        else:
-            continue
-
     #Escolha do diametro do estribo
     Barras = [5,6.3,8,10,12.5,16,20,22,25,32,40]# Opções comerciais de diametro (mm) de barra
 
