@@ -5,7 +5,7 @@ def detalhamento_flexao(Dic):
 
     Sec = detalhamento_cortante(Dic)
 
-    Barras = [4.2,5,6.3,8,10,12.5,16,20,22,25,32,40]#Opções comerciais de diametro (mm) de barra
+    Barras = [4.2,5.0,6.3,8,10,12.5,16,20,22,25,32,40]#Opções comerciais de diametro (mm) de barra
 
     M = {}
     for d in Barras:
@@ -32,6 +32,7 @@ def detalhamento_flexao(Dic):
     Sec['x'] = x
 
     nc = math.ceil((M[ol][1])/nbmax) # Número de camadas necessáriaS
+    #ol = str(ol)
     Sec['nc']= M[ol][1]
 
     Sec['nb']= M[ol][1] # Número  real de barras

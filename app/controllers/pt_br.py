@@ -50,12 +50,12 @@ def erroBiela():
 from viga.detalhamento_flexao import detalhamento_flexao
 
 @app.route("/resultados", methods = ["POST", "GET"])
-def resultados():
+def resultados(dimen = dimen):
+    print(dimen)
     if request.method == "POST":
         for x in request.form:
             value = float(request.form[x])
             dimen[x] = value
-            
         Dic = detalhamento_flexao(dimen)
 
     else:
