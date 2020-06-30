@@ -57,6 +57,7 @@ def detalhamento_cortante(Sec):
         di = float(di)
         di = float(round((di/10),2))
         M[di]= [S , Smin, ne] #Output
+    print(M)
 
     Sec['S'] = M[ot][0]
     Sec['Smin'] = M[ot][1]

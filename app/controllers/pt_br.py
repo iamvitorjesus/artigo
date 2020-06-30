@@ -55,7 +55,7 @@ def resultados():
         for x in request.form:
             value = float(request.form[x])
             dimen[x] = value
-        print dimen
+            
         Dic = detalhamento_flexao(dimen)
 
     else:
