@@ -449,8 +449,9 @@
             var ave ={{info['ave']}}
             var aho ={{info['aho']}}
             var nbmax ={{info['nbmax']}}
-            var n ={{info['n']}}
+            var nb ={{info['nb']}}
             var nc = {{info['nc']}}
+            var x = {{info['x']}}
             function draw(bw, h, c, ah, av, nc, ol, ot ) {
               c = c*10;
               bw = bw*10
@@ -462,17 +463,23 @@
               var cord2 = bw-(c*2)-(ot);
               var cord3 = h-(c*2)-(ot);
 
-              concrete.fillStyle = "#d3d9df";concrete.fillRect(0, 0, bw, h);
+              concrete.fillStyle = "#d3d9df";
+              concrete.fillRect(0, 0, bw, h);
+
               concrete.lineWidth = ot;
               concrete.strokeRect(cord1, cord1, cord2 , cord3);
               rebar.strokeStyle = 'black';
+
               rebar.fillStyle = 'black';
-              rebar.arc(bw/2,h-(c+ot+(ol)),ol/2,0,Math.PI*2);
-              rebar.stroke();
-              rebar.fill();
 
-              for (var i = 0; i < nb; i++) {
-
+              var pos = c+ot+(ol/2)
+              for (var i = 0; i == nb; i = i + nbmax) {
+                for (var k = 0; k == nbmax; k++){
+                  rebar.arc(pos,h-(c+ot+(ol)),ol/2,0,Math.PI*2);
+                  rebar.stroke();
+                  rebar.fill();
+                  pos = pos + x
+                }
 
               }
 
