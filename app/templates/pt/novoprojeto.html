@@ -3,6 +3,16 @@
 {% block title %}{{ super() }} - Novo Projeto {% endblock %}
 
 {%block content%}
+<script type="text/javascript">
+  function habilitar() {
+    var x = document.getElementById("modelo").value;
+      if (x == 2){
+        document.getElementById("diagonal").disabled=false;
+      } else {
+     document.getElementById("diagonal").disabled=true;
+  }}
+
+</script>
 
   <div class="container flex-auto">
     <div class="p-3 mb-5 bg-grey rounded row">
@@ -115,8 +125,8 @@
             </div>
           </div><p></p>
 
+          <!-- CAIXAS PARA O DETALHAMENTO -->
           <div class="row marketing">
-
             <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">&Oslash<sub>t</sub></span>
@@ -155,7 +165,7 @@
               </div>
             </div>
           </div><p></p>
-
+             <!-- CAIXAS PARA O DETALHAMENTO -->
 
           <div class="row marketing">
 
@@ -193,7 +203,6 @@
 
         </div> <!-- COLUMN 1 - FIM -->
 
-
         <div class="col-lg-4"> <!-- COLUMN 2 - INICIO -->
           <h5 class="text-center">Dados de Projeto</h5>
 
@@ -202,10 +211,27 @@
             <label for="basic-url">Cálculo do Cisalhamento</label>
             <div class="input-group">
               <div class="input-group-append"><p></p>
-                <select class="custom-select" id="inputGroupSelect01" name="Modelo">
+                <select class="custom-select" id="modelo" name="Modelo" onclick="habilitar()">
                     <option value="1">Modelo de Cálculo &#8544</option>
                     <option value="2">Modelo de Cálculo &#8545</option>
                 </select>
+              </div>
+            </div>
+          </div><p></p>
+
+          <div class="row mx-lg-4">
+            <label for="basic-url">Ângulo da Diagonal Comprimida</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">&#415;</span>
+              </div>
+
+              <input type="number" id="diagonal" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)"name="t" min="30" max="45" value="45"
+                disabled>
+
+              <div class="input-group-append">
+                <span class="input-group-text">&#9900</span>
               </div>
             </div>
           </div><p></p>
@@ -422,4 +448,8 @@
     </div> <!-- container -->
 
   </form>
+
+
+
+
 {% endblock %}

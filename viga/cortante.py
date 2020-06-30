@@ -81,8 +81,7 @@ def cortanteM2(Dic):
     lef = 100*l0 + a1 + a2
     Sec['lef'] = lef
 
-    t = 30 # Angulo da Biela de Compressão
-    Sec['t'] = t
+    t = Sec['t'] # Angulo da Biela de Compressão
 
     Vk = Sec['Vk']
     Vsd = Vk*Sec['gf']

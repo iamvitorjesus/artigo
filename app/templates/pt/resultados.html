@@ -335,37 +335,11 @@
 
         {% endif %}
 
-        {% if info['h'] > 60 %}
-          <h6 class="text-center">Armadura de Pele</h6>
-          <p>A<sub>sp,face</sub> = 0.10 % &#x22C5; b<sub>w</sub>&#x22C5;h =  0.10 % &#x22C5;
-          {{info['bw']|round(2,'common')}}&#x22C5;{{info['h']|round(2,'common')}} =
-          <strong>{{info['Asp_face']|round(2,'common')}} cm²/face.</strong></p>
-
-          <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">&Oslash<sub>p</sub></span>
-              </div>
-
-              <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)"
-                placeholder="Diâmetro da Armadura de Pele" name="op">
-
-            <div class="input-group-append">
-              <select class="custom-select" id="inputGroupSelect01" name="unitop">
-                <option value="1">mm</option>
-                <option value="2">cm</option>
-              </select>
-            </div>
-          </div>
-        {% endif %}
-
       </div>
-
-
 
         <div class="col-lg-6">
           <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
-          {% if info['modelo'] == 2 %}
+          {% if info['Modelo'] == 2 %}
             <p>A NBR 6118 admite que o ângulo de inclinação das diagonais de
               compressão (&#629;) varie livrimente entre 30̊&#778; e 45&#778;
               e que a parcela V<sub>c</sub> sofra redução com aumento de Vsd.</p>
@@ -392,8 +366,80 @@
 
           <h6 class="text-center">Verificação da Compressão nas Bielas</h6>
 
-            &#402<sub>ctd</sub>
+            &#402<sub>ctd2</sub>
 
+            <!--
+            <div class="row marketing">
+
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">&Oslash<sub>l</sub></span>
+                  </div>
+
+                  <input type="number" class="form-control"aria-label="Dollar amount
+                  (with dot and two decimal places)"
+                  placeholder="Diâmetro da Armadura Longitudinal" name="ol">
+
+                <div class="input-group-append">
+                  <select class="custom-select" id="inputGroupSelect01" name="unitol">
+                    <option value="1">mm</option>
+                    <option value="2">cm</option>
+                  </select>
+                </div>
+              </div>
+            </div><p></p>
+
+
+
+            <div class="row marketing">
+
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">&Oslash<sub>t</sub></span>
+                  </div>
+
+                  <input type="number" class="form-control"aria-label="Dollar amount
+                    (with dot and two decimal places)"
+                    placeholder="Diâmetro da Armadura Transversal" name="ot">
+
+                <div class="input-group-append">
+                  <select class="custom-select" id="inputGroupSelect01" name="unitot">
+                    <option value="1">mm</option>
+                    <option value="2">cm</option>
+                  </select>
+                </div>
+              </div>
+            </div><p></p>
+
+            {% if info['h'] > 60 %}
+              <h6 class="text-center">Armadura de Pele</h6>
+              <p>A<sub>sp,face</sub> = 0.10 % &#x22C5; b<sub>w</sub>&#x22C5;h =  0.10 % &#x22C5;
+              {{info['bw']|round(2,'common')}}&#x22C5;{{info['h']|round(2,'common')}} =
+              <strong>{{info['Asp_face']|round(2,'common')}} cm²/face.</strong></p>
+
+              <div class="row marketing">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">&Oslash<sub>p</sub></span>
+                    </div>
+
+                    <input type="number" class="form-control"aria-label="Dollar amount
+                      (with dot and two decimal places)"
+                      placeholder="Diâmetro da Armadura de Pele" name="op">
+
+                  <div class="input-group-append">
+                    <select class="custom-select" id="inputGroupSelect01" name="unitop">
+                      <option value="1">mm</option>
+                      <option value="2">cm</option>
+                    </select>
+                  </div>
+                </div>
+              </div><p></p>
+
+            {% endif %} -->
+
+
+            <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
             <script>
             var bw = {{info['bw']}}
             var h = {{info['h']}}
@@ -402,9 +448,10 @@
             var c ={{info['c']}}
             var ave ={{info['ave']}}
             var aho ={{info['aho']}}
-            var nbr ={{info['nbmax']}}
+            var nbmax ={{info['nbmax']}}
             var n ={{info['n']}}
-            function draw(bw, h, c, ah, av, ol, ot ) {
+            var nc = {{info['nc']}}
+            function draw(bw, h, c, ah, av, nc, ol, ot ) {
               c = c*10;
               bw = bw*10
               h = h*10;
@@ -420,10 +467,11 @@
               concrete.strokeRect(cord1, cord1, cord2 , cord3);
               rebar.strokeStyle = 'black';
               rebar.fillStyle = 'black';
-              rebar.arc(bw/2,h-(c+ot+ot+(ol)),ol/2,0,Math.PI*2);
-              rebar.stroke();rebar.fill();
+              rebar.arc(bw/2,h-(c+ot+(ol)),ol/2,0,Math.PI*2);
+              rebar.stroke();
+              rebar.fill();
 
-              for (var i = 0; i < (global_path.length - 1); i++) {
+              for (var i = 0; i < nb; i++) {
 
                   cityA = ga.cities[global_path[i]];
                   cityB = ga.cities[global_path[i+1]];
@@ -435,6 +483,7 @@
 
             }
             </script>
+
           <div class="row justify-content-center mb-5">
             <button onclick="draw(bw,h,ol,ot,c)" type="button" name="button" class="btn btn-template">Desenho</button>
           </div>
