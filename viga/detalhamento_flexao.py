@@ -19,14 +19,17 @@ def detalhamento_flexao(Dic):
 
     ol = Sec['ol']
     o = M[ol][0]
-    ave = max(2, o, 0.5*Sec['Dmax']) #Espaçamento vertical mínimo
+    ave = max(2, o, 0.5*Sec['Dmax']) # Espaçamento vertical mínimo
     Sec['ave'] = ave
 
-    aho = max(2, o, 1.2*Sec['Dmax']) #Espaçamento horizontal mínimo
+    aho = max(2, o, 1.2*Sec['Dmax']) # Espaçamento horizontal mínimo
     Sec['aho'] = aho
 
     nbmax = math.floor((Sec['bw'] - (2* (Sec['c'][0] + Sec['ot']) ) + aho)/(o+aho)) # Número máximo de barras por camada
     Sec['nbmax'] = nbmax
+
+    x = (Sec['bw'] -(ol*nbmax)-((c+Sec['ot'])*2) )/(nbmax-1) # Espaçamento real
+    Sec['x'] = x
 
     nc = math.ceil((M[ol][1])/nbmax) # Número de camadas necessáriaS
     Sec['nc']= M[ol][1]
