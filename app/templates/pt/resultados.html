@@ -472,15 +472,16 @@
 
               rebar.fillStyle = 'black';
 
-              var pos = c+ot+(ol/2)
+              var posx = c+ot+(ol/2)
+              var posy = h-(c+ot+(ol))
               for (var i = 0; i == nb; i = i + nbmax) {
                 for (var k = 0; k == nbmax; k++){
-                  rebar.arc(pos,h-(c+ot+(ol)),ol/2,0,Math.PI*2);
+                  rebar.arc(posx, posy, ol/2, 0, Math.PI*2);
                   rebar.stroke();
                   rebar.fill();
-                  pos = pos + x
+                  posx = posx + x + (ol/2)
                 }
-
+                posy = posy + ave + ol
               }
 
             }
