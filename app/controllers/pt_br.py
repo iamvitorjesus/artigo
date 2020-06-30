@@ -4,9 +4,8 @@ from app import app, db
 from app.models.tables import User
 from app.models.forms import LoginForm
 
-
-from viga.Dimensionamento import dimensionar
 from viga.conversao_unidades import conversao_unidades
+from viga.dimensionamento import dimensionar
 
 
 #model_prediction = False

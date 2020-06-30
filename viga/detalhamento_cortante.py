@@ -13,12 +13,12 @@ def detalhamento_cortante(Sec):
         Smax = 0.6*Sec['d']
         if Smax > 30: # Descobri que esse teste é mais rapido
             Smax = 30 # que a função min()
+
     else:
         Smax = 0.3*Sec['d']
         if Smax > 20:
             Smax = 20
     Sec['Smax'] = Smax
-
 
     #Espaçamento máximo entre ramos
     if Sec['Vsd'] <= 0.2*Sec['Vrd2']:
@@ -29,7 +29,7 @@ def detalhamento_cortante(Sec):
         Stmax = 0.6*Sec['d']
         if Stmax > 35:
             Stmax = 35
-
+    Sec['Stmax'] = Stmax
 
     #Calculo do número de ramos
     ra = 2
@@ -54,20 +54,12 @@ def detalhamento_cortante(Sec):
             Smin = Smax
 
         ne = (Sec['l0'] + Sec['t1'] + Sec['t2'])/S
-
-
         di = float(di)
         di = round((di/10),2)
         M[di]= [S , Smin, ne] #Output
 
-    #print("Escolha uma das opções abaixo.")
-    #for k in M:
-    #    print(k)
-
-    #ot = float(input("Diâmetro do estribo: "))
-    #Sec['ot'] = ot
-    #Sec['S'] = M[ot][0]
-    #Sec['Smin'] = M[ot][1]
-    #Sec['ne'] = M[ot][2]
+    Sec['S'] = M[ot][0]
+    Sec['Smin'] = M[ot][1]
+    Sec['ne'] = M[ot][2]
 
     return(Sec)
