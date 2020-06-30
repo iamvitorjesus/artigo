@@ -3,7 +3,7 @@ def detalhamento_cortante(Sec):
     import math
     '''Detalhamento da Seção Longitudinal'''
     #Escolha do diametro do estribo
-    Barras = [5,6.3,8,10,12.5,16,20,22,25,32,40]# Opções comerciais de diametro (mm) de barra
+    Barras = [4.2,5.0,6.3,8.0,10,12.5,16,20,22,25,32,40]# Opções comerciais de diametro (mm) de barra
 
     otmax = Sec['bw'] #mm
     ot = Sec['ot'] #Escolha inicial
@@ -55,7 +55,7 @@ def detalhamento_cortante(Sec):
 
         ne = (Sec['l0'] + Sec['t1'] + Sec['t2'])/S
         di = float(di)
-        di = round((di/10),2)
+        di = float(round((di/10),2))
         M[di]= [S , Smin, ne] #Output
 
     Sec['S'] = M[ot][0]
