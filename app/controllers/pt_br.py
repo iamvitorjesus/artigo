@@ -21,7 +21,7 @@ def novoprojeto():
     if request.method == "POST":
         for info in request.form:           #retira informação dos inputs
             value = float(request.form[info])
-            dict[info] = value
+            dimen[info] = value
 
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
