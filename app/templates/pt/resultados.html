@@ -369,6 +369,7 @@
             &#402<sub>ctd2</sub>
 
             <!--  -->
+          <form method="post">
             <div class="row marketing">
 
               <div class="input-group">
@@ -443,16 +444,18 @@
             <script>
             var bw = {{info['bw']}}
             var h = {{info['h']}}
-            var ol = {{info['ol']}}
-            var ot = {{info['ot']}}
             var c ={{info['c']}}
             var ave ={{info['ave']}}
             var aho ={{info['aho']}}
+            var x = {{info['x']}}
+
             var nbmax ={{info['nbmax']}}
             var nb ={{info['nb']}}
             var nc = {{info['nc']}}
-            var x = {{info['x']}}
-            function draw(bw, h, c, ah, av, nc, ol, ot ) {
+
+            var ol = {{info['ol']}}
+            var ot = {{info['ot']}}
+            function draw(bw, h, c, aho, ave, x, nb, nbmax, nc, ol, ot) {
               c = c*10;
               bw = bw*10
               h = h*10;
@@ -472,9 +475,10 @@
 
               rebar.fillStyle = 'black';
 
-              var posx = c+ot+(ol/2)
+
               var posy = h-(c+ot+(ol))
               for (var i = 0; i == nb; i = i + nbmax) {
+                var posx = c+ot+(ol/2)
                 for (var k = 0; k == nbmax; k++){
                   rebar.arc(posx, posy, ol/2, 0, Math.PI*2);
                   rebar.stroke();
@@ -488,9 +492,10 @@
             </script>
 
           <div class="row justify-content-center mb-5">
-            <button onclick="draw(bw,h,ol,ot,c)" type="button" name="button" class="btn btn-template">Desenho</button>
+            <input onclick="draw(bw, h, c, aho, ave, x, nb, nbmax, nc, ol, ot)"
+            type="submit" class="btn btn-template" value="Desenho"></input>
           </div>
-
+          </form>
           <div class="row justify-content-center">
 
               <canvas class="center" id="myCanvas" width="200" height="500">
