@@ -457,7 +457,7 @@
             var ot = {{info['ot']}}
             function draw(bw, h, c, aho, ave, x, nb, nbmax, nc, ol, ot) {
               c = c*10;
-              bw = bw*10
+              bw = bw*10;
               h = h*10;
               var canv = document.getElementById("myCanvas");
               var concrete = canv.getContext("2d");
@@ -476,16 +476,16 @@
               rebar.fillStyle = 'black';
 
 
-              var posy = h-(c+ot+(ol))
-              for (var i = 0; i == nb; i = i + nbmax) {
-                var posx = c+ot+(ol/2)
+              var posy = h-(c+ot+(ol));
+              for (var i = 0; i < nb; i++) {
+                var posx = c+ot+(ol/2);
                 for (var k = 0; k == nbmax; k++){
                   rebar.arc(posx, posy, ol/2, 0, Math.PI*2);
                   rebar.stroke();
                   rebar.fill();
-                  posx = posx + x + (ol/2)
+                  posx = posx + x + (ol/2);
                 }
-                posy = posy + ave + ol
+                posy = posy + ave + ol;
               }
 
             }
@@ -497,38 +497,10 @@
           </div>
           </form>
           <div class="row justify-content-center">
-
               <canvas class="center" id="myCanvas" width="200" height="500">
               </canvas>
-
-          </div>
-          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-              <img src="..." class="rounded mr-2" alt="...">
-              <strong class="mr-auto"> Área de Aço </strong>
-              <small class="text-muted">just now</small>
-              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="toast-body">
-              A<sub>s</sub> = {{info['As']}} cm².
-            </div>
           </div>
 
-          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-              <img src="..." class="rounded mr-2" alt="...">
-              <strong class="mr-auto">Bootstrap</strong>
-              <small class="text-muted">2 seconds ago</small>
-              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="toast-body">
-              Heads up, toasts will stack automatically
-            </div>
-          </div>
 
         </div>
 

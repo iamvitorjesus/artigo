@@ -28,8 +28,8 @@ def detalhamento_flexao(Dic):
     nbmax = math.floor((Sec['bw'] - (2* (Sec['c'] + ot) ) + aho)/(ol+aho)) # Número máximo de barras por camada
     Sec['nbmax'] = nbmax
 
-    x = (Sec['bw'] -(ol*nbmax)-((Sec['c']+ot)*2) )/(nbmax-1) # Espaçamento real
-    Sec['x'] = x
+    ah = (Sec['bw'] -(ol*nbmax)-((Sec['c']+ot)*2) )/(nbmax-1) # Espaçamento real
+    Sec['ah'] = ah
 
     nc = math.ceil(nb/nbmax) # Número de camadas necessáriaS
     #ol = str(ol)
