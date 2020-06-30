@@ -15,7 +15,9 @@ def index():
      # prediction=model_prediction,
       #show_predictions_modal=True
       )
+
 dimen = {}
+Dic = {}
 @app.route("/novoprojeto", methods = ["POST", "GET"])
 def novoprojeto():
     if request.method == "POST":
@@ -51,14 +53,14 @@ from viga.detalhamento_flexao import detalhamento_flexao
 @app.route("/resultados", methods = ["POST", "GET"])
 def resultados():
     if request.method == "POST":
-        for info in request.form:
-            value = float(request.form[info])
-            dimen[info] = value
+        for x in request.form:
+            value = float(request.form[x])
+            Dic[x] = value
 
-        Dic = detalhamento_flexao(dimen)
+        Dic = detalhamento_flexao(Dic)
 
     else:
-        return render_template('pt/resultados.html', info = dimen)
+        return render_template('pt/resultados.html', info = Dic)
 
 @app.route("/contato")
 def contato():
