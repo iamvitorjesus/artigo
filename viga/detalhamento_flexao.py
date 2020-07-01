@@ -34,7 +34,7 @@ def detalhamento_flexao(Dic):
     nc = math.ceil(nb/nbmax) # Número de camadas necessáriaS
     #ol = str(ol)
     Sec['nc']= nc
-
+    print(Sec)
 
 
 
