@@ -438,28 +438,31 @@
               </div><p></p>
 
             {% endif %}
+            <div class="row justify-content-center mb-5">
+              <input
+              type="submit" class="btn btn-template" value="Escolher"></input>
+            </div>
+
+            <div class="row justify-content-center">
+                <canvas class="center" id="myCanvas" width="{{info['bw']*10}}" height="{{info['h']*10}}">
+                </canvas>
+            </div>
 
 
             <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
             <script>
-
-            function draw(bw, h, c, aho, ave, x, nb, nbmax, nc, ol, ot) {
-              var bw = {{info['bw']}};
-              var h = {{info['h']}};
-              var c ={{info['c']}};
-              var ave ={{info['ave']}};
-              var aho ={{info['aho']}};
-              var x = {{info['x']}};
-
-              var nbmax ={{info['nbmax']}};
-              var nb ={{info['nb']}};
+              var bw = {{info['bw']}}*10;
+              var h = {{info['h']}}*10;
+              var c = {{info['c']}}*10;
+              var aho = {{info['aho']}}*10;
+              var ave = {{info['ave']}}*10;
+              var ah = {{info['ah']}}*10;
+              var nb = {{info['nb']}};
+              var nbmax = {{info['nbmax']}};
               var nc = {{info['nc']}};
-
               var ol = {{info['ol']}};
               var ot = {{info['ot']}};
-              c = c*10;
-              bw = bw*10;
-              h = h*10;
+
               var canv = document.getElementById("myCanvas");
               var concrete = canv.getContext("2d");
               var rebar = canv.getContext("2d");
@@ -477,30 +480,21 @@
               rebar.fillStyle = 'black';
               rebar.stroke();
 
-              var posy = h-(c+ot+(ol));
-              for (var i = 0; i < nb; i++) {
-                var posx = c+ot+(ol/2);
-                for (var k = 0; k < nbmax; k++){
-                  rebar.arc(posx, posy, ol/2, 0, Math.PI*2);
-                  rebar.fill();
-                  posx = posx + x + (ol/2);
+              var posx = c+ot+(ol/2);
+              var posy = h-(c+ot+(ol/2));
+              for (var i = 0; i < nb; i=i+1) {
+                rebar.arc(posx, posy, ol/2, 0, Math.PI*2);
+                rebar.fill();
+                posx = posx + ah + ol;
+                if (i==nbmax-1) {
+                  posx = c+ot+(ol/2);
+                   posy = posy + ave + ol;
                 }
-                posy = posy + ave + ol;
-              }
 
             }
             </script>
 
-          <div class="row justify-content-center mb-5">
-            <input onclick="draw(bw, h, c, aho, ave, x, nb, nbmax, nc, ol, ot)"
-            type="submit" class="btn btn-template" value="Desenho"></input>
-          </div>
           </form>
-          <div class="row justify-content-center">
-              <canvas class="center" id="myCanvas" width="200" height="500">
-              </canvas>
-          </div>
-
 
         </div>
 
