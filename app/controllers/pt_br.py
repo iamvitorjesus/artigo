@@ -57,7 +57,7 @@ def resultados():
             dimen[x] = value
         Dic = detalhamento_flexao(dimen)
         print(Dic)
-
+        return redirect(url_for("resultados"))
     else:
         return render_template('pt/resultados.html', info = dimen)
 

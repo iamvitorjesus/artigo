@@ -11,7 +11,7 @@ def detalhamento_flexao(Dic):
     ot = Sec['ot']/10
     #M = {}
     #for d in Barras:
-    A = (math.pi)*((float(ol)/10)**2)/4 #Área de uma barra em cm² *
+    A = (math.pi)*(float(ol)**2)/4 #Área de uma barra em cm² *
     nb = Sec['As']/A #Número de barras necessárias
     nb = math.ceil(nb) #Número real de barras
     Sec['nb']= nb # Número  real de barras
