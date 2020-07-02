@@ -61,15 +61,15 @@ def detalhamento_cortante(Sec):
 #        else:
 #            Sec['Anc_ot'] = 5*(ot/10)*2
 #    elif Sec['ganchot'] = 'b':
-    if  7 >= 10*(ot/10):
-        Sec['Anc_ot'] = 7*2 # Dois ganchos de 7 cm
-    else:
-        Sec['Anc_ot'] = 10*(ot/10)*2
+#    if  7 >= 10*(ot/10):
+#        Sec['Anc_ot'] = 7*2 # Dois ganchos de 7 cm
+#    else:
+#        Sec['Anc_ot'] = 10*(ot/10)*2
 
     Sec['S'] = S
     Sec['Smin'] = Smin
     Sec['ne'] = ne
-    Sec['com'] = ((Sec['bw'] - (4*Sec['c']))*2) + Sec['Anc_ot'] + (Sec['h']*ra) # Comprimento de um estribo (cm)
+    Sec['com'] = ((Sec['bw'] - (4*Sec['c']))*2) + (Sec['h']*ra) #  + Sec['Anc_ot'] Comprimento de um estribo (cm)
 
     for d in Bar:
         if d[0] == ot:

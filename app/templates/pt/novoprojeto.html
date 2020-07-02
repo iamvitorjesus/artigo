@@ -125,48 +125,6 @@
             </div>
           </div><p></p>
 
-          <!-- CAIXAS PARA O DETALHAMENTO
-          <div class="row marketing">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">&Oslash<sub>t</sub></span>
-                </div>
-
-                <input type="number" class="form-control"aria-label="Dollar amount
-                  (with dot and two decimal places)"
-                  placeholder="Diâmetro da Armadura Transversal" name="ot">
-
-              <div class="input-group-append">
-                <select class="custom-select" id="inputGroupSelect01" name="unitot">
-                  <option value="1">mm</option>
-                  <option value="2">cm</option>
-                </select>
-              </div>
-            </div>
-          </div><p></p>
-
-
-          <div class="row marketing">
-
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">&Oslash<sub>l</sub></span>
-                </div>
-
-                <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)"
-                placeholder="Diâmetro da Armadura Longitudinal" name="ol">
-
-              <div class="input-group-append">
-                <select class="custom-select" id="inputGroupSelect01" name="unitol">
-                  <option value="1">mm</option>
-                  <option value="2">cm</option>
-                </select>
-              </div>
-            </div>
-          </div><p></p>
-             CAIXAS PARA O DETALHAMENTO -->
-
           <div class="row marketing">
 
             <div class="input-group">
@@ -198,6 +156,50 @@
                   </select>
               </div>
             </div>
+          </div><p></p>
+
+          <h5 class="text-center">Coeficientes</h5>
+          <div class="row marketing">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th scope="col">Carregamento</th>
+                  <th scope="col">Concreto (/&#611<sub>c</sub>)</th>
+                  <th scope="col">Aço (/&#611<sub>s</sub>)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="carregamento" value="1" checked>
+                  </div></td>
+                  <th scope="row" >Normais</th>
+                  <td>1.40</td>
+                  <td>1.15</td>
+                </tr>
+                <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="carregamento" value="2">
+                  </div></td>
+                  <th scope="row">Especiais</th>
+                  <td>1.20</td>
+                  <td>1.15</td>
+                </tr>
+                <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="carregamento" value="3">
+                  </div></td>
+                  <th scope="row">Excepcionais</th>
+                  <td>1.20</td>
+                  <td>1.00</td>
+                </tr>
+              </tbody>
+            </table>
+
           </div>
 
 
@@ -220,7 +222,7 @@
           </div><p></p>
 
           <div class="row mx-lg-4">
-            <label for="basic-url">Ângulo da Diagonal Comprimida</label>
+            <label for="diagonal">Ângulo da Diagonal Comprimida</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">&#415;</span>
@@ -304,11 +306,11 @@
 
           <div class="row marketing">
             <div class="container">
-              <h5 class="text-center">Coeficientes</h5>
+
             </div>
           </div><p></p><p></p>
 
-
+          <!--
           <div class="row mx-lg-4">
             <div class="input-group">
               <div class="input-group-prepend">
@@ -332,7 +334,7 @@
                 (with dot and two decimal places)" placeholder="Segurança do Aço" name="gs">
 
             </div>
-          </div><p></p>
+          </div><p></p> -->
 
         </div> <!-- COLUMN 2 - FIM -->
 

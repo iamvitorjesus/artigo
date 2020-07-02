@@ -13,10 +13,16 @@ def flexaosimples(Dic):
     Dic["d2"] = d2
 
     #Materiais
-    gc = Dic["gc"] # Coeficiente de Minoração da Resistência do Concreto
-    gf = gc # Coeficiente de Majoração do Esforço de Flexão
-    Dic["gf"] = gf
-    gs = Dic["gs"] # Coeficiente de Minoração da Resistência do Aço
+    if Dic['carregamento'] == 1:
+        Dic["gc"] = 1.40 # Coeficiente de Minoração da Resistência do Concreto
+        Dic["gs"] = 1.15 # Coeficiente de Minoração da Resistência do Aço
+    elif Dic['carregamento'] == 2:
+        Dic["gc"] = 1.20
+        Dic["gs"] = 1.15
+    elif Dic['carregamento'] == 3:
+        Dic["gc"] = 1.20
+        Dic["gs"] = 1.00
+    Dic["gf"] = Dic["gc"] # Coeficiente de Majoração do Esforço
 
     Es = Dic['Es'] # GPa
 
