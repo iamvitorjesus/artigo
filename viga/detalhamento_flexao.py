@@ -2,19 +2,21 @@ def detalhamento_flexao(Dic):
     import math
     from viga.detalhamento_cortante import detalhamento_cortante
 
-
     Sec = detalhamento_cortante(Dic)
 
-    Barras = [4.2,5.0,6.3,8,10,12.5,16,20,22,25,32,40]#Opções comerciais de diametro (mm) de barra
+            # Opções comerciais de diametro (mm) de barra
+    Bar = [(4.2, 0.109),(5.0, 0.154),(6.3, 0.245),(8.0, 0.395),(10.0, 0.617),
+    (12.5, 0.963),(16.0, 1.578),(20.0, 2.466),(22.0, 2.984),(25.0, 3.853),
+    (32.0, 6.313),(40.0, 9.865)]
 
     ol = Sec['ol']/10
     ot = Sec['ot']/10
-    #M = {}
-    #for d in Barras:
+
     A = (math.pi)*(float(ol)**2)/4 #Área de uma barra em cm² *
     nb = Sec['As']/A #Número de barras necessárias
     nb = math.ceil(nb) #Número real de barras
     Sec['nb']= nb # Número  real de barras
+
     Aef = nb*A #Área efetiva de aço
     Aef = round(Aef,2)
     Sec['Aef']= Aef # Área efetiva de aço
@@ -25,26 +27,32 @@ def detalhamento_flexao(Dic):
     aho = max(2, ol, 1.2*Sec['Dmax']) # Espaçamento horizontal mínimo
     Sec['aho'] = aho
 
-    nbmax = math.floor((Sec['bw'] - (2* (Sec['c'] + ot) ) + aho)/(ol+aho)) # Número máximo de barras por camada
-    Sec['nbmax'] = nbmax
+    nbmax = math.floor((Sec['bw'] - (2* (Sec['c'] + ot) ) + aho)/(ol+aho))
+    Sec['nbmax'] = nbmax # Número máximo de barras por camada
 
-    ah = (Sec['bw'] -(ol*nbmax)-((Sec['c']+ot)*2) )/(nbmax-1) # Espaçamento real
-    Sec['ah'] = ah
+    ah = (Sec['bw'] -(ol*nbmax)-((Sec['c']+ot)*2) )/(nbmax-1)
+    Sec['ah'] = ah # Espaçamento real
 
     nc = math.ceil(nb/nbmax) # Número de camadas necessáriaS
-    #ol = str(ol)
     Sec['nc']= nc
-    print(Sec)
+
+#    if Sec['ganchol'] = 'a': # 9.4.6.1 Ganchos dos estribos
+#        if  5 >= 5*(ot/10):
+#            Sec['Anc_ol'] = 5*2 # Dois ganchos de 5 cm
+#        else:
+#            Sec['Anc_ol'] = 5*(ot/10)*2
+#    elif Sec['ganchot'] = 'b':
+#        if  7 >= 10*(ol/10):
+#            Sec['Anc_ol'] = 7*2 # Dois ganchos de 7 cm
+#        else:
+#            Sec['Anc_ol'] = 10*(ot/10)*2
 
 
+    Sec['com'] = (Sec['l0'] + (Sec['t1'] + Sec['t2'])/100)   # Comprimento de um estribo (cm) + Sec['Anc_ol']
 
-
-    #if nc*nbmax == M[ol][1]:
-        # print ('\n%d camadas com %d barras' %(nc,nbmax))
-    #else:
-        #k = nc - 1
-        #n = M[ol][1] - (k*nbmax)
-        # print('\n%d camadas com %d barras e 1 camada com %d barras' %(k,nbmax,n))
-
+    for d in Bar:
+        if d[0] == ol:
+            Sec['ro'] = d[1]
+    Sec['peso'] = Sor['ro']*(Sec['com'])*nb # Peso total kg
 
     return (Sec)

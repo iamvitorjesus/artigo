@@ -3,7 +3,9 @@ def detalhamento_cortante(Sec):
     import math
     '''Detalhamento da Seção Longitudinal'''
     #Escolha do diametro do estribo
-    Barras = [4.2,5.0,6.3,8.0,10,12.5,16,20,22,25,32,40]# Opções comerciais de diametro (mm) de barra
+    Bar = [(4.2, 0.109),(5.0, 0.154),(6.3, 0.245),(8.0, 0.395),(10.0, 0.617),
+    (12.5, 0.963),(16.0, 1.578),(20.0, 2.466),(22.0, 2.984),(25.0, 3.853),
+    (32.0, 6.313),(40.0, 9.865)]# Opções comerciais de diametro (mm) de barra
 
     otmax = Sec['bw'] #mm
     ot = Sec['ot'] #Escolha inicial
@@ -38,29 +40,40 @@ def detalhamento_cortante(Sec):
             break
         else:
             ra +=1
-    #Menu de opções
-    #M = {}
-    #for di in Barras:
-        #if di > otmax:
-            #break
+    Sec['ra'] = ra
+
     A = ra*(math.pi)*((float(ot)/10)**2)/4 #Área dos ramos de um estribo em cm² *
-    S = A/Sec["Asw"] #Espaçamento real entre os estribos
-    Smin = A/Sec['Aswmin']
-    S = round(S,1) #Número real de barras
+    S = A/Sec["Asw"] # Espaçamento real entre os estribos
+    Smin = A/Sec['Aswmin'] # Espaçamento no trecho onde V = Vsdmin
+    S = round(S,1)
     Smin = round(Smin,1)
     if S > Smax:
         S = Smax
     if Smin > Smax:
         Smin = Smax
 
-    ne = (Sec['l0'] + Sec['t1'] + Sec['t2'])/S
-    ne = math.ceil(ne)
-    #di = float(di)
-    #di = float(round((di/10),2))
-    #M[di]= [S , Smin, ne] #Output
-    #print(M)
+    ne = ((Sec['l0']*100) + Sec['t1'] + Sec['t2'])/S
+    ne = math.ceil(ne) #Número real de barras
+
+#    if Sec['ganchot'] = 'a': # 9.4.6.1 Ganchos dos estribos
+#        if  5 >= 5*(ot/10):
+#            Sec['Anc_ot'] = 5*2 # Dois ganchos de 5 cm
+#        else:
+#            Sec['Anc_ot'] = 5*(ot/10)*2
+#    elif Sec['ganchot'] = 'b':
+    if  7 >= 10*(ot/10):
+        Sec['Anc_ot'] = 7*2 # Dois ganchos de 7 cm
+    else:
+        Sec['Anc_ot'] = 10*(ot/10)*2
+
     Sec['S'] = S
     Sec['Smin'] = Smin
     Sec['ne'] = ne
+    Sec['com'] = ((Sec['bw'] - (4*Sec['c']))*2) + Sec['Anc_ot'] + (Sec['h']*ra) # Comprimento de um estribo (cm)
+
+    for d in Bar:
+        if d[0] == ot:
+            Sec['ro'] = d[1]
+    Sec['peso'] = Sor['ro']*(Sec['com']/100)*ne # Peso total kg
 
     return(Sec)

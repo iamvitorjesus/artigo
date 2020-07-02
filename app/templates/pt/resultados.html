@@ -371,43 +371,48 @@
             <!--  -->
           <form method="post">
             <div class="row marketing">
-
               <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">&Oslash<sub>l</sub></span>
                   </div>
-
-                  <input type="number" class="form-control"aria-label="Dollar amount
-                  (with dot and two decimal places)"
-                  placeholder="Diâmetro da Armadura Longitudinal" name="ol">
-
+                    <select class="custom-select" id="inputGroupSelect01">
+                      <option selected>Diâmetro da Armadura Longitudinal</option>
+                      <option value="5.0">5.0</option>
+                      <option value="6.3">6.3</option>
+                      <option value="8.0">8.0</option>
+                      <option value="10.0">10.0</option>
+                      <option value="12.5">12.5</option>
+                      <option value="16.0">16.0</option>
+                      <option value="20.0">20.0</option>
+                      <option value="22.0">22.0</option>
+                      <option value="25.0">25.0</option>
+                      <option value="32.0">32.0</option>
+                      <option value="40.0">40.0</option>
+                    </select>
                 <div class="input-group-append">
-                  <select class="custom-select" id="inputGroupSelect01" name="unitol">
-                    <option value="1">mm</option>
-                    <option value="2">cm</option>
-                  </select>
+                  <span class="input-group-text">mm</span>
                 </div>
               </div>
             </div><p></p>
 
 
-
             <div class="row marketing">
 
               <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">&Oslash<sub>t</sub></span>
-                  </div>
-
-                  <input type="number" class="form-control"aria-label="Dollar amount
-                    (with dot and two decimal places)"
-                    placeholder="Diâmetro da Armadura Transversal" name="ot">
-
+                <div class="input-group-prepend">
+                  <span class="input-group-text">&Oslash<sub>t</sub></span>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>Diâmetro da Armadura Transversal</option>
+                  <option value="5.0">4.2</option>
+                  <option value="5.0">5.0</option>
+                  <option value="6.3">6.3</option>
+                  <option value="8.0">8.0</option>
+                  <option value="10.0">10.0</option>
+                  <option value="12.5">12.5</option>
+                </select>
                 <div class="input-group-append">
-                  <select class="custom-select" id="inputGroupSelect01" name="unitot">
-                    <option value="1">mm</option>
-                    <option value="2">cm</option>
-                  </select>
+                  <span class="input-group-text">mm</span>
                 </div>
               </div>
             </div><p></p>
@@ -463,34 +468,34 @@
               var ot = {{info['ot']}};
 
               var canv = document.getElementById("myCanvas");
-              var concrete = canv.getContext("2d");
-              var rebar = canv.getContext("2d");
+              var cnv = canv.getContext("2d");
               var cord1 = c+(ot/2);
               var cord2 = bw-(c*2)-(ot);
               var cord3 = h-(c*2)-(ot);
 
-              concrete.fillStyle = "#d3d9df";
-              concrete.fillRect(0, 0, bw, h);
+              cnv.fillStyle = "#d3d9df";
+              cnv.fillRect(0, 0, bw, h);
 
-              concrete.lineWidth = ot;
-              concrete.strokeRect(cord1, cord1, cord2 , cord3);
-              rebar.strokeStyle = 'black';
+              cnv.lineWidth = ot;
+              cnv.strokeRect(cord1, cord1, cord2 , cord3);
 
-              rebar.fillStyle = 'black';
-              rebar.stroke();
 
+			        var posy = h-(c+ot+(ol/2));
               var posx = c+ot+(ol/2);
-              var posy = h-(c+ot+(ol/2));
-              for (var i = 0; i < nb; i=i+1) {
-                rebar.arc(posx, posy, ol/2, 0, Math.PI*2);
-                rebar.fill();
-                posx = posx + ah + ol;
-                if (i==nbmax-1) {
-                  posx = c+ot+(ol/2);
-                   posy = posy - ave - ol;
-                }
+              var i = 1;
 
-            }
+              while (i < nb+1) {
+              	  cnv.beginPath();
+                  cnv.arc(posx, posy, ol/2, 0, Math.PI*2);
+                  cnv.fillStyle = 'black';
+                  cnv.fill()
+                  posx = posx + ah + (ol);
+
+                  if (i==nbmax) {
+                    posx = c+ot+(ol/2);
+                    posy = posy - ave - ol;}
+                  i++;
+              }
             </script>
           </form>
 
