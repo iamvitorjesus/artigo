@@ -340,14 +340,15 @@
         <div class="col-lg-6">
           <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
           {% if info['Modelo'] == 2 %}
-            <p>A NBR 6118 admite que o ângulo de inclinação das diagonais de
-              compressão (&#629;) varie livrimente entre 30̊&#778; e 45&#778;
-              e que a parcela V<sub>c</sub> sofra redução com aumento de Vsd.</p>
+            <p class="text-justify">A NBR 6118 admite que o ângulo de inclinação
+              das diagonais de compressão (&#629;) varie livrimente entre 30̊&#778;
+              e 45&#778; e que a parcela V<sub>c</sub> sofra redução com aumento
+              de Vsd.</p>
 
           {% else %}
-            <p>A treliça clássica de Ritter-Mörsch é admitida como forma de
-              distribuição dos esforços dentro do concreto. O ângulo de inclinação
-              das bielas comprimidas é fixo em 45&#778;.</p>
+            <p class="text-justify">A treliça clássica de Ritter-Mörsch é admitida
+              como forma de distribuição dos esforços dentro do concreto. O ângulo
+              de inclinação das bielas comprimidas é fixo em 45&#778;.</p>
 
           {% endif %}
 
@@ -356,18 +357,37 @@
               &#402<sub>ctd</sub> = 0.7 &#x22C5; &#402<sub>ctm</sub>/&#611<sub>f</sub> =
               0.7 &#x22C5; 0.3 &#x22C5; (&#402<sub>ck</sub>)<sup>2/3</sup>/&#611<sub>f</sub> =
               {{(info['fctd']*10)|round(3,'common')}} MPa.</li>
+            <li class="list-group-item">Concreto:
+              &#402<sub>ctd2</sub> = 0.6 &#x22C5; &#593;<sub>v</sub> &#x22C5; &#402<sub>cd</sub> =
+              0.6 &#x22C5; (1 - &#402<sub>ck</sub>/250) &#x22C5; &#402<sub>cd</sub> =
+              0.6 &#x22C5; (1 - {{(info['fck']*10)|round(3,'common')}}/250) &#x22C5;
+              {{(info['fcd']*10)|round(3,'common')}} = {{(info['fcd2']*10)|round(3,'common')}} MPa.
+            </li>
             <li class="list-group-item">Aço:
               &#402<sub>ywd</sub>=&#402<sub>ywk</sub>/&#611<sub>s</sub> =
               {{info['fywk']}}/{{info['gc']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.</li>
             <li class="list-group-item">Carregamento:
               V<sub>sd</sub> = V<sub>k</sub>&#x22C5;&#611<sub>f</sub> =
-              {{info['Vk']}} &#x22C5; {{info['gf']}} = {{(info['Vsd'])|round(3,'common')}} MPa.</li>
+              {{info['Vk']}} &#x22C5; {{info['gf']}} = {{(info['Vsd'])|round(3,'common')}} MPa.
+            </li>
           </ul>
 
           <h6 class="text-center">Verificação da Compressão nas Bielas</h6>
+          <p class="text-justify">Para não ocorrer o esmagamento do concreto que compõe as bielas
+            comprimidas (diagonais inclinadas na treliça clássica) deve-se ter:
+            <strong>V<sub>sd</sub> &#8924; V<sub>rd2</sub></strong>. Onde V<sub>rd2</sub> é a
+            resistência de cálculo, relativa a ruína das diagonais comprimidas de
+            concreto.
+          </p>
+          <p class="text-justify">V<sub>rd2</sub> = [&#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
+          0.9 &#x22C5; d &#x22C5; (1 + cotan(&#593;))]/2 = {{info['fcd2']|round(3,'common')}}
+          &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5; {{info['d']}} &#x22C5; (1 +
+          cotan({{info['a']}}))/2 = {{info['Vrd2']|round(3,'common')}} kN.</p>
+          <p class="text-center"><strong>{{info['Vsd']}} &#8924; {{info['Vrd2']}}</strong></p>
+          <p></p>
 
-            &#402<sub>ctd2</sub>
-
+          <h6 class="text-center">Cálculo da Armadura Transversal</h6>
+          <p class="text-justify"></p>
             <!--  -->
           <form method="post">
             <div class="row marketing">
