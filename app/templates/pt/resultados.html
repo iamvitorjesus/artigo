@@ -459,6 +459,9 @@
                 </canvas>
             </div><p></p>
 
+
+          {% if 'ol' in info %}
+           <h5 class="text-center">Tabela de Aços</h5>
             <table class="table">
               <thead class="thead-dark">
                 <tr>
@@ -467,6 +470,7 @@
                   <th scope="col">Quant.</th>
                   <th scope="col">Comprimento</th>
                   <th scope="col">Total (m)</th>
+                  <th scope="col">Massa (kg)</th>
                 </tr>
               </thead>
               <tbody>
@@ -474,8 +478,9 @@
                   <th scope="row">1</th>
                   <td>{{info['ol']|round(1,'common')}}</td>
                   <td>{{info['nb']}}</td>
-                  <td>{{info['comp_ol']|round(2,'common')}}</td>
+                  <td>{{info['comp_ol']}}</td>
                   <td>{{(info['comp_ol']*info['nb'])|round(2,'common')}}</td>
+                  <td>{{info['peso_ol']|round(2,'common')}}</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
@@ -483,6 +488,7 @@
                   <td>{{info['ne']}}</td>
                   <td>{{info['comp_ot']|round(2,'common')}}</td>
                   <td>{{(info['comp_ot']*info['ne'])|round(2,'common')}}</td>
+                  <td>{{info['peso_ot']|round(2,'common')}}</td>
                 </tr>
                 {% if  info['h'] > 60 %}
                 <tr>
@@ -491,10 +497,14 @@
                   <td>{{info['nsp_face']*2}}</td>
                   <td>{{info['comp_op']|round(2,'common')}}</td>
                   <td>{{(info['comp_op']*info['nsp_face']*2)|round(2,'common')}}</td>
+                  <td>{{info['peso_op']|round(2,'common')}}</td>
                 </tr>
                 {% endif %}
               </tbody>
-            </table>
+            </table><p></p>
+            {% endif %}
+
+
             <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
             <script>
               var bw = {{info['bw']}}*10;

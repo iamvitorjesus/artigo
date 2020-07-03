@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 def detalhamento_cortante(Sec):
     import math
-    '''Detalhamento da Seção Longitudinal'''
     #Escolha do diametro do estribo
     Bar = [(4.2, 0.109),(5.0, 0.154),(6.3, 0.245),(8.0, 0.395),(10.0, 0.617),
     (12.5, 0.963),(16.0, 1.578),(20.0, 2.466),(22.0, 2.984),(25.0, 3.853),
     (32.0, 6.313),(40.0, 9.865)]# Opções comerciais de diametro (mm) de barra
-
+    print(Sec)
     otmax = Sec['bw'] #mm
     ot = Sec['ot'] #Escolha inicial
 
@@ -74,6 +73,6 @@ def detalhamento_cortante(Sec):
     for d in Bar:
         if d[0] == ot:
             Sec['ro_ot'] = d[1]
-    Sec['peso_ot'] = Sor['ro_ot']*(Sec['comp_ot']/100)*ne # Peso total kg
+    Sec['peso_ot'] = Sec['ro_ot']*(Sec['comp_ot']/100)*ne # Peso total kg
 
     return(Sec)
