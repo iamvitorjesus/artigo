@@ -53,6 +53,6 @@ def detalhamento_flexao(Dic):
     for d in Bar:
         if d[0] == ol:
             Sec['ro'] = d[1]
-    Sec['peso'] = Sor['ro']*(Sec['com'])*nb # Peso total kg
+    Sec['peso'] = Sec['ro']*(Sec['com'])*nb # Peso total kg
 
     return (Sec)

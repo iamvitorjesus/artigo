@@ -158,11 +158,60 @@
             </div>
           </div><p></p>
 
+
+          <h5 class="text-center">Esforços Solicitantes</h5>
+
+          <div class="row mx-lg-4">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">M<sub>k</sub></span>
+              </div>
+
+                <input type="number" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Momento Fletor " name="Mk">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01" name="unitMk">
+                  <option value="1">kN&#x22C5;m</option>
+                  <option value="2">kN&#x22C5;cm</option>
+                  <option value="3">tf&#x22C5;m</option>
+                  <option value="4">tf&#x22C5;cm</option>
+                  <option value="5">kgf&#x22C5;m</option>
+                  <option value="6">kgf&#x22C5;cm</option>
+
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
+          <div class="row mx-lg-4">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">V<sub>k</sub></span>
+              </div>
+
+                <input type="number" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Cortante" name="Vk">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01" name="unitVk">
+                  <option value="1">kN</option>
+                  <option value="2">N</option>
+                  <option value="3">kgf</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
+
+
           <h5 class="text-center">Coeficientes</h5>
           <div class="row marketing">
             <table class="table table-hover">
               <thead>
-                <tr>
+                <tr class="table-secondary">
                   <th></th>
                   <th scope="col">Carregamento</th>
                   <th scope="col">Concreto (&#611<sub>c</sub>)</th>
@@ -229,8 +278,8 @@
               </div>
 
               <input type="number" id="diagonal" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)"name="t" min="30" max="45" value="45"
-                disabled>
+                (with dot and two decimal places)"name="t" min="30" max="45"
+               disabled>
 
               <div class="input-group-append">
                 <span class="input-group-text">&#9900</span>
@@ -255,86 +304,44 @@
           </div><p></p>
 
 
-          <h5 class="text-center">Esforços Solicitantes</h5>
-
-
-          <div class="row mx-lg-4">
-
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">M<sub>k</sub></span>
-              </div>
-
-                <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Momento Fletor " name="Mk">
-
-              <div class="input-group-append">
-                <select class="custom-select" id="inputGroupSelect01" name="unitMk">
-                  <option value="1">kN&#x22C5;m</option>
-                  <option value="2">kN&#x22C5;cm</option>
-                  <option value="3">tf&#x22C5;m</option>
-                  <option value="4">tf&#x22C5;cm</option>
-                  <option value="5">kgf&#x22C5;m</option>
-                  <option value="6">kgf&#x22C5;cm</option>
-
-                </select>
-              </div>
-            </div>
-          </div><p></p>
-
-
-          <div class="row mx-lg-4">
-
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">V<sub>k</sub></span>
-              </div>
-
-                <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Cortante" name="Vk">
-
-              <div class="input-group-append">
-                <select class="custom-select" id="inputGroupSelect01" name="unitVk">
-                  <option value="1">kN</option>
-                  <option value="2">N</option>
-                  <option value="3">kgf</option>
-                </select>
-              </div>
-            </div>
-          </div><p></p>
-
-
-          <div class="row marketing">
-            <div class="container">
-
-            </div>
-          </div><p></p><p></p>
-
-          <!--
-          <div class="row mx-lg-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">&#611<sub>c</sub></span>
-              </div>
-
-                <input type="text" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Segurança do Concreto" name="gc">
-
-            </div>
-          </div><p></p>
-
-
-          <div class="row mx-lg-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">&#611<sub>s</sub></span>
-              </div>
-
-                <input type="text" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Segurança do Aço" name="gs">
-
-            </div>
-          </div><p></p> -->
+          <div class="row mx-lg-4"">
+            <table class="table table-borderless">
+              <thead>
+                <tr class="table-secondary">
+                  <th scope="col">Classe</th>
+                  <th scope="col">Agressividade</th>
+                  <th scope="col">Ambiente</th>
+                  <th scope="col">Risco de Deterioração</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">&#8544</th>
+                  <td>Fraca</td>
+                  <td>Rural, Submersa</td>
+                  <td>Insignificante</td>
+                </tr>
+                <tr>
+                  <th scope="row">&#8545</th>
+                  <td>Moderada</td>
+                  <td>Urbana</td>
+                  <td>Pequeno</td>
+                </tr>
+                <tr>
+                  <th scope="row">&#8546</th>
+                  <td>Forte</td>
+                  <td>Marinha, Industrial</td>
+                  <td>Grande</td>
+                </tr>
+                <tr>
+                  <th scope="row">&#8547</th>
+                  <td>Muito forte</td>
+                  <td>Industrial, Respingos de maré</td>
+                  <td>Elevado</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
         </div> <!-- COLUMN 2 - FIM -->
 
@@ -382,7 +389,6 @@
 
 
           <div class="row marketing">
-
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">l<sub>0</sub></span>
@@ -401,10 +407,7 @@
           </div><p></p>
 
 
-
           <div class="row marketing">
-
-
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">t<sub>1</sub></span>
@@ -440,44 +443,6 @@
             </div>
           </div>
 
-          <div class="row marketing">
-            <table class="table table-borderless">
-              <thead>
-                <tr>
-                  <th scope="col">Classe</th>
-                  <th scope="col">Agressividade</th>
-                  <th scope="col">Ambiente</th>
-                  <th scope="col">Risco de Deterioração</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">&#8544</th>
-                  <td>Fraca</td>
-                  <td>Rural, Submersa</td>
-                  <td>Insignificante</td>
-                </tr>
-                <tr class="table-secondary">
-                  <th scope="row">&#8545</th>
-                  <td>Moderada</td>
-                  <td>Urbana</td>
-                  <td>Pequeno</td>
-                </tr>
-                <tr>
-                  <th scope="row">&#8546</th>
-                  <td>Forte</td>
-                  <td>Marinha, Industrial</td>
-                  <td>Grande</td>
-                </tr>
-                <tr>
-                  <th scope="row">&#8547</th>
-                  <td>Muito forte</td>
-                  <td>Industrial, Respingos de maré</td>
-                  <td>Elevado</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
         </div> <!-- COLUMN 3 -->
         <div class="container text-center"><p></p>

@@ -23,6 +23,9 @@ def flexaosimples(Dic):
         Dic["gc"] = 1.20
         Dic["gs"] = 1.00
     Dic["gf"] = Dic["gc"] # Coeficiente de Majoração do Esforço
+    gc = Dic["gc"]
+    gs = Dic["gs"]
+    gf = Dic["gf"]
 
     Es = Dic['Es'] # GPa
 
