@@ -379,15 +379,48 @@
             resistência de cálculo, relativa a ruína das diagonais comprimidas de
             concreto.
           </p>
-          <p class="text-justify">V<sub>rd2</sub> = [&#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
-          0.9 &#x22C5; d &#x22C5; (1 + cotan(&#593;))]/2 = {{info['fcd2']|round(3,'common')}}
-          &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5; {{info['d']}} &#x22C5; (1 +
-          cotan({{info['a']}}))/2 = {{info['Vrd2']|round(3,'common')}} kN.</p>
-          <p class="text-center"><strong>{{info['Vsd']}} &#8924; {{info['Vrd2']}}</strong></p>
-          <p></p>
+          {% if info['modelo'] == 1 %}
+            <p class="text-justify">V<sub>rd2</sub> = [&#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
+            0.9 &#x22C5; d &#x22C5; (1 + cotan(&#593;))]/2 = {{info['fcd2']|round(3,'common')}}
+            &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5; {{info['d']}} &#x22C5; (1 +
+            cotan({{info['a']}}))/2 = {{info['Vrd2']|round(3,'common')}} kN.</p>
+            <p class="text-center"><strong>{{info['Vsd']}} &#8924; {{info['Vrd2']}}</strong></p>
+            <p></p>
+          {% else %}
+            <p class="text-justify">V<sub>rd2</sub> = &#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
+            0.9 &#x22C5; d &#x22C5; (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen²&#415; = {{info['fcd2']|round(3,'common')}}
+            &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5; {{info['d']}} &#x22C5; (cotan({{info['t']}}) +
+            cotan({{info['a']}})) &#x22C5; sen²({{info['t']}}) = {{info['Vrd2']|round(3,'common')}} kN.</p>
+            <p class="text-center"><strong>{{info['Vsd']}} &#8924; {{info['Vrd2']}}</strong></p>
+            <p></p>
 
+
+
+          {% endif %}
           <h6 class="text-center">Cálculo da Armadura Transversal</h6>
-          <p class="text-justify"></p>
+          <p class="text-justify">V<sub>sd</sub> = V<sub>c</sub> + V<sub>sw</sub>. Onde,</p>
+          <p>V<sub>c</sub> é a parcela da força cortante absorvida por mecanismos
+            complementares ao da treliça.</p>
+            <ul class="list-unstyled">
+              <li>
+                <ul>
+                  <li>Concreto não fissurado</li>
+                  <li>Engrenamento entre os agregados</li>
+                  <li>Efeito de pino da armadura tracionada</li>
+                </ul>
+              </li>
+            </ul>
+          <p class="text-justify">V<sub>sw</sub> é a parcela da força cortante
+            solicitante resistida pela armadura transversal.</p>
+            {% if info['modelo'] == 1 %}
+          <p>Verificação da diabonal comprimida de concreto:</p>
+
+
+
+
+
+
+
             <!--  -->
           <form method="post">
             <div class="row marketing">
