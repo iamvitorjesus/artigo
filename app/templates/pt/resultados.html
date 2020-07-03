@@ -457,9 +457,40 @@
             <div class="row justify-content-center">
                 <canvas class="center" id="myCanvas" width="{{info['bw']*10}}" height="{{info['h']*10}}">
                 </canvas>
-            </div>
+            </div><p></p>
 
-
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">N</th>
+                  <th scope="col">&Oslash (mm)</th>
+                  <th scope="col">Quantidade</th>
+                  <th scope="col">Total (m)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{{info['ol']|round(1,'common')}}</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>{{info['ot']|round(1,'common')}}</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                {% if  info['h'] > 60 %}
+                <tr>
+                  <th scope="row">3</th>
+                  <td>{{info['op']|round(1,'common')}}</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
             <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
             <script>
               var bw = {{info['bw']}}*10;

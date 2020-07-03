@@ -2,7 +2,7 @@
 import math
 
 def flexaosimples(Dic):
-    #Seção Transversal
+        # Seção Transversal
     h = Dic['h']
     bw = Dic['bw']
 
@@ -12,7 +12,7 @@ def flexaosimples(Dic):
     Dic["d1"] = d1
     Dic["d2"] = d2
 
-    #Materiais
+        # Materiais
     if Dic['carregamento'] == 1:
         Dic["gc"] = 1.40 # Coeficiente de Minoração da Resistência do Concreto
         Dic["gs"] = 1.15 # Coeficiente de Minoração da Resistência do Aço
@@ -32,7 +32,7 @@ def flexaosimples(Dic):
     fck = Dic["fck"] # MPa
     fyk = Dic["fyk"] # MPa
 
-    #Esforços
+        # Esforços
     Mk = Dic['Mk']
     if Mk < 0:
         Mk = (-1)*Mk
@@ -74,7 +74,7 @@ def flexaosimples(Dic):
         eyd = 2.48/1000
     Dic['eyd'] = eyd
 
-    # Modo de Ruptura
+        # Modo de Ruptura
     x2lim = (eu/(eu+(10/1000)))*d
     x3lim = (eu/(eu+eyd))*d
     Dic['x2lim'] = x2lim
@@ -90,11 +90,11 @@ def flexaosimples(Dic):
     x = (d/y)*(1-((1-((2*Msd)/(bw*(d**2)*ac*fcd)))**(0.5))) # Linha Neutra
     Dic['xcal'] = x
     if Msdlim >= Msd:
-        #Armadura simples
+        # Armadura simples
         As = Msd/(fyd*(d-(0.4*x)))
         Ass = 2*(math.pi)*((0.8)**2)/4 # Porta estribo
     else:
-        #Armadura dupla
+        # Armadura dupla
         if x > xlim:
             cal = 1
             x = xlim
@@ -130,34 +130,6 @@ def flexaosimples(Dic):
     if h > 60:
         Asp_face = (0.1/100)*bw*h
         Dic['Asp_face'] = Asp_face
-        osp = 8.0   # Diâmetro da Armadura de Pele
-        nsp_face = math.ceil(Asp_face/((math.pi)*((osp/10)**2)/4))
-        e = d/nsp_face
+        
 
-
-
-    S = '''             DIMENSIONAMENTO
-
-
-Momento fletor de cálculo:
-        Md = γf.Mk = %.2f.%d = %d kN.cm
-
-sendo γf o coeficiente de ponderação que majora
-os esforços solicitantes.
-
-Linha neutra:
-        x = %.2f cm
-
-Como x < 0,45.d = 0,45.%d = %.2f cm, segue-se
-que o não há necessidade de armadura dupla.
-
-De posse da posição da linha neutra e do momendo
-fletor de dimensionamento, temos a Armadura
-Longitudinal de Fleção.
-
-Portanto,
-        As = Md/[fyd.(d- 0.4*x)]
-        As = %.2f cm²'''
-
-    #print(S %(gf, Mk, Msd, x, d, (0.45*d), As))
     return(Dic)

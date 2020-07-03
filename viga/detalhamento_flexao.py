@@ -47,6 +47,15 @@ def detalhamento_flexao(Dic):
 #        else:
 #            Sec['Anc_ol'] = 10*(ot/10)*2
 
+        # Armadura de Pele
+    if Sec['h'] > 60:
+        nsp_face = math.ceil(Sec['Asp_face']/((math.pi)*((Sec['op']/10)**2)/4))
+        e = Sec['d']/nsp_face
+        if e > 20:
+            e = 20
+        Sec['nsp_face'] = nsp_face
+        Sec['e'] = e
+
 
     Sec['com'] = (Sec['l0'] + (Sec['t1'] + Sec['t2'])/100)   # Comprimento de um estribo (cm) + Sec['Anc_ol']
 
