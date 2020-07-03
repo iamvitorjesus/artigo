@@ -55,17 +55,17 @@ def detalhamento_flexao(Dic):
             e = 20
         Sec['nsp_face'] = nsp_face
         Sec['e'] = e
-        Sec['comp_op'] = (Sec['l0'] + (Sec['t1'] + Sec['t2'])/100)
+        Sec['comp_op'] = (Sec['l0']*100) + Sec['t1'] + Sec['t2']
         for d in Bar:
             if d[0] == Sec['op']:
                 Sec['ro_op'] = d[1]
-        Sec['peso_op'] = Sec['ro_op']*(Sec['comp_op'])*nsp_face*2
+        Sec['peso_op'] = Sec['ro_op']*(Sec['comp_op']/100)*nsp_face*2
 
-    Sec['comp_ol'] = (Sec['l0'] + (Sec['t1'] + Sec['t2'])/100)   # Comprimento de um estribo (cm) + Sec['Anc_ol']
+    Sec['comp_ol'] = (Sec['l0']*100) + Sec['t1'] + Sec['t2']   # Comprimento de um estribo (cm) + Sec['Anc_ol']
 
     for d in Bar:
         if d[0] == Sec['ol']:
             Sec['ro_ol'] = d[1]
-    Sec['peso_ol'] = Sec['ro_ol']*(Sec['comp_ol'])*nb # Peso total kg
+    Sec['peso_ol'] = Sec['ro_ol']*(Sec['comp_ol']/100)*nb # Peso total kg
 
     return (Sec)
