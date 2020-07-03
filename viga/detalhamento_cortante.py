@@ -69,11 +69,11 @@ def detalhamento_cortante(Sec):
     Sec['S'] = S
     Sec['Smin'] = Smin
     Sec['ne'] = ne
-    Sec['com'] = ((Sec['bw'] - (4*Sec['c']))*2) + (Sec['h']*ra) #  + Sec['Anc_ot'] Comprimento de um estribo (cm)
+    Sec['comp_ot'] = ((Sec['bw'] - (4*Sec['c']))*2) + (Sec['h']*ra) + 14 #  + Sec['Anc_ot'] Comprimento de um estribo (cm)
 
     for d in Bar:
         if d[0] == ot:
-            Sec['ro'] = d[1]
-    Sec['peso'] = Sor['ro']*(Sec['com']/100)*ne # Peso total kg
+            Sec['ro_ot'] = d[1]
+    Sec['peso_ot'] = Sor['ro_ot']*(Sec['comp_ot']/100)*ne # Peso total kg
 
     return(Sec)
