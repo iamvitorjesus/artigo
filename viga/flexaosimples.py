@@ -87,12 +87,11 @@ def flexaosimples(Dic):
     Msdlim = y*ac*nlim*(d**2)*bw*fcd*(1-(0.4*nlim))
     Dic['Msdlim'] = Msdlim
     cal = 0
-    x = (d/y)*(1-((1-((2*Msd)/(bw*(d**2)*ac*fcd)))**(0.5))) # Linha Neutra
-    Dic['xcal'] = x
     if Msdlim >= Msd:
         # Armadura simples
         As = Msd/(fyd*(d-(0.4*x)))
         Ass = 2*(math.pi)*((0.8)**2)/4 # Porta estribo
+        x = (d/y)*(1-((1-((2*Msd)/(bw*(d**2)*ac*fcd)))**(0.5))) # Linha Neutra
     else:
         # Armadura dupla
         cal = 1

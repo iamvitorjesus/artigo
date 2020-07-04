@@ -231,37 +231,27 @@
 
         {% endif %}
 
-        {% if info['x2lim'] > info['xcal']  %}
-          <p><strong>Domínio 2: </strong>x<sub>2lim</sub> = {{info['x2lim']|round(2,'common')}} cm >
-            {{info['xcal']|round(2,'common')}} cm = x.</p>
-
-            {% elif info['xcal'] >= info['x2lim'] and info['xcal'] <= info['x3lim'] %}
-              <p><strong>Domínio 3: </strong>x<sub>2lim</sub> = {{info['x2lim']|round(2,'common')}} cm ⋜
-                {{info['xcal']|round(2,'common')}} cm = x ⋜ {{info['x3lim']|round(2,'common')}} cm = x<sub>3lim</sub>.</p>
-
-            {% elif info['xcal'] > info['x3lim'] %}
-              <p><strong>Domínio 4: </strong>x = {{info['xcal']|round(2,'common')}} cm >
-                {{info['x3lim']|round(2,'common')}} cm = x<sub>3lim</sub>.</p>
-
-        {% endif %}
-
-        {% if info['x'] < info['xlim'] %}
+        {% if info['Msd'] <= info['Msdlim'] %}
           <p>A viga passa também no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
             {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm > <strong>x =
             {{info['x']|round(2, 'common')}} cm.</strong></p>
 
           {% elif info['cal'] == 1 %}
             <p>A viga não passa no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
-              {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm < x =
-              {{info['xcal']|round(2, 'common')}} cm.</p>
+              {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm < x</p>
 
             <p></p>
             <p>Portanto para os proximos calculos <strong>x = {{info['x']|round(2, 'common')}} cm.</strong></p>
 
-          {% elif info['xcal'] == info['xlim'] %}
-            <p>A viga passa também no critério de ductilidade pois {{info['nlim']}}&#x22C5;d =
-              {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm = <strong>x =
-              {{info['xcal']|round(2, 'common')}} cm.</strong></p>
+        {% endif %}
+
+        {% if info['x2lim'] > info['x']  %}
+          <p><strong>Domínio 2: </strong>x<sub>2lim</sub> = {{info['x2lim']|round(2,'common')}} cm >
+            {{info['x']|round(2,'common')}} cm = x.</p>
+
+        {% elif info['x'] >= info['x2lim'] and info['x'] <= info['x3lim'] %}
+          <p><strong>Domínio 3: </strong>x<sub>2lim</sub> = {{info['x2lim']|round(2,'common')}} cm ⋜
+            {{info['x']|round(2,'common')}} cm = x ⋜ {{info['x3lim']|round(2,'common')}} cm = x<sub>3lim</sub>.</p>
 
         {% endif %}
 
