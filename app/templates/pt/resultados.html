@@ -279,6 +279,16 @@
           ({{info['d']|round(2,'common')}} - 0.4&#x22C5;{{info['x']|round(2,'common')}})) =
           <strong>{{info['As']|round(2,'common')}} cm².</strong></p>
 
+          <p class="text-justify">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Área da armadura tracionada:
+                A<sub>s</sub> = <strong>{{(info['As'])|round(2 ,'common')}} cm²</strong></li>
+              <li class="list-group-item">Área da armadura comprimida:
+                A<sub>s</sub>' = <strong>{{info['Ass']|round(2,'common')}} cm²</strong></li>
+            </ul>
+          </p>
+
+
         {% else %}
           <h6 class="text-center">Área de Aço</h6>
           <p class="text-justify">M<sub>sd</sub> = {{info['Msd']|round(1,'common')}} kN&#x22C5;cm >
@@ -323,13 +333,13 @@
 
           {% endif %}
 
-          <p class="text-center">
+          <p class="text-justify">
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Área da armadura tracionada:
                 A<sub>s</sub> = A<sub>s1</sub> + A<sub>s2</sub> = {{info['As1']|round(2,'common')}} +
                 {{info['As2']|round(2,'common')}} = <strong>{{(info['As'])|round(2 ,'common')}} cm²</strong></li>
               <li class="list-group-item">Área da armadura comprimida:
-                A<sub>ss</sub> = <strong>{{info['Ass']|round(2,'common')}} cm²</strong></li>
+                A<sub>s</sub>' = <strong>{{info['Ass']|round(2,'common')}} cm²</strong></li>
             </ul>
           </p>
 
@@ -440,8 +450,10 @@
 
               </p>
               <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
-                V<sub>c</sub> = {{info['Vsw']|round(2,'common')}} kN.
+                V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
+                |round(2,'common')}} = {{info['Vsw']|round(2,'common')}} kN.
               </p>
+
               <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
                 d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
                 {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
@@ -454,18 +466,33 @@
                 V<sub>rd2</sub> = V<sub>sd</sub>
               </p>
               <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
-                V<sub>c</sub> = {{info['Vsw']|round(2,'common')}} kN.
+                V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
+                |round(2,'common')}} = {{info['Vsw']|round(2,'common')}} kN.
               </p>
 
+              <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
+                d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
+                {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+                cos({{info['a']}}))) = {{info['Asw']|round(2,'common')}} cm²/cm
+              </p>
             {% elif info['Vsd'] > info['Vc0']%}
               <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
-                V<sub>c1</sub> = V<sub>c0</sub> <strong>&#10230;</strong> para
-                V<sub>sd</sub> > V<sub>c0</sub>
+                V<sub>c1</sub> = V<sub>c0</sub> &#x22C5; (V<sub>rd2</sub> -
+                V<sub>sd</sub>)/(V<sub>rd2</sub> - V<sub>c0</sub>)
+                <strong>&#10230;</strong> para V<sub>sd</sub> > V<sub>c0</sub>
               </p>
               <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
-                V<sub>c</sub> = {{info['Vsw']|round(2,'common')}} kN.
+                V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
+                |round(2,'common')}} = {{info['Vsw']|round(2,'common')}} kN.
               </p>
 
+              <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
+                d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
+                {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+                cos({{info['a']}}))) = {{info['Asw']|round(2,'common')}} cm²/cm
+              </p>
 
             {% endif %}
           {% endif %}
@@ -575,7 +602,7 @@
                   <th scope="col">N</th>
                   <th scope="col">&Oslash (mm)</th>
                   <th scope="col">Quant.</th>
-                  <th scope="col">Comprimento (cm)</th>
+                  <th scope="col">Comp. (cm)</th>
                   <th scope="col">Total (m)</th>
                   <th scope="col">Massa (kg)</th>
                 </tr>
