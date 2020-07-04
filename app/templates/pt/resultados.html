@@ -341,7 +341,7 @@
           <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
           {% if info['Modelo'] == 2 %}
             <p class="text-justify">A NBR 6118 admite que o ângulo de inclinação
-              das diagonais de compressão (&#629;) varie livrimente entre 30̊&#778;
+              das diagonais de compressão (&#629;) varie livrimente entre 30&#778;
               e 45&#778; e que a parcela V<sub>c</sub> sofra redução com aumento
               de Vsd.</p>
 
@@ -360,8 +360,9 @@
             <li class="list-group-item">Concreto:
               &#402<sub>ctd2</sub> = 0.6 &#x22C5; &#593;<sub>v</sub> &#x22C5; &#402<sub>cd</sub> =
               0.6 &#x22C5; (1 - &#402<sub>ck</sub>/250) &#x22C5; &#402<sub>cd</sub> =
-              0.6 &#x22C5; (1 - {{(info['fck']*10)|round(3,'common')}}/250) &#x22C5;
-              {{(info['fcd']*10)|round(3,'common')}} = {{(info['fcd2']*10)|round(3,'common')}} MPa.
+              0.6 &#x22C5; (1 - {{(info['fck'])|round(3,'common')}}/250) &#x22C5;
+              {{(info['fcd']*10)|round(3,'common')}} = {{(info['fcd2']*10)|round(3,'common')}} MPa
+              = {{(info['fcd2'])|round(3,'common')}} kN/cm² .
             </li>
             <li class="list-group-item">Aço:
               &#402<sub>ywd</sub> = &#402<sub>ywk</sub>/&#611<sub>s</sub> =
@@ -385,31 +386,33 @@
             0.9 &#x22C5; d &#x22C5; (1 + cotan(&#593;))]/2 = {{info['fcd2']|round(3,'common')}}
             &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5; {{info['d']}} &#x22C5; (1 +
             cotan({{info['a']}}))/2 = {{info['Vrd2']|round(3,'common')}} kN.</p>
-            <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']}} kN.</strong></p>
+            <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
             <p></p>
           {% else %}
             <p class="text-justify">V<sub>rd2</sub> = &#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
-            0.9 &#x22C5; d &#x22C5; (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen²&#415; = {{info['fcd2']|round(3,'common')}}
-            &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5; {{info['d']}} &#x22C5; (cotan({{info['t']}}) +
-            cotan({{info['a']}})) &#x22C5; sen²({{info['t']}}) = {{info['Vrd2']|round(3,'common')}} kN.</p>
-            <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']}} kN.</strong></p>
+            0.9 &#x22C5; d &#x22C5; (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen²&#415; =
+            {{info['fcd2']|round(3,'common')}} &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5;
+            {{info['d']}} &#x22C5; (cotan({{info['t']}}) + cotan({{info['a']}})) &#x22C5;
+            sen²({{info['t']}}) = {{info['Vrd2']|round(3,'common')}} kN.</p>
+            <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
             <p></p>
           {% endif %}
 
           <h6 class="text-center">Cálculo da Armadura Transversal</h6>
           <p class="text-justify">V<sub>sd</sub> = V<sub>c</sub> + V<sub>sw</sub>. Onde,</p>
-          <p>V<sub>c</sub> é a parcela da força cortante absorvida por mecanismos
+          <p>V<sub>c</sub>: parcela da força cortante absorvida por mecanismos
             complementares ao da treliça.</p>
+            <p class="text-center"><strong>Mecanismos:</strong></p>
             <ul class="list-unstyled">
               <li>
                 <ul>
-                  <li>Concreto não fissurado</li>
-                  <li>Engrenamento entre os agregados</li>
-                  <li>Efeito de pino da armadura tracionada</li>
+                  <li>Concreto não fissurado da porção comprimida;</li>
+                  <li>Engrenamento entre os agregados;</li>
+                  <li>Efeito de pino da armadura tracionada.</li>
                 </ul>
               </li>
             </ul>
-          <p class="text-justify">V<sub>sw</sub> é a parcela da força cortante
+          <p class="text-justify">V<sub>sw</sub>: parcela da força cortante
             solicitante resistida pela armadura transversal.</p>
 
           {% if info['Modelo'] == 1 %}
@@ -419,16 +422,17 @@
               {{info['d']}} = {{info['Vc']|round(3,'common')}} kN.
             </p>
             <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
-              V<sub>c</sub> = {{info['Vsw']}} kN.
+              V<sub>c</sub> = {{info['Vsw']|round(2,'common')}} kN.
             </p>
             <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
               d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
               {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
               {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}}))) = {{info['Asw']}} cm²/cm
+              cos({{info['a']}}))) = {{info['Asw']|round(2,'common')}} cm²/cm
             </p>
 
           {% else %}
+          <p>Para o modelo &#8545 de cálculo:</p>
             {% if info['Vsd'] <= info['Vc0']%}
               <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
                 V<sub>c1</sub> = V<sub>c0</sub> <strong>&#10230;</strong> para
@@ -436,13 +440,13 @@
 
               </p>
               <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
-                V<sub>c</sub> = {{info['Vsw']}} kN.
+                V<sub>c</sub> = {{info['Vsw']|round(2,'common')}} kN.
               </p>
               <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
                 d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
                 {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
                 {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-                cos({{info['a']}}))) = {{info['Asw']}} cm²/cm
+                cos({{info['a']}}))) = {{info['Asw']|round(2,'common')}} cm²/cm
               </p>
             {% elif info['Vsd'] == info['Vrd2']%}
               <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
@@ -450,7 +454,7 @@
                 V<sub>rd2</sub> = V<sub>sd</sub>
               </p>
               <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
-                V<sub>c</sub> = {{info['Vsw']}} kN.
+                V<sub>c</sub> = {{info['Vsw']|round(2,'common')}} kN.
               </p>
 
             {% elif info['Vsd'] > info['Vc0']%}
@@ -459,7 +463,7 @@
                 V<sub>sd</sub> > V<sub>c0</sub>
               </p>
               <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
-                V<sub>c</sub> = {{info['Vsw']}} kN.
+                V<sub>c</sub> = {{info['Vsw']|round(2,'common')}} kN.
               </p>
 
 
