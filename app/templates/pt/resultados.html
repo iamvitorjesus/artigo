@@ -464,7 +464,7 @@
                 d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
                 {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
                 {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-                cos({{info['a']}}))) = {{info['Asw']|round(2,'common')}} cm²/cm
+                cos({{info['a']}}))) = {{info['Asw']|round(4,'common')}} cm²/cm
               </p>
             {% elif info['Vsd'] > info['Vc0']%}
               <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
@@ -481,7 +481,7 @@
                 d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
                 {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
                 {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-                cos({{info['a']}}))) = {{info['Asw']|round(2,'common')}} cm²/cm
+                cos({{info['a']}}))) = {{info['Asw']|round(4,'common')}} cm²/cm
               </p>
 
             {% endif %}
@@ -669,8 +669,10 @@
 
                   if (i==nbmax) {
                     posx = c+ot+(ol/2);
-                    posy = posy - ave - ol;}
-                  i++;
+                    posy = posy - ave - ol;
+                    i = 0;}
+
+                  i = i +1;
               }
             </script>
           </form>
