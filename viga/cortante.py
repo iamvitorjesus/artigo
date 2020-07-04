@@ -49,6 +49,7 @@ def cortanteM1(Dic):
 
     # Verificação Vsd >= Vrd2
     Vc0 = 0.6*fctd*Sec['bw']*Sec['d']
+    Sec['Vc0'] = Vc0
     Vc = Vc0
     Vsw = Vsd - Vc
     Asw = Vsw/(0.9*Sec['d']*fywd*(math.sin(math.radians(a))
@@ -127,6 +128,7 @@ def cortanteM2(Dic):
     Sec['Vrd2'] = Vrd2
     # Verificação Vsd >= Vrd2
     Vc0 = 0.6*fctd*Sec['bw']*Sec['d']
+    Sec['Vc0'] = Vc0
     if Vsd <= Vc0:
         Vc1 = Vc0
     elif Vrd2 == Vsd:
