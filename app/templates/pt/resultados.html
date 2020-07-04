@@ -167,7 +167,7 @@
               <li class="list-group-item">parâmetro de uniformização do esforço de compressão:
                 λ = 0.80.</li>
               <li class="list-group-item">critério de ductilidade:
-                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230</strong> x<sub>lim</sub> =
+                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230;</strong> x<sub>lim</sub> =
                 n<sub>lim</sub>&#x22C5;d = {{info['xlim']|round(2,'common')}} cm.</li>
             </ul>
           </p>
@@ -207,7 +207,7 @@
               <li class="list-group-item">parâmetro de uniformização do esforço de compressão:
                 λ = 0,80 - [(&#402<sub>ck</sub> - 50)/400] = {{info['y']|round(2,'common')}};</li>
               <li class="list-group-item">critério de ductilidade:
-                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230</strong> x<sub>lim</sub> =
+                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230;</strong> x<sub>lim</sub> =
                 n<sub>lim</sub>&#x22C5;d = {{info['xlim']|round(2,'common')}} cm.</li>
             </ul>
           </p>
@@ -284,7 +284,7 @@
           <p class="text-justify">M<sub>sd</sub> = {{info['Msd']|round(1,'common')}} kN&#x22C5;cm >
             {{info['Msdlim']|round(1,'common')}} kN&#x22C5;cm = M<sub>sdlim</sub>,
             ou seja, <strong>Armadura Dupla</strong>. M<sub>d1</sub> = M<sub>sdlim</sub>
-            <strong>&#10230</strong> M<sub>d2</sub> =  M<sub>sd</sub> - M<sub>d1</sub> =
+            <strong>&#10230;</strong> M<sub>d2</sub> =  M<sub>sd</sub> - M<sub>d1</sub> =
             {{info['Msd']|round(1,'common')}} - {{info['Md1']|round(1,'common')}} =
             {{info['Md2']|round(1,'common')}} kN&#x22C5;m.
           </p>
@@ -423,12 +423,47 @@
             </p>
             <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
               d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
-              {{info['Vsw']/round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
-              {{info['fywd']round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}})))
+              {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+              {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+              cos({{info['a']}}))) = {{info['Asw']}} cm²/cm
             </p>
 
+          {% else %}
+            {% if info['Vsd'] <= info['Vc0']%}
+              <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
+                V<sub>c1</sub> = V<sub>c0</sub> <strong>&#10230;</strong> para
+                V<sub>sd</sub> &#8924; V<sub>c0</sub>
 
+              </p>
+              <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
+                V<sub>c</sub> = {{info['Vsw']}} kN.
+              </p>
+              <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
+                d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
+                {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+                cos({{info['a']}}))) = {{info['Asw']}} cm²/cm
+              </p>
+            {% elif info['Vsd'] == info['Vrd2']%}
+              <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
+                V<sub>c1</sub> = 0 <strong>&#10230;</strong> para
+                V<sub>rd2</sub> = V<sub>sd</sub>
+              </p>
+              <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
+                V<sub>c</sub> = {{info['Vsw']}} kN.
+              </p>
+
+            {% elif info['Vsd'] > info['Vc0']%}
+              <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
+                V<sub>c1</sub> = V<sub>c0</sub> <strong>&#10230;</strong> para
+                V<sub>sd</sub> > V<sub>c0</sub>
+              </p>
+              <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
+                V<sub>c</sub> = {{info['Vsw']}} kN.
+              </p>
+
+
+            {% endif %}
           {% endif %}
 
 
