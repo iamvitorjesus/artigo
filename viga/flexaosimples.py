@@ -95,9 +95,8 @@ def flexaosimples(Dic):
         Ass = 2*(math.pi)*((0.8)**2)/4 # Porta estribo
     else:
         # Armadura dupla
-        if x > xlim:
-            cal = 1
-            x = xlim
+        cal = 1
+        x = xlim
         Md1 = Msdlim
         Dic['Md1'] = Md1
         Md2 = Msd - Md1
@@ -130,6 +129,6 @@ def flexaosimples(Dic):
     if h > 60:
         Asp_face = (0.1/100)*bw*h
         Dic['Asp_face'] = Asp_face
-        
+
 
     return(Dic)
