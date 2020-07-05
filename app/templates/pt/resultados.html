@@ -659,9 +659,12 @@
 
             <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
             <script>
+            //Dados Gerais
               var bw = {{info['bw']}}*10;
               var h = {{info['h']}}*10;
               var c = {{info['c']}}*10;
+              var mk = {{info['Mk']}};
+            //Dados da Armadura tracionada
               var aho = {{info['aho']}}*10;
               var ave = {{info['ave']}}*10;
               var ah = {{info['ah']}}*10;
@@ -670,7 +673,7 @@
               var nc = {{info['nc']}};
               var ol = {{info['ol']}};
               var ot = {{info['ot']}};
-              //Armadura de compressão
+            //Dados da Armadura compremida
               var ahos = {{info['ahos']}}*10;
               var aves = {{info['aves']}}*10;
               var ahs = {{info['ahs']}}*10;
@@ -678,22 +681,34 @@
               var nbmaxs = {{info['nbmaxs']}};
               var ncs = {{info['ncs']}};
               var ols = {{info['ols']}};
-              var ots = {{info['ots']}};
+            //Posição das Armaduras tracionada e Comprimida
+              var posy = h-(c+ot+(ol/2));
+              var posx = c+ot+(ol/2);
+              var posxs = c+ot+(ols/2);
+              var posys = c+ot+(ols/2);
+              if (mk < 0){ //Se o Momento for (-) Armadura tracionada em cima
+                posy = c+ot+(ol/2);
+                posys = h - (c+ot+(ols/2));
+              }
 
-              var mk = {{info['Mk']}};
 
+            //JS-HTML5 Canvas
               var canv = document.getElementById("myCanvas");
               var cnv = canv.getContext("2d");
-              var cord1 = c+(ot/2);
-              var cord2 = bw-(c*2)-(ot);
-              var cord3 = h-(c*2)-(ot);
 
+            //Concreto
               cnv.fillStyle = "#d3d9df";
               cnv.fillRect(0, 0, bw, h);
 
+            //Armadura Transversal
+              cnv.beginPath(); ///
+              var cord1 = c+(ot/2);
+              var cord2 = bw-(c*2)-(ot);
+              var cord3 = h-(c*2)-(ot);
               cnv.lineWidth = ot;
               cnv.strokeRect(cord1, cord1, cord2 , cord3);
 
+            //Armadura Tracionada
               var ahult = 0;
               var nbult = 0;
               if (nc*nbmax != nb){
@@ -701,44 +716,63 @@
                 nbult = nb - (k*nbmax);
                 if (nbult > 1){
                   ahult = (bw - (nbult*ol + ((c+ot)*2)))/(nbult-1);
-
                 }
               }
-			        var posy = h-(c+ot+(ol/2));
-              var posx = c+ot+(ol/2);
-              var posxs = c+ot+(ols/2);
-              var posys = c+ot+(ols/2);
-              if (mk < 0){
-                posy = c+ot+(ol/2);
-                posys = h - (c+ot+(ols/2));
-              }
-
-
               var i = 1;
-              var k = 1;
-              var camada = 1;
+              var k = 1; //Contador de barras
+              var cam = 1; //Contador de camadas
               while (i < nb+1) {
-                if (camada == nc){
+                if (cam == nc){
                   ah = ahult;
                 }
 
             	  cnv.beginPath();
                 cnv.arc(posx, posy, ol/2, 0, Math.PI*2);
-                
                 cnv.fillStyle = 'black';
                 cnv.fill();
                 posx = posx + ah + (ol);
-                posxs = posxs + ahs + (ols);
                 if (k == nbmax) {
-                  camada++;
+                  cam++;
                   k = 0;
                   posx = c+ot+(ol/2);
                   posy = posy - ave - ol;
-                  }
-
+                }
                 k++;
                 i++;
+              }
 
+              //Armadura Comprimida
+              var ahults = 0;
+              var nbults = 0;
+              if (ncs*nbmaxs != nbs){
+                var z = ncs - 1;
+                nbults = nbs - (z*nbmaxs);
+                if (nbults > 1){
+                  ahults = (bw - (nbults*ols + ((c+ot)*2)))/(nbults-1);
+
+                }
+              }
+              var z = 1;
+              var j = 1;
+              var cams = 1;
+              while (j < nbs+1) {
+                if (cams == ncs){
+                  ahs = ahults;
+                }
+
+                cnv.beginPath();
+                cnv.arc(posxs, posys, ols/2, 0, Math.PI*2);
+                cnv.fillStyle = 'black';
+                cnv.fill();
+                posxs = posxs + ahs + (ols);
+                if (z == nbmaxs) {
+                  cams++;
+                  z = 0;
+                  posxs = c+ot+(ols/2);
+                  posys = posys - aves - ols;
+                }
+                z++;
+                j++;
               }
             </script>
           </form>

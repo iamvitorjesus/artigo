@@ -61,8 +61,7 @@ def resultados():
                 value = float(request.form[x])
                 Dic[x] = value
             Dic = detalhamento_flexao(Dic)
-
-            return redirect(url_for("resultados"))
+            return render_template('pt/resultados.html', info = Dic)
         else:
             return render_template('pt/resultados.html', info = Dic)
     else:
