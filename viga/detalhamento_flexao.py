@@ -11,6 +11,43 @@ def detalhamento_flexao(Dic):
 
     ol = Sec['ol']/10
     ot = Sec['ot']/10
+    ols = Sec['ols']/10
+
+        # ARMADURA DE COMPRESSÃO
+    As = (math.pi)*(float(ols)**2)/4 #Área de uma barra em cm² *
+    nbs = Sec['Ass']/As #Número de barras necessárias
+    nbs = math.ceil(nbs) #Número real de barras
+    Sec['nbs']= nbs # Número  real de barras
+
+    Aefs = nb*A #Área efetiva de aço
+    Aefs = round(Aefs,2)
+    Sec['Aefs']= Aefs # Área efetiva de aço
+
+    aves = max(2, ols, 0.5*Sec['Dmax']) # Espaçamento vertical mínimo
+    Sec['aves'] = aves
+
+    ahos = max(2, ols, 1.2*Sec['Dmax']) # Espaçamento horizontal mínimo
+    Sec['ahos'] = ahos
+
+    nbmaxs = math.floor((Sec['bw'] - (2* (Sec['c'] + ot) ) + ahos)/(ols+aho))
+    Sec['nbmaxs'] = nbmaxs # Número máximo de barras por camada
+
+    ahs = (Sec['bw'] -(ols*nbmaxs)-((Sec['c']+ot)*2) )/(nbmax-1)
+    Sec['ahs'] = ahs # Espaçamento real
+
+    ncs = math.ceil(nbs/nbmaxs) # Número de camadas necessáriaS
+    Sec['ncs']= ncs
+
+    Sec['comp_ols'] = (Sec['l0']*100) + Sec['t1'] + Sec['t2']   # Comprimento de um estribo (cm) + Sec['Anc_ol']
+
+    for d in Bar:
+        if d[0] == Sec['ols']:
+            Sec['ro_ols'] = d[1]
+    Sec['peso_ols'] = Sec['ro_ols']*(Sec['comp_ols']/100)*nbs # Peso total kg
+
+
+
+        # ARMADURA DE TRAÇÃO
 
     A = (math.pi)*(float(ol)**2)/4 #Área de uma barra em cm² *
     nb = Sec['As']/A #Número de barras necessárias

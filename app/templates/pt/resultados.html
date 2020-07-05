@@ -643,6 +643,11 @@
               var ol = {{info['ol']}};
               var ot = {{info['ot']}};
 
+
+              
+
+              var mk = {{info['Mk']}};
+
               var canv = document.getElementById("myCanvas");
               var cnv = canv.getContext("2d");
               var cord1 = c+(ot/2);
@@ -655,24 +660,50 @@
               cnv.lineWidth = ot;
               cnv.strokeRect(cord1, cord1, cord2 , cord3);
 
+              var ahult = 0;
+              var nbult = 0;
+              if (nc*nbmax != nb){
+                var k = nc - 1;
+                nbult = nb - (k*nbmax);
+                if (nbult > 1){
+                  ahult = (bw - (nbult*ol + ((c+ot)*2)))/(nbult-1);
 
+                }
+              }
 			        var posy = h-(c+ot+(ol/2));
               var posx = c+ot+(ol/2);
+              var posxs = c+ot+(ols/2);
+              var posys = c+ot+(ols/2);
+              if (mk < 0){
+                posy = c+ot+(ol/2);
+                posys = h - (c+ot+(ols/2));
+              }
+
+
               var i = 1;
-
+              var k = 1;
+              var camada = 1;
               while (i < nb+1) {
-              	  cnv.beginPath();
-                  cnv.arc(posx, posy, ol/2, 0, Math.PI*2);
-                  cnv.fillStyle = 'black';
-                  cnv.fill()
-                  posx = posx + ah + (ol);
+                if (camada == nc){
+                  ah = ahult;
+                }
 
-                  if (i==nbmax) {
-                    posx = c+ot+(ol/2);
-                    posy = posy - ave - ol;
-                    i = 0;}
+            	  cnv.beginPath();
+                cnv.arc(posx, posy, ol/2, 0, Math.PI*2);
+                cnv.fillStyle = 'black';
+                cnv.fill();
+                posx = posx + ah + (ol);
 
-                  i = i +1;
+                if (k == nbmax) {
+                  camada++;
+                  k = 0;
+                  posx = c+ot+(ol/2);
+                  posy = posy - ave - ol;
+                  }
+
+                k++;
+                i++;
+
               }
             </script>
           </form>
