@@ -19,7 +19,7 @@ def detalhamento_flexao(Dic):
     nbs = math.ceil(nbs) #Número real de barras
     Sec['nbs']= nbs # Número  real de barras
 
-    Aefs = nb*A #Área efetiva de aço
+    Aefs = nbs*As #Área efetiva de aço
     Aefs = round(Aefs,2)
     Sec['Aefs']= Aefs # Área efetiva de aço
 
@@ -29,10 +29,10 @@ def detalhamento_flexao(Dic):
     ahos = max(2, ols, 1.2*Sec['Dmax']) # Espaçamento horizontal mínimo
     Sec['ahos'] = ahos
 
-    nbmaxs = math.floor((Sec['bw'] - (2* (Sec['c'] + ot) ) + ahos)/(ols+aho))
+    nbmaxs = math.floor((Sec['bw'] - (2* (Sec['c'] + ot) ) + ahos)/(ols+ahos))
     Sec['nbmaxs'] = nbmaxs # Número máximo de barras por camada
 
-    ahs = (Sec['bw'] -(ols*nbmaxs)-((Sec['c']+ot)*2) )/(nbmax-1)
+    ahs = (Sec['bw'] -(ols*nbmaxs)-((Sec['c']+ot)*2) )/(nbmaxs-1)
     Sec['ahs'] = ahs # Espaçamento real
 
     ncs = math.ceil(nbs/nbmaxs) # Número de camadas necessáriaS
@@ -44,7 +44,6 @@ def detalhamento_flexao(Dic):
         if d[0] == Sec['ols']:
             Sec['ro_ols'] = d[1]
     Sec['peso_ols'] = Sec['ro_ols']*(Sec['comp_ols']/100)*nbs # Peso total kg
-
 
 
         # ARMADURA DE TRAÇÃO

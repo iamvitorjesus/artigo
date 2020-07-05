@@ -4,6 +4,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__)
+app.secret_key = 'um-nome'
 app.config.from_object('config')
 
 db  = SQLAlchemy(app)

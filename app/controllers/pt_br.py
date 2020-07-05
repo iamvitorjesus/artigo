@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from app import app, db
 
 from app.models.tables import User
@@ -16,10 +16,11 @@ def index():
       #show_predictions_modal=True
       )
 
-dimen = {}
+
 @app.route("/novoprojeto", methods = ["POST", "GET"])
 def novoprojeto():
     if request.method == "POST":
+        dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = float(request.form[info])
             dimen[info] = value
@@ -33,9 +34,11 @@ def novoprojeto():
             #É necessário um redimencionamento ou aumento do fck''')
             return redirect(url_for("erroBiela"))
 
-
+        session["dic"] = Dic
         return redirect(url_for("resultados"))
     else:
+        if "user" in session:
+            return redirect(url_for("resultados"))
         return render_template('pt/novoprojeto.html')
 
 @app.route("/erroM", methods = ["GET"])
@@ -51,15 +54,19 @@ from viga.detalhamento_flexao import detalhamento_flexao
 
 @app.route("/resultados", methods = ["POST", "GET"])
 def resultados():
-    if request.method == "POST":
-        for x in request.form:
-            value = float(request.form[x])
-            dimen[x] = value
-        Dic = detalhamento_flexao(dimen)
+    if 'dic' in session:
+        Dic = session['dic']
+        if request.method == "POST":
+            for x in request.form:
+                value = float(request.form[x])
+                Dic[x] = value
+            Dic = detalhamento_flexao(Dic)
 
-        return redirect(url_for("resultados"))
+            return redirect(url_for("resultados"))
+        else:
+            return render_template('pt/resultados.html', info = Dic)
     else:
-        return render_template('pt/resultados.html', info = dimen)
+        return redirect(url_for("novoprojeto"))
 
 @app.route("/contato")
 def contato():
