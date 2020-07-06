@@ -8,18 +8,19 @@ def detalhamento_flexao(Dic):
     Bar = [(4.2, 0.109),(5.0, 0.154),(6.3, 0.245),(8.0, 0.395),(10.0, 0.617),
     (12.5, 0.963),(16.0, 1.578),(20.0, 2.466),(22.0, 2.984),(25.0, 3.853),
     (32.0, 6.313),(40.0, 9.865)]
-    
+
     ol = Sec['ol']/10
     ot = Sec['ot']/10
     ols = Sec['ols']/10
 
         # ARMADURA DE COMPRESSÃO
-    As = (math.pi)*(float(ols)**2)/4 #Área de uma barra em cm² *
-    nbs = Sec['Ass']/As #Número de barras necessárias
+    Abs = (math.pi)*(float(ols)**2)/4 #Área de uma barra em cm² *
+    nbs = Sec['Ass']/Abs #Número de barras necessárias
     nbs = math.ceil(nbs) #Número real de barras
-    Sec['nbs']= nbs # Número  real de barras
+    Sec['nbs'] = nbs # Número  real de barras
+    Sec['Abs'] = Abs
 
-    Aefs = nbs*As #Área efetiva de aço
+    Aefs = nbs*Abs #Área efetiva de aço
     Aefs = round(Aefs,2)
     Sec['Aefs']= Aefs # Área efetiva de aço
 
@@ -48,12 +49,13 @@ def detalhamento_flexao(Dic):
 
         # ARMADURA DE TRAÇÃO
 
-    A = (math.pi)*(float(ol)**2)/4 #Área de uma barra em cm² *
-    nb = Sec['As']/A #Número de barras necessárias
+    Ab = (math.pi)*(float(ol)**2)/4 #Área de uma barra em cm² *
+    nb = Sec['As']/Ab #Número de barras necessárias
     nb = math.ceil(nb) #Número real de barras
     Sec['nb']= nb # Número  real de barras
+    Sec['Ab'] = Ab
 
-    Aef = nb*A #Área efetiva de aço
+    Aef = nb*Ab #Área efetiva de aço
     Aef = round(Aef,2)
     Sec['Aef']= Aef # Área efetiva de aço
 
@@ -72,6 +74,30 @@ def detalhamento_flexao(Dic):
     nc = math.ceil(nb/nbmax) # Número de camadas necessáriaS
     Sec['nc']= nc
 
+        # Ancoragem de Armadura
+    Sec['n1'] = 2.25 # Nervurada
+    if Sec['Mk'] > 0:
+        Sec['n2ol'] = 1 # Tração na Boa aderência
+        Sec['n2ols'] = 0.7 # Compressão na Má aderência
+    else:
+        Sec['n2ol'] = 0.7 # Tração na Má aderência
+        Sec['n2ols'] = 1 # Compressão na Boa aderência
+
+
+    if Sec['ol'] < 32:
+        Sec['n3ol'] = 1
+    else:
+        Sec['n3ol'] = (132 - Sec['ol'])/100
+
+    Sec['fbd_ol'] = Sec['n1']*Sec['n2ol']*Sec['n3ol']*Sec['fctd']
+    Sec['fbd_ols'] = Sec['n1']*Sec['n2ols']*Sec['n3ols']*Sec['fctd']
+
+    Sec['lbl'] = ((Sec['ol']/10)/4)*(Sec['fyd']/Sec['fbd_ol'])
+    Sec['lblnec'] = (1*Sec['lbl'])*((Sec['Asp_face']*2)/Sec['Aspef']) #Comprimento de ancoragem necessario para a armadura de pele
+
+    Sec['lbls'] = ((Sec['ol']/10)/4)*(Sec['fyd']/Sec['fbd_olp'])
+    Sec['lblsnec'] = (1*Sec['lbls'])*((Sec['Asp_face']*2)/Sec['Aspef']) #Comprimento de ancoragem necessario para a armadura de pele
+
 #    if Sec['ganchol'] = 'a': # 9.4.6.1 Ganchos dos estribos
 #        if  5 >= 5*(ot/10):
 #            Sec['Anc_ol'] = 5*2 # Dois ganchos de 5 cm
@@ -85,6 +111,10 @@ def detalhamento_flexao(Dic):
 
         # Armadura de Pele
     if Sec['h'] > 60:
+        Sec['fbd_olp'] = Sec['n1']*0.7*1*Sec['fctd']
+        Sec['lbp'] = ((Sec['op']/10)/4)*(Sec['fyd']/Sec['fbd_olp'])
+
+
         nsp_face = math.ceil(Sec['Asp_face']/((math.pi)*((Sec['op']/10)**2)/4))
         e = Sec['d']/nsp_face
         if e > 20:
@@ -96,6 +126,10 @@ def detalhamento_flexao(Dic):
             if d[0] == Sec['op']:
                 Sec['ro_op'] = d[1]
         Sec['peso_op'] = Sec['ro_op']*(Sec['comp_op']/100)*nsp_face*2
+
+        Sec['Aspef'] = nsp_face*2*((math.pi)*((Sec['op']/10)**2)/4)) # Área Efetiva da Armadura de Pele
+        Sec['lbpnec'] = (1*Sec['lbp'])*((Sec['Asp_face']*2)/Sec['Aspef']) #Comprimento de ancoragem necessario para a armadura de pele
+
 
     Sec['comp_ol'] = (Sec['l0']*100) + Sec['t1'] + Sec['t2']   # Comprimento de um estribo (cm) + Sec['Anc_ol']
 
