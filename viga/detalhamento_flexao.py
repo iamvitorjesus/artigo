@@ -22,7 +22,7 @@ def detalhamento_flexao(Dic):
 
     Aefs = nbs*Abs #Área efetiva de aço
     Aefs = round(Aefs,2)
-    Sec['Aefs']= Aefs # Área efetiva de aço
+    Sec['Aefs'] = Aefs # Área efetiva de aço
 
     aves = max(2, ols, 0.5*Sec['Dmax']) # Espaçamento vertical mínimo
     Sec['aves'] = aves
@@ -57,7 +57,7 @@ def detalhamento_flexao(Dic):
 
     Aef = nb*Ab #Área efetiva de aço
     Aef = round(Aef,2)
-    Sec['Aef']= Aef # Área efetiva de aço
+    Sec['Aef'] = Aef # Área efetiva de aço
 
     ave = max(2, ol, 0.5*Sec['Dmax']) # Espaçamento vertical mínimo
     Sec['ave'] = ave
@@ -89,31 +89,40 @@ def detalhamento_flexao(Dic):
     else:
         Sec['n3ol'] = (132 - Sec['ol'])/100
 
+    if Sec['ols'] < 32:
+        Sec['n3ols'] = 1
+    else:
+        Sec['n3ols'] = (132 - Sec['ols'])/100
+
     Sec['fbd_ol'] = Sec['n1']*Sec['n2ol']*Sec['n3ol']*Sec['fctd']
     Sec['fbd_ols'] = Sec['n1']*Sec['n2ols']*Sec['n3ols']*Sec['fctd']
 
-    Sec['lbl'] = ((Sec['ol']/10)/4)*(Sec['fyd']/Sec['fbd_ol'])
-    Sec['lblnec'] = (1*Sec['lbl'])*((Sec['Asp_face']*2)/Sec['Aspef']) #Comprimento de ancoragem necessario para a armadura de pele
+    Sec['lbl'] = (ol/4)*(Sec['fyd']/Sec['fbd_ol']) # Comprimento Básico
+    Sec['lblnec'] = (0.7*Sec['lbl'])*((Sec['As'])/Sec['Aef']) #Comprimento de ancoragem necessario para a armadura de pele
+    Sec['lblmin'] = max(0.3*Sec['lbl'], 10*ol, 10)
 
-    Sec['lbls'] = ((Sec['ol']/10)/4)*(Sec['fyd']/Sec['fbd_olp'])
-    Sec['lblsnec'] = (1*Sec['lbls'])*((Sec['Asp_face']*2)/Sec['Aspef']) #Comprimento de ancoragem necessario para a armadura de pele
+    Sec['lbls'] = (ols/4)*(Sec['fyd']/Sec['fbd_ols'])
+    Sec['lblsnec'] = (1*Sec['lbls'])*((Sec['Ass'])/Sec['Aefs']) #Comprimento de ancoragem necessario para a armadura de pele
+    Sec['lblsmin'] = max(0.3*Sec['lbls'], 10*ols, 10)
 
-#    if Sec['ganchol'] = 'a': # 9.4.6.1 Ganchos dos estribos
-#        if  5 >= 5*(ot/10):
-#            Sec['Anc_ol'] = 5*2 # Dois ganchos de 5 cm
-#        else:
-#            Sec['Anc_ol'] = 5*(ot/10)*2
-#    elif Sec['ganchot'] = 'b':
-#        if  7 >= 10*(ol/10):
-#            Sec['Anc_ol'] = 7*2 # Dois ganchos de 7 cm
-#        else:
-#            Sec['Anc_ol'] = 10*(ot/10)*2
+
+        # 9.4.2.3 Ganchos das armaduras de tração
+
+    if Sec['ganchol'] == 1:    # semicirculares, com ponta reta de comprimento não inferior a 2 φ.
+        Sec['gan_ol'] = 2*ol    # Ganchos em cm
+    elif Sec['ganchol'] == 2:  # em ângulo de 45° (interno), com ponta reta de comprimento não inferior a 4 φ.
+        Sec['gan_ol'] = 4*ol    # Dois ganchos de 7 cm
+    else:                       # em ângulo reto, com ponta reta de comprimento não inferior a a 8 φ.
+        Sec['gan_ol'] = 8*ol
+
 
         # Armadura de Pele
-    if Sec['h'] > 60:
-        Sec['fbd_olp'] = Sec['n1']*0.7*1*Sec['fctd']
-        Sec['lbp'] = ((Sec['op']/10)/4)*(Sec['fyd']/Sec['fbd_olp'])
 
+    if Sec['h'] > 60:
+        Sec['fbd_op'] = Sec['n1']*0.7*1*Sec['fctd']
+        Sec['lbp'] = ((Sec['op']/10)/4)*(Sec['fyd']/Sec['fbd_op'])
+
+        Sec['lbpmin'] = max(0.3*Sec['lbp'], Sec['op'], 10)
 
         nsp_face = math.ceil(Sec['Asp_face']/((math.pi)*((Sec['op']/10)**2)/4))
         e = Sec['d']/nsp_face
@@ -127,15 +136,30 @@ def detalhamento_flexao(Dic):
                 Sec['ro_op'] = d[1]
         Sec['peso_op'] = Sec['ro_op']*(Sec['comp_op']/100)*nsp_face*2
 
-        Sec['Aspef'] = nsp_face*2*((math.pi)*((Sec['op']/10)**2)/4)) # Área Efetiva da Armadura de Pele
+        Sec['Aspef'] = nsp_face*2*((math.pi)*((Sec['op']/10)**2)/4) # Área Efetiva da Armadura de Pele
         Sec['lbpnec'] = (1*Sec['lbp'])*((Sec['Asp_face']*2)/Sec['Aspef']) #Comprimento de ancoragem necessario para a armadura de pele
 
+    Sec['lb1disp'] = Sec['t1'] - Sec['c']
+    Sec['lb2disp'] = Sec['t2'] - Sec['c']
 
-    Sec['comp_ol'] = (Sec['l0']*100) + Sec['t1'] + Sec['t2']   # Comprimento de um estribo (cm) + Sec['Anc_ol']
+
+    if Sec['lb1disp'] >= Sec['lblnec']:
+        Sec['lblk1'] = Sec['lb1disp']
+    else:
+        Sec['lblk1'] = Sec['lblnec']
+
+    if Sec['lb2disp'] >= Sec['lblnec']:
+        Sec['lblk2'] = Sec['lb2disp']
+
+    else:
+        Sec['lblk2'] = Sec['lblnec']
+
+    Sec['comp_ol'] = Sec['gan_ol'] + Sec['lblk1'] + (Sec['l0']*100) + Sec['lblk2'] + Sec['gan_ol']  # Comprimento de um estribo (cm)
+
 
     for d in Bar:
         if d[0] == Sec['ol']:
             Sec['ro_ol'] = d[1]
     Sec['peso_ol'] = Sec['ro_ol']*(Sec['comp_ol']/100)*nb # Peso total kg
-
+    print(Sec)
     return (Sec)

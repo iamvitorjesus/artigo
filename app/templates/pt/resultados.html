@@ -495,16 +495,11 @@
             <h6 class="text-center">Armadura Comprimida</h6>
             {% if info['Msdlim'] >= info['Msd'] %}
               <dl class="row">
-                <dt class="col-sm-4">A<sub>s</sub>' =
-                  {{info['Ass']|round(3,'common')}} cm²</dt>
-                <dd class="col-sm-8">Área de aço necessária.</dd><p></p>
+                <dt class="col-sm-4">n<sub>bs</sub> = {{info['nbs']}}.</dt>
+                <dd class="col-sm-8">Número de barras necessárias.</dd>
 
                 <dt class="col-sm-4">A = {{info['Abs']|round(3,'common')}} cm²</dt>
                 <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
-
-                <dt class="col-sm-4">n<sub>bs</sub> = A<sub>s</sub>'/A =
-                  {{info['nbs']}}.</dt>
-                <dd class="col-sm-8">Número de barras necessárias.</dd>
 
                 <dt class="col-sm-4">A<sub>ef</sub> = n<sub>bs</sub>
                   &#x22C5;A = {{info['Aefs']}} cm²</dt>
@@ -513,10 +508,10 @@
                 <dt class="col-sm-4">a<sub>h</sub>' = {{info['ahos']}} cm</dt>
                 <dd class="col-sm-8">Espaço minimo entre barras para garantir o
                   envolvimento das mesmas pelo concreto. Maior falor entre 2 cm,
-                  &Oslash<sub>l</sub>' e 1.2&#x22C5;D<sub>max</sub>.</dd>
+                  &Oslash<sub>l</sub>' cm e 1.2&#x22C5;D<sub>max</sub> cm.</dd>
 
-                <dt class="col-sm-4">Comprimento = {{info['comp_ols']}} cm</dt>
-                <dd class="col-sm-8">Comprimento do vão livre mais ancoragem.</dd>
+                <dt class="col-sm-4">C = {{info['comp_ols']}} cm</dt>
+                <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
 
               </dl>
             {% else %}
@@ -535,11 +530,31 @@
                 <dt class="col-sm-4">A<sub>ef</sub> = n<sub>bs</sub>
                   &#x22C5;A = {{info['Aefs']}} cm²</dt>
                 <dd class="col-sm-8">Área efetiva de aço.</dd>
+
+                {% if info['ncs'] > 1 %}
+
+                  <dt class="col-sm-4">a<sub>v</sub>' = {{info['aves']}} cm</dt>
+                  <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
+                    camadas para garantir o envolvimento das mesmas pelo concreto.
+                    Maior falor entre 2 cm,
+                    &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
+                {% endif %}
+
+                <dt class="col-sm-4">C = {{info['comp_ols']}} cm</dt>
+                <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
+
+
+
               </dl>
 
             {% endif %}
           {% endif %}
 
+          {% info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
+            <p>A dimenção do apoio deve ser alterado para que seja possivel a
+              ancoragem da armadura tracionada.
+            </p>
+          {% endif %}
 
 
 
@@ -591,6 +606,7 @@
                 </div>
               </div>
             </div><p></p>
+
 
             {% if info['Msdlim'] < info['Msd'] %}
               <div class="row marketing">
@@ -653,6 +669,27 @@
               </div><p></p>
 
             {% endif %}
+
+            <div class="row marketing">
+              <label for="basic-url">Ancoragem da armadura tracionada</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Tipo gancho</span>
+                </div>
+                <select name="ganchol" class="custom-select" id="inputGroupSelect01">
+                  <option value="1">Semicirculares</option>
+                  <option value="2">Em ângulo de 45°</option>
+                  <option value="3">Em ângulo reto</option>
+                </select>
+                <div class="input-group-append">
+                  <span class="input-group-text">mm</span>
+                </div>
+              </div>
+            </div><p></p>
+
+
+
+
             <div class="row justify-content-center mb-5">
               <input type="submit" class="btn btn-template" value="Escolher"></input>
             </div>
