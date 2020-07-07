@@ -169,15 +169,15 @@
             <div class="input-group">
               <div class="input-group-append"><p></p>
                 <select class="custom-select" id="modelo" name="Modelo" onclick="habilitar()">
-                    <option value="1">Modelo de Cálculo &#8544</option>
-                    <option value="2">Modelo de Cálculo &#8545</option>
+                    <option value="1">Modelo de cálculo &#8544</option>
+                    <option value="2">Modelo de cálculo &#8545</option>
                 </select>
               </div>
             </div>
           </div><p></p>
 
           <div class="row mx-lg-4">
-            <label for="diagonal">Ângulo da Diagonal Comprimida</label>
+            <label for="diagonal">Ângulo da diagonal comprimida</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">&#415;</span>
@@ -194,7 +194,7 @@
           </div><p></p>
 
           <div class="row mx-lg-4">
-            <label for="basic-url">Agressividade Ambiental</label>
+            <label for="basic-url">Agressividade ambiental</label>
             <div class="input-group">
 
 
@@ -325,7 +325,7 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Momento Fletor " name="Mk">
+                (with dot and two decimal places)" placeholder="Momento fletor " name="Mk">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitMk">
@@ -413,6 +413,7 @@
             <table class="table table-borderless">
               <thead>
                 <tr class="table-secondary">
+                  <th></th>
                   <th scope="col">Classe</th>
                   <th scope="col">Agressividade</th>
                   <th scope="col">Ambiente</th>
@@ -421,24 +422,40 @@
               </thead>
               <tbody>
                 <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="CAA" value="1" checked>
+                  </div></td>
                   <th scope="row">&#8544</th>
                   <td>Fraca</td>
                   <td>Rural, Submersa</td>
                   <td>Insignificante</td>
                 </tr>
                 <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="CAA" value="2">
+                  </div></td>
                   <th scope="row">&#8545</th>
                   <td>Moderada</td>
                   <td>Urbana</td>
                   <td>Pequeno</td>
                 </tr>
                 <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="CAA" value="3">
+                  </div></td>
                   <th scope="row">&#8546</th>
                   <td>Forte</td>
                   <td>Marinha, Industrial</td>
                   <td>Grande</td>
                 </tr>
                 <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="CAA" value="4">
+                  </div></td>
                   <th scope="row">&#8547</th>
                   <td>Muito forte</td>
                   <td>Industrial, Respingos de maré</td>

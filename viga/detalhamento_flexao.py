@@ -36,7 +36,7 @@ def detalhamento_flexao(Dic):
     ahs = (Sec['bw'] -(ols*nbmaxs)-((Sec['c']+ot)*2) )/(nbmaxs-1)
     Sec['ahs'] = ahs # Espaçamento real
 
-    ncs = math.ceil(nbs/nbmaxs) # Número de camadas necessáriaS
+    ncs = math.ceil(nbs/nbmaxs) # Número de camadas necessárias
     Sec['ncs']= ncs
 
 
