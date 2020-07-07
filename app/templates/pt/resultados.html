@@ -548,13 +548,15 @@
               </dl>
 
             {% endif %}
+
+            {% if info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
+              <p>A dimenção do apoio deve ser alterado para que seja possivel a
+                ancoragem da armadura tracionada.
+              </p>
+            {% endif %}
           {% endif %}
 
-          {% info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
-            <p>A dimenção do apoio deve ser alterado para que seja possivel a
-              ancoragem da armadura tracionada.
-            </p>
-          {% endif %}
+
 
 
 
