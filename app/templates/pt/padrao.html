@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="Vítor Jesus">
@@ -28,16 +28,14 @@
   <body>
     <div class="container">
 
-      <header class="masthead flex-auto">
-        <div class="p-3 mb-3 bg-grey rounded row">
 
+      <header class="masthead flex-auto">
+        <nav class="navbar navbar-expand-lg">
+          <div class="p-3 mb-3 bg-grey rounded row">
             <div class="col">
               <h3 class="text-muted">ReCon</h3>
             </div>
-
-
-          <div class="mx-auto flex-column">
-            <nav class="nav nav-tab">
+            <div class="mx-auto flex-column">
               <a class="btn btn-template rounded-0" href="\">
                 <svg class="bi bi-house-fill" width="1.9em" height="1.7em" viewBox="0 0 16 16" fill="silver" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="green" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
@@ -57,10 +55,9 @@
                   <title>Contato</title>
                 </svg>
               </a>
-            </nav>
+            </div>
           </div>
-
-        </div>
+        </nav>
       </header>
 
       {% block content %}

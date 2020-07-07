@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from app import app, db
+import os
+
 
 from app.models.tables import User
 from app.models.forms import LoginForm
@@ -8,13 +10,16 @@ from viga.conversao_unidades import conversao_unidades
 from viga.dimensionamento import dimensionar
 
 
+
 #model_prediction = False
 @app.route("/")
 def index():
-    return render_template('pt/inicio.html'
+    logoufrj = os.path.join(app.config['UPLOAD_FOLDER'], 'complementar_principal_pb.png')
+    logomacae = os.path.join(app.config['UPLOAD_FOLDER'], 'campus_UFRJ_macae_Aloisio_Teixeira.png')
+    return render_template('pt/inicio.html',
      # prediction=model_prediction,
       #show_predictions_modal=True
-      )
+      lufrj = logoufrj, lmacae = logomacae)
 
 
 @app.route("/novoprojeto", methods = ["POST", "GET"])

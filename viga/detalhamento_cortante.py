@@ -42,8 +42,8 @@ def detalhamento_cortante(Sec):
     Sec['ra'] = ra
 
     Abw = ra*(math.pi)*((float(ot)/10)**2)/4 #Área dos ramos de um estribo em cm² *
-    S = A/Sec["Asw"] # Espaçamento real entre os estribos
-    Smin = A/Sec['Aswmin'] # Espaçamento no trecho onde V = Vsdmin
+    S = Abw/Sec["Asw"] # Espaçamento real entre os estribos
+    Smin = Abw/Sec['Aswmin'] # Espaçamento no trecho onde V = Vsdmin
     S = round(S,1)
     Smin = round(Smin,1)
     if S > Smax:
