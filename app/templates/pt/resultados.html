@@ -461,199 +461,18 @@
                 |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
               </p>
 
-              <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
+              <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
                 d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
                 {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
                 {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-                cos({{info['a']}}))) = {{info['Asw']|round(4,'common')}} cm²/cm
+                cos({{info['a']}}))) = <b>{{info['Asw']|round(4,'common')}} cm²/cm</b>.
+
               </p>
 
             {% endif %}
           {% endif %}
 
 
-          {% if 'ol' in info %}
-            <!-- DETALHAMENTO DA SEÇÃO TRANSVERSAL -->
-            <h5 class="text-center">Detalhamento</h5><p></p>
-
-            <h6 class="text-center">Armadura comprimida</h6>
-            {% if info['Msdlim'] >= info['Msd'] %}
-              <dl class="row">
-                <dt class="col-sm-4">n<sub>b</sub>' = {{info['nbs']}}.</dt>
-                <dd class="col-sm-8">Número de barras necessárias.</dd>
-
-                <dt class="col-sm-4">A = {{info['Abs']|round(3,'common')}} cm²</dt>
-                <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
-
-                <dt class="col-sm-4">A<sub>ef</sub> = n<sub>bs</sub>
-                  &#x22C5;A = {{info['Aefs']}} cm²</dt>
-                <dd class="col-sm-8">Área efetiva de aço.</dd>
-
-                <dt class="col-sm-4">a<sub>h</sub>' = {{info['ahos']}} cm</dt>
-                <dd class="col-sm-8">Espaço minimo entre barras para garantir o
-                  envolvimento das mesmas pelo concreto. Maior falor entre 2 cm,
-                  &Oslash<sub>l</sub>' cm e 1.2&#x22C5;D<sub>max</sub> cm.</dd>
-
-                <dt class="col-sm-4">C = {{info['comp_ols']}} cm</dt>
-                <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
-
-              </dl>
-            {% else %}
-              <dl class="row">
-                <dt class="col-sm-4">A<sub>s</sub>' =
-                  {{info['Ass']|round(3,'common')}} cm²</dt>
-                <dd class="col-sm-8">Área de aço necessária.</dd><p></p>
-
-                <dt class="col-sm-4">A = {{info['Abs']|round(3,'common')}} cm²</dt>
-                <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
-
-                <dt class="col-sm-4">n<sub>b</sub>' = A<sub>s</sub>'/A =
-                  {{info['nbs']}}.</dt>
-                <dd class="col-sm-8">Número de barras necessárias.</dd>
-
-                <dt class="col-sm-4">A<sub>ef</sub> = n<sub>bs</sub>
-                  &#x22C5;A = {{info['Aefs']}} cm²</dt>
-                <dd class="col-sm-8">Área efetiva de aço.</dd>
-
-                {% if info['ncs'] > 1 %}
-
-                  <dt class="col-sm-4">n<sub>bmax</sub>' = {{info['nbmaxs']}} cm</dt>
-                  <dd class="col-sm-8">Número máximo de barras por camada.</dd>
-
-                  <dt class="col-sm-4">a<sub>v</sub>' = {{info['aves']}} cm</dt>
-                  <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
-                    camadas para garantir o envolvimento das mesmas pelo concreto.
-                    Maior falor entre 2 cm,
-                    &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
-
-                  <dt class="col-sm-4">n<sub>c</sub>' = {{info['ncs']}} cm</dt>
-                  <dd class="col-sm-8">Número de camadas necessárias.</dd>
-                {% endif %}
-
-                <dt class="col-sm-4">C = {{info['comp_ols']}} cm</dt>
-                <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
-
-              </dl>
-
-            {% endif %}
-
-
-            <h6 class="text-center">Armadura tracionada</h6>
-
-              <dl class="row">
-                <dt class="col-sm-4">A<sub>s</sub> =
-                  {{info['As']|round(3,'common')}} cm²</dt>
-                <dd class="col-sm-8">Área de aço necessária.</dd><p></p>
-
-                <dt class="col-sm-4">A = {{info['Ab']|round(3,'common')}} cm²</dt>
-                <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
-
-                <dt class="col-sm-4">n<sub>b</sub> = {{info['nb']}}</dt>
-                <dd class="col-sm-8">Número de barras necessárias.</dd>
-
-                <dt class="col-sm-4">A = {{info['Ab']|round(3,'common')}} cm²</dt>
-                <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
-
-                <dt class="col-sm-4">A<sub>ef</sub> = n<sub>b</sub>
-                  &#x22C5;A = {{info['Aef']}} cm²</dt>
-                <dd class="col-sm-8">Área efetiva de aço.</dd>
-
-                <dt class="col-sm-4">a<sub>h</sub> = {{info['aho']}} cm</dt>
-                <dd class="col-sm-8">Espaço minimo entre barras para garantir o
-                  envolvimento das mesmas pelo concreto. Maior falor entre 2 cm,
-                  &Oslash<sub>l</sub>' cm e 1.2&#x22C5;D<sub>max</sub> cm.</dd>
-
-                <dt class="col-sm-4">C = {{info['comp_ol']|round(2,'common')}} cm</dt>
-                <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
-
-              </dl>
-
-              {% if info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
-                <div class="alert alert-dark rounded-pill" role="alert">
-                A dimenção do apoio deve ser <a href="novoprojeto" class="alert-link">
-                  alterada </a>para que seja possível a ancoragem da armadura tracionada.
-              </div>
-
-              {% endif %}
-
-              <dl class="row">
-
-                {% if info['nc'] > 1 %}
-                  <dt class="col-sm-4">n<sub>bmax</sub> = {{info['nbmax']}}</dt>
-                  <dd class="col-sm-8">Número máximo de barras por camada.</dd>
-
-                  <dt class="col-sm-4">a<sub>v</sub> = {{info['ave']}} cm</dt>
-                  <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
-                    camadas para garantir o envolvimento das mesmas pelo concreto.
-                    Maior falor entre 2 cm,
-                    &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
-
-                  <dt class="col-sm-4">n<sub>c</sub> = {{info['nc']}}</dt>
-                  <dd class="col-sm-8">Número de camadas necessárias.</dd>
-
-                {% endif %}
-
-              </dl>
-
-              <h6 class="text-center">Armadura transversal</h6>
-
-                <dl class="row">
-                  <dt class="col-sm-4">S<sub>max</sub> =
-                    {{info['Smax']|round(3,'common')}} cm</dt>
-                  <dd class="col-sm-8">Espaçamento máximo entre estribos.</dd><p></p>
-
-                  <dt class="col-sm-4">S<sub>tmax</sub> =
-                    {{info['Stmax']|round(3,'common')}} cm</dt>
-                  <dd class="col-sm-8">É o espaçamento máximo entre ramos.</dd>
-
-                  <dt class="col-sm-4">r<sub>a</sub> = {{info['ra']}}.</dt>
-                  <dd class="col-sm-8">Número de ramos.</dd>
-
-                  <dt class="col-sm-4">A = {{info['Abw']|round(3,'common')}} cm²</dt>
-                  <dd class="col-sm-8">Área dos {{info['ra']}} ramos de um estribo.</dd>
-
-                  <dt class="col-sm-4">S = A/A<sub>sw</sub>
-                    {{info['S']|round(1,'common')}} cm</dt>
-                  <dd class="col-sm-8">Espaçamento real entre os estribos.</dd>
-
-                  <dt class="col-sm-4">n<sub>e</sub> = (l<sub>0</sub> +
-                    t<sub>1</sub> + t<sub>2</sub>)/S = {{info['ne']}} cm</dt>
-                  <dd class="col-sm-8">Número total de estribos.</dd>
-
-                  <dt class="col-sm-4">C = b<sub>w</sub> + (h&#x22C5;r<sub>a</sub>)
-                    - (4&#x22C5;c) + 14 = {{info['comp_ot']}} cm</dt>
-                  <dd class="col-sm-8">Comprimento do estribo + ancoragem.</dd>
-
-                </dl>
-
-                {% if info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
-                  <div class="alert alert-dark rounded-pill" role="alert">
-                  A dimenção do apoio deve ser <a href="novoprojeto" class="alert-link">
-                    alterada </a>para que seja possível a ancoragem da armadura tracionada.
-                </div>
-
-                {% endif %}
-
-                <dl class="row">
-
-                  {% if info['nc'] > 1 %}
-                    <dt class="col-sm-4">n<sub>bmax</sub> = {{info['nbmax']}} cm</dt>
-                    <dd class="col-sm-8">Número máximo de barras por camada.</dd>
-
-                    <dt class="col-sm-4">a<sub>v</sub> = {{info['ave']}} cm</dt>
-                    <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
-                      camadas para garantir o envolvimento das mesmas pelo concreto.
-                      Maior falor entre 2 cm,
-                      &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
-
-                    <dt class="col-sm-4">n<sub>c</sub> = {{info['nc']}} cm</dt>
-                    <dd class="col-sm-8">Número de camadas necessárias.</dd>
-
-                  {% endif %}
-
-                </dl>
-
-          {% endif %}
 
 
 
@@ -794,6 +613,187 @@
             <div class="row justify-content-center mb-5">
               <input type="submit" class="btn btn-template" value="Escolher"></input>
             </div>
+
+
+            {% if 'ol' in info %}  <!-- DETALHAMENTO DA SEÇÃO TRANSVERSAL -->
+              <h5 class="text-center">Detalhamento</h5><p></p>
+
+              <h6 class="text-center">Armadura comprimida</h6>
+              {% if info['Msdlim'] >= info['Msd'] %}
+                <dl class="row">
+                  <dt class="col-sm-4">n<sub>b</sub>' = {{info['nbs']}}.</dt>
+                  <dd class="col-sm-8">Número de barras necessárias.</dd>
+
+                  <dt class="col-sm-4">A = {{info['Abs']|round(3,'common')}} cm²</dt>
+                  <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
+
+                  <dt class="col-sm-4">A<sub>ef</sub> = n<sub>bs</sub>
+                    &#x22C5;A = {{info['Aefs']}} cm²</dt>
+                  <dd class="col-sm-8">Área efetiva de aço.</dd>
+
+                  <dt class="col-sm-4">a<sub>h</sub>' = {{info['ahos']}} cm</dt>
+                  <dd class="col-sm-8">Espaço minimo entre barras para garantir o
+                    envolvimento das mesmas pelo concreto. Maior falor entre 2 cm,
+                    &Oslash<sub>l</sub>' cm e 1.2&#x22C5;D<sub>max</sub> cm.</dd>
+
+                  <dt class="col-sm-4">C = {{info['comp_ols']}} cm</dt>
+                  <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
+
+                </dl>
+              {% else %}
+                <dl class="row">
+                  <dt class="col-sm-4">A<sub>s</sub>' =
+                    {{info['Ass']|round(3,'common')}} cm²</dt>
+                  <dd class="col-sm-8">Área de aço necessária.</dd><p></p>
+
+                  <dt class="col-sm-4">A = {{info['Abs']|round(3,'common')}} cm²</dt>
+                  <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
+
+                  <dt class="col-sm-4">n<sub>b</sub>' = A<sub>s</sub>'/A =
+                    {{info['nbs']}}.</dt>
+                  <dd class="col-sm-8">Número de barras necessárias.</dd>
+
+                  <dt class="col-sm-4">A<sub>ef</sub> = n<sub>bs</sub>
+                    &#x22C5;A = {{info['Aefs']}} cm²</dt>
+                  <dd class="col-sm-8">Área efetiva de aço.</dd>
+
+                  {% if info['ncs'] > 1 %}
+
+                    <dt class="col-sm-4">n<sub>bmax</sub>' = {{info['nbmaxs']}} cm</dt>
+                    <dd class="col-sm-8">Número máximo de barras por camada.</dd>
+
+                    <dt class="col-sm-4">a<sub>v</sub>' = {{info['aves']}} cm</dt>
+                    <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
+                      camadas para garantir o envolvimento das mesmas pelo concreto.
+                      Maior falor entre 2 cm,
+                      &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
+
+                    <dt class="col-sm-4">n<sub>c</sub>' = {{info['ncs']}} cm</dt>
+                    <dd class="col-sm-8">Número de camadas necessárias.</dd>
+                  {% endif %}
+
+                  <dt class="col-sm-4">C = {{info['comp_ols']}} cm</dt>
+                  <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
+
+                </dl>
+
+              {% endif %}
+
+
+              <h6 class="text-center">Armadura tracionada</h6>
+
+                <dl class="row">
+                  <dt class="col-sm-4">A<sub>s</sub> =
+                    {{info['As']|round(3,'common')}} cm²</dt>
+                  <dd class="col-sm-8">Área de aço necessária.</dd><p></p>
+
+                  <dt class="col-sm-4">A = {{info['Ab']|round(3,'common')}} cm²</dt>
+                  <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
+
+                  <dt class="col-sm-4">n<sub>b</sub> = {{info['nb']}}</dt>
+                  <dd class="col-sm-8">Número de barras necessárias.</dd>
+
+                  <dt class="col-sm-4">A = {{info['Ab']|round(3,'common')}} cm²</dt>
+                  <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
+
+                  <dt class="col-sm-4">A<sub>ef</sub> = n<sub>b</sub>
+                    &#x22C5;A = {{info['Aef']}} cm²</dt>
+                  <dd class="col-sm-8">Área efetiva de aço.</dd>
+
+                  <dt class="col-sm-4">a<sub>h</sub> = {{info['aho']}} cm</dt>
+                  <dd class="col-sm-8">Espaço minimo entre barras para garantir o
+                    envolvimento das mesmas pelo concreto. Maior falor entre 2 cm,
+                    &Oslash<sub>l</sub>' cm e 1.2&#x22C5;D<sub>max</sub> cm.</dd>
+
+                  <dt class="col-sm-4">C = {{info['comp_ol']|round(2,'common')}} cm</dt>
+                  <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
+
+                </dl>
+
+                {% if info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
+                  <div class="alert alert-dark rounded-pill" role="alert">
+                  A dimenção do apoio deve ser <a href="novoprojeto" class="alert-link">
+                    alterada </a>para que seja possível a ancoragem da armadura tracionada.
+                </div>
+
+                {% endif %}
+
+                <dl class="row">
+
+                  {% if info['nc'] > 1 %}
+                    <dt class="col-sm-4">n<sub>bmax</sub> = {{info['nbmax']}}</dt>
+                    <dd class="col-sm-8">Número máximo de barras por camada.</dd>
+
+                    <dt class="col-sm-4">a<sub>v</sub> = {{info['ave']}} cm</dt>
+                    <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
+                      camadas para garantir o envolvimento das mesmas pelo concreto.
+                      Maior falor entre 2 cm,
+                      &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
+
+                    <dt class="col-sm-4">n<sub>c</sub> = {{info['nc']}}</dt>
+                    <dd class="col-sm-8">Número de camadas necessárias.</dd>
+
+                  {% endif %}
+
+                </dl>
+
+                <h6 class="text-center">Armadura transversal</h6>
+
+                  <dl class="row">
+                    <dt class="col-sm-4">S<sub>max</sub> =
+                      {{info['Smax']|round(3,'common')}} cm</dt>
+                    <dd class="col-sm-8">Espaçamento máximo entre estribos.</dd><p></p>
+
+                    <dt class="col-sm-4">S<sub>tmax</sub> =
+                      {{info['Stmax']|round(3,'common')}} cm</dt>
+                    <dd class="col-sm-8">É o espaçamento máximo entre ramos.</dd>
+
+                    <dt class="col-sm-4">r<sub>a</sub> = {{info['ra']}}.</dt>
+                    <dd class="col-sm-8">Número de ramos.</dd>
+
+                    <dt class="col-sm-4">A = {{info['Abw']|round(3,'common')}} cm²</dt>
+                    <dd class="col-sm-8">Área dos {{info['ra']}} ramos de um estribo.</dd>
+
+                    <dt class="col-sm-4">S = A/A<sub>sw</sub>
+                      {{info['S']|round(1,'common')}} cm</dt>
+                    <dd class="col-sm-8">Espaçamento real entre os estribos.</dd>
+
+                    <dt class="col-sm-4">n<sub>e</sub> = (l<sub>0</sub> +
+                      t<sub>1</sub> + t<sub>2</sub>)/S = {{info['ne']}} cm</dt>
+                    <dd class="col-sm-8">Número total de estribos.</dd>
+
+                    <dt class="col-sm-4">C = b<sub>w</sub> + (h&#x22C5;r<sub>a</sub>)
+                      - (4&#x22C5;c) + 14 = {{info['comp_ot']}} cm</dt>
+                    <dd class="col-sm-8">Comprimento do estribo + ancoragem.</dd>
+
+                  </dl>
+
+                  {% if info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
+                    <div class="alert alert-dark rounded-pill" role="alert">
+                    A dimenção do apoio deve ser <a href="novoprojeto" class="alert-link">
+                      alterada </a>para que seja possível a ancoragem da armadura tracionada.
+                  </div>
+
+                  {% endif %}
+
+                  <dl class="row">
+
+                    {% if info['nc'] > 1 %}
+                      <dt class="col-sm-4">n<sub>bmax</sub> = {{info['nbmax']}} cm</dt>
+                      <dd class="col-sm-8">Número máximo de barras por camada.</dd>
+
+                      <dt class="col-sm-4">a<sub>v</sub> = {{info['ave']}} cm</dt>
+                      <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
+                        camadas para garantir o envolvimento das mesmas pelo concreto.
+                        Maior falor entre 2 cm,
+                        &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
+
+                      <dt class="col-sm-4">n<sub>c</sub> = {{info['nc']}} cm</dt>
+                      <dd class="col-sm-8">Número de camadas necessárias.</dd>
+                    {% endif %}
+                  </dl>
+            {% endif %}
+
 
             <div class="row justify-content-center">
                 <canvas class="center" id="myCanvas" width="{{info['bw']*10}}" height="{{info['h']*10}}">
