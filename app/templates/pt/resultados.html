@@ -25,11 +25,11 @@
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Concreto:
-            &#402<sub>cd</sub> = &#402<sub>ck</sub>/&#611<sub>c</sub> =
-            {{info['fck']}}/{{info['gc']}} = {{(info['fcd']*10)|round(3,'common')}} MPa.</li>
+            <b>&#402<sub>cd</sub></b> = &#402<sub>ck</sub>/&#611<sub>c</sub> =
+            {{info['fck']}}/{{info['gc']}} = <b>{{(info['fcd']*10)|round(3,'common')}} MPa</b>.</li>
           <li class="list-group-item">Aço:
-            &#402<sub>yd</sub>=&#402<sub>yk</sub>/&#611<sub>s</sub> =
-            {{info['fyk']}}/{{info['gc']}} = {{(info['fyd']*10)|round(3,'common')}} MPa.</li>
+            <b>&#402<sub>yd</sub></b> = &#402<sub>yk</sub>/&#611<sub>s</sub> =
+            {{info['fyk']}}/{{info['gc']}} = <b>{{(info['fyd']*10)|round(3,'common')}} MPa</b>.</li>
         </ul>
 
         <p class="text-justify">As ações devem ser majoradas pelo coeficiente &#611<sub>f</sub>,
@@ -38,8 +38,9 @@
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Ações permanentes:
-            M<sub>sd</sub> = M<sub>k</sub>&#611<sub>f</sub> =
-            {{info['Mk']}}&#x22C5;{{info['gf']}} = {{info['Msd']|round(3,'common')}} kN&#x22C5;m.</li>
+            <b>M<sub>sd</sub></b> = M<sub>k</sub>&#611<sub>f</sub> =
+            {{info['Mk']}}&#x22C5;{{info['gf']}} = <b>{{info['Msd']|round(3,'common')}}
+              kN&#x22C5;m</b>.</li>
         </ul>
 
         <p class="text-justify">A NBR 6118 estabelece uma vida útil de projeto mínima de 50 anos
@@ -85,33 +86,33 @@
 
         <p class="text-justify">
           {% if info['CAA']==1 %}
-            Como a classe escolhida foi a Classe &#8544. Logo, c = {{info['c']}} cm.
+            Como a classe escolhida foi a Classe &#8544. Logo, <b>c = {{info['c']}} cm</b>.
 
           {% elif info['CAA']==2 %}
-            Como a classe escolhida foi a Classe &#8545. Logo, c = {{info['c']}} cm.
+            Como a classe escolhida foi a Classe &#8545. Logo, <b>c = {{info['c']}} cm</b>.
 
           {% elif info['CAA']==3 %}
-            Como a classe escolhida foi a Classe &#8546. Logo, c = {{info['c']}} cm.
+            Como a classe escolhida foi a Classe &#8546. Logo, <b>c = {{info['c']}} cm</b>.
 
           {% elif info['CAA']==4 %}
-            Como a classe escolhida foi a Classe &#8544. Logo, c = {{info['c']}} cm.
+            Como a classe escolhida foi a Classe &#8544. Logo, <b>c = {{info['c']}} cm</b>.
 
           {% endif %}
         </p>
         <p class="text-justify">
           Sem o conhecimento do diâmetro da armadura transversal e da longitudianal,
           inicialmente adota-se um diâmetro de 5.0 mm para o estribo e 10.0 mm para
-          as barras longitudinais para o calculo da distância <em>'d'</em> entre a
+          as barras longitudinais para o calculo do valor da altura útil <em>'d'</em> entre a
           borda mais tracionada da seção e o centro de gravidade da armadura longitudianal.
           Considerando-se apenas uma camada para a armadura de flexão temos:
-          d = h - (c + Ø<sub>t</sub> + (Ø<sub>l</sub>/2))={{info['h']}} - {{info['d1'] }} =
-          {{info['d']}} cm.
-
+          <b>d</b> = h - (c + Ø<sub>t</sub> + (Ø<sub>l</sub>/2))={{info['h']}} - {{info['d1'] }} =
+          <b>{{info['d']}} cm</b>.
         </p>
+
         <p class="text-justify">Pela lei de Hooke: &#400<sub>yd</sub>=
           &#402<sub>yd</sub>/E<sub>s</sub>. Dado o tipo de aço escolhido
-          CA-{{info['fyk']/10}}, temos que &#400<sub>yd</sub>=
-          {{info['eyd']*1000|round(2,'common')}} &#137.</p>
+          CA-{{(info['fyk']/10)|round|int}}, temos que <b>&#400<sub>yd</sub>=
+          {{info['eyd']*1000|round(2,'common')}} &#137</b>.</p>
           <p></p>
 
         <h6 class="text-center">Algumas considerações a respeito do concreto</h6>
@@ -134,14 +135,14 @@
           <p class="text-center">
             <ul class="list-group list-group-flush">
               <li class="list-group-item">deformação específica máxima do concreto:
-                &#400<sub>u</sub> = 3.50 &#137;</li>
+                <b>&#400<sub>u</sub> = 3.50 &#137</b>;</li>
               <li class="list-group-item">parâmetro de redução da resistência do concreto
-                na compressão: &#593<sub>c</sub> = 0.85;</li>
+                na compressão: <b>&#593<sub>c</sub> = 0.85</b>;</li>
               <li class="list-group-item">parâmetro de uniformização do esforço de compressão:
-                λ = 0.80;</li>
+                <b>λ = 0.80</b>;</li>
               <li class="list-group-item">critério de ductilidade:
-                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230;</strong> x<sub>lim</sub> =
-                n<sub>lim</sub>&#x22C5;d = {{info['xlim']|round(2,'common')}} cm.</li>
+                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230;</strong> <b>x<sub>lim</sub></b> =
+                n<sub>lim</sub>&#x22C5;d = <b>{{info['xlim']|round(2,'common')}} cm</b>.</li>
             </ul>
           </p>
 
@@ -151,16 +152,16 @@
             é fixo e igual a {{(info['eu']/(info['eu']+0.01))|round(3, 'common')}}&#x22C5;d,
             pois a deformação máxima do concreto para esse grupo é fixo em 3.50 &#137.</p>
 
-          <p class="text-justify">x<sub>2lim</sub> = {{(info['eu']/(info['eu']+0.01))|
-            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x2lim']|round(2, 'common')}} cm.</p>
+          <p class="text-justify"><b>x<sub>2lim</sub></b> = {{(info['eu']/(info['eu']+0.01))|
+            round(3, 'common')}}&#x22C5;{{info['d']}} = <b>{{info['x2lim']|round(2, 'common')}} cm</b>.</p>
 
           <p class="text-justify">O valor x<sub>3lim</sub> delimita os domínos 3 e 4,
             e para os concretos do Grupo &#8544; e aço CA-{{(info['fyk']/10)|round|int}}
             é fixo e igual a {{(info['eu']/(info['eu']+info['eyd']))|round(3, 'common')}}&#x22C5;d.
           </p>
 
-          <p class="text-justify">x<sub>3lim</sub> = {{(info['eu']/(info['eu']+info['eyd']))|
-            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x3lim']|round(2, 'common')}} cm.</p>
+          <p class="text-justify"><b>x<sub>3lim</sub></b> = {{(info['eu']/(info['eu']+info['eyd']))|
+            round(3, 'common')}}&#x22C5;{{info['d']}} = <b>{{info['x3lim']|round(2, 'common')}} cm</b>.</p>
 
         {% else %}
 
@@ -172,16 +173,16 @@
           <p class="text-center">
             <ul class="list-group list-group-flush">
               <li class="list-group-item">deformação específica máxima do concreto:
-                &#400<sub>u</sub> = 2.60 &#137 + 35 &#137(90-&#402<sub>ck</sub>/100)<sup>4</sup> =
-                  {{(info['eu']*1000)|round(2 ,'common')}} &#137;</li>
+                <b>&#400<sub>u</sub></b> = 2.60 &#137 + 35 &#137(90-&#402<sub>ck</sub>/100)<sup>4</sup> =
+                  <b>{{(info['eu']*1000)|round(2 ,'common')}} &#137;</b></li>
               <li class="list-group-item">parâmetro de redução da resistência do concreto na
-                compressão: &#593<sub>c</sub> = 0.85[1 - ((&#402<sub>ck</sub> - 50)/200)]=
-                {{info['ac']|round(3,'common')}};</li>
+                compressão: <b>&#593<sub>c</sub></b> = 0.85[1 - ((&#402<sub>ck</sub> - 50)/200)]=
+                <b>{{info['ac']|round(3,'common')}}</b>;</li>
               <li class="list-group-item">parâmetro de uniformização do esforço de compressão:
-                λ = 0,80 - [(&#402<sub>ck</sub> - 50)/400] = {{info['y']|round(2,'common')}};</li>
+                <b>λ</b> = 0,80 - [(&#402<sub>ck</sub> - 50)/400] = <b>{{info['y']|round(2,'common')}}</b>;</li>
               <li class="list-group-item">critério de ductilidade:
-                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230;</strong> x<sub>lim</sub> =
-                n<sub>lim</sub>&#x22C5;d = {{info['xlim']|round(2,'common')}} cm.</li>
+                n<sub>lim</sub> = {{info['nlim']}} <strong>&#10230;</strong> <b>x<sub>lim</sub></b> =
+                n<sub>lim</sub>&#x22C5;d = <b>{{info['xlim']|round(2,'common')}} cm</b>.</li>
             </ul>
           </p>
 
@@ -191,16 +192,16 @@
             depende da deformação especifica máxima do concreto
             {{(info['eu']/(info['eu']+0.01))|round(3, 'common')}}&#x22C5;d</p>
 
-          <p class="text-justify">x<sub>2lim</sub> = {{(info['eu']/(info['eu']+0.01))|
-            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x2lim']|round(2, 'common')}} cm.</p>
+          <p class="text-justify"><b>x<sub>2lim</sub></b> = {{(info['eu']/(info['eu']+0.01))|
+            round(3, 'common')}}&#x22C5;{{info['d']}} = <b>{{info['x2lim']|round(2, 'common')}} cm</b>.</p>
 
           <p class="text-justify">O valor x<sub>3lim</sub> delimita os domínos 3 e 4,
             e para os concretos do Grupo &#8544; e aço CA-{{(info['fyk']/10)|round|int}}
             é fixo e igual a {{(info['eu']/(info['eu']+info['eyd']))|round(3, 'common')}}&#x22C5;d.
           </p>
 
-          <p class="text-justify">x<sub>3lim</sub> = {{(info['eu']/(info['eu']+info['eyd']))|
-            round(3, 'common')}}&#x22C5;{{info['d']}} = {{info['x3lim']|round(2, 'common')}} cm.</p>
+          <p class="text-justify"><b>x<sub>3lim</sub></b> = {{(info['eu']/(info['eu']+info['eyd']))|
+            round(3, 'common')}}&#x22C5;{{info['d']}} = <b>{{info['x3lim']|round(2, 'common')}} cm</b>.</p>
 
         {% endif %}
 
@@ -237,7 +238,7 @@
             durante a execução (porta estribo), adotado-se 2 barras de 8.0 mm de diâmetro (2Ø8mm).
           </p>
 
-          <p>A<sub>s</sub> = M<sub>sd</sub>/(&#402<sub>yd</sub>&#x22C5;(d - 0.4&#x22C5;x)) =
+          <p><b>A<sub>s</sub></b> = M<sub>sd</sub>/(&#402<sub>yd</sub>&#x22C5;(d - 0.4&#x22C5;x)) =
           {{info['Msd']|round(1,'common')}}/({{info['fyd']|round(3,'common')}}&#x22C5;
           ({{info['d']|round(2,'common')}} - 0.4&#x22C5;{{info['x']|round(2,'common')}})) =
           <strong>{{info['As']|round(2,'common')}} cm².</strong></p>
@@ -245,9 +246,9 @@
           <p class="text-justify">
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Área da armadura tracionada:
-                A<sub>s</sub> = <strong>{{(info['As'])|round(2 ,'common')}} cm²</strong></li>
+                <strong>A<sub>s</sub> = {{(info['As'])|round(2 ,'common')}} cm²</strong></li>
               <li class="list-group-item">Área da armadura comprimida:
-                A<sub>s</sub>' = <strong>{{info['Ass']|round(2,'common')}} cm²</strong></li>
+                <strong>A<sub>s</sub>' = {{info['Ass']|round(2,'common')}} cm²</strong></li>
             </ul>
           </p>
 
@@ -262,34 +263,34 @@
             {{info['Md2']|round(1,'common')}} kN&#x22C5;m.
           </p>
 
-          <p>A<sub>s1</sub> = M<sub>d1</sub>/(&#402<sub>yd</sub>&#x22C5;(d - 0.4&#x22C5;x)) =
+          <p><b>A<sub>s1</sub></b> = M<sub>d1</sub>/(&#402<sub>yd</sub>&#x22C5;(d - 0.4&#x22C5;x)) =
           {{info['Md1']|round(1,'common')}}/({{info['fyd']|round(3,'common')}}&#x22C5;
           ({{info['d']|round(2,'common')}} - 0.4&#x22C5;{{info['x']|round(2,'common')}})) =
-          {{info['As1']|round(2,'common')}} cm²</p>
-          <p>A<sub>s2</sub> = M<sub>sd</sub>/(&#402<sub>yd</sub>&#x22C5;(d - d<sub>2</sub>)) =
+          <b>{{info['As1']|round(2,'common')}} cm²</b>.</p>
+          <p><b>A<sub>s2</sub></b> = M<sub>sd</sub>/(&#402<sub>yd</sub>&#x22C5;(d - d<sub>2</sub>)) =
           {{info['Md2']|round(1,'common')}}/({{info['fyd']|round(3,'common')}}&#x22C5;
           ({{info['d']|round(2,'common')}} - {{info['d2']|round(2,'common')}})) =
-          {{info['As2']|round(2,'common')}} cm²</p>
+          <b>{{info['As2']|round(2,'common')}} cm²</b>.</p>
 
           <p>Se a deformação específica da armadura comprimida (&#400<sub>s</sub>)
             for maior ou igual que a deformação específica de escoamento, então
             A<sub>ss</sub> = A<sub>s2</sub>. Senão a tensão na armadura é proporcional
             a deformação (Lei de Hooke).</p>
 
-          <p>&#400<sub>s</sub> = (({{info['xlim']|round(2,'common')}} -
+          <p><b>&#400<sub>s</sub></b> = (({{info['xlim']|round(2,'common')}} -
             {{info['d2']|round(2,'common')}})&#x22C5;{{info['eu']*1000|round(2,'common')}} &#137;)/
-            {{info['xlim']|round(2,'common')}} = {{(info['es']*1000)|round(2,'common')}} &#137; </p>
+            {{info['xlim']|round(2,'common')}} = <b>{{(info['es']*1000)|round(2,'common')}} &#137;</b>.</p>
 
           {% if info['es'] > info['eyd'] %}
-            <p>&#400<sub>s</sub> = {{(info['es']*1000)|round(2,'common')}} &#137; >
+            <p><b>&#400<sub>s</sub> = {{(info['es']*1000)|round(2,'common')}} &#137;</b> >
               {{(info['eyd']*1000)|round(2,'common')}} &#137; = &#400<sub>yd</sub>.</p>
 
           {% elif info['es'] == info['eyd'] %}
-            <p>&#400<sub>s</sub> = {{(info['es']*1000)|round(2,'common')}} &#137; =
-              {{(info['eyd']*1000)|round(2,'common')}} &#137; = &#400<sub>yd</sub>.</p>
+            <p><b>&#400<sub>s</sub> = {{(info['es']*1000)|round(2,'common')}} &#137;</b> =
+              &#400<sub>yd</sub>.</p>
 
           {% else %}
-            <p>&#400<sub>s</sub> = {{(info['es']*1000)|round(2,'common')}} &#137; <
+            <p><b>&#400<sub>s</sub> = {{(info['es']*1000)|round(2,'common')}} &#137;</b> <
               {{(info['eyd']*1000)|round(2,'common')}} &#137; = &#400<sub>yd</sub>.
               Então σ<sub>sd</sub> = &#400<sub>s</sub>&#x22C5;E<sub>s</sub> =
               {{info['Dsd']|round(3, 'common')}} kN/cm².</p>
@@ -299,10 +300,10 @@
           <p class="text-justify">
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Área da armadura tracionada:
-                A<sub>s</sub> = A<sub>s1</sub> + A<sub>s2</sub> = {{info['As1']|round(2,'common')}} +
+                <b>A<sub>s</sub></b> = A<sub>s1</sub> + A<sub>s2</sub> = {{info['As1']|round(2,'common')}} +
                 {{info['As2']|round(2,'common')}} = <strong>{{(info['As'])|round(2 ,'common')}} cm²</strong></li>
               <li class="list-group-item">Área da armadura comprimida:
-                A<sub>s</sub>' = <strong>{{info['Ass']|round(2,'common')}} cm²</strong></li>
+                <b>A<sub>s</sub>' = {{info['Ass']|round(2,'common')}} cm²</b></li>
             </ul>
           </p>
 
@@ -327,22 +328,22 @@
 
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Concreto:
-              &#402<sub>ctd</sub> = 0.7 &#x22C5; &#402<sub>ctm</sub>/&#611<sub>f</sub> =
+              <b>&#402<sub>ctd</sub></b> = 0.7 &#x22C5; &#402<sub>ctm</sub>/&#611<sub>f</sub> =
               0.7 &#x22C5; 0.3 &#x22C5; (&#402<sub>ck</sub>)<sup>2/3</sup>/&#611<sub>f</sub> =
-              {{(info['fctd']*10)|round(3,'common')}} MPa.</li>
+              <b>{{(info['fctd']*10)|round(3,'common')}} MPa</b>.</li>
             <li class="list-group-item">Concreto:
-              &#402<sub>ctd2</sub> = 0.6 &#x22C5; &#593;<sub>v</sub> &#x22C5; &#402<sub>cd</sub> =
+              <b>&#402<sub>ctd2</sub></b> = 0.6 &#x22C5; &#593;<sub>v</sub> &#x22C5; &#402<sub>cd</sub> =
               0.6 &#x22C5; (1 - &#402<sub>ck</sub>/250) &#x22C5; &#402<sub>cd</sub> =
               0.6 &#x22C5; (1 - {{(info['fck'])|round(3,'common')}}/250) &#x22C5;
               {{(info['fcd']*10)|round(3,'common')}} = {{(info['fcd2']*10)|round(3,'common')}} MPa
-              = {{(info['fcd2'])|round(3,'common')}} kN/cm² .
+              = <b>{{(info['fcd2'])|round(3,'common')}} kN/cm²</b>.
             </li>
             <li class="list-group-item">Aço:
-              &#402<sub>ywd</sub> = &#402<sub>ywk</sub>/&#611<sub>s</sub> =
+              <b>&#402<sub>ywd</sub></b> = &#402<sub>ywk</sub>/&#611<sub>s</sub> =
               {{info['fywk']}}/{{info['gc']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.</li>
             <li class="list-group-item">Carregamento:
-              V<sub>sd</sub> = V<sub>k</sub> &#x22C5; &#611<sub>f</sub> =
-              {{info['Vk']}} &#x22C5; {{info['gf']}} = {{(info['Vsd'])|round(3,'common')}} MPa.
+              <b>V<sub>sd</sub></b> = V<sub>k</sub> &#x22C5; &#611<sub>f</sub> =
+              {{info['Vk']}} &#x22C5; {{info['gf']}} = <b>{{(info['Vsd'])|round(3,'common')}} MPa</b>.
             </li>
           </ul>
 
@@ -355,18 +356,18 @@
           </p>
 
           {% if info['Modelo'] == 1 %}
-            <p class="text-justify">V<sub>rd2</sub> = [&#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
-            0.9 &#x22C5; d &#x22C5; (1 + cotan(&#593;))]/2 = {{info['fcd2']|round(3,'common')}}
-            &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5; {{info['d']}} &#x22C5; (1 +
-            cotan({{info['a']}}))/2 = {{info['Vrd2']|round(3,'common')}} kN.</p>
+            <p class="text-justify"><b>V<sub>rd2</sub></b> = [&#402<sub>ctd2</sub>&#x22C5;b<sub>w</sub>&#x22C5;
+            0.9&#x22C5;d&#x22C5;(1 + cotan(&#593;))]/2 = {{info['fcd2']|round(3,'common')}}
+            &#x22C5; {{info['bw']}}&#x22C5;0.9&#x22C5;{{info['d']}}&#x22C5;(1 +
+            cotan({{info['a']}}))/2 = <b>{{info['Vrd2']|round(3,'common')}} kN</b>.</p>
             <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
             <p></p>
           {% else %}
-            <p class="text-justify">V<sub>rd2</sub> = &#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
+            <p class="text-justify"><b>V<sub>rd2</sub></b> = &#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
             0.9 &#x22C5; d &#x22C5; (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen²&#415; =
             {{info['fcd2']|round(3,'common')}} &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5;
             {{info['d']}} &#x22C5; (cotan({{info['t']}}) + cotan({{info['a']}})) &#x22C5;
-            sen²({{info['t']}}) = {{info['Vrd2']|round(3,'common')}} kN.</p>
+            sen²({{info['t']}}) = <b>{{info['Vrd2']|round(3,'common')}} kN</b>.</p>
             <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
             <p></p>
           {% endif %}
@@ -375,7 +376,7 @@
           <p class="text-justify">V<sub>sd</sub> = V<sub>c</sub> + V<sub>sw</sub>. Onde,</p>
           <p>V<sub>c</sub>: parcela da força cortante absorvida por mecanismos
             complementares ao da treliça.</p>
-            <p class="text-center"><strong>Mecanismos:</strong></p>
+            <p class="font-italic"><strong>Mecanismos:</strong></p>
             <ul class="list-unstyled">
               <li>
                 <ul>
@@ -389,19 +390,19 @@
             solicitante resistida pela armadura transversal.</p>
 
           {% if info['Modelo'] == 1 %}
-            <p class="text-justify">V<sub>c</sub> = V<sub>c0</sub> = 0.6 &#x22C5;
+            <p class="text-justify"><b>V<sub>c</sub></b> = V<sub>c0</sub> = 0.6 &#x22C5;
               &#402<sub>ctd</sub> &#x22C5; b<sub>w</sub> &#x22C5; d = 0.6 &#x22C5;
               {{info['fctd']|round(3, 'common')}} &#x22C5; {{info['bw']}} &#x22C5;
-              {{info['d']}} = {{info['Vc']|round(3,'common')}} kN.
+              {{info['d']}} = <b>{{info['Vc']|round(3,'common')}} kN</b>.
             </p>
-            <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
-              V<sub>c</sub> = {{info['Vsw']|round(2,'common')}} kN.
+            <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
+              V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
             </p>
-            <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
+            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
               d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
               {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
               {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}}))) = {{info['Asw']|round(2,'common')}} cm²/cm
+              cos({{info['a']}}))) = <b>{{info['Asw']|round(2,'common')}} cm²/cm</b>.
             </p>
 
           {% else %}
@@ -412,42 +413,52 @@
                 V<sub>sd</sub> &#8924; V<sub>c0</sub>
 
               </p>
-              <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
+              <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
                 V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
-                |round(2,'common')}} = {{info['Vsw']|round(2,'common')}} kN.
+                |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
               </p>
 
-              <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
+              <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
                 d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
                 {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
                 {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-                cos({{info['a']}}))) = {{info['Asw']|round(2,'common')}} cm²/cm
+                cos({{info['a']}}))) = <b>{{info['Asw']|round(2,'common')}} cm²/cm</b>.
               </p>
             {% elif info['Vsd'] == info['Vrd2']%}
               <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
                 V<sub>c1</sub> = 0 <strong>&#10230;</strong> para
                 V<sub>rd2</sub> = V<sub>sd</sub>
               </p>
-              <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
+              <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
                 V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
-                |round(2,'common')}} = {{info['Vsw']|round(2,'common')}} kN.
+                |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
               </p>
 
-              <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;
+              <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
                 d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
                 {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
                 {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-                cos({{info['a']}}))) = {{info['Asw']|round(4,'common')}} cm²/cm
+                cos({{info['a']}}))) = <b>{{info['Asw']|round(4,'common')}} cm²/cm</b>.
               </p>
             {% elif info['Vsd'] > info['Vc0']%}
               <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
                 V<sub>c1</sub> = V<sub>c0</sub> &#x22C5; (V<sub>rd2</sub> -
                 V<sub>sd</sub>)/(V<sub>rd2</sub> - V<sub>c0</sub>)
                 <strong>&#10230;</strong> para V<sub>sd</sub> > V<sub>c0</sub>
+                <strong>&#10230;</strong>
+                <b>V<sub>c0</sub></b> = 0.6&#x22C5;&#402<sub>ctd</sub>&#x22C5;b<sub>w</sub>&#x22C5;d =
+                0.6 &#x22C5; {{info['fctd']|round(3, 'common')}} &#x22C5; {{info['bw']}} &#x22C5;
+                  {{info['d']}} = <b>{{info['Vc0']|round(2,'common')}} kN</b> <
+                  {{info['Vsd']|round(2,'common')}} kN.
               </p>
-              <p class="text-justify">Sendo: V<sub>sw</sub> = V<sub>sd</sub> -
+              <p><b>V<sub>c1</sub></b> = {{info['Vc0']|round(2,'common')}}&#x22C5;
+                ({{info['Vrd2']|round(2,'common')}} - {{info['Vsd']|round(2,'common')}})
+                /({{info['Vrd2']|round(2,'common')}} - {{info['Vc0']|round(2,'common')}})
+                = <b>{{info['Vc1']|round(2,'common')}} kN</b>.</p>
+
+              <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
                 V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
-                |round(2,'common')}} = {{info['Vsw']|round(2,'common')}} kN.
+                |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
               </p>
 
               <p class="text-justify">A<sub>sw</sub>/S = V<sub>sw</sub>/(0.9 &#x22C5;

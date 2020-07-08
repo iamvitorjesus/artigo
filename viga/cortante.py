@@ -135,6 +135,7 @@ def cortanteM2(Dic):
         Vc1 = 0
     elif Vsd > Vc0:
         Vc1 = Vc0*(Vrd2-Vsd)/(Vrd2-Vc0)
+        Sec['Vc1'] = Vc1
     Vc = Vc1
     Vsw = Vsd - Vc
     Asw = Vsw/(0.9*Sec['d']*fywd*(((1/math.tan(math.radians(t)))+
