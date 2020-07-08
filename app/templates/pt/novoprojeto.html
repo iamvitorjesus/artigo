@@ -34,9 +34,10 @@
   <form method="post">
 
     <div class="container">
-      <div class="row marketing">
+      <div class="row">
 
-        <div class="col-lg-5"> <!-- COLUMN 1 - INICIO -->
+        <div class="col-lg-6"> <!-- COLUMN 1 - INICIO -->
+            <div class="container">
           <h5 class="text-center">Dados dos Materiais</h5>
           <div class="row marketing">
 
@@ -158,61 +159,103 @@
             </div>
           </div><p></p>
 
-        </div> <!-- COLUMN 1 - FIM -->
+          <h5 class="text-center">Esforços Solicitantes</h5>
 
-        <div class="col-lg-4"> <!-- COLUMN 2 - INICIO -->
-          <h5 class="text-center">Dados de Projeto</h5>
+          <div class="row marketing">
 
-
-          <div class="row mx-lg-4">
-            <label for="basic-url">Cálculo do Cisalhamento</label>
             <div class="input-group">
-              <div class="input-group-append"><p></p>
-                <select class="custom-select" id="modelo" name="Modelo" onclick="habilitar()">
-                    <option value="1">Modelo de cálculo &#8544</option>
-                    <option value="2">Modelo de cálculo &#8545</option>
+              <div class="input-group-prepend">
+                <span class="input-group-text">M<sub>k</sub></span>
+              </div>
+
+                <input type="number" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Momento fletor " name="Mk">
+
+              <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01" name="unitMk">
+                  <option value="1">kN&#x22C5;m</option>
+                  <option value="2">kN&#x22C5;cm</option>
+                  <option value="3">tf&#x22C5;m</option>
+                  <option value="4">tf&#x22C5;cm</option>
+                  <option value="5">kgf&#x22C5;m</option>
+                  <option value="6">kgf&#x22C5;cm</option>
+
                 </select>
               </div>
             </div>
           </div><p></p>
 
-          <div class="row mx-lg-4">
-            <label for="diagonal">Ângulo da diagonal comprimida</label>
+
+          <div class="row marketing">
+
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">&#415;</span>
+                <span class="input-group-text">V<sub>k</sub></span>
               </div>
 
-              <input type="number" id="diagonal" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)"name="t" min="30" max="45"
-               disabled>
+                <input type="number" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)" placeholder="Cortante" name="Vk">
 
               <div class="input-group-append">
-                <span class="input-group-text">&#9900</span>
+                <select class="custom-select" id="inputGroupSelect01" name="unitVk">
+                  <option value="1">kN</option>
+                  <option value="2">N</option>
+                  <option value="3">kgf</option>
+                </select>
               </div>
             </div>
           </div><p></p>
 
-          <div class="row mx-lg-4">
-            <label for="basic-url">Agressividade ambiental</label>
-            <div class="input-group">
+
+          <h5 class="text-center">Coeficientes</h5>
+          <div class="row marketing">
+            <table class="table table-hover">
+              <thead>
+                <tr class="table-secondary">
+                  <th></th>
+                  <th scope="col">Carregamento</th>
+                  <th scope="col">Concreto (&#611<sub>c</sub>)</th>
+                  <th scope="col">Aço (&#611<sub>s</sub>)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="carregamento" value="1" checked>
+                  </div></td>
+                  <th scope="row" >Normais</th>
+                  <td>1.40</td>
+                  <td>1.15</td>
+                </tr>
+                <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="carregamento" value="2">
+                  </div></td>
+                  <th scope="row">Especiais</th>
+                  <td>1.20</td>
+                  <td>1.15</td>
+                </tr>
+                <tr>
+                  <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="carregamento" value="3">
+                  </div></td>
+                  <th scope="row">Excepcionais</th>
+                  <td>1.20</td>
+                  <td>1.00</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+          </div>
+        </div> <!-- COLUMN 1 - FIM -->
 
 
-              <div class="input-group-append"><p></p>
-                  <select class="custom-select" id="inputGroupSelect01" name="CAA">
-                    <option value="1">Classe &#8544</option>
-                    <option value="2">Classe &#8545</option>
-                    <option value="3">Classe &#8546</option>
-                    <option value="4">Classe &#8547</option>
-                  </select>
-              </div>
-            </div>
-          </div><p></p>
-
-        </div> <!-- COLUMN 2 - FIM -->
-
-
-        <div class="col-lg-3"> <!-- COLUMN 3 - INICIO -->
+        <div class="col-lg-6"> <!-- COLUMN 2 - INICIO -->
+            <div class="container">
           <h5 class="text-center">Seção Transversal</h5>
 
           <div class="row marketing">
@@ -242,7 +285,7 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Height" name="h">
+                (with dot and two decimal places)" placeholder="Altura" name="h">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unith">
@@ -309,107 +352,40 @@
             </div>
           </div>
 
-
-        </div> <!-- COLUMN 3 -->
-      </div>
-
-      <div class="row marketing">
-        <div class="col">
-          <h5 class="text-center">Esforços Solicitantes</h5>
-
-          <div class="row mx-lg-4">
-
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">M<sub>k</sub></span>
-              </div>
-
-                <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Momento fletor " name="Mk">
-
-              <div class="input-group-append">
-                <select class="custom-select" id="inputGroupSelect01" name="unitMk">
-                  <option value="1">kN&#x22C5;m</option>
-                  <option value="2">kN&#x22C5;cm</option>
-                  <option value="3">tf&#x22C5;m</option>
-                  <option value="4">tf&#x22C5;cm</option>
-                  <option value="5">kgf&#x22C5;m</option>
-                  <option value="6">kgf&#x22C5;cm</option>
-
-                </select>
-              </div>
-            </div>
-          </div><p></p>
+          <h5 class="text-center">Dados de Projeto</h5>
 
 
-          <div class="row mx-lg-4">
-
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">V<sub>k</sub></span>
-              </div>
-
-                <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Cortante" name="Vk">
-
-              <div class="input-group-append">
-                <select class="custom-select" id="inputGroupSelect01" name="unitVk">
-                  <option value="1">kN</option>
-                  <option value="2">N</option>
-                  <option value="3">kgf</option>
-                </select>
-              </div>
-            </div>
-          </div><p></p>
-
-
-          <h5 class="text-center">Coeficientes</h5>
           <div class="row marketing">
-            <table class="table table-hover">
-              <thead>
-                <tr class="table-secondary">
-                  <th></th>
-                  <th scope="col">Carregamento</th>
-                  <th scope="col">Concreto (&#611<sub>c</sub>)</th>
-                  <th scope="col">Aço (&#611<sub>s</sub>)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="carregamento" value="1" checked>
-                  </div></td>
-                  <th scope="row" >Normais</th>
-                  <td>1.40</td>
-                  <td>1.15</td>
-                </tr>
-                <tr>
-                  <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="carregamento" value="2">
-                  </div></td>
-                  <th scope="row">Especiais</th>
-                  <td>1.20</td>
-                  <td>1.15</td>
-                </tr>
-                <tr>
-                  <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="carregamento" value="3">
-                  </div></td>
-                  <th scope="row">Excepcionais</th>
-                  <td>1.20</td>
-                  <td>1.00</td>
-                </tr>
-              </tbody>
-            </table>
+            <label for="basic-url">Cálculo do Cisalhamento</label>
+            <div class="input-group">
+              <div class="input-group-append"><p></p>
+                <select class="custom-select" id="modelo" name="Modelo" onclick="habilitar()">
+                    <option value="1">Modelo de cálculo &#8544</option>
+                    <option value="2">Modelo de cálculo &#8545</option>
+                </select>
+              </div>
+            </div>
+          </div><p></p>
 
-          </div>
-        </div>
-        <div class="col">
+          <div class="row marketing">
+            <label for="diagonal">Ângulo da diagonal comprimida</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">&#415;</span>
+              </div>
+
+              <input type="number" id="diagonal" class="form-control"aria-label="Dollar amount
+                (with dot and two decimal places)"name="t" min="30" max="45"
+               disabled>
+
+              <div class="input-group-append">
+                <span class="input-group-text">&#9900</span>
+              </div>
+            </div>
+          </div><p></p>
+
           <h5 class="text-center">Classes de Agressividade Ambiental</h5>
-          <div class="row mx-lg-4"">
+          <div class="row marketing"">
             <table class="table table-borderless">
               <thead>
                 <tr class="table-secondary">
@@ -417,7 +393,6 @@
                   <th scope="col">Classe</th>
                   <th scope="col">Agressividade</th>
                   <th scope="col">Ambiente</th>
-                  <th scope="col">Risco de Deterioração</th>
                 </tr>
               </thead>
               <tbody>
@@ -429,7 +404,6 @@
                   <th scope="row">&#8544</th>
                   <td>Fraca</td>
                   <td>Rural, Submersa</td>
-                  <td>Insignificante</td>
                 </tr>
                 <tr>
                   <td>
@@ -439,7 +413,6 @@
                   <th scope="row">&#8545</th>
                   <td>Moderada</td>
                   <td>Urbana</td>
-                  <td>Pequeno</td>
                 </tr>
                 <tr>
                   <td>
@@ -449,7 +422,6 @@
                   <th scope="row">&#8546</th>
                   <td>Forte</td>
                   <td>Marinha, Industrial</td>
-                  <td>Grande</td>
                 </tr>
                 <tr>
                   <td>
@@ -459,13 +431,15 @@
                   <th scope="row">&#8547</th>
                   <td>Muito forte</td>
                   <td>Industrial, Respingos de maré</td>
-                  <td>Elevado</td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
+
+          </div>
+        </div>  <!-- COLUMN 2 - FIM -->
       </div>
+
 
     </div> <!-- container -->
     <div class="container text-center"><p></p>

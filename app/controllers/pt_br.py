@@ -9,17 +9,19 @@ from app.models.forms import LoginForm
 from viga.conversao_unidades import conversao_unidades
 from viga.dimensionamento import dimensionar
 
-
+logoufrj = os.path.join(app.config['UPLOAD_FOLDER'], 'complementar_principal_pb.png')
+logomacae = os.path.join(app.config['UPLOAD_FOLDER'], 'campus_UFRJ_macae_Aloisio_Teixeira.png')
+logo4 = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon4.png')
+logo6 = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon6.png')
 
 #model_prediction = False
 @app.route("/")
 def index():
-    logoufrj = os.path.join(app.config['UPLOAD_FOLDER'], 'complementar_principal_pb.png')
-    logomacae = os.path.join(app.config['UPLOAD_FOLDER'], 'campus_UFRJ_macae_Aloisio_Teixeira.png')
+
     return render_template('pt/inicio.html',
      # prediction=model_prediction,
       #show_predictions_modal=True
-      lufrj = logoufrj, lmacae = logomacae)
+      lufrj = logoufrj, lmacae = logomacae, logo6 = logo6)
 
 
 @app.route("/novoprojeto", methods = ["POST", "GET"])
@@ -44,15 +46,15 @@ def novoprojeto():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/novoprojeto.html')
+        return render_template('pt/novoprojeto.html', logo6 = logo6)
 
 @app.route("/erroM", methods = ["GET"])
 def erroMomento():
-    return render_template('pt/erroMomento.html')
+    return render_template('pt/erroMomento.html', logo6 = logo6)
 
 @app.route("/erroB", methods = ["GET"])
 def erroBiela():
-    return render_template('pt/erroBiela.html')
+    return render_template('pt/erroBiela.html', logo6 = logo6)
 
 
 from viga.detalhamento_flexao import detalhamento_flexao
@@ -66,12 +68,12 @@ def resultados():
                 value = float(request.form[x])
                 Dic[x] = value
             Dic = detalhamento_flexao(Dic)
-            return render_template('pt/resultados.html', info = Dic)
+            return render_template('pt/resultados.html', info = Dic, logo6 = logo6)
         else:
-            return render_template('pt/resultados.html', info = Dic)
+            return render_template('pt/resultados.html', info = Dic, logo6 = logo6)
     else:
         return redirect(url_for("novoprojeto"))
 
 @app.route("/contato")
 def contato():
-    return render_template('pt/contato.html')
+    return render_template('pt/contato.html', logo6 = logo6)

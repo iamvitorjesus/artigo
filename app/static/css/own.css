@@ -1,4 +1,4 @@
-<style>
+
   .bg-greyshadow {
     background-color: #333333 !important;
   }
@@ -33,6 +33,10 @@
     border-color: #ffffff;
     box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
   }
-
-
-</style>
+  .navbar{
+  width: 100% !important;
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
