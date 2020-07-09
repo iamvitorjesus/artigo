@@ -7,10 +7,13 @@ def flexaosimples(Dic):
     bw = Dic['bw']
 
     c = Dic['c']
+
     d1 = c + 1
-    d2 = d1
     Dic["d1"] = d1
-    Dic["d2"] = d2
+    if Dic['parametrod_'] == 'on':
+        Dic['d1'] = Dic['d_']
+
+    Dic["d2"] = Dic['d1']
 
         # Materiais
     if Dic['carregamento'] == 1:
@@ -41,7 +44,7 @@ def flexaosimples(Dic):
     # TRATAMENTO DE DADOS
     Msd = Mk*gf # kN.cm
     Dic["Msd"] = Msd
-    d = h - d1 # cm
+    d = h - Dic['d1'] # cm
     Dic["d"] = d
 
     fcd = fck/(gc*10) # kN/cm²
@@ -91,7 +94,7 @@ def flexaosimples(Dic):
         # Armadura simples
         x = (d/y)*(1-((1-((2*Msd)/(bw*(d**2)*ac*fcd)))**(0.5))) # Linha Neutra
         As = Msd/(fyd*(d-(0.4*x)))
-        Dic['ols'] = 8.0 
+        Dic['ols'] = 8.0
         Ass = 2*(math.pi)*((0.8)**2)/4 # Porta estribo
     else:
         # Armadura dupla

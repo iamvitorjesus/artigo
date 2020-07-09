@@ -100,13 +100,20 @@
           {% endif %}
         </p>
         <p class="text-justify">
-          Sem o conhecimento do diâmetro da armadura transversal e da longitudianal,
-          inicialmente adota-se um diâmetro de 5.0 mm para o estribo e 10.0 mm para
-          as barras longitudinais para o calculo do valor da altura útil <em>'d'</em> entre a
-          borda mais tracionada da seção e o centro de gravidade da armadura longitudianal.
-          Considerando-se apenas uma camada para a armadura de flexão temos:
-          <b>d</b> = h - (c + Ø<sub>t</sub> + (Ø<sub>l</sub>/2))={{info['h']}} - {{info['d1'] }} =
-          <b>{{info['d']}} cm</b>.
+          {% if info['parametrod_'] == 'off' %}
+            Sem o conhecimento do diâmetro da armadura transversal e da longitudianal,
+            inicialmente adota-se um diâmetro de 5.0 mm para o estribo e 10.0 mm para
+            as barras longitudinais para o calculo do valor da altura útil <em>'d'</em> entre a
+            borda mais tracionada da seção e o centro de gravidade da armadura longitudianal.
+            Considerando-se apenas uma camada para a armadura de flexão temos:
+            <b>d</b> = h - (c + Ø<sub>t</sub> + (Ø<sub>l</sub>/2))={{info['h']}} - {{info['d1']}} =
+            <b>{{info['d']}} cm</b>.
+          {% else %}
+            O parametro d' que representa a distância entre a borda mais tracionada e o centro
+            de gravidade da armadura tracionada foi determinado manualmente d' = {{info['d_']}} cm.
+            Portanto altura útil entre a borda mais tracionada da seção e o centro de gravidade
+            da armadura longitudianal: <b>d</b> = h - d' = {{info['h']}} - {{info['d1']}} = <b>{{info['d']}} cm</b>.
+          {% endif %}
         </p>
 
         <p class="text-justify">Pela lei de Hooke: &#400<sub>yd</sub>=
@@ -767,14 +774,6 @@
                     <dd class="col-sm-8">Comprimento do estribo + ancoragem.</dd>
 
                   </dl>
-
-                  {% if info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
-                    <div class="alert alert-dark rounded-pill" role="alert">
-                    A dimenção do apoio deve ser <a href="novoprojeto" class="alert-link">
-                      alterada </a>para que seja possível a ancoragem da armadura tracionada.
-                  </div>
-
-                  {% endif %}
 
                   <dl class="row">
 

@@ -91,24 +91,23 @@ def conversao_unidades(Dic):
 
     CAA = Dic['CAA']
     if CAA == 1:
-        c = 2.5#cm
+        Dic["c"] = 2.5#cm
     elif CAA == 2:
-        c = 3 #cm
+        Dic["c"] = 3 #cm
     elif CAA == 3:
-        c = 4 #cm
+        Dic["c"] = 4 #cm
     elif CAA == 4:
-        c = 5 #cm
-    Dic["c"] = c ####
+        Dic["c"] = 5 #cm
+
 
     Brita = Dic["Brita"]
     if Brita == 0:
-        Dmax = 0.95 #cm
+        Dic['Dmax'] = 0.95 #cm
     elif Brita == 1:
-        Dmax = 1.90 #cm
+        Dic['Dmax'] = 1.90 #cm
     elif Brita == 2:
-        Dmax = 2.50 #cm
+        Dic['Dmax'] = 2.50 #cm
     elif Brita == 3:
-        Dmax = 5.00 #cm
-    Dic['Dmax'] = Dmax ####
+        Dic['Dmax'] = 5.00 #cm
 
     return Dic
