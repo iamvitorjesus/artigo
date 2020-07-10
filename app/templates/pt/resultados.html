@@ -100,7 +100,7 @@
           {% endif %}
         </p>
         <p class="text-justify">
-          {% if info['parametrod_'] == 'off' %}
+          {% if 'parametrod_' not in info %}
             Sem o conhecimento do diâmetro da armadura transversal e da longitudianal,
             inicialmente adota-se um diâmetro de 5.0 mm para o estribo e 10.0 mm para
             as barras longitudinais para o calculo do valor da altura útil <em>'d'</em> entre a

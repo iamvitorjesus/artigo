@@ -13,6 +13,7 @@ logoufrj = os.path.join(app.config['UPLOAD_FOLDER'], 'complementar_principal_pb.
 logomacae = os.path.join(app.config['UPLOAD_FOLDER'], 'campus_UFRJ_macae_Aloisio_Teixeira.png')
 logo4 = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon4.png')
 logo6 = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon6.png')
+logocilamce = os.path.join(app.config['UPLOAD_FOLDER'], 'logocilamce2020_online.png')
 
 #model_prediction = False
 @app.route("/")
@@ -21,7 +22,7 @@ def index():
     return render_template('pt/inicio.html',
      # prediction=model_prediction,
       #show_predictions_modal=True
-      lufrj = logoufrj, lmacae = logomacae, logo6 = logo6)
+      lufrj = logoufrj, lmacae = logomacae, logo6 = logo6, cilamce = logocilamce)
 
 
 @app.route("/novoprojeto", methods = ["POST", "GET"])
@@ -29,10 +30,9 @@ def novoprojeto():
     if request.method == "POST":
         dimen = {}
         for info in request.form:           #retira informação dos inputs
-            if info == 'parametrod_':
-                value = request.form[info]
-            else:
-                value = float(request.form[info])
+            value = request.form[info]
+            if value.isnumeric() == True:
+                value = float(value)
             dimen[info] = value
 
 

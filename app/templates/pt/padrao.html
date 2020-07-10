@@ -9,6 +9,8 @@
     <meta name="author" content="Vítor Jesus">
     <link rel="icon" href="../../favicon.ico">
     <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/">
+    <script src="https://kit.fontawesome.com/740943d4ed.js" crossorigin="anonymous"></script>
+
 
     <title>{% block title %}ReCon {% endblock %}</title>
 
@@ -104,10 +106,20 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{ url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
     <script src="{{ url_for('static', filename = 'js/own.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'js/bootstrap.bundle.min.js / bootstrap.bundle.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    $(function () {
+  $('.example-popover').popover({
+    container: 'body'
+  })
+})
+    </script>
 
   </body>
 </html>

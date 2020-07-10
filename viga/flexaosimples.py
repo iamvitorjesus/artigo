@@ -10,10 +10,10 @@ def flexaosimples(Dic):
 
     d1 = c + 1
     Dic["d1"] = d1
-    if Dic['parametrod_'] == 'on':
+    if 'parametrod_'  in Dic:
         Dic['d1'] = Dic['d_']
-
-    Dic["d2"] = Dic['d1']
+    d2 = Dic['d1']
+    Dic["d2"] = d2
 
         # Materiais
     if Dic['carregamento'] == 1:

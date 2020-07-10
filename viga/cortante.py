@@ -6,8 +6,8 @@ import math
 def cortanteM1(Dic):
     from viga.flexaosimples import flexaosimples
     Sec = flexaosimples(Dic)
-    a1 = min(Sec['t1']/2,0.3*h)
-    a2 = min( Sec['t2']/2,0.3*h)
+    a1 = min(Sec['t1']/2,0.3*Sec['h'])
+    a2 = min( Sec['t2']/2,0.3*Sec['h'])
     Sec['a1'] = a1
     Sec['a2'] = a2
 
@@ -35,8 +35,14 @@ def cortanteM1(Dic):
     Sec['Vsdmin'] = Vsdmin
         # Concreto
     fctd = 0.7*fctm/Sec['gc']
+    Sec['fctd'] = fctd
+
     av =(1 - (Sec['fck']/250))
+    Sec['av'] = av
+
     fcd2 = 0.6*av*Sec['fcd'] #Tensão resistente na biela
+    Sec['fcd2'] = fcd2
+
 
     a = Sec['a']
 
