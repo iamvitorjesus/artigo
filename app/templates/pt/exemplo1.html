@@ -1,6 +1,6 @@
 {% extends 'pt/padrao.html' %}
 
-{% block title %}{{ super() }} - Novo Projeto {% endblock %}
+{% block title %}{{ super() }} - Exemplo 1 {% endblock %}
 
 {%block content%}
 <script type="text/javascript">
@@ -26,7 +26,7 @@
     <div class="p-3 mb-5 bg-grey rounded row">
       <div class="col text-center">
 
-        <h3 class="text-muted">Novo Projeto</h3>
+        <h2 class="text-muted">Exemplo 1 - ARAÚJO, J. M. <em>Curso de Concreto Armado</em>, Pag. 113-115, 3ªEd </h2>
 
       </div>
     </div>
@@ -446,7 +446,7 @@
 
           <div class="row marketing"">
             <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="parametrod_" onchange="habilitar2()" name="parametrod_">
+              <input type="checkbox" class="custom-control-input" id="parametrod_" name="parametrod_" checked>
               <label class="custom-control-label" for="parametrod_">Definir manualmente o parâmetro d'</label>
             </div>
           </div>
@@ -460,7 +460,8 @@
               </div>
 
                 <input type="number" class="form-control" aria-label="Dollar amount
-                (with dot and two decimal places)" min="0" placeholder="Parâmetro d'" name="d_" id='d_' disabled>
+                (with dot and two decimal places)" min="0" placeholder="Parâmetro d'" value="4"
+                name="d_" id='d_'>
 
               <div class="input-group-append">
                 <span class="input-group-text">cm</span>
