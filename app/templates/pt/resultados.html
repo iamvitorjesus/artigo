@@ -241,8 +241,8 @@
           <p class="text-justify">M<sub>sdlim</sub> = {{info['Msdlim']|round(2,'common')}} kN&#x22C5;m
             ⋝ {{info['Msd']|round(2,'common')}} kN&#x22C5;m = M<sub>sd</sub>, ou seja, <strong>Armadura
             Simples</strong>, o que significa que apenas a armadura de tração será calculada, a
-            armadura de compressão servirá apenas para garantira a posição da armadura transversal
-            durante a execução (porta estribo), adotado-se 2 barras de 8.0 mm de diâmetro (2Ø8mm).
+            armadura disposta na zona de compressão servirá apenas para garantira a posição da armadura transversal
+            durante a execução (porta estribo ou armadura de montagem), adotado-se 2 barras de 8.0 mm de diâmetro (2Ø8mm).
           </p>
 
           <p><b>A<sub>s</sub></b> = M<sub>sd</sub>/(&#402<sub>yd</sub>&#x22C5;(d - 0.4&#x22C5;x)) =
@@ -254,7 +254,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Área da armadura tracionada:
                 <strong>A<sub>s</sub> = {{(info['As'])|round(2 ,'common')}} cm²</strong></li>
-              <li class="list-group-item">Área da armadura comprimida:
+              <li class="list-group-item">Área da armadura de montagem:
                 <strong>A<sub>s</sub>' = {{info['Ass']|round(2,'common')}} cm²</strong></li>
             </ul>
           </p>

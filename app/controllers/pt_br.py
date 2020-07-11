@@ -79,7 +79,7 @@ def exemplo1():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/exmplo1.html', logo6 = logo6)
+        return render_template('pt/exemplo1.html', logo6 = logo6)
 
 @app.route("/exemplo2", methods = ["POST", "GET"])
 def exemplo2():
@@ -129,6 +129,10 @@ def resultados():
 @app.route("/contato")
 def contato():
     return render_template('pt/contato.html', logo6 = logo6)
+
+@app.route("/menu", methods = ["GET"])
+def menu():
+    return render_template('pt/menu.html', logo6 = logo6)
 
 
 @app.route("/erroM", methods = ["GET"])

@@ -34,8 +34,8 @@
       <nav class="navbar navbar-light site-header sticky-top" style="background-color: #fff;">
         <div class="container">
 
-          <img src="{{logo6}}" alt="Imagem não encontrada" width="100" height="100">
-              <h3 class="text-muted ml-5">ReCon</h3>
+          <a href="/" class="badge"><img src="{{logo6}}" alt="Imagem não encontrada" width="100" height="100"></a>
+            <a href="/" class="badge badge-light"><h3 class="text-muted ml-5">ReCon</h3></a>
 
             <ul class="list-group-horizontal navbar-nav  ml-auto">
               <a class="btn btn-template rounded-0" href="\">
@@ -49,12 +49,6 @@
                 <svg class="bi bi-info-square-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="silver" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                   <title>Sobre</title>
-                </svg>
-              </a>
-              <a class="btn btn-template rounded-0" href="contato" >
-                <svg class="bi bi-envelope-fill" width="1.7em" height="1.9em" viewBox="0 0 16 16" fill="silver" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-                  <title>Contato</title>
                 </svg>
               </a>
             </ul>
@@ -103,22 +97,17 @@
     </div>
 
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename = 'js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'js/bootstrap.bundle.js')}}"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{ url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
     <script src="{{ url_for('static', filename = 'js/own.js')}}"></script>
-    <script src="{{ url_for('static', filename = 'js/bootstrap.bundle.min.js / bootstrap.bundle.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-    $(function () {
-  $('.example-popover').popover({
-    container: 'body'
-  })
-})
+    <script>
+
+      $('[data-toggle="popover"]').popover();
+
     </script>
 
   </body>

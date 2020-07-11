@@ -1,0 +1,35 @@
+{% extends 'pt/padrao.html' %}
+
+{% block title %}{{ super() }} - Menu {% endblock %}
+
+
+
+{% block content %}
+  <div class="jumbotron text-justify">
+    <div class="row justify-content-center">
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-3 align-self-center">
+          <a type="button" class="btn-lg btn-template text-center" href='novoprojeto'>
+          <i class="fas fa-marker"></i> Novo Projeto</a>
+      </div>
+      <div class="col-6 ">
+        <p class="lead">Se você já está familiarizado com o dimensionamento de elementos estruturais
+          de concreto armado então pode começar um novo projeto. Se você não lembra muito bem como
+          se faz, tente rodar um dos nossos exemplos.</p>
+        <div class="row justify-content-center">
+          <div class="btn-group btn-group" role="group">
+            <a type="button" class="btn btn-md btn-outline-secondary" href='exemplo1'>
+            <i class="fas fa-pen-fancy"></i> Exemplo 1</a><p></p>
+            <a type="button" class="btn btn-md btn-outline-secondary" href='exemplo2'>
+            <i class="fas fa-feather-alt"></i> Exemplo 2</a>
+            <a type="button" class="btn btn-md btn-outline-secondary" href='exemplo2'>
+            <i class="fas fa-feather-alt"></i> Exemplo 2</a>
+          </div>
+        </div>
+
+      </div>
+
+      </div>
+    </div>
+{% endblock %}
