@@ -168,5 +168,51 @@ def detalhamento_flexao(Dic):
             Sec['ro_ols'] = d[1]
     Sec['peso_ols'] = Sec['ro_ols']*(Sec['comp_ols']/100)*nbs # Peso total kg
 
-    print(Sec)
+
+    xi = (Sec['c']*10) + Sec['ot'] + (Sec['ol']/2)
+    yi = Sec['h'] - ((Sec['c']*10) + Sec['ot'] + (Sec['ol']/2))
+
+    xs = (Sec['c']*10) + Sec['ot'] + (Sec['ols']/2)
+    ys = xs
+
+
+    if Sec['Mk'] < 0:
+        yi = (Sec['c']*10) + Sec['ot'] + (Sec['ol']/2)
+        ys = Sec['h'] - ((Sec['c']*10) + Sec['ot'] + (Sec['ols']/2))
+
+
+
+        #   conta feita em milimetros
+    c = Sec['c']*10
+    ahult = 0
+    nbhul = 0
+    if nc*nbmax != nb:
+        k = nc - 1
+        nbult = nb - (k*nbmax)
+        if nbult > 1:
+            ahult = (Sec['bw'] - (nbult*Sec['ol'] + ((c+Sec['ot'])*2)))/(nbult-1)
+
+
+
+
+    P = [] # Matriz de posição das barras
+    i = 1 # Contador de barras
+    k = 1 # Contador de camadas
+    while i < Sec['nb'] + 1 :
+        if cam == nc:
+            ah = ahult
+
+        P.append([xi, yi])
+        xi +=
+        if k == Sec['nbmax']:
+            xi = (Sec['c']*10) + Sec['ot'] + (Sec['ol']/2)
+            yi +=  Sec['ol'] + (ave*10)
+            k = 1
+            cam = 1
+
+        i += 1
+        k += 1
+
+
+
     return (Sec)

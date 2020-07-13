@@ -79,7 +79,7 @@ def exemplo1():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/exemplo1.html', logo6 = logo6)
+        return render_template('pt/exmplo1.html', logo6 = logo6)
 
 @app.route("/exemplo2", methods = ["POST", "GET"])
 def exemplo2():
@@ -108,6 +108,89 @@ def exemplo2():
             return redirect(url_for("resultados"))
         return render_template('pt/exemplo2.html', logo6 = logo6)
 
+@app.route("/exemplo3", methods = ["POST", "GET"])
+def exemplo3():
+    if request.method == "POST":
+        dimen = {}
+        for info in request.form:           #retira informação dos inputs
+            value = request.form[info]
+            if value.isnumeric() == True:
+                value = float(value)
+            dimen[info] = value
+
+
+        Dic = conversao_unidades(dimen)
+        Dic = dimensionar(Dic)
+        if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
+            return redirect(url_for("erroMomento"))
+
+        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+            #É necessário um redimencionamento ou aumento do fck''')
+            return redirect(url_for("erroBiela"))
+
+        session["dic"] = Dic
+        return redirect(url_for("resultados"))
+    else:
+        if "user" in session:
+            return redirect(url_for("resultados"))
+        return render_template('pt/exemplo3.html', logo6 = logo6)
+
+@app.route("/exemplo4", methods = ["POST", "GET"])
+def exemplo4():
+    if request.method == "POST":
+        dimen = {}
+        for info in request.form:           #retira informação dos inputs
+            value = request.form[info]
+            if value.isnumeric() == True:
+                value = float(value)
+            dimen[info] = value
+
+
+        Dic = conversao_unidades(dimen)
+        Dic = dimensionar(Dic)
+        if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
+            return redirect(url_for("erroMomento"))
+
+        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+            #É necessário um redimencionamento ou aumento do fck''')
+            return redirect(url_for("erroBiela"))
+
+        session["dic"] = Dic
+        return redirect(url_for("resultados"))
+    else:
+        if "user" in session:
+            return redirect(url_for("resultados"))
+        return render_template('pt/exemplo4.html', logo6 = logo6)
+
+@app.route("/exemplo5", methods = ["POST", "GET"])
+def exemplo5():
+    if request.method == "POST":
+        dimen = {}
+        for info in request.form:           #retira informação dos inputs
+            value = request.form[info]
+            if value.isnumeric() == True:
+                value = float(value)
+            dimen[info] = value
+
+
+        Dic = conversao_unidades(dimen)
+        Dic = dimensionar(Dic)
+        if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
+            return redirect(url_for("erroMomento"))
+
+        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+            #É necessário um redimencionamento ou aumento do fck''')
+            return redirect(url_for("erroBiela"))
+
+        session["dic"] = Dic
+        return redirect(url_for("resultados"))
+    else:
+        if "user" in session:
+            return redirect(url_for("resultados"))
+        return render_template('pt/exemplo5.html', logo6 = logo6)
+
+
+        
 
 from viga.detalhamento_flexao import detalhamento_flexao
 
