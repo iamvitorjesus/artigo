@@ -79,7 +79,7 @@ def exemplo1():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/exmplo1.html', logo6 = logo6)
+        return render_template('pt/exemplo1.html', logo6 = logo6)
 
 @app.route("/exemplo2", methods = ["POST", "GET"])
 def exemplo2():
@@ -190,7 +190,7 @@ def exemplo5():
         return render_template('pt/exemplo5.html', logo6 = logo6)
 
 
-        
+
 
 from viga.detalhamento_flexao import detalhamento_flexao
 
@@ -203,6 +203,7 @@ def resultados():
                 value = float(request.form[x])
                 Dic[x] = value
             Dic = detalhamento_flexao(Dic)
+            print(Dic)
             return render_template('pt/resultados.html', info = Dic, logo6 = logo6)
         else:
             return render_template('pt/resultados.html', info = Dic, logo6 = logo6)

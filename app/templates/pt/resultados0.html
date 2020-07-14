@@ -318,166 +318,166 @@
 
       </div>
 
-      <div class="col-lg-6">
-        <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
-        {% if info['Modelo'] == 2 %}
-          <p class="text-justify">A NBR 6118 admite que o ângulo de inclinação
-            das diagonais de compressão (&#629;) varie livrimente entre 30&#778;
-            e 45&#778; e que a parcela V<sub>c</sub> sofra redução com aumento
-            de Vsd.</p>
+        <div class="col-lg-6">
+          <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
+          {% if info['Modelo'] == 2 %}
+            <p class="text-justify">A NBR 6118 admite que o ângulo de inclinação
+              das diagonais de compressão (&#629;) varie livrimente entre 30&#778;
+              e 45&#778; e que a parcela V<sub>c</sub> sofra redução com aumento
+              de Vsd.</p>
 
-        {% else %}
-          <p class="text-justify">A treliça clássica de Ritter-Mörsch é admitida
-            como forma de distribuição dos esforços dentro do concreto. O ângulo
-            de inclinação das bielas comprimidas é fixo em 45&#778;.</p>
+          {% else %}
+            <p class="text-justify">A treliça clássica de Ritter-Mörsch é admitida
+              como forma de distribuição dos esforços dentro do concreto. O ângulo
+              de inclinação das bielas comprimidas é fixo em 45&#778;.</p>
 
-        {% endif %}
+          {% endif %}
 
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Concreto:
-            <b>&#402<sub>ctd</sub></b> = 0.7 &#x22C5; &#402<sub>ctm</sub>/&#611<sub>f</sub> =
-            0.7 &#x22C5; 0.3 &#x22C5; (&#402<sub>ck</sub>)<sup>2/3</sup>/&#611<sub>f</sub> =
-            <b>{{(info['fctd']*10)|round(3,'common')}} MPa</b>.</li>
-          <li class="list-group-item">Concreto:
-            <b>&#402<sub>ctd2</sub></b> = 0.6 &#x22C5; &#593;<sub>v</sub> &#x22C5; &#402<sub>cd</sub> =
-            0.6 &#x22C5; (1 - &#402<sub>ck</sub>/250) &#x22C5; &#402<sub>cd</sub> =
-            0.6 &#x22C5; (1 - {{(info['fck'])|round(3,'common')}}/250) &#x22C5;
-            {{(info['fcd']*10)|round(3,'common')}} = {{(info['fcd2']*10)|round(3,'common')}} MPa
-            = <b>{{(info['fcd2'])|round(3,'common')}} kN/cm²</b>.
-          </li>
-          <li class="list-group-item">Aço:
-            <b>&#402<sub>ywd</sub></b> = &#402<sub>ywk</sub>/&#611<sub>s</sub> =
-            {{info['fywk']}}/{{info['gc']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.</li>
-          <li class="list-group-item">Carregamento:
-            <b>V<sub>sd</sub></b> = V<sub>k</sub> &#x22C5; &#611<sub>f</sub> =
-            {{info['Vk']}} &#x22C5; {{info['gf']}} = <b>{{(info['Vsd'])|round(3,'common')}} MPa</b>.
-          </li>
-        </ul>
-
-        <h6 class="text-center">Verificação da compressão nas bielas</h6>
-        <p class="text-justify">Para não ocorrer o esmagamento do concreto que compõe as bielas
-          comprimidas (diagonais inclinadas na treliça clássica) deve-se ter:
-          <strong>V<sub>sd</sub> &#8924; V<sub>rd2</sub></strong>. Onde V<sub>rd2</sub> é a
-          resistência de cálculo, relativa a ruína das diagonais comprimidas de
-          concreto.
-        </p>
-
-        {% if info['Modelo'] == 1 %}
-          <p class="text-justify"><b>V<sub>rd2</sub></b> = [&#402<sub>ctd2</sub>&#x22C5;b<sub>w</sub>&#x22C5;
-          0.9&#x22C5;d&#x22C5;(1 + cotan(&#593;))]/2 = {{info['fcd2']|round(3,'common')}}
-          &#x22C5; {{info['bw']}}&#x22C5;0.9&#x22C5;{{info['d']}}&#x22C5;(1 +
-          cotan({{info['a']}}))/2 = <b>{{info['Vrd2']|round(3,'common')}} kN</b>.</p>
-          <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
-          <p></p>
-        {% else %}
-          <p class="text-justify"><b>V<sub>rd2</sub></b> = &#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
-          0.9 &#x22C5; d &#x22C5; (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen²&#415; =
-          {{info['fcd2']|round(3,'common')}} &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5;
-          {{info['d']}} &#x22C5; (cotan({{info['t']}}) + cotan({{info['a']}})) &#x22C5;
-          sen²({{info['t']}}) = <b>{{info['Vrd2']|round(3,'common')}} kN</b>.</p>
-          <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
-          <p></p>
-        {% endif %}
-
-        <h6 class="text-center">Cálculo da armadura transversal</h6>
-        <p class="text-justify">V<sub>sd</sub> = V<sub>c</sub> + V<sub>sw</sub>. Onde,</p>
-        <p>V<sub>c</sub>: parcela da força cortante absorvida por mecanismos
-          complementares ao da treliça.</p>
-          <p class="font-italic"><strong>Mecanismos:</strong></p>
-          <ul class="list-unstyled">
-            <li>
-              <ul>
-                <li>Concreto não fissurado da porção comprimida;</li>
-                <li>Engrenamento entre os agregados;</li>
-                <li>Efeito de pino da armadura tracionada.</li>
-              </ul>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Concreto:
+              <b>&#402<sub>ctd</sub></b> = 0.7 &#x22C5; &#402<sub>ctm</sub>/&#611<sub>f</sub> =
+              0.7 &#x22C5; 0.3 &#x22C5; (&#402<sub>ck</sub>)<sup>2/3</sup>/&#611<sub>f</sub> =
+              <b>{{(info['fctd']*10)|round(3,'common')}} MPa</b>.</li>
+            <li class="list-group-item">Concreto:
+              <b>&#402<sub>ctd2</sub></b> = 0.6 &#x22C5; &#593;<sub>v</sub> &#x22C5; &#402<sub>cd</sub> =
+              0.6 &#x22C5; (1 - &#402<sub>ck</sub>/250) &#x22C5; &#402<sub>cd</sub> =
+              0.6 &#x22C5; (1 - {{(info['fck'])|round(3,'common')}}/250) &#x22C5;
+              {{(info['fcd']*10)|round(3,'common')}} = {{(info['fcd2']*10)|round(3,'common')}} MPa
+              = <b>{{(info['fcd2'])|round(3,'common')}} kN/cm²</b>.
+            </li>
+            <li class="list-group-item">Aço:
+              <b>&#402<sub>ywd</sub></b> = &#402<sub>ywk</sub>/&#611<sub>s</sub> =
+              {{info['fywk']}}/{{info['gc']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.</li>
+            <li class="list-group-item">Carregamento:
+              <b>V<sub>sd</sub></b> = V<sub>k</sub> &#x22C5; &#611<sub>f</sub> =
+              {{info['Vk']}} &#x22C5; {{info['gf']}} = <b>{{(info['Vsd'])|round(3,'common')}} MPa</b>.
             </li>
           </ul>
-        <p class="text-justify">V<sub>sw</sub>: parcela da força cortante
+
+          <h6 class="text-center">Verificação da compressão nas bielas</h6>
+          <p class="text-justify">Para não ocorrer o esmagamento do concreto que compõe as bielas
+            comprimidas (diagonais inclinadas na treliça clássica) deve-se ter:
+            <strong>V<sub>sd</sub> &#8924; V<sub>rd2</sub></strong>. Onde V<sub>rd2</sub> é a
+            resistência de cálculo, relativa a ruína das diagonais comprimidas de
+            concreto.
+          </p>
+
+          {% if info['Modelo'] == 1 %}
+            <p class="text-justify"><b>V<sub>rd2</sub></b> = [&#402<sub>ctd2</sub>&#x22C5;b<sub>w</sub>&#x22C5;
+            0.9&#x22C5;d&#x22C5;(1 + cotan(&#593;))]/2 = {{info['fcd2']|round(3,'common')}}
+            &#x22C5; {{info['bw']}}&#x22C5;0.9&#x22C5;{{info['d']}}&#x22C5;(1 +
+            cotan({{info['a']}}))/2 = <b>{{info['Vrd2']|round(3,'common')}} kN</b>.</p>
+            <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
+            <p></p>
+          {% else %}
+            <p class="text-justify"><b>V<sub>rd2</sub></b> = &#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
+            0.9 &#x22C5; d &#x22C5; (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen²&#415; =
+            {{info['fcd2']|round(3,'common')}} &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5;
+            {{info['d']}} &#x22C5; (cotan({{info['t']}}) + cotan({{info['a']}})) &#x22C5;
+            sen²({{info['t']}}) = <b>{{info['Vrd2']|round(3,'common')}} kN</b>.</p>
+            <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
+            <p></p>
+          {% endif %}
+
+          <h6 class="text-center">Cálculo da armadura transversal</h6>
+          <p class="text-justify">V<sub>sd</sub> = V<sub>c</sub> + V<sub>sw</sub>. Onde,</p>
+          <p>V<sub>c</sub>: parcela da força cortante absorvida por mecanismos
+            complementares ao da treliça.</p>
+            <p class="font-italic"><strong>Mecanismos:</strong></p>
+            <ul class="list-unstyled">
+              <li>
+                <ul>
+                  <li>Concreto não fissurado da porção comprimida;</li>
+                  <li>Engrenamento entre os agregados;</li>
+                  <li>Efeito de pino da armadura tracionada.</li>
+                </ul>
+              </li>
+            </ul>
+          <p class="text-justify">V<sub>sw</sub>: parcela da força cortante
             solicitante resistida pela armadura transversal.</p>
 
-        {% if info['Modelo'] == 1 %}
-          <p class="text-justify"><b>V<sub>c</sub></b> = V<sub>c0</sub> = 0.6 &#x22C5;
-            &#402<sub>ctd</sub> &#x22C5; b<sub>w</sub> &#x22C5; d = 0.6 &#x22C5;
-            {{info['fctd']|round(3, 'common')}} &#x22C5; {{info['bw']}} &#x22C5;
-            {{info['d']}} = <b>{{info['Vc']|round(3,'common')}} kN</b>.
-          </p>
-          <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
-            V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
-          </p>
-          <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
-            d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
-            {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
-            {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-            cos({{info['a']}}))) = <b>{{info['Asw']|round(2,'common')}} cm²/cm</b>.
-          </p>
-
-        {% else %}
-          <p>Para o modelo &#8545 de cálculo:</p>
-          {% if info['Vsd'] <= info['Vc0']%}
-            <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
-              V<sub>c1</sub> = V<sub>c0</sub> <strong>&#10230;</strong> para
-              V<sub>sd</sub> &#8924; V<sub>c0</sub>
-
+          {% if info['Modelo'] == 1 %}
+            <p class="text-justify"><b>V<sub>c</sub></b> = V<sub>c0</sub> = 0.6 &#x22C5;
+              &#402<sub>ctd</sub> &#x22C5; b<sub>w</sub> &#x22C5; d = 0.6 &#x22C5;
+              {{info['fctd']|round(3, 'common')}} &#x22C5; {{info['bw']}} &#x22C5;
+              {{info['d']}} = <b>{{info['Vc']|round(3,'common')}} kN</b>.
             </p>
             <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
-              V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
-              |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
+              V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
             </p>
-
             <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
               d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
               {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
               {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
               cos({{info['a']}}))) = <b>{{info['Asw']|round(2,'common')}} cm²/cm</b>.
             </p>
-          {% elif info['Vsd'] == info['Vrd2']%}
-            <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
-              V<sub>c1</sub> = 0 <strong>&#10230;</strong> para
-              V<sub>rd2</sub> = V<sub>sd</sub>
-            </p>
-            <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
-              V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
-              |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
-            </p>
 
-            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
-              d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
-              {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
-              {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}}))) = <b>{{info['Asw']|round(4,'common')}} cm²/cm</b>.
-            </p>
-          {% elif info['Vsd'] > info['Vc0']%}
-            <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
-              V<sub>c1</sub> = V<sub>c0</sub> &#x22C5; (V<sub>rd2</sub> -
-              V<sub>sd</sub>)/(V<sub>rd2</sub> - V<sub>c0</sub>)
-              <strong>&#10230;</strong> para V<sub>sd</sub> > V<sub>c0</sub>
-              <strong>&#10230;</strong>
-              <b>V<sub>c0</sub></b> = 0.6&#x22C5;&#402<sub>ctd</sub>&#x22C5;b<sub>w</sub>&#x22C5;d =
-              0.6 &#x22C5; {{info['fctd']|round(3, 'common')}} &#x22C5; {{info['bw']}} &#x22C5;
-                {{info['d']}} = <b>{{info['Vc0']|round(2,'common')}} kN</b> <
-                {{info['Vsd']|round(2,'common')}} kN.
-            </p>
-            <p><b>V<sub>c1</sub></b> = {{info['Vc0']|round(2,'common')}}&#x22C5;
-              ({{info['Vrd2']|round(2,'common')}} - {{info['Vsd']|round(2,'common')}})
-              /({{info['Vrd2']|round(2,'common')}} - {{info['Vc0']|round(2,'common')}})
-              = <b>{{info['Vc1']|round(2,'common')}} kN</b>.</p>
+          {% else %}
+          <p>Para o modelo &#8545 de cálculo:</p>
+            {% if info['Vsd'] <= info['Vc0']%}
+              <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
+                V<sub>c1</sub> = V<sub>c0</sub> <strong>&#10230;</strong> para
+                V<sub>sd</sub> &#8924; V<sub>c0</sub>
 
-            <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
-              V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
-              |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
-            </p>
+              </p>
+              <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
+                V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
+                |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
+              </p>
 
-            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
-              d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
-              {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
-              {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}}))) = <b>{{info['Asw']|round(4,'common')}} cm²/cm</b>.
+              <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
+                d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
+                {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+                cos({{info['a']}}))) = <b>{{info['Asw']|round(2,'common')}} cm²/cm</b>.
+              </p>
+            {% elif info['Vsd'] == info['Vrd2']%}
+              <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
+                V<sub>c1</sub> = 0 <strong>&#10230;</strong> para
+                V<sub>rd2</sub> = V<sub>sd</sub>
+              </p>
+              <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
+                V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
+                |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
+              </p>
 
-            </p>
+              <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
+                d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
+                {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+                cos({{info['a']}}))) = <b>{{info['Asw']|round(4,'common')}} cm²/cm</b>.
+              </p>
+            {% elif info['Vsd'] > info['Vc0']%}
+              <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
+                V<sub>c1</sub> = V<sub>c0</sub> &#x22C5; (V<sub>rd2</sub> -
+                V<sub>sd</sub>)/(V<sub>rd2</sub> - V<sub>c0</sub>)
+                <strong>&#10230;</strong> para V<sub>sd</sub> > V<sub>c0</sub>
+                <strong>&#10230;</strong>
+                <b>V<sub>c0</sub></b> = 0.6&#x22C5;&#402<sub>ctd</sub>&#x22C5;b<sub>w</sub>&#x22C5;d =
+                0.6 &#x22C5; {{info['fctd']|round(3, 'common')}} &#x22C5; {{info['bw']}} &#x22C5;
+                  {{info['d']}} = <b>{{info['Vc0']|round(2,'common')}} kN</b> <
+                  {{info['Vsd']|round(2,'common')}} kN.
+              </p>
+              <p><b>V<sub>c1</sub></b> = {{info['Vc0']|round(2,'common')}}&#x22C5;
+                ({{info['Vrd2']|round(2,'common')}} - {{info['Vsd']|round(2,'common')}})
+                /({{info['Vrd2']|round(2,'common')}} - {{info['Vc0']|round(2,'common')}})
+                = <b>{{info['Vc1']|round(2,'common')}} kN</b>.</p>
 
+              <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
+                V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
+                |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
+              </p>
+
+              <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
+                d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
+                {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+                cos({{info['a']}}))) = <b>{{info['Asw']|round(4,'common')}} cm²/cm</b>.
+
+              </p>
+
+            {% endif %}
           {% endif %}
-        {% endif %}
 
 
 
@@ -486,96 +486,64 @@
 
 
             <!--  -->
-        <form method="post">
-          <div class="row marketing">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">&Oslash<sub>l</sub></span>
+          <form method="post">
+            <div class="row marketing">
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">&Oslash<sub>l</sub></span>
+                  </div>
+                    <select name="ol" class="custom-select" id="inputGroupSelect01">
+                      <option selected>Diâmetro da Armadura Tração</option>
+                      <option value="5.0">5.0</option>
+                      <option value="6.3">6.3</option>
+                      <option value="8.0">8.0</option>
+                      <option value="10.0">10.0</option>
+                      <option value="12.5">12.5</option>
+                      <option value="16.0">16.0</option>
+                      <option value="20.0">20.0</option>
+                      <option value="22.0">22.0</option>
+                      <option value="25.0">25.0</option>
+                      <option value="32.0">32.0</option>
+                      <option value="40.0">40.0</option>
+                    </select>
+                <div class="input-group-append">
+                  <span class="input-group-text">mm</span>
                 </div>
-                  <select name="ol" class="custom-select" id="inputGroupSelect01">
-                    <option selected>Diâmetro da Armadura Tração</option>
-                    <option value="5.0">5.0</option>
-                    <option value="6.3">6.3</option>
-                    <option value="8.0">8.0</option>
-                    <option value="10.0">10.0</option>
-                    <option value="12.5">12.5</option>
-                    <option value="16.0">16.0</option>
-                    <option value="20.0">20.0</option>
-                    <option value="22.0">22.0</option>
-                    <option value="25.0">25.0</option>
-                    <option value="32.0">32.0</option>
-                    <option value="40.0">40.0</option>
-                  </select>
-              <div class="input-group-append">
-                <span class="input-group-text">mm</span>
               </div>
-            </div>
-          </div><p></p>
+            </div><p></p>
 
 
-          <div class="row marketing">
-
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">&Oslash<sub>t</sub></span>
-              </div>
-              <select name="ot" class="custom-select" id="inputGroupSelect01">
-                <option selected>Diâmetro da Armadura Transversal</option>
-                <option value="5.0">4.2</option>
-                <option value="5.0">5.0</option>
-                <option value="6.3">6.3</option>
-                <option value="8.0">8.0</option>
-                <option value="10.0">10.0</option>
-                <option value="12.5">12.5</option>
-              </select>
-              <div class="input-group-append">
-                <span class="input-group-text">mm</span>
-              </div>
-            </div>
-          </div><p></p>
-
-
-          {% if info['Msdlim'] < info['Msd'] %}
             <div class="row marketing">
 
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">&Oslash<sub>l</sub>'</span>
+                  <span class="input-group-text">&Oslash<sub>t</sub></span>
                 </div>
-                <select name="ols" class="custom-select" id="inputGroupSelect01">
-                  <option selected>Diâmetro da Armadura Compressão</option>
+                <select name="ot" class="custom-select" id="inputGroupSelect01">
+                  <option selected>Diâmetro da Armadura Transversal</option>
+                  <option value="5.0">4.2</option>
                   <option value="5.0">5.0</option>
                   <option value="6.3">6.3</option>
                   <option value="8.0">8.0</option>
                   <option value="10.0">10.0</option>
                   <option value="12.5">12.5</option>
-                  <option value="16.0">16.0</option>
-                  <option value="20.0">20.0</option>
-                  <option value="22.0">22.0</option>
-                  <option value="25.0">25.0</option>
-                  <option value="32.0">32.0</option>
-                  <option value="40.0">40.0</option>
                 </select>
                 <div class="input-group-append">
                   <span class="input-group-text">mm</span>
                 </div>
               </div>
             </div><p></p>
-          {% endif %}
 
-          {% if info['h'] > 60 %}
-            <h6 class="text-center">Armadura de Pele</h6>
-            <p>A<sub>sp,face</sub> = 0.10 % &#x22C5; b<sub>w</sub>&#x22C5;h =  0.10 % &#x22C5;
-            {{info['bw']|round(2,'common')}}&#x22C5;{{info['h']|round(2,'common')}} =
-            <strong>{{info['Asp_face']|round(2,'common')}} cm²/face.</strong></p>
 
-            <div class="row marketing">
-              <div class="input-group">
+            {% if info['Msdlim'] < info['Msd'] %}
+              <div class="row marketing">
+
+                <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">&Oslash<sub>p</sub></span>
+                    <span class="input-group-text">&Oslash<sub>l</sub>'</span>
                   </div>
-                  <select name="op" class="custom-select" id="inputGroupSelect01">
-                    <option selected>Diâmetro da Armadura de Pele</option>
+                  <select name="ols" class="custom-select" id="inputGroupSelect01">
+                    <option selected>Diâmetro da Armadura Compressão</option>
                     <option value="5.0">5.0</option>
                     <option value="6.3">6.3</option>
                     <option value="8.0">8.0</option>
@@ -588,35 +556,70 @@
                     <option value="32.0">32.0</option>
                     <option value="40.0">40.0</option>
                   </select>
+                  <div class="input-group-append">
+                    <span class="input-group-text">mm</span>
+                  </div>
+                </div>
+              </div><p></p>
+            {% endif %}
 
+            {% if info['h'] > 60 %}
+              <h6 class="text-center">Armadura de Pele</h6>
+              <p>A<sub>sp,face</sub> = 0.10 % &#x22C5; b<sub>w</sub>&#x22C5;h =  0.10 % &#x22C5;
+              {{info['bw']|round(2,'common')}}&#x22C5;{{info['h']|round(2,'common')}} =
+              <strong>{{info['Asp_face']|round(2,'common')}} cm²/face.</strong></p>
+
+              <div class="row marketing">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">&Oslash<sub>p</sub></span>
+                    </div>
+                    <select name="op" class="custom-select" id="inputGroupSelect01">
+                      <option selected>Diâmetro da Armadura de Pele</option>
+                      <option value="5.0">5.0</option>
+                      <option value="6.3">6.3</option>
+                      <option value="8.0">8.0</option>
+                      <option value="10.0">10.0</option>
+                      <option value="12.5">12.5</option>
+                      <option value="16.0">16.0</option>
+                      <option value="20.0">20.0</option>
+                      <option value="22.0">22.0</option>
+                      <option value="25.0">25.0</option>
+                      <option value="32.0">32.0</option>
+                      <option value="40.0">40.0</option>
+                    </select>
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">mm</span>
+                  </div>
+                </div>
+              </div><p></p>
+
+            {% endif %}
+
+            <div class="row marketing">
+              <label for="basic-url">Ancoragem da armadura tracionada</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Tipo gancho</span>
+                </div>
+                <select name="ganchol" class="custom-select" id="inputGroupSelect01">
+                  <option value="1">Semicirculares</option>
+                  <option value="2">Em ângulo de 45°</option>
+                  <option value="3">Em ângulo reto</option>
+                </select>
                 <div class="input-group-append">
                   <span class="input-group-text">mm</span>
                 </div>
               </div>
             </div><p></p>
 
-          {% endif %}
 
-          <div class="row marketing">
-            <label for="basic-url">Ancoragem da armadura tracionada</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Tipo gancho</span>
-              </div>
-              <select name="ganchol" class="custom-select" id="inputGroupSelect01">
-                <option value="1">Semicirculares</option>
-                <option value="2">Em ângulo de 45°</option>
-                <option value="3">Em ângulo reto</option>
-              </select>
-              <div class="input-group-append">
-                <span class="input-group-text">mm</span>
-              </div>
+
+
+            <div class="row justify-content-center mb-5">
+              <input type="submit" class="btn btn-template" value="Escolher"></input>
             </div>
-          </div><p></p>
-
-          <div class="row justify-content-center mb-5">
-            <input type="submit" class="btn btn-template" value="Escolher"></input>
-          </div>
 
 
             {% if 'ol' in info %}  <!-- DETALHAMENTO DA SEÇÃO TRANSVERSAL -->
@@ -788,7 +791,7 @@
                       <dd class="col-sm-8">Número de camadas necessárias.</dd>
                     {% endif %}
                   </dl>
-              {% endif %}
+            {% endif %}
 
 
             <div class="row justify-content-center">
@@ -798,7 +801,7 @@
 
 
           {% if 'ol' in info %}
-          <h5 class="text-center">Tabela de Aços</h5>
+           <h5 class="text-center">Tabela de Aços</h5>
             <table class="table">
               <thead class="thead-dark">
                 <tr>
@@ -839,23 +842,42 @@
                 {% endif %}
               </tbody>
             </table><p></p>
-          {% endif %}
+            {% endif %}
 
 
             <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
-          <script>
+            <script>
             //Dados Gerais
               var bw = {{info['bw']}}*10;
               var h = {{info['h']}}*10;
               var c = {{info['c']}}*10;
             //Dados da Armadura tracionada
+              var aho = {{info['aho']}}*10;
+              var ave = {{info['ave']}}*10;
+              var ah = {{info['ah']}}*10;
+              var nb = {{info['nb']}};
+              var nbmax = {{info['nbmax']}};
+              var nc = {{info['nc']}};
               var ol = {{info['ol']}};
               var ot = {{info['ot']}};
             //Dados da Armadura compremida
+              var ahos = {{info['ahos']}}*10;
+              var aves = {{info['aves']}}*10;
+              var ahs = {{info['ahs']}}*10;
+              var nbs = {{info['nbs']}};
+              var nbmaxs = {{info['nbmaxs']}};
+              var ncs = {{info['ncs']}};
               var ols = {{info['ols']}};
             //Posição das Armaduras tracionada e Comprimida
-              //var p = {{info['P']}};
-              var p = [[35,465],[50,430],[170,430],[22,30],[100,30]];
+              var posy = h-(c+ot+(ol/2));
+              var posx = c+ot+(ol/2);
+              var posxs = c+ot+(ols/2);
+              var posys = c+ot+(ols/2);
+              if (mk < 0){ //Se o Momento for (-) Armadura tracionada em cima
+                posy = c+ot+(ol/2);
+                posys = h - (c+ot+(ols/2));
+              }
+
 
             //JS-HTML5 Canvas
               var canv = document.getElementById("myCanvas");
@@ -866,27 +888,79 @@
               cnv.fillRect(0, 0, bw, h);
 
             //Armadura Transversal
-              cnv.beginPath();
+              cnv.beginPath(); ///
               var cord1 = c+(ot/2);
               var cord2 = bw-(c*2)-(ot);
               var cord3 = h-(c*2)-(ot);
-
               cnv.lineWidth = ot;
               cnv.strokeRect(cord1, cord1, cord2 , cord3);
 
-            //Armadura Tracionada + Armadura Comprimida
-              for (var i of p){
-
-                var posx = i[0];
-                var posy = i[1];
+            //Armadura Tracionada
+              var ahult = 0;
+              var nbult = 0;
+              if (nc*nbmax != nb){
+                var k = nc - 1;
+                nbult = nb - (k*nbmax);
+                if (nbult > 1){
+                  ahult = (bw - (nbult*ol + ((c+ot)*2)))/(nbult-1);
+                }
+              }
+              var i = 1;
+              var k = 1; //Contador de barras
+              var cam = 1; //Contador de camadas
+              while (i < nb+1) {
+                if (cam == nc){
+                  ah = ahult;
+                }
 
             	  cnv.beginPath();
                 cnv.arc(posx, posy, ol/2, 0, Math.PI*2);
                 cnv.fillStyle = 'black';
                 cnv.fill();
-
+                posx = posx + ah + (ol);
+                if (k == nbmax) {
+                  cam++;
+                  k = 0;
+                  posx = c+ot+(ol/2);
+                  posy = posy - ave - ol;
+                }
+                k++;
+                i++;
               }
 
+              //Armadura Comprimida
+              var ahults = 0;
+              var nbults = 0;
+              if (ncs*nbmaxs != nbs){
+                var z = ncs - 1;
+                nbults = nbs - (z*nbmaxs);
+                if (nbults > 1){
+                  ahults = (bw - (nbults*ols + ((c+ot)*2)))/(nbults-1);
+
+                }
+              }
+              var z = 1;
+              var j = 1;
+              var cams = 1;
+              while (j < nbs+1) {
+                if (cams == ncs){
+                  ahs = ahults;
+                }
+
+                cnv.beginPath();
+                cnv.arc(posxs, posys, ols/2, 0, Math.PI*2);
+                cnv.fillStyle = 'black';
+                cnv.fill();
+                posxs = posxs + ahs + (ols);
+                if (z == nbmaxs) {
+                  cams++;
+                  z = 0;
+                  posxs = c+ot+(ols/2);
+                  posys = posys - aves - ols;
+                }
+                z++;
+                j++;
+              }
             </script>
           </form>
 

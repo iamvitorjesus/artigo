@@ -45,8 +45,7 @@ def detalhamento_flexao(Dic):
     Ab = (math.pi)*(float(ol)**2)/4 #Área de uma barra em cm² *
     nb = Sec['As']/Ab #Número de barras necessárias
     nb = math.ceil(nb) #Número real de barras
-    Sec['nb']= nb # Número  real de barras
-    Sec['Ab'] = Ab
+    Sec['nb']= nb # Número  real de barras Sec['Ab'] = Ab
 
     Aef = nb*Ab #Área efetiva de aço
     Aef = round(Aef,2)
@@ -168,51 +167,93 @@ def detalhamento_flexao(Dic):
             Sec['ro_ols'] = d[1]
     Sec['peso_ols'] = Sec['ro_ols']*(Sec['comp_ols']/100)*nbs # Peso total kg
 
+        # Dados da Seção transversal
+    h = Sec['h']*10
+    bw = Sec['bw']*10
+    c = Sec['c']*10
 
-    xi = (Sec['c']*10) + Sec['ot'] + (Sec['ol']/2)
-    yi = Sec['h'] - ((Sec['c']*10) + Sec['ot'] + (Sec['ol']/2))
+        # Dados da Armadura tracionada
+    aho = aho*10
+    ave = ave*10
+    ah = ah*10
 
-    xs = (Sec['c']*10) + Sec['ot'] + (Sec['ols']/2)
+        # Dados da Armadura compremida
+    ahos = ahos*10
+    aves =aves*10
+    ahs = ahs*10
+
+
+
+        # Posição das Armaduras tracionada e Comprimida
+    xi = c + Sec['ot'] + (Sec['ol']/2)
+    yi = h - (c + Sec['ot'] + (Sec['ol']/2))
+
+    xs = c + Sec['ot'] + (Sec['ols']/2)
     ys = xs
 
 
     if Sec['Mk'] < 0:
-        yi = (Sec['c']*10) + Sec['ot'] + (Sec['ol']/2)
-        ys = Sec['h'] - ((Sec['c']*10) + Sec['ot'] + (Sec['ols']/2))
+        yi = c + Sec['ot'] + (Sec['ol']/2)
+        ys = c + Sec['ot'] + (Sec['ols']/2)
 
 
 
-        #   conta feita em milimetros
-    c = Sec['c']*10
+        # Armadura Tracionada
     ahult = 0
     nbhul = 0
     if nc*nbmax != nb:
         k = nc - 1
         nbult = nb - (k*nbmax)
         if nbult > 1:
-            ahult = (Sec['bw'] - (nbult*Sec['ol'] + ((c+Sec['ot'])*2)))/(nbult-1)
-
-
-
+            ahult = (bw - (nbult*Sec['ol'] + ((c+Sec['ot'])*2)))/(nbult-1)
 
     P = [] # Matriz de posição das barras
     i = 1 # Contador de barras
     k = 1 # Contador de camadas
+    cam = 1
     while i < Sec['nb'] + 1 :
         if cam == nc:
             ah = ahult
 
         P.append([xi, yi])
-        xi +=
-        if k == Sec['nbmax']:
-            xi = (Sec['c']*10) + Sec['ot'] + (Sec['ol']/2)
-            yi +=  Sec['ol'] + (ave*10)
+        xi += ah + (Sec['ol'])
+        if k == nbmax:
+            xi = c + Sec['ot'] + (Sec['ol']/2)
+            yi +=  Sec['ol'] + ave
             k = 1
             cam = 1
-
         i += 1
         k += 1
 
+    ahults = 0
+    nbhuls = 0
+    if ncs*nbmaxs != nbs:
+        k = ncs - 1
+        nbults = nbs - (k*nbmaxs)
+        if nbults > 1:
+            ahults = (bw - (nbults*Sec['ols'] + ((c+Sec['ot'])*2)))/(nbults-1)
 
 
+        # Armadura comprimida
+    # Matriz de posição das barras
+    j = 1 # Contador de barras
+    v = 1 # Contador de camadas
+    cams = 1
+    while j < Sec['nbs'] + 1:
+        if cams == ncs:
+            ahs = ahults
+
+        P.append([xs, ys])
+        xs += ahs + (Sec['ols'])
+        if v == nbmaxs:
+            xs = c + Sec['ot'] + (Sec['ols']/2)
+            ys +=  Sec['ols'] + aves
+            v = 1
+            cams = 1
+        j += 1
+        v += 1
+    Sec['P'] = P
+
+
+    print(Sec)
     return (Sec)
