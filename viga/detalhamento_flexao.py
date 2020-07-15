@@ -45,7 +45,8 @@ def detalhamento_flexao(Dic):
     Ab = (math.pi)*(float(ol)**2)/4 #Área de uma barra em cm² *
     nb = Sec['As']/Ab #Número de barras necessárias
     nb = math.ceil(nb) #Número real de barras
-    Sec['nb']= nb # Número  real de barras Sec['Ab'] = Ab
+    Sec['nb']= nb # Número  real de barras
+    Sec['Ab'] = Ab
 
     Aef = nb*Ab #Área efetiva de aço
     Aef = round(Aef,2)
@@ -115,6 +116,8 @@ def detalhamento_flexao(Dic):
 
     Sec['lb1disp'] = Sec['t1'] - Sec['c']
     Sec['lb2disp'] = Sec['t2'] - Sec['c']
+
+
         # Armadura de Pele
 
     if Sec['h'] > 60:
@@ -124,7 +127,7 @@ def detalhamento_flexao(Dic):
         Sec['lbpmin'] = max(0.3*Sec['lbp'], Sec['op'], 10)
 
         nsp_face = math.ceil(Sec['Asp_face']/((math.pi)*((Sec['op']/10)**2)/4))
-        e = Sec['d']/nsp_face
+        e = (Sec['d'])/nsp_face
         if e > 20:
             e = 20
         Sec['nsp_face'] = nsp_face
@@ -168,6 +171,8 @@ def detalhamento_flexao(Dic):
     Sec['peso_ols'] = Sec['ro_ols']*(Sec['comp_ols']/100)*nbs # Peso total kg
 
         # Dados da Seção transversal
+    esc = 1/2
+    Sec['esc'] = esc
     h = Sec['h']*10
     bw = Sec['bw']*10
     c = Sec['c']*10
@@ -184,12 +189,14 @@ def detalhamento_flexao(Dic):
 
 
 
-        # Posição das Armaduras tracionada e Comprimida
+        # Posicionando das Armaduras tracionada e Comprimida
     xi = c + Sec['ot'] + (Sec['ol']/2)
     yi = h - (c + Sec['ot'] + (Sec['ol']/2))
 
     xs = c + Sec['ot'] + (Sec['ols']/2)
     ys = xs
+
+
 
 
     if Sec['Mk'] < 0:
@@ -200,14 +207,15 @@ def detalhamento_flexao(Dic):
 
         # Armadura Tracionada
     ahult = 0
-    nbhul = 0
     if nc*nbmax != nb:
         k = nc - 1
         nbult = nb - (k*nbmax)
         if nbult > 1:
             ahult = (bw - (nbult*Sec['ol'] + ((c+Sec['ot'])*2)))/(nbult-1)
+    else:
+        ahult = ah
 
-    P = [] # Matriz de posição das barras
+    Pi = [] # Matriz de posição das barras
     i = 1 # Contador de barras
     k = 1 # Contador de camadas
     cam = 1
@@ -215,27 +223,32 @@ def detalhamento_flexao(Dic):
         if cam == nc:
             ah = ahult
 
-        P.append([xi, yi])
+        Pi.append([xi*esc, yi*esc])
         xi += ah + (Sec['ol'])
         if k == nbmax:
             xi = c + Sec['ot'] + (Sec['ol']/2)
-            yi +=  Sec['ol'] + ave
-            k = 1
-            cam = 1
+            yi -=  (Sec['ol'] + ave)
+            k = 0
+            cam += 1
         i += 1
         k += 1
 
+
     ahults = 0
-    nbhuls = 0
     if ncs*nbmaxs != nbs:
         k = ncs - 1
         nbults = nbs - (k*nbmaxs)
         if nbults > 1:
             ahults = (bw - (nbults*Sec['ols'] + ((c+Sec['ot'])*2)))/(nbults-1)
+    else:
+        ahults = ahs
+
+    Sec['Pi'] = Pi
+
 
 
         # Armadura comprimida
-    # Matriz de posição das barras
+    Ps = []# Matriz de posição das barras
     j = 1 # Contador de barras
     v = 1 # Contador de camadas
     cams = 1
@@ -243,16 +256,35 @@ def detalhamento_flexao(Dic):
         if cams == ncs:
             ahs = ahults
 
-        P.append([xs, ys])
+        Ps.append([xs*esc, ys*esc])
         xs += ahs + (Sec['ols'])
         if v == nbmaxs:
             xs = c + Sec['ot'] + (Sec['ols']/2)
-            ys +=  Sec['ols'] + aves
-            v = 1
-            cams = 1
+            ys +=  (Sec['ols'] + aves)
+            v = 0
+            cams += 1
         j += 1
         v += 1
-    Sec['P'] = P
+    Sec['Ps'] = Ps
+
+
+
+    if Sec['h'] > 60:
+        e = e*10
+        xp = c + Sec['ot'] + (Sec['op']/2)
+        yp = yi - e - (Sec['ol']/2)
+
+
+        Pp = []
+        m = 1
+        while m < Sec['nsp_face'] + 1:
+            Pp.append([xp*esc, yp*esc])
+            Pp.append([(bw-xp)*esc, yp*esc])
+            yp -=  (Sec['op'] + e)
+            m += 1
+        Sec['Pp'] = Pp
+
+
 
 
     print(Sec)

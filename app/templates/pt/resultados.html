@@ -244,11 +244,18 @@
             armadura disposta na zona de compressão servirá apenas para garantira a posição da armadura transversal
             durante a execução (porta estribo ou armadura de montagem), adotado-se 2 barras de 8.0 mm de diâmetro (2Ø8mm).
           </p>
+          {% if info['As'] == info['Asmin'] %}
+            <p>A<sub>s</sub> ⋜ A<sub>smin</sub> <strong>&#10230;</strong>
+              <b>A<sub>s</sub></b> = A<sub>smin</sub> = 0.15 %&#x22C5;b<sub>w</sub>&#x22C5;d =
+              <b>{{info['As']}} cm².</b>
+            </p>
 
-          <p><b>A<sub>s</sub></b> = M<sub>sd</sub>/(&#402<sub>yd</sub>&#x22C5;(d - 0.4&#x22C5;x)) =
-          {{info['Msd']|round(1,'common')}}/({{info['fyd']|round(3,'common')}}&#x22C5;
-          ({{info['d']|round(2,'common')}} - 0.4&#x22C5;{{info['x']|round(2,'common')}})) =
-          <strong>{{info['As']|round(2,'common')}} cm².</strong></p>
+          {% else %}
+            <p><b>A<sub>s</sub></b> = M<sub>sd</sub>/(&#402<sub>yd</sub>&#x22C5;(d - 0.4&#x22C5;x)) =
+            {{info['Msd']|round(1,'common')}}/({{info['fyd']|round(3,'common')}}&#x22C5;
+            ({{info['d']|round(2,'common')}} - 0.4&#x22C5;{{info['x']|round(2,'common')}})) =
+            <strong>{{info['As']|round(2,'common')}} cm².</strong></p>
+          {% endif %}
 
           <p class="text-justify">
             <ul class="list-group list-group-flush">
@@ -792,7 +799,8 @@
 
 
             <div class="row justify-content-center">
-                <canvas class="center" id="myCanvas" width="{{info['bw']*10}}" height="{{info['h']*10}}">
+                <canvas class="center" id="myCanvas" width="{{info['bw']*10}}*{{info['esc']}}"
+                height="{{info['h']*10}}*{{info['esc']}}">
                 </canvas>
             </div><p></p>
 
@@ -853,9 +861,15 @@
               var ot = {{info['ot']}};
             //Dados da Armadura compremida
               var ols = {{info['ols']}};
-            //Posição das Armaduras tracionada e Comprimida
-              //var p = {{info['P']}};
-              var p = [[35,465],[50,430],[170,430],[22,30],[100,30]];
+            //Posição das Armaduras
+              var pi = {{info['Pi']}};
+              var ps = {{info['Ps']}};
+              var pp = {{info['Pp']}};
+              var cord1 = c+(ot/2);
+              var cord2 = bw-(c*2)-(ot);
+              var cord3 = h-(c*2)-(ot);
+
+
 
             //JS-HTML5 Canvas
               var canv = document.getElementById("myCanvas");
@@ -863,25 +877,47 @@
 
             //Concreto
               cnv.fillStyle = "#d3d9df";
-              cnv.fillRect(0, 0, bw, h);
+              cnv.fillRect(0, 0, bw*{{info['esc']}}, h*{{info['esc']}});
 
             //Armadura Transversal
               cnv.beginPath();
-              var cord1 = c+(ot/2);
-              var cord2 = bw-(c*2)-(ot);
-              var cord3 = h-(c*2)-(ot);
 
-              cnv.lineWidth = ot;
-              cnv.strokeRect(cord1, cord1, cord2 , cord3);
+              cnv.lineWidth = ot*{{info['esc']}};
+              cnv.strokeRect(cord1*{{info['esc']}}, cord1*{{info['esc']}},
+                            cord2*{{info['esc']}}, cord3*{{info['esc']}});
 
             //Armadura Tracionada + Armadura Comprimida
-              for (var i of p){
+              for (var i of pi){
 
                 var posx = i[0];
                 var posy = i[1];
 
             	  cnv.beginPath();
-                cnv.arc(posx, posy, ol/2, 0, Math.PI*2);
+                cnv.arc(posx, posy, ol*{{info['esc']}}/2, 0, Math.PI*2);
+                cnv.fillStyle = 'black';
+                cnv.fill();
+
+              }
+
+              for (var i of ps){
+
+                var posx = i[0];
+                var posy = i[1];
+
+                cnv.beginPath();
+                cnv.arc(posx, posy, ols*{{info['esc']}}/2, 0, Math.PI*2);
+                cnv.fillStyle = 'black';
+                cnv.fill();
+
+              }
+
+              for (var i of pp){
+
+                var posx = i[0];
+                var posy = i[1];
+
+                cnv.beginPath();
+                cnv.arc(posx, posy, op*{{info['esc']}}/2, 0, Math.PI*2);
                 cnv.fillStyle = 'black';
                 cnv.fill();
 
