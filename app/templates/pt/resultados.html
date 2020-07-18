@@ -247,7 +247,7 @@
           {% if info['As'] == info['Asmin'] %}
             <p>A<sub>s</sub> ⋜ A<sub>smin</sub> <strong>&#10230;</strong>
               <b>A<sub>s</sub></b> = A<sub>smin</sub> = 0.15 %&#x22C5;b<sub>w</sub>&#x22C5;d =
-              <b>{{info['As']}} cm².</b>
+              <b>{{info['As']|round(2,'common')}} cm².</b>
             </p>
 
           {% else %}
@@ -629,8 +629,9 @@
             {% if 'ol' in info %}  <!-- DETALHAMENTO DA SEÇÃO TRANSVERSAL -->
               <h5 class="text-center">Detalhamento</h5><p></p>
 
-              <h6 class="text-center">Armadura comprimida</h6>
+
               {% if info['Msdlim'] >= info['Msd'] %}
+                <h6 class="text-center">Armadura de montagem</h6>
                 <dl class="row">
                   <dt class="col-sm-4">n<sub>b</sub>' = {{info['nbs']}}.</dt>
                   <dd class="col-sm-8">Número de barras necessárias.</dd>
@@ -647,11 +648,9 @@
                     envolvimento das mesmas pelo concreto. Maior falor entre 2 cm,
                     &Oslash<sub>l</sub>' cm e 1.2&#x22C5;D<sub>max</sub> cm.</dd>
 
-                  <dt class="col-sm-4">C = {{info['comp_ols']}} cm</dt>
-                  <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
-
                 </dl>
               {% else %}
+              <h6 class="text-center">Armadura comprimida</h6>
                 <dl class="row">
                   <dt class="col-sm-4">A<sub>s</sub>' =
                     {{info['Ass']|round(3,'common')}} cm²</dt>
@@ -683,8 +682,6 @@
                     <dd class="col-sm-8">Número de camadas necessárias.</dd>
                   {% endif %}
 
-                  <dt class="col-sm-4">C = {{info['comp_ols']}} cm</dt>
-                  <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
 
                 </dl>
 
@@ -716,18 +713,27 @@
                     envolvimento das mesmas pelo concreto. Maior falor entre 2 cm,
                     &Oslash<sub>l</sub>' cm e 1.2&#x22C5;D<sub>max</sub> cm.</dd>
 
-                  <dt class="col-sm-4">C = {{info['comp_ol']|round(2,'common')}} cm</dt>
-                  <dd class="col-sm-8">Comprimento do vão livre + ancoragem.</dd>
+                  {% if info['ah'] == info['aho'] %}
+                  <dt class="col-sm-4">S<sub>h</sub> = a<sub>h</sub> = {{info['aho']}} cm</dt>
+                  <dd class="col-sm-8">Espaço entre barras.</dd>
+
+                  {% else %}
+                  <dt class="col-sm-4">S<sub>h</sub> = {{info['ah']}} cm</dt>
+                  <dd class="col-sm-8">Espaço entre barras.</dd>
+                  {% endif %}
+
+                  <dt class="col-sm-4">d<sub>cg</sub> = {{info['dcg']|round(2,'common')}} cm</dt>
+                  <dd class="col-sm-8">Centro de gravidade da armadura tracionada.</dd>
 
                 </dl>
 
-                {% if info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
+                <!--{% if info['lb1disp'] < info['lblnec'] and info['lb2disp'] < info['lblnec'] %}
                   <div class="alert alert-dark rounded-pill" role="alert">
                   A dimenção do apoio deve ser <a href="novoprojeto" class="alert-link">
                     alterada </a>para que seja possível a ancoragem da armadura tracionada.
                 </div>
+                {% endif %}-->
 
-                {% endif %}
 
                 <dl class="row">
 
@@ -773,10 +779,6 @@
                       t<sub>1</sub> + t<sub>2</sub>)/S = {{info['ne']}}</dt>
                     <dd class="col-sm-8">Número total de estribos.</dd>
 
-                    <dt class="col-sm-4">C = b<sub>w</sub> + (h&#x22C5;r<sub>a</sub>)
-                      - (4&#x22C5;c) + 14 = {{info['comp_ot']}} cm</dt>
-                    <dd class="col-sm-8">Comprimento do estribo + ancoragem.</dd>
-
                   </dl>
 
                   <dl class="row">
@@ -799,13 +801,13 @@
 
 
             <div class="row justify-content-center">
-                <canvas class="center" id="myCanvas" width="{{info['bw']*10}}*{{info['esc']}}"
-                height="{{info['h']*10}}*{{info['esc']}}">
+                <canvas class="center" id="myCanvas" width="{{info['bw']*10}}"
+                height="{{info['h']*10}}">
                 </canvas>
             </div><p></p>
 
 
-          {% if 'ol' in info %}
+          <!-- {% if 'ol' in info %}
           <h5 class="text-center">Tabela de Aços</h5>
             <table class="table">
               <thead class="thead-dark">
@@ -847,11 +849,12 @@
                 {% endif %}
               </tbody>
             </table><p></p>
-          {% endif %}
+          {% endif %}  -->
 
 
             <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
           <script>
+              var esc = {{info['esc']}}
             //Dados Gerais
               var bw = {{info['bw']}}*10;
               var h = {{info['h']}}*10;
@@ -864,10 +867,11 @@
             //Posição das Armaduras
               var pi = {{info['Pi']}};
               var ps = {{info['Ps']}};
-              var pp = {{info['Pp']}};
-              var cord1 = c+(ot/2);
-              var cord2 = bw-(c*2)-(ot);
-              var cord3 = h-(c*2)-(ot);
+
+              var cord1 = (c+(ot/2))*esc;
+              var cord2 = (bw-(c*2)-(ot))*esc;
+              var cord3 = (h-(c*2)-(ot))*esc;
+
 
 
 
@@ -877,14 +881,14 @@
 
             //Concreto
               cnv.fillStyle = "#d3d9df";
-              cnv.fillRect(0, 0, bw*{{info['esc']}}, h*{{info['esc']}});
+              cnv.fillRect(0, 0, bw, h);
 
             //Armadura Transversal
               cnv.beginPath();
 
-              cnv.lineWidth = ot*{{info['esc']}};
-              cnv.strokeRect(cord1*{{info['esc']}}, cord1*{{info['esc']}},
-                            cord2*{{info['esc']}}, cord3*{{info['esc']}});
+              cnv.lineWidth = ot;
+              cnv.strokeRect(cord1, cord1,
+                            cord2, cord3);
 
             //Armadura Tracionada + Armadura Comprimida
               for (var i of pi){
@@ -893,35 +897,43 @@
                 var posy = i[1];
 
             	  cnv.beginPath();
-                cnv.arc(posx, posy, ol*{{info['esc']}}/2, 0, Math.PI*2);
+                cnv.arc(posx, posy, ol/2, 0, Math.PI*2);
                 cnv.fillStyle = 'black';
                 cnv.fill();
 
               }
 
-              for (var i of ps){
+              for (var j of ps){
 
-                var posx = i[0];
-                var posy = i[1];
+                var posx = j[0];
+                var posy = j[1];
 
                 cnv.beginPath();
-                cnv.arc(posx, posy, ols*{{info['esc']}}/2, 0, Math.PI*2);
+                cnv.arc(posx, posy, ols/2, 0, Math.PI*2);
                 cnv.fillStyle = 'black';
                 cnv.fill();
 
               }
 
-              for (var i of pp){
+              var mk = {{info['Mk']}}
 
-                var posx = i[0];
-                var posy = i[1];
+              if (mk < 0){
+                var pp = {{info['Pp']}};
+                var op = {{info['op']}}
+                for (var k of pp){
 
-                cnv.beginPath();
-                cnv.arc(posx, posy, op*{{info['esc']}}/2, 0, Math.PI*2);
-                cnv.fillStyle = 'black';
-                cnv.fill();
+                  var posx = k[0];
+                  var posy = k[1];
 
+                  cnv.beginPath();
+                  cnv.arc(posx, posy, op/2, 0, Math.PI*2);
+                  cnv.fillStyle = 'black';
+                  cnv.fill();
+
+                }
               }
+
+
 
             </script>
           </form>

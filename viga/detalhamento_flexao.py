@@ -171,8 +171,7 @@ def detalhamento_flexao(Dic):
     Sec['peso_ols'] = Sec['ro_ols']*(Sec['comp_ols']/100)*nbs # Peso total kg
 
         # Dados da Seção transversal
-    esc = 1/2
-    Sec['esc'] = esc
+    esc = Sec['esc']
     h = Sec['h']*10
     bw = Sec['bw']*10
     c = Sec['c']*10
@@ -201,7 +200,7 @@ def detalhamento_flexao(Dic):
 
     if Sec['Mk'] < 0:
         yi = c + Sec['ot'] + (Sec['ol']/2)
-        ys = c + Sec['ot'] + (Sec['ols']/2)
+        ys = h - (c + Sec['ot'] + (Sec['ols']/2))
 
 
 
@@ -285,7 +284,22 @@ def detalhamento_flexao(Dic):
         Sec['Pp'] = Pp
 
 
+    somaprod = 0
+    cm = 1
+    l = 0
 
+    while cm < nc:
+        p = Pi[l][1]
+        for pos in Pi:
+            if pos[1] != p:
+                p = pos[1]
+                break
+            l += 1
+        if cm == nc:
+            somaprod = (h - pos[1])*nbult
+        else:
+            somaprod = (h - pos[1])*nbmax
+        cm += 1
 
-    print(Sec)
+    Sec['dcg'] = somaprod/(nb*10)
     return (Sec)

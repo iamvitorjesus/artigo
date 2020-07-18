@@ -1,5 +1,6 @@
 def conversao_unidades(Dic):
         # Geometria
+    Dic['esc'] = 2/3
     h = Dic['h']
     unith = Dic['unith']
     bw = Dic['bw']
@@ -68,6 +69,13 @@ def conversao_unidades(Dic):
 
 
     Mk = Dic['Mk']
+    if type(Mk) == str:
+        Mk = Mk.split('-')
+        Mk = (-1)*int(Mk[1])
+
+    Dic['Mk'] = Mk
+
+
     unitMk = Dic['unitMk']
     if unitMk == 1:
         Mk = Mk*100
@@ -79,7 +87,7 @@ def conversao_unidades(Dic):
         Mk = ((Mk*10)*1000)*100
     elif unitMk == 6:
         Mk = (Mk*10)*1000
-    Dic['Mk'] = Mk ####
+     ####
 
     Vk = Dic['Vk']
     unitVk = Dic['unitVk']
