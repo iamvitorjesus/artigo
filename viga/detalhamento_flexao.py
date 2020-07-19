@@ -297,6 +297,7 @@ def detalhamento_flexao(Dic):
             l += 1
         if cm == nc:
             somaprod = (h - pos[1])*nbult
+            print(somaprod)
         else:
             somaprod = (h - pos[1])*nbmax
         cm += 1

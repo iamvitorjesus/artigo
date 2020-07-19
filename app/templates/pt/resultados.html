@@ -650,6 +650,46 @@
 
                 </dl>
               {% else %}
+
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">1</th>
+                    <th scope="col">2</th>
+                    <th scope="col">3</th>
+                    <th scope="col">4</th>
+                    <th scope="col">5</th>
+                    <th scope="col">6</th>
+                    <th scope="col">7</th>
+                    <th scope="col">8</th>
+                    <th scope="col">9</th>
+                    <th scope="col">10</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
               <h6 class="text-center">Armadura comprimida</h6>
                 <dl class="row">
                   <dt class="col-sm-4">A<sub>s</sub>' =
@@ -801,8 +841,8 @@
 
 
             <div class="row justify-content-center">
-                <canvas class="center" id="myCanvas" width="{{info['bw']*10}}"
-                height="{{info['h']*10}}">
+                <canvas class="center" id="myCanvas" width="{{info['bw']*10*info['esc']}}"
+                height="{{info['h']*10*info['esc']}}">
                 </canvas>
             </div><p></p>
 
@@ -854,7 +894,7 @@
 
             <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
           <script>
-              var esc = {{info['esc']}}
+              var esc = {{info['esc']}};
             //Dados Gerais
               var bw = {{info['bw']}}*10;
               var h = {{info['h']}}*10;
@@ -872,23 +912,19 @@
               var cord2 = (bw-(c*2)-(ot))*esc;
               var cord3 = (h-(c*2)-(ot))*esc;
 
-
-
-
             //JS-HTML5 Canvas
               var canv = document.getElementById("myCanvas");
               var cnv = canv.getContext("2d");
 
             //Concreto
               cnv.fillStyle = "#d3d9df";
-              cnv.fillRect(0, 0, bw, h);
+              cnv.fillRect(0, 0, bw*esc, h*esc);
 
             //Armadura Transversal
               cnv.beginPath();
 
               cnv.lineWidth = ot;
-              cnv.strokeRect(cord1, cord1,
-                            cord2, cord3);
+              cnv.strokeRect(cord1, cord1, cord2, cord3);
 
             //Armadura Tracionada + Armadura Comprimida
               for (var i of pi){
@@ -907,7 +943,6 @@
 
                 var posx = j[0];
                 var posy = j[1];
-
                 cnv.beginPath();
                 cnv.arc(posx, posy, ols/2, 0, Math.PI*2);
                 cnv.fillStyle = 'black';
@@ -915,34 +950,29 @@
 
               }
 
-              var mk = {{info['Mk']}}
+              var mk = {{info['Mk']}};
 
-              if (mk < 0){
-                var pp = {{info['Pp']}};
-                var op = {{info['op']}}
-                for (var k of pp){
-
-                  var posx = k[0];
-                  var posy = k[1];
-
-                  cnv.beginPath();
-                  cnv.arc(posx, posy, op/2, 0, Math.PI*2);
-                  cnv.fillStyle = 'black';
-                  cnv.fill();
-
-                }
-              }
-
-
+              //if (mk < 0){
+//
+              //  var pp = {{info['Pp']}};
+              //  var op = {{info['op']}};
+              //  for (var k of pp){
+//
+              //    var posx = k[0];
+              //    var posy = k[1];
+              //    cnv.beginPath();
+              //    cnv.arc(posx, posy, op/2, 0, Math.PI*2);
+              //    cnv.fillStyle = 'black';
+              //    cnv.fill();
+//
+              //  }
+              //}
 
             </script>
           </form>
 
 
         </div>
-
-
-
 
     </div>
   </div>

@@ -34,8 +34,6 @@ def novoprojeto():
             if value.isnumeric() == True:
                 value = float(value)
             dimen[info] = value
-
-
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
@@ -63,8 +61,6 @@ def exemplo1():
             if value.isnumeric() == True:
                 value = float(value)
             dimen[info] = value
-
-
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
@@ -90,8 +86,6 @@ def exemplo2():
             if value.isnumeric() == True:
                 value = float(value)
             dimen[info] = value
-
-
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
@@ -117,8 +111,6 @@ def exemplo3():
             if value.isnumeric() == True:
                 value = float(value)
             dimen[info] = value
-
-
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
@@ -144,8 +136,6 @@ def exemplo4():
             if value.isnumeric() == True:
                 value = float(value)
             dimen[info] = value
-
-
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
@@ -171,8 +161,6 @@ def exemplo5():
             if value.isnumeric() == True:
                 value = float(value)
             dimen[info] = value
-
-
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
@@ -188,8 +176,6 @@ def exemplo5():
         if "user" in session:
             return redirect(url_for("resultados"))
         return render_template('pt/exemplo5.html', logo6 = logo6)
-
-
 
 
 from viga.detalhamento_flexao import detalhamento_flexao
@@ -210,9 +196,11 @@ def resultados():
     else:
         return redirect(url_for("novoprojeto"))
 
+
 @app.route("/contato")
 def contato():
     return render_template('pt/contato.html', logo6 = logo6)
+
 
 @app.route("/menu", methods = ["GET"])
 def menu():
@@ -222,6 +210,7 @@ def menu():
 @app.route("/erroM", methods = ["GET"])
 def erroMomento():
     return render_template('pt/erroMomento.html', logo6 = logo6)
+
 
 @app.route("/erroB", methods = ["GET"])
 def erroBiela():
