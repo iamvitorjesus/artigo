@@ -634,11 +634,12 @@
 
 
           <!-- Tabela de aço -->
+          <h5 class="text-center">Área de aço por numero de barras e diâmetro</h5><p></p>
           <table class="table table-bordered table-sm table-responsive">
             <thead>
               <tr>
                 <th scope="col"></th>
-                <th scope="col" colspan="10" class='text-center'>Número de barras - Vigas</th>
+                <th scope="col" colspan="10" class='text-center'>Número de barras</th>
               </tr>
               <tr>
                 <th scope="col">mm</th>
@@ -676,9 +677,9 @@
               </tr>
               <tr>
                 <th scope="row">10.0</th>
-                <td>0.50</td><td>1.01</td><td>1.51</td><td>2.01</td>
-                <td>2.52</td><td>3.02</td><td>3.52</td><td>4.02</td>
-                <td>4.53</td><td>5.03</td>
+                <td>0.79</td><td>1.57</td><td>2.36</td><td>3.14</td>
+                <td>3.93</td><td>4.71</td><td>5.50</td><td>6.28</td>
+                <td>7.07</td><td>7.85</td>
               </tr>
               <tr>
                 <th scope="row">12.5</th>
@@ -947,13 +948,15 @@
               var c = {{info['c']}}*10;
             //Dados da Armadura tracionada
               var ol = {{info['ol']}};
-              var ot = {{info['ot']}};
             //Dados da Armadura compremida
               var ols = {{info['ols']}};
             //Posição das Armaduras
               var pi = {{info['Pi']}};
               var ps = {{info['Ps']}};
 
+            //Dados da Armadura transversal
+              var ra = {{info['ra']}};
+              var ot = {{info['ot']}};
               var cord1 = (c+(ot/2))*esc;
               var cord2 = (bw-(c*2)-(ot))*esc;
               var cord3 = (h-(c*2)-(ot))*esc;
@@ -971,6 +974,19 @@
 
               cnv.lineWidth = ot;
               cnv.strokeRect(cord1, cord1, cord2, cord3);
+
+
+            //  if (ra > 2){
+            //    var n = 0;
+            //    var st = {{info['St']}}*esc;
+            //    while (ra - 2 > k) {
+            //      cnv.beginPath();
+            //      cnv.lineWidth = ot;
+            //      ctx.moveTo(cord1,(c+(ot/2))*esc);
+            //      ctx.lineTo(cord1,cord3);
+            //      cord1 += st;
+            //    }
+            //  }
 
             //Armadura Tracionada + Armadura Comprimida
               for (var i of pi){
@@ -996,23 +1012,20 @@
 
               }
 
-              var mk = {{info['Mk']}};
+              if (h > 600){
 
-              //if (mk < 0){
-//
-              //  var pp = {{info['Pp']}};
-              //  var op = {{info['op']}};
-              //  for (var k of pp){
-//
-              //    var posx = k[0];
-              //    var posy = k[1];
-              //    cnv.beginPath();
-              //    cnv.arc(posx, posy, op/2, 0, Math.PI*2);
-              //    cnv.fillStyle = 'black';
-              //    cnv.fill();
-//
-              //  }
-              //}
+                var pp = {{info['Pp']}};
+                var op = {{info['op']}};
+                for (var k of pp){
+
+                  var posx = k[0];
+                  var posy = k[1];
+                  cnv.beginPath();
+                  cnv.arc(posx, posy, op/2, 0, Math.PI*2);
+                  cnv.fillStyle = 'black';
+                  cnv.fill()
+                }
+              }
 
             </script>
           </form>

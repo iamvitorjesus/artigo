@@ -39,6 +39,8 @@ def detalhamento_cortante(Sec):
             break
         else:
             ra +=1
+            Sec['St'] = ((Sec['bw']-(2*Sec['c']))/(ra-1))
+
     Sec['ra'] = ra
 
     Abw = ra*(math.pi)*((float(ot)/10)**2)/4 #Área dos ramos de um estribo em cm² *
