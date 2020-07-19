@@ -226,7 +226,10 @@ def detalhamento_flexao(Dic):
         xi += ah + (Sec['ol'])
         if k == nbmax:
             xi = c + Sec['ot'] + (Sec['ol']/2)
-            yi -=  (Sec['ol'] + ave)
+            if Sec['Mk'] < 0:
+                yi +=  (Sec['ol'] + ave)
+            else:
+                yi -=  (Sec['ol'] + ave)
             k = 0
             cam += 1
         i += 1
@@ -259,7 +262,10 @@ def detalhamento_flexao(Dic):
         xs += ahs + (Sec['ols'])
         if v == nbmaxs:
             xs = c + Sec['ot'] + (Sec['ols']/2)
-            ys +=  (Sec['ols'] + aves)
+            if Sec['Mk'] < 0:
+                ys -=  (Sec['ols'] + aves)
+            else:
+                ys +=  (Sec['ols'] + aves)
             v = 0
             cams += 1
         j += 1

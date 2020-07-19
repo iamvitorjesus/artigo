@@ -38,9 +38,16 @@
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Ações permanentes:
-            <b>M<sub>sd</sub></b> = M<sub>k</sub>&#611<sub>f</sub> =
-            {{info['Mk']}}&#x22C5;{{info['gf']}} = <b>{{info['Msd']|round(3,'common')}}
-              kN&#x22C5;cm</b>.</li>
+            {% if info['Mk'] < 0 %}
+              <b>M<sub>sd</sub></b> = |M<sub>k</sub>|&#611<sub>f</sub> =
+              {{info['Mk']*(-1)}}&#x22C5;{{info['gf']}} = <b>{{info['Msd']|round(3,'common')}}
+                kN&#x22C5;cm</b>.
+            {% else %}
+              <b>M<sub>sd</sub></b> = M<sub>k</sub>&#611<sub>f</sub> =
+              {{info['Mk']}}&#x22C5;{{info['gf']}} = <b>{{info['Msd']|round(3,'common')}}
+                kN&#x22C5;cm</b>.
+            {% endif %}
+          </li>
         </ul>
 
         <p class="text-justify">A NBR 6118 estabelece uma vida útil de projeto mínima de 50 anos
@@ -651,10 +658,14 @@
                 </dl>
               {% else %}
 
-              <table class="table table-bordered">
+              <table class="table table-bordered table-sm table-responsive">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col" colspan="10" class='text-center'>Número de barras - Vigas</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">mm</th>
                     <th scope="col">1</th>
                     <th scope="col">2</th>
                     <th scope="col">3</th>
@@ -870,23 +881,7 @@
 
                   </dl>
 
-                  <dl class="row">
-
-                    {% if info['nc'] > 1 %}
-                      <dt class="col-sm-4">n<sub>bmax</sub> = {{info['nbmax']}} cm</dt>
-                      <dd class="col-sm-8">Número máximo de barras por camada.</dd>
-
-                      <dt class="col-sm-4">a<sub>v</sub> = {{info['ave']}} cm</dt>
-                      <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
-                        camadas para garantir o envolvimento das mesmas pelo concreto.
-                        Maior falor entre 2 cm,
-                        &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
-
-                      <dt class="col-sm-4">n<sub>c</sub> = {{info['nc']}} cm</dt>
-                      <dd class="col-sm-8">Número de camadas necessárias.</dd>
-                    {% endif %}
-                  </dl>
-              {% endif %}
+            {% endif %}
 
 
             <div class="row justify-content-center">
