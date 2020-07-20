@@ -961,6 +961,8 @@
               var cord2 = (bw-(c*2)-(ot))*esc;
               var cord3 = (h-(c*2)-(ot))*esc;
 
+              const info = {{info}}
+
             //JS-HTML5 Canvas
               var canv = document.getElementById("myCanvas");
               var cnv = canv.getContext("2d");
@@ -976,20 +978,8 @@
               cnv.strokeRect(cord1, cord1, cord2, cord3);
 
 
-            //  if (ra > 2){
-            //    var n = 0;
-            //    var st = {{info['St']}}*esc;
-            //    while (ra - 2 > k) {
-            //      cnv.beginPath();
-            //      cnv.lineWidth = ot;
-            //      ctx.moveTo(cord1,(c+(ot/2))*esc);
-            //      ctx.lineTo(cord1,cord3);
-            //      cord1 += st;
-            //    }
-            //  }
-
             //Armadura Tracionada + Armadura Comprimida
-              for (var i of pi){
+              for (var i of pi) {
 
                 var posx = i[0];
                 var posy = i[1];
@@ -1001,7 +991,7 @@
 
               }
 
-              for (var j of ps){
+              for (var j of ps) {
 
                 var posx = j[0];
                 var posy = j[1];
@@ -1012,20 +1002,33 @@
 
               }
 
-              if (h > 600){
 
-                var pp = {{info['Pp']}};
-                var op = {{info['op']}};
-                for (var k of pp){
+              var pp = {{info['Pp']}};
+              var op = {{info['op']}};
+              for (var k of pp){
 
-                  var posx = k[0];
-                  var posy = k[1];
-                  cnv.beginPath();
-                  cnv.arc(posx, posy, op/2, 0, Math.PI*2);
-                  cnv.fillStyle = 'black';
-                  cnv.fill()
-                }
+                var posx = k[0];
+                var posy = k[1];
+                cnv.beginPath();
+                cnv.arc(posx, posy, op/2, 0, Math.PI*2);
+                cnv.fillStyle = 'black';
+                cnv.fill();
               }
+
+
+
+              var n = 1;
+              while (ra - 2 > n) {
+
+                var st = {{info['St']}}*esc;
+                cnv.beginPath();
+                cnv.lineWidth = ot;
+                ctx.moveTo(cord1,(c+(ot/2))*esc);
+                ctx.lineTo(cord1,cord3);
+                cord1 = cord1 + st;
+                n = n + 1;
+              }
+
 
             </script>
           </form>
