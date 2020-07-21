@@ -127,11 +127,8 @@ def detalhamento_flexao(Dic):
         Sec['lbpmin'] = max(0.3*Sec['lbp'], Sec['op'], 10)
 
         nsp_face = math.ceil(Sec['Asp_face']/((math.pi)*((Sec['op']/10)**2)/4))
-        e = (Sec['d'])/nsp_face
-        if e > 20:
-            e = 20
+
         Sec['nsp_face'] = nsp_face
-        Sec['e'] = e
         Sec['comp_op'] = (Sec['l0']*100) + Sec['lb1disp'] + Sec['lb2disp']
         for d in Bar:
             if d[0] == Sec['op']:
@@ -275,9 +272,17 @@ def detalhamento_flexao(Dic):
 
 
     if Sec['h'] > 60:
-        e = e*10
+        lastpi = Pi[-1][1]/(esc*10)
+        lastps = Ps[-1][1]/(esc*10)
+
+
+        e = (Sec['h'] - ((Sec['h'] - lastpi) + ol/2) - (lastps + ols/2) )/(nsp_face+1)
+        if e > 20:
+            e = 20
+
+        Sec['e'] = e
         xp = c + Sec['ot'] + (Sec['op']/2)
-        yp = yi - e - (Sec['ol']/2)
+        yp = yi - e*10 - (Sec['ol']/2)
 
 
         Pp = []
@@ -285,7 +290,7 @@ def detalhamento_flexao(Dic):
         while m < Sec['nsp_face'] + 1:
             Pp.append([xp*esc, yp*esc])
             Pp.append([(bw-xp)*esc, yp*esc])
-            yp -=  (Sec['op'] + e)
+            yp -=  (Sec['op'] + e*10)
             m += 1
         Sec['Pp'] = Pp
 

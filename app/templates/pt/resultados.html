@@ -270,6 +270,12 @@
                 <strong>A<sub>s</sub> = {{(info['As'])|round(2 ,'common')}} cm²</strong></li>
               <li class="list-group-item">Área da armadura de montagem:
                 <strong>A<sub>s</sub>' = {{info['Ass']|round(2,'common')}} cm²</strong></li>
+            {% if info['h'] > 60 %}
+              <li class="list-group-item">Área da armadura de pele:
+                <b>A<sub>sp,face</sub></b>  = 0.10 % &#x22C5; b<sub>w</sub>&#x22C5;h =
+                <b>{{info['Asp_face']|round(2,'common')}} cm²/face.</b></li>
+            {% endif %}
+
             </ul>
           </p>
 
@@ -325,14 +331,20 @@
                 {{info['As2']|round(2,'common')}} = <strong>{{(info['As'])|round(2 ,'common')}} cm²</strong></li>
               <li class="list-group-item">Área da armadura comprimida:
                 <b>A<sub>s</sub>' = {{info['Ass']|round(2,'common')}} cm²</b></li>
+            {% if info['h'] > 60 %}
+              <li class="list-group-item">Área da armadura de pele:
+                <b>A<sub>sp,face</sub></b>  = 0.10 % &#x22C5; b<sub>w</sub>&#x22C5;h =
+                <b>{{info['Asp_face']|round(2,'common')}} cm²/face.</b></li>
+            {% endif %}
             </ul>
           </p>
 
         {% endif %}
 
-      </div>
 
-      <div class="col-lg-6">
+
+
+        <!-- DIMENSIONAMENTO AO CISALHAMENTO  -->
         <h5 class="text-center">Dimensionamento ao Cisalhamento</h5>
         {% if info['Modelo'] == 2 %}
           <p class="text-justify">A NBR 6118 admite que o ângulo de inclinação
@@ -493,6 +505,10 @@
           {% endif %}
         {% endif %}
 
+      </div>
+
+      <div class="col-lg-6">
+
 
 
 
@@ -578,10 +594,6 @@
           {% endif %}
 
           {% if info['h'] > 60 %}
-            <h6 class="text-center">Armadura de Pele</h6>
-            <p>A<sub>sp,face</sub> = 0.10 % &#x22C5; b<sub>w</sub>&#x22C5;h =  0.10 % &#x22C5;
-            {{info['bw']|round(2,'common')}}&#x22C5;{{info['h']|round(2,'common')}} =
-            <strong>{{info['Asp_face']|round(2,'common')}} cm²/face.</strong></p>
 
             <div class="row marketing">
               <div class="input-group">
@@ -611,14 +623,14 @@
 
           {% endif %}
 
-          <div class="row marketing">
+          <div class="row marketing" hidden>
             <label for="basic-url">Ancoragem da armadura tracionada</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Tipo gancho</span>
               </div>
               <select name="ganchol" class="custom-select" id="inputGroupSelect01">
-                <option value="1">Semicirculares</option>
+                <option value="1" selected>Semicirculares</option>
                 <option value="2">Em ângulo de 45°</option>
                 <option value="3">Em ângulo reto</option>
               </select>
@@ -937,7 +949,7 @@
               </tbody>
             </table><p></p>
           {% endif %}  -->
-
+          <p id="demo"></p>
 
             <!-- DESENHO DA SEÇÃO TRANSVERSAL  -->
           <script>
@@ -961,8 +973,6 @@
               var cord2 = (bw-(c*2)-(ot))*esc;
               var cord3 = (h-(c*2)-(ot))*esc;
 
-              const info = {{info}}
-
             //JS-HTML5 Canvas
               var canv = document.getElementById("myCanvas");
               var cnv = canv.getContext("2d");
@@ -974,61 +984,58 @@
             //Armadura Transversal
               cnv.beginPath();
 
-              cnv.lineWidth = ot;
+              cnv.lineWidth = ot*esc;
               cnv.strokeRect(cord1, cord1, cord2, cord3);
+              console.log(5 + 6);
 
 
             //Armadura Tracionada + Armadura Comprimida
               for (var i of pi) {
-
                 var posx = i[0];
                 var posy = i[1];
-
             	  cnv.beginPath();
-                cnv.arc(posx, posy, ol/2, 0, Math.PI*2);
+                cnv.arc(posx, posy, ol*esc/2, 0, Math.PI*2);
                 cnv.fillStyle = 'black';
                 cnv.fill();
 
               }
 
               for (var j of ps) {
-
                 var posx = j[0];
                 var posy = j[1];
                 cnv.beginPath();
-                cnv.arc(posx, posy, ols/2, 0, Math.PI*2);
+                cnv.arc(posx, posy, ols*esc/2, 0, Math.PI*2);
                 cnv.fillStyle = 'black';
                 cnv.fill();
 
               }
+              {% if info['h'] > 60 %}
+                var pp = {{info['Pp']}};
+                var op = {{info['op']}};
+                for (var k of pp){
+                  var posx = k[0];
+                  var posy = k[1];
+                  cnv.beginPath();
+                  cnv.arc(posx, posy, op*esc/2, 0, Math.PI*2);
+                  cnv.fillStyle = 'black';
+                  cnv.fill();
+                }
+              {% endif %}
 
-
-              var pp = {{info['Pp']}};
-              var op = {{info['op']}};
-              for (var k of pp){
-
-                var posx = k[0];
-                var posy = k[1];
-                cnv.beginPath();
-                cnv.arc(posx, posy, op/2, 0, Math.PI*2);
-                cnv.fillStyle = 'black';
-                cnv.fill();
-              }
-
-
-
-              var n = 1;
-              while (ra - 2 > n) {
-
-                var st = {{info['St']}}*esc;
-                cnv.beginPath();
-                cnv.lineWidth = ot;
-                ctx.moveTo(cord1,(c+(ot/2))*esc);
-                ctx.lineTo(cord1,cord3);
-                cord1 = cord1 + st;
-                n = n + 1;
-              }
-
+              {% if 'ra' in info %}
+                {% if info['ra'] > 2 %}
+                  var n = 1;
+                  while (ra - 2 > n) {
+                    var st = {{info['St']}}*esc;
+                    cnv.beginPath();
+                    cnv.lineWidth = ot;
+                    ctx.moveTo(cord1,(c+(ot/2))*esc);
+                    ctx.lineTo(cord1,cord3);
+                    cord1 = cord1 + st;
+                    n = n + 1;
+                  }
+                {% endif %}
+              {% endif %}
 
             </script>
           </form>
