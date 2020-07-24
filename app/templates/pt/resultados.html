@@ -253,7 +253,7 @@
           </p>
           {% if info['As'] == info['Asmin'] %}
             <p>A<sub>s</sub> ⋜ A<sub>smin</sub> <strong>&#10230;</strong>
-              <b>A<sub>s</sub></b> = A<sub>smin</sub> = 0.15 %&#x22C5;b<sub>w</sub>&#x22C5;d =
+              <b>A<sub>s</sub></b> = A<sub>smin</sub> = 0.15 %&#x22C5;b<sub>w</sub>&#x22C5;h =
               <b>{{info['As']|round(2,'common')}} cm².</b>
             </p>
 
@@ -429,8 +429,16 @@
             {{info['d']}} = <b>{{info['Vc']|round(3,'common')}} kN</b>.
           </p>
 
+          <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2 &#x22C5;
+            &#402<sub>ctm</sub> &#x22C5; b<sub>w</sub> &#x22C5; sen(&#593;)/&#402<sub>ywd</sub> =
+            0.2 &#x22C5; {{info['fctm']|round(3,'common')}} &#x22C5; {{info['bw']}} &#x22C5;
+            sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
+            <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
+          </p>
+
           {% if info['Vsw'] < 0 %}
-            <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
+            <p class="text-justify">O valor de V<sub>sd</sub> < V<sub>c</sub> <b>&#10230;</b>
+              <b>V<sub>sw</sub></b> < 0 . Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
               V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
             </p>
             <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;

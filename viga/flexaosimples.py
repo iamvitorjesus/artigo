@@ -122,7 +122,7 @@ def flexaosimples(Dic):
     Dic["x"] = x
 
         # Armadura Minima
-    Dic['Asmin'] = 0.0015*bw*d
+    Dic['Asmin'] = 0.0015*bw*h
     if Dic['Asmin'] >= As:
         As = Dic['Asmin']
 
