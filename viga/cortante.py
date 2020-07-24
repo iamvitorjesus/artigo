@@ -20,7 +20,10 @@ def cortanteM1(Dic):
 
     fywk = Sec['fywk']
     fywd = fywk/(Sec['gs']*10)# kN/cm²
-    Sec['fywd'] = fywd
+    if fywd > 43.5:
+        Sec['fywd'] = 43.5
+    else:
+        Sec['fywd'] = fywd
 
 
     Vk = Sec['Vk']
@@ -93,6 +96,7 @@ def cortanteM2(Dic):
     Vk = Sec['Vk']
     Vsd = Vk*Sec['gf']
     Sec['Vsd'] = Vsd
+    
         #Redução do cortante
     reduzir = False
     if reduzir == True:

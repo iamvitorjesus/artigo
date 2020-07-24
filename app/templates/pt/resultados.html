@@ -29,7 +29,7 @@
             {{info['fck']}}/{{info['gc']}} = <b>{{(info['fcd']*10)|round(3,'common')}} MPa</b>.</li>
           <li class="list-group-item">Aço:
             <b>&#402<sub>yd</sub></b> = &#402<sub>yk</sub>/&#611<sub>s</sub> =
-            {{info['fyk']}}/{{info['gc']}} = <b>{{(info['fyd']*10)|round(3,'common')}} MPa</b>.</li>
+            {{info['fyk']}}/{{info['gs']}} = <b>{{(info['fyd']*10)|round(3,'common')}} MPa</b>.</li>
         </ul>
 
         <p class="text-justify">As ações devem ser majoradas pelo coeficiente &#611<sub>f</sub>,
@@ -51,8 +51,8 @@
         </ul>
 
         <p class="text-justify">A NBR 6118 estabelece uma vida útil de projeto mínima de 50 anos
-          para as estruturas de edifívios convencionais. Para garantir esse requisito a
-          armadura deve estar devidamente protegida de intemperes e ações corrosivas.
+          para as estruturas de edifícios convencionais. Para garantir esse requisito a
+          armadura deve estar devidamente protegida de intempéries e ações corrosivas.
           Nesse sentido a norma estabelece um cobrimento nominal representado pela letra
           <em>'c'</em> associado a uma determinada Classe de Agressividade Ambiental (CAA).</p>
 
@@ -108,24 +108,24 @@
         </p>
         <p class="text-justify">
           {% if 'parametrod_' not in info %}
-            Sem o conhecimento do diâmetro da armadura transversal e da longitudianal,
+            Sem o conhecimento dos diâmetros das armaduras transversal e longitudinal,
             inicialmente adota-se um diâmetro de 5.0 mm para o estribo e 10.0 mm para
-            as barras longitudinais para o calculo do valor da altura útil <em>'d'</em> entre a
-            borda mais tracionada da seção e o centro de gravidade da armadura longitudianal.
-            Considerando-se apenas uma camada para a armadura de flexão temos:
+            as barras longitudinais para o cálculo do valor da altura útil <em>'d'</em> entre a
+            borda mais comprimida da seção e o centro de gravidade da armadura tracionada.
+            Considerando-se apenas uma camada para a armadura de flexão tem-se:
             <b>d</b> = h - (c + Ø<sub>t</sub> + (Ø<sub>l</sub>/2))={{info['h']}} - {{info['d1']}} =
             <b>{{info['d']}} cm</b>.
           {% else %}
             O parametro d' que representa a distância entre a borda mais tracionada e o centro
             de gravidade da armadura tracionada foi determinado manualmente d' = {{info['d_']}} cm.
-            Portanto altura útil entre a borda mais tracionada da seção e o centro de gravidade
-            da armadura longitudianal: <b>d</b> = h - d' = {{info['h']}} - {{info['d1']}} = <b>{{info['d']}} cm</b>.
+            Portanto altura útil entre a borda mais comprimida da seção e o centro de gravidade
+            da armadura tracionada: <b>d</b> = h - d' = {{info['h']}} - {{info['d1']}} = <b>{{info['d']}} cm</b>.
           {% endif %}
         </p>
 
         <p class="text-justify">Pela lei de Hooke: &#400<sub>yd</sub>=
           &#402<sub>yd</sub>/E<sub>s</sub>. Dado o tipo de aço escolhido
-          CA-{{(info['fyk']/10)|round|int}}, temos que <b>&#400<sub>yd</sub>=
+          CA-{{(info['fyk']/10)|round|int}}, tem-se que <b>&#400<sub>yd</sub>=
           {{info['eyd']*1000|round(2,'common')}} &#137</b>.</p>
           <p></p>
 
@@ -229,7 +229,7 @@
               {{info['nlim']}}&#x22C5;{{info['d']}} = {{info['xlim']|round(2,'common')}} cm < x</p>
 
             <p></p>
-            <p>Portanto para os proximos calculos <strong>x = {{info['x']|round(2, 'common')}} cm.</strong></p>
+            <p>Portanto para os próximos cálculos <strong>x = {{info['x']|round(2, 'common')}} cm.</strong></p>
 
         {% endif %}
 
@@ -248,7 +248,7 @@
           <p class="text-justify">M<sub>sdlim</sub> = {{info['Msdlim']|round(2,'common')}} kN&#x22C5;m
             ⋝ {{info['Msd']|round(2,'common')}} kN&#x22C5;m = M<sub>sd</sub>, ou seja, <strong>Armadura
             Simples</strong>, o que significa que apenas a armadura de tração será calculada, a
-            armadura disposta na zona de compressão servirá apenas para garantira a posição da armadura transversal
+            armadura disposta na zona de compressão servirá apenas para garantir a posição da armadura transversal
             durante a execução (porta estribo ou armadura de montagem), adotado-se 2 barras de 8.0 mm de diâmetro (2Ø8mm).
           </p>
           {% if info['As'] == info['Asmin'] %}
@@ -361,8 +361,8 @@
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Concreto:
-            <b>&#402<sub>ctd</sub></b> = 0.7 &#x22C5; &#402<sub>ctm</sub>/&#611<sub>f</sub> =
-            0.7 &#x22C5; 0.3 &#x22C5; (&#402<sub>ck</sub>)<sup>2/3</sup>/&#611<sub>f</sub> =
+            <b>&#402<sub>ctd</sub></b> = 0.7 &#x22C5; &#402<sub>ctm</sub>/&#611<sub>c</sub> =
+            0.7 &#x22C5; 0.3 &#x22C5; (&#402<sub>ck</sub>)<sup>2/3</sup>/&#611<sub>c</sub> =
             <b>{{(info['fctd']*10)|round(3,'common')}} MPa</b>.</li>
           <li class="list-group-item">Concreto:
             <b>&#402<sub>ctd2</sub></b> = 0.6 &#x22C5; &#593;<sub>v</sub> &#x22C5; &#402<sub>cd</sub> =
@@ -428,15 +428,28 @@
             {{info['fctd']|round(3, 'common')}} &#x22C5; {{info['bw']}} &#x22C5;
             {{info['d']}} = <b>{{info['Vc']|round(3,'common')}} kN</b>.
           </p>
-          <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
-            V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
-          </p>
-          <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
-            d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
-            {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
-            {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-            cos({{info['a']}}))) = <b>{{info['Asw']|round(2,'common')}} cm²/cm</b>.
-          </p>
+
+          {% if info['Vsw'] < 0 %}
+            <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
+              V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
+            </p>
+            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
+              d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
+              {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+              {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+              cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>.
+            </p>
+          {% else %}
+            <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
+              V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
+            </p>
+            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
+              d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
+              {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+              {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+              cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>.
+            </p>
+          {% endif %}
 
         {% else %}
           <p>Para o modelo &#8545 de cálculo:</p>
@@ -455,7 +468,7 @@
               d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
               {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
               {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}}))) = <b>{{info['Asw']|round(2,'common')}} cm²/cm</b>.
+              cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>.
             </p>
           {% elif info['Vsd'] == info['Vrd2']%}
             <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
@@ -471,7 +484,7 @@
               d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
               {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
               {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}}))) = <b>{{info['Asw']|round(4,'common')}} cm²/cm</b>.
+              cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(4,'common')}} cm²/m</b>.
             </p>
           {% elif info['Vsd'] > info['Vc0']%}
             <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
@@ -498,7 +511,7 @@
               d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
               {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
               {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}}))) = <b>{{info['Asw']|round(4,'common')}} cm²/cm</b>.
+              cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(4,'common')}} cm²/m</b>.
 
             </p>
 
@@ -646,7 +659,7 @@
 
 
           <!-- Tabela de aço -->
-          <h5 class="text-center">Área de aço por numero de barras e diâmetro</h5><p></p>
+          <h5 class="text-center">Área de aço por número de barras e diâmetro</h5><p></p>
           <table class="table table-bordered table-sm table-responsive">
             <thead>
               <tr>
@@ -747,7 +760,7 @@
               {% if info['Msdlim'] >= info['Msd'] %}
                 <h6 class="text-center">Armadura de montagem</h6>
                 <dl class="row">
-                  <dt class="col-sm-4">n<sub>b</sub>' = {{info['nbs']}}.</dt>
+                  <dt class="col-sm-4">n<sub>b</sub>' = {{info['nbs']}}</dt>
                   <dd class="col-sm-8">Número de barras necessárias.</dd>
 
                   <dt class="col-sm-4">A = {{info['Abs']|round(3,'common')}} cm²</dt>
@@ -758,7 +771,7 @@
                   <dd class="col-sm-8">Área efetiva de aço.</dd>
 
                   <dt class="col-sm-4">a<sub>h</sub>' = {{info['ahos']}} cm</dt>
-                  <dd class="col-sm-8">Espaço minimo entre barras para garantir o
+                  <dd class="col-sm-8">Espaçamento mínimo entre barras para garantir o
                     envolvimento das mesmas pelo concreto. Maior falor entre 2 cm,
                     &Oslash<sub>l</sub>' cm e 1.2&#x22C5;D<sub>max</sub> cm.</dd>
 
@@ -775,7 +788,7 @@
                   <dd class="col-sm-8">Área de uma barra no diâmetro escolhido.</dd>
 
                   <dt class="col-sm-4">n<sub>b</sub>' = A<sub>s</sub>'/A =
-                    {{info['nbs']}}.</dt>
+                    {{info['nbs']}}</dt>
                   <dd class="col-sm-8">Número de barras necessárias.</dd>
 
                   <dt class="col-sm-4">A<sub>ef</sub> = n<sub>bs</sub>
@@ -788,7 +801,7 @@
                     <dd class="col-sm-8">Número máximo de barras por camada.</dd>
 
                     <dt class="col-sm-4">a<sub>v</sub>' = {{info['aves']}} cm</dt>
-                    <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
+                    <dd class="col-sm-8">Espaçamento mínimo vertical entre barras de diferentes
                       camadas para garantir o envolvimento das mesmas pelo concreto.
                       Maior falor entre 2 cm,
                       &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
@@ -824,17 +837,17 @@
                   <dd class="col-sm-8">Área efetiva de aço.</dd>
 
                   <dt class="col-sm-4">a<sub>h</sub> = {{info['aho']}} cm</dt>
-                  <dd class="col-sm-8">Espaço minimo entre barras para garantir o
+                  <dd class="col-sm-8">Espaçamento mínimo entre barras para garantir o
                     envolvimento das mesmas pelo concreto. Maior falor entre 2 cm,
                     &Oslash<sub>l</sub>' cm e 1.2&#x22C5;D<sub>max</sub> cm.</dd>
 
                   {% if info['ah'] == info['aho'] %}
-                  <dt class="col-sm-4">S<sub>h</sub> = a<sub>h</sub> = {{info['aho']}} cm</dt>
-                  <dd class="col-sm-8">Espaço entre barras.</dd>
+                  <dt class="col-sm-4">S<sub>h</sub> = a<sub>h</sub> = {{info['aho']|round(2,'common')}} cm</dt>
+                  <dd class="col-sm-8">Espaçamento horizontal entre barras.</dd>
 
                   {% else %}
-                  <dt class="col-sm-4">S<sub>h</sub> = {{info['ah']}} cm</dt>
-                  <dd class="col-sm-8">Espaço entre barras.</dd>
+                  <dt class="col-sm-4">S<sub>h</sub> = {{info['ah']|round(2,'common')}} cm</dt>
+                  <dd class="col-sm-8">Espaçamento horizontal entre barras.</dd>
                   {% endif %}
 
                   <dt class="col-sm-4">d<sub>cg</sub> = {{info['dcg']|round(2,'common')}} cm</dt>
@@ -857,7 +870,7 @@
                     <dd class="col-sm-8">Número máximo de barras por camada.</dd>
 
                     <dt class="col-sm-4">a<sub>v</sub> = {{info['ave']}} cm</dt>
-                    <dd class="col-sm-8">Espaço minimo vertical entre barras de diferentes
+                    <dd class="col-sm-8">Espaçamento mínimo vertical entre barras de diferentes
                       camadas para garantir o envolvimento das mesmas pelo concreto.
                       Maior falor entre 2 cm,
                       &Oslash<sub>l</sub>' cm e 0.5&#x22C5;D<sub>max</sub> cm.</dd>
@@ -878,9 +891,9 @@
 
                     <dt class="col-sm-4">S<sub>tmax</sub> =
                       {{info['Stmax']|round(3,'common')}} cm</dt>
-                    <dd class="col-sm-8">É o espaçamento máximo entre ramos.</dd>
+                    <dd class="col-sm-8">Espaçamento máximo entre ramos.</dd>
 
-                    <dt class="col-sm-4">r<sub>a</sub> = {{info['ra']}}.</dt>
+                    <dt class="col-sm-4">r<sub>a</sub> = {{info['ra']}}</dt>
                     <dd class="col-sm-8">Número de ramos.</dd>
 
                     <dt class="col-sm-4">A = {{info['Abw']|round(3,'common')}} cm²</dt>

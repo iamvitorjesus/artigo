@@ -17,7 +17,7 @@ logocilamce = os.path.join(app.config['UPLOAD_FOLDER'], 'logocilamce2020_online.
 
 #model_prediction = False
 @app.route("/")
-def index():
+def inicio():
 
     return render_template('pt/inicio.html',
      # prediction=model_prediction,
@@ -31,8 +31,14 @@ def novoprojeto():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
-            if value.isnumeric() == True:
+            if ',' is value:
+                value.replace(',','.')
                 value = float(value)
+                print(value)
+
+            elif value.isnumeric() == True:
+                value = float(value)
+
             dimen[info] = value
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
@@ -58,11 +64,18 @@ def exemplo1():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
-            if value.isnumeric() == True:
+            if ',' in value:
+                value = value.replace(',','.')
                 value = float(value)
+
+            elif value.isnumeric() == True:
+                value = float(value)
+
             dimen[info] = value
+        print(dimen)
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
+
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 

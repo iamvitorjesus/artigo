@@ -15,7 +15,8 @@ db  = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 manager = Manager(app)
-manager.add_command("runserver", Server(host='0.0.0.0', port = 8085))
+#manager.add_command("runserver", Server(host='0.0.0.0', port = 8085)) #UFRJ Server
+manager.add_command("db", MigrateCommand) #teste
 
 from app.models import tables
 from app.controllers import default
