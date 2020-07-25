@@ -11,8 +11,7 @@ from viga.dimensionamento import dimensionar
 
 logoufrj = os.path.join(app.config['UPLOAD_FOLDER'], 'complementar_principal_pb.png')
 logomacae = os.path.join(app.config['UPLOAD_FOLDER'], 'campus_UFRJ_macae_Aloisio_Teixeira.png')
-logo4 = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon4.png')
-logo6 = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon6.png')
+logo = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon8.png')
 logocilamce = os.path.join(app.config['UPLOAD_FOLDER'], 'logocilamce2020_online.png')
 
 #model_prediction = False
@@ -22,7 +21,7 @@ def inicio():
     return render_template('pt/inicio.html',
      # prediction=model_prediction,
       #show_predictions_modal=True
-      lufrj = logoufrj, lmacae = logomacae, logo6 = logo6, cilamce = logocilamce)
+      lufrj = logoufrj, lmacae = logomacae, logo = logo, cilamce = logocilamce)
 
 
 @app.route("/novoprojeto", methods = ["POST", "GET"])
@@ -54,7 +53,7 @@ def novoprojeto():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/novoprojeto.html', logo6 = logo6)
+        return render_template('pt/novoprojeto.html', logo = logo)
 
 
 
@@ -88,7 +87,7 @@ def exemplo1():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/exemplo1.html', logo6 = logo6)
+        return render_template('pt/exemplo1.html', logo = logo)
 
 @app.route("/exemplo2", methods = ["POST", "GET"])
 def exemplo2():
@@ -113,7 +112,7 @@ def exemplo2():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/exemplo2.html', logo6 = logo6)
+        return render_template('pt/exemplo2.html', logo = logo)
 
 @app.route("/exemplo3", methods = ["POST", "GET"])
 def exemplo3():
@@ -138,7 +137,7 @@ def exemplo3():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/exemplo3.html', logo6 = logo6)
+        return render_template('pt/exemplo3.html', logo = logo)
 
 @app.route("/exemplo4", methods = ["POST", "GET"])
 def exemplo4():
@@ -163,7 +162,7 @@ def exemplo4():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/exemplo4.html', logo6 = logo6)
+        return render_template('pt/exemplo4.html', logo = logo)
 
 @app.route("/exemplo5", methods = ["POST", "GET"])
 def exemplo5():
@@ -188,7 +187,7 @@ def exemplo5():
     else:
         if "user" in session:
             return redirect(url_for("resultados"))
-        return render_template('pt/exemplo5.html', logo6 = logo6)
+        return render_template('pt/exemplo5.html', logo = logo)
 
 
 
@@ -206,28 +205,28 @@ def resultados():
                 Dic[x] = value
             Dic = detalhamento_flexao(Dic)
             print(Dic)
-            return render_template('pt/resultados.html', info = Dic, logo6 = logo6)
+            return render_template('pt/resultados.html', info = Dic, logo = logo)
         else:
-            return render_template('pt/resultados.html', info = Dic, logo6 = logo6)
+            return render_template('pt/resultados.html', info = Dic, logo = logo)
     else:
         return redirect(url_for("novoprojeto"))
 
 
 @app.route("/contato")
 def contato():
-    return render_template('pt/contato.html', logo6 = logo6)
+    return render_template('pt/contato.html', logo = logo)
 
 
 @app.route("/menu", methods = ["GET"])
 def menu():
-    return render_template('pt/menu.html', logo6 = logo6)
+    return render_template('pt/menu.html', logo = logo)
 
 
 @app.route("/erroM", methods = ["GET"])
 def erroMomento():
-    return render_template('pt/erroMomento.html', logo6 = logo6)
+    return render_template('pt/erroMomento.html', logo = logo)
 
 
 @app.route("/erroB", methods = ["GET"])
 def erroBiela():
-    return render_template('pt/erroBiela.html', logo6 = logo6)
+    return render_template('pt/erroBiela.html', logo = logo)
