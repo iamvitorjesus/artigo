@@ -66,6 +66,8 @@ def cortanteM1(Dic):
     Sec['Vc'] = Vc
     Sec['Vsw'] = Vsw
 
+    Sec['Aswcalc'] = Asw
+
     Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywd
     Sec["Aswmin"] = Aswmin
     if Asw <= Aswmin:
@@ -153,6 +155,7 @@ def cortanteM2(Dic):
                            *((math.sin(math.radians(a))))))
     Sec['Vc'] = Vc
     Sec['Vsw'] = Vsw
+    Sec['Aswcalc'] = Asw
 
     Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywd
     Sec["Aswmin"] = Aswmin
@@ -160,6 +163,8 @@ def cortanteM2(Dic):
         Asw = Aswmin
     Sec["Asw"] = Asw
     return(Sec)
+
+
 '''def susp():
     alinhamento = 0 # face inf. da 2º esta acima da face inf. da 1º
     if alinhamento == 0:
