@@ -64,14 +64,15 @@ def exemplo1():
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
             if value.count('-') != 0:
+                value = value.split('-')
+                value = value[1]
                 if value.find(',') != -1:
                     value = value.replace(',','.')
-                value = value.split('-')
-                value = (-1)*float(value[1])
+                value = (-1)*float(value)
 
             else:
                 x = value
-                if x.count(',') != -1:
+                if x.count(',') != 0:
                     value = value.replace(',','.')
 
             if value.count('.') != 0:
