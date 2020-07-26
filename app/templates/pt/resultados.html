@@ -40,11 +40,11 @@
           <li class="list-group-item">Ações permanentes:
             {% if info['Mk'] < 0 %}
               <b>M<sub>sd</sub></b> = |M<sub>k</sub>|&#611<sub>f</sub> =
-              {{info['Mk']*(-1)}}&#x22C5;{{info['gf']}} = <b>{{info['Msd']|round(3,'common')}}
+              {{(info['Mk']*(-1))|round(3,'common')}}&#x22C5;{{info['gf']}} = <b>{{info['Msd']|round(3,'common')}}
                 kN&#x22C5;cm</b>.
             {% else %}
               <b>M<sub>sd</sub></b> = M<sub>k</sub>&#611<sub>f</sub> =
-              {{info['Mk']}}&#x22C5;{{info['gf']}} = <b>{{info['Msd']|round(3,'common')}}
+              {{info['Mk']|round(3,'common')}}&#x22C5;{{info['gf']}} = <b>{{info['Msd']|round(3,'common')}}
                 kN&#x22C5;cm</b>.
             {% endif %}
           </li>

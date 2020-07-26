@@ -63,13 +63,13 @@ def exemplo1():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
+
             if value.count('-') != 0:
                 value = value.split('-')
                 value = value[1]
                 if value.find(',') != -1:
                     value = value.replace(',','.')
                 value = (-1)*float(value)
-
             else:
                 x = value
                 if x.count(',') != 0:
@@ -82,7 +82,6 @@ def exemplo1():
                     value = float(value)
 
             dimen[info] = value
-        print(dimen)
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
 
@@ -99,6 +98,7 @@ def exemplo1():
         if "user" in session:
             return redirect(url_for("resultados"))
         return render_template('pt/exemplo1.html', logo = logo)
+
 
 @app.route("/exemplo2", methods = ["POST", "GET"])
 def exemplo2():
@@ -125,6 +125,7 @@ def exemplo2():
             return redirect(url_for("resultados"))
         return render_template('pt/exemplo2.html', logo = logo)
 
+
 @app.route("/exemplo3", methods = ["POST", "GET"])
 def exemplo3():
     if request.method == "POST":
@@ -150,6 +151,7 @@ def exemplo3():
             return redirect(url_for("resultados"))
         return render_template('pt/exemplo3.html', logo = logo)
 
+
 @app.route("/exemplo4", methods = ["POST", "GET"])
 def exemplo4():
     if request.method == "POST":
@@ -174,6 +176,7 @@ def exemplo4():
         if "user" in session:
             return redirect(url_for("resultados"))
         return render_template('pt/exemplo4.html', logo = logo)
+
 
 @app.route("/exemplo5", methods = ["POST", "GET"])
 def exemplo5():
