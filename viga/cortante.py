@@ -96,7 +96,7 @@ def cortanteM2(Dic):
     Vk = Sec['Vk']
     Vsd = Vk*Sec['gf']
     Sec['Vsd'] = Vsd
-    
+
         #Redução do cortante
     reduzir = False
     if reduzir == True:
@@ -141,10 +141,10 @@ def cortanteM2(Dic):
     Sec['Vc0'] = Vc0
     if Vsd <= Vc0:
         Vc1 = Vc0
-    elif Vrd2 == Vsd:
+    elif Vsd == Vrd2:
         Vc1 = 0
     elif Vsd > Vc0:
-        Vc1 = Vc0*(Vrd2-Vsd)/(Vrd2-Vc0)
+        Vc1 = Vc0*((Vrd2-Vsd)/(Vrd2-Vc0))
         Sec['Vc1'] = Vc1
     Vc = Vc1
     Vsw = Vsd - Vc

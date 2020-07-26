@@ -142,7 +142,7 @@
           <img src="{{distribuicao}}" alt="Imagem não encontrada" width="440" height="220">
         </div>
         <p>As normas brasileiras classificam o concreto estrutural em dois grupos, com base na
-          resistência característica do material. 20 MPa &#8924; &#402<sub>ck</sub> &#8924; 50
+          resistência característica do material. 20 MPa &#8804; &#402<sub>ck</sub> &#8804; 50
           MPa pertencem ao <em>grupo &#8544;</em> enquanto concretos com &#402<sub>ck</sub> &#62; 50
           pertencem ao <em>grupo &#8545;</em>.
         </p>
@@ -391,7 +391,7 @@
         <h6 class="text-center">Verificação da compressão nas bielas</h6>
         <p class="text-justify">Para não ocorrer o esmagamento do concreto que compõe as bielas
           comprimidas (diagonais inclinadas na treliça clássica) deve-se ter:
-          <strong>V<sub>sd</sub> &#8924; V<sub>rd2</sub></strong>. Onde V<sub>rd2</sub> é a
+          <strong>V<sub>sd</sub> &#8804; V<sub>rd2</sub></strong>. Onde V<sub>rd2</sub> é a
           resistência de cálculo, relativa a ruína das diagonais comprimidas de
           concreto.
         </p>
@@ -401,7 +401,7 @@
           0.9&#x22C5;d&#x22C5;(1 + cotan(&#593;))]/2 = {{info['fcd2']|round(3,'common')}}
           &#x22C5; {{info['bw']}}&#x22C5;0.9&#x22C5;{{info['d']}}&#x22C5;(1 +
           cotan({{info['a']}}))/2 = <b>{{info['Vrd2']|round(3,'common')}} kN</b>.</p>
-          <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
+          <p class="text-center"><strong>{{info['Vsd']}} kN &#8804; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
           <p></p>
         {% else %}
           <p class="text-justify"><b>V<sub>rd2</sub></b> = &#402<sub>ctd2</sub> &#x22C5; b<sub>w</sub> &#x22C5;
@@ -409,7 +409,7 @@
           {{info['fcd2']|round(3,'common')}} &#x22C5; {{info['bw']}} &#x22C5; 0.9 &#x22C5;
           {{info['d']}} &#x22C5; (cotan({{info['t']}}) + cotan({{info['a']}})) &#x22C5;
           sen²({{info['t']}}) = <b>{{info['Vrd2']|round(3,'common')}} kN</b>.</p>
-          <p class="text-center"><strong>{{info['Vsd']}} kN &#8924; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
+          <p class="text-center"><strong>{{info['Vsd']}} kN &#8804; {{info['Vrd2']|round(1,'common')}} kN.</strong></p>
           <p></p>
         {% endif %}
 
@@ -437,9 +437,9 @@
             {{info['d']}} = <b>{{info['Vc']|round(3,'common')}} kN</b>.
           </p>
 
-          <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2 &#x22C5;
-            &#402<sub>ctm</sub> &#x22C5; b<sub>w</sub> &#x22C5; sen(&#593;)/&#402<sub>ywd</sub> =
-            0.2 &#x22C5; {{info['fctm']|round(3,'common')}} &#x22C5; {{info['bw']}} &#x22C5;
+          <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;
+            &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywd</sub> =
+            0.2&#x22C5;{{info['fctm']|round(3,'common')}}&#x22C5;{{info['bw']}}&#x22C5;
             sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
             <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
           </p>
@@ -447,22 +447,20 @@
           {% if info['Vsw'] < 0 %}
             <p class="text-justify">O valor de V<sub>sd</sub> < V<sub>c</sub> <b>&#10230;</b>
               <b>V<sub>sw</sub></b> < 0 . Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
-              V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
+              V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>. Este falor negativo
+              resulta em uma área de aço negativa, ou seja, menor que a área de aço mínima.
             </p>
-            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
-              d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
-              {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
-              {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>.
+            <p class="text-center">Área da armadura transversal: <b>A<sub>sw</sub>/S</b> = A<sub>swmin</sub>/S =
+              <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>
             </p>
           {% else %}
             <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
               V<sub>c</sub> = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
             </p>
-            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
-              d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
-              {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
-              {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9&#x22C5;
+              d&#x22C5;&#402<sub>ywd</sub>&#x22C5;(sen(&#593;) + cos(&#593;))) =
+              {{info['Vsw']|round(3,'common')}}/(0.9&#x22C5;{{info['d']}} &#x22C5;
+              {{info['fywd']|round(3,'common')}}&#x22C5;(sen({{info['a']}}) +
               cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>.
             </p>
           {% endif %}
@@ -472,18 +470,22 @@
           {% if info['Vsd'] <= info['Vc0']%}
             <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
               V<sub>c1</sub> = V<sub>c0</sub> <strong>&#10230;</strong> para
-              V<sub>sd</sub> &#8924; V<sub>c0</sub>
-
+              V<sub>sd</sub> &#8804; V<sub>c0</sub>.
             </p>
+            <p><b>V<sub>c0</sub></b> =0.6&#x22C5;&#402<sub>ctd</sub>&#x22C5;b<sub>w</sub>&#x22C5;d
+              = 0.6&#x22C5;{{info['fctd']|round(2,'common')}}&#x22C5;{{info['bw']|round(2,'common')}}
+              &#x22C5;{{info['d']|round(2,'common')}} = <b>{{info['Vc0']|round(2,'common')}} kN</b>.
+            </p>
+
             <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
               V<sub>c</sub> = {{info['Vsd']|round(2,'common')}} - {{info['Vc']
               |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
             </p>
 
-            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
-              d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
-              {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
-              {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
+            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9&#x22C5;
+              d&#x22C5;&#402<sub>ywd</sub>&#x22C5;(sen(&#593;) + cos(&#593;))) =
+              {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}}&#x22C5;
+              {{info['fywd']|round(3,'common')}}&#x22C5;(sen({{info['a']}}) +
               cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>.
             </p>
           {% elif info['Vsd'] == info['Vrd2']%}
