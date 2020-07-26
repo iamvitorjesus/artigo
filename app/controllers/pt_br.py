@@ -13,11 +13,11 @@ logoufrj = os.path.join(app.config['UPLOAD_FOLDER'], 'complementar_principal_pb.
 logomacae = os.path.join(app.config['UPLOAD_FOLDER'], 'campus_UFRJ_macae_Aloisio_Teixeira.png')
 logo = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon8.png')
 logocilamce = os.path.join(app.config['UPLOAD_FOLDER'], 'logocilamce2020_online.png')
+distribuicao = os.path.join(app.config['UPLOAD_FOLDER'], 'distrib.jpeg')
 
 #model_prediction = False
 @app.route("/")
 def inicio():
-
     return render_template('pt/inicio.html',
      # prediction=model_prediction,
       #show_predictions_modal=True
@@ -63,12 +63,22 @@ def exemplo1():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
-            if ',' in value:
-                value = value.replace(',','.')
-                value = float(value)
+            if value.count('-') != 0:
+                if value.find(',') != -1:
+                    value = value.replace(',','.')
+                value = value.split('-')
+                value = (-1)*float(value[1])
 
-            elif value.isnumeric() == True:
+            else:
+                x = value
+                if x.count(',') != -1:
+                    value = value.replace(',','.')
+
+            if value.count('.') != 0:
                 value = float(value)
+            else:
+                if value.isnumeric() == True:
+                    value = float(value)
 
             dimen[info] = value
         print(dimen)
@@ -205,9 +215,9 @@ def resultados():
                 Dic[x] = value
             Dic = detalhamento_flexao(Dic)
             print(Dic)
-            return render_template('pt/resultados.html', info = Dic, logo = logo)
+            return render_template('pt/resultados.html', info = Dic, logo = logo, distribuicao = distribuicao)
         else:
-            return render_template('pt/resultados.html', info = Dic, logo = logo)
+            return render_template('pt/resultados.html', info = Dic, logo = logo, distribuicao = distribuicao)
     else:
         return redirect(url_for("novoprojeto"))
 

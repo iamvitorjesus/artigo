@@ -69,10 +69,6 @@ def conversao_unidades(Dic):
 
 
     Mk = Dic['Mk']
-    if type(Mk) == str:
-        Mk = Mk.split('-')
-        Mk = (-1)*int(Mk[1])
-
 
     unitMk = Dic['unitMk']
     if unitMk == 1:
