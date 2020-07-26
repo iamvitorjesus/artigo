@@ -15,6 +15,27 @@ logo = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon8.png')
 logocilamce = os.path.join(app.config['UPLOAD_FOLDER'], 'logocilamce2020_online.png')
 distribuicao = os.path.join(app.config['UPLOAD_FOLDER'], 'distrib.jpeg')
 
+def virgula(value):
+
+    if value.count('-') != 0:
+        value = value.split('-')
+        value = value[1]
+        if value.find(',') != -1:
+            value = value.replace(',','.')
+        value = (-1)*float(value)
+
+    else:
+        x = value
+        if x.count(',') != 0:
+            value = value.replace(',','.')
+            value = float(value)
+        elif value.count('.') != 0:
+            value = float(value)
+        else:
+            if value.isnumeric() == True:
+                value = float(value)
+
+
 #model_prediction = False
 @app.route("/")
 def inicio():
@@ -30,13 +51,24 @@ def novoprojeto():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
-            if ',' is value:
-                value.replace(',','.')
-                value = float(value)
-                print(value)
 
-            elif value.isnumeric() == True:
-                value = float(value)
+            if value.count('-') != 0:
+                value = value.split('-')
+                value = value[1]
+                if value.find(',') != -1:
+                    value = value.replace(',','.')
+                value = (-1)*float(value)
+
+            else:
+                x = value
+                if x.count(',') != 0:
+                    value = value.replace(',','.')
+                    value = float(value)
+                elif value.count('.') != 0:
+                    value = float(value)
+                else:
+                    if value.isnumeric() == True:
+                        value = float(value)
 
             dimen[info] = value
         Dic = conversao_unidades(dimen)
@@ -70,18 +102,20 @@ def exemplo1():
                 if value.find(',') != -1:
                     value = value.replace(',','.')
                 value = (-1)*float(value)
+
             else:
                 x = value
                 if x.count(',') != 0:
                     value = value.replace(',','.')
-
-            if value.count('.') != 0:
-                value = float(value)
-            else:
-                if value.isnumeric() == True:
                     value = float(value)
+                elif value.count('.') != 0:
+                    value = float(value)
+                else:
+                    if value.isnumeric() == True:
+                        value = float(value)
 
             dimen[info] = value
+        print(dimen)
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
 
@@ -106,8 +140,25 @@ def exemplo2():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
-            if value.isnumeric() == True:
-                value = float(value)
+
+            if value.count('-') != 0:
+                value = value.split('-')
+                value = value[1]
+                if value.find(',') != -1:
+                    value = value.replace(',','.')
+                value = (-1)*float(value)
+
+            else:
+                x = value
+                if x.count(',') != 0:
+                    value = value.replace(',','.')
+                    value = float(value)
+                elif value.count('.') != 0:
+                    value = float(value)
+                else:
+                    if value.isnumeric() == True:
+                        value = float(value)
+
             dimen[info] = value
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
@@ -132,8 +183,25 @@ def exemplo3():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
-            if value.isnumeric() == True:
-                value = float(value)
+
+            if value.count('-') != 0:
+                value = value.split('-')
+                value = value[1]
+                if value.find(',') != -1:
+                    value = value.replace(',','.')
+                value = (-1)*float(value)
+
+            else:
+                x = value
+                if x.count(',') != 0:
+                    value = value.replace(',','.')
+                    value = float(value)
+                elif value.count('.') != 0:
+                    value = float(value)
+                else:
+                    if value.isnumeric() == True:
+                        value = float(value)
+
             dimen[info] = value
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
@@ -158,8 +226,25 @@ def exemplo4():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
-            if value.isnumeric() == True:
-                value = float(value)
+
+            if value.count('-') != 0:
+                value = value.split('-')
+                value = value[1]
+                if value.find(',') != -1:
+                    value = value.replace(',','.')
+                value = (-1)*float(value)
+
+            else:
+                x = value
+                if x.count(',') != 0:
+                    value = value.replace(',','.')
+                    value = float(value)
+                elif value.count('.') != 0:
+                    value = float(value)
+                else:
+                    if value.isnumeric() == True:
+                        value = float(value)
+
             dimen[info] = value
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
@@ -184,8 +269,25 @@ def exemplo5():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
-            if value.isnumeric() == True:
-                value = float(value)
+
+            if value.count('-') != 0:
+                value = value.split('-')
+                value = value[1]
+                if value.find(',') != -1:
+                    value = value.replace(',','.')
+                value = (-1)*float(value)
+
+            else:
+                x = value
+                if x.count(',') != 0:
+                    value = value.replace(',','.')
+                    value = float(value)
+                elif value.count('.') != 0:
+                    value = float(value)
+                else:
+                    if value.isnumeric() == True:
+                        value = float(value)
+
             dimen[info] = value
         Dic = conversao_unidades(dimen)
         Dic = dimensionar(Dic)
@@ -204,6 +306,47 @@ def exemplo5():
         return render_template('pt/exemplo5.html', logo = logo)
 
 
+@app.route("/exemplo6", methods = ["POST", "GET"])
+def exemplo6():
+    if request.method == "POST":
+        dimen = {}
+        for info in request.form:           #retira informação dos inputs
+            value = request.form[info]
+
+            if value.count('-') != 0:
+                value = value.split('-')
+                value = value[1]
+                if value.find(',') != -1:
+                    value = value.replace(',','.')
+                value = (-1)*float(value)
+
+            else:
+                x = value
+                if x.count(',') != 0:
+                    value = value.replace(',','.')
+                    value = float(value)
+                elif value.count('.') != 0:
+                    value = float(value)
+                else:
+                    if value.isnumeric() == True:
+                        value = float(value)
+
+            dimen[info] = value
+        Dic = conversao_unidades(dimen)
+        Dic = dimensionar(Dic)
+        if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
+            return redirect(url_for("erroMomento"))
+
+        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+            #É necessário um redimencionamento ou aumento do fck''')
+            return redirect(url_for("erroBiela"))
+
+        session["dic"] = Dic
+        return redirect(url_for("resultados"))
+    else:
+        if "user" in session:
+            return redirect(url_for("resultados"))
+        return render_template('pt/exemplo6.html', logo = logo)
 
 
 
