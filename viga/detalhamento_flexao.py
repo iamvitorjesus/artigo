@@ -202,6 +202,7 @@ def detalhamento_flexao(Dic):
 
 
         # Armadura Tracionada
+    Yp = [] #Posição da armadura simples
     ahult = 0
     if nc*nbmax != nb:
         k = nc - 1
@@ -298,6 +299,7 @@ def detalhamento_flexao(Dic):
     somaprod = 0
     cm = 1
     l = 0
+
 
     while cm < nc:
         p = Pi[l][1]
