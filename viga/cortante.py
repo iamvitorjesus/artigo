@@ -21,7 +21,8 @@ def cortanteM1(Dic):
     fywk = Sec['fywk']
     fywd = fywk/(Sec['gs']*10)# kN/cm²
     if fywd > 43.5:
-        Sec['fywd'] = 43.5
+        fywd = 43.5
+        Sec['fywd'] = fywd
     else:
         Sec['fywd'] = fywd
 

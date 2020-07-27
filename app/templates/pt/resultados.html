@@ -391,7 +391,9 @@
         <h6 class="text-center">Verificação da compressão nas bielas</h6>
         <p class="text-justify">Para não ocorrer o esmagamento do concreto que compõe as bielas
           comprimidas (diagonais inclinadas na treliça clássica) deve-se ter:
-          <strong>V<sub>sd</sub> &#8804; V<sub>rd2</sub></strong>. Onde V<sub>rd2</sub> é a
+          <strong>V<sub>sd</sub> &#8804; V<sub>rd2</sub></strong>, onde
+        </p>
+        <p>V<sub>rd2</sub> é a
           resistência de cálculo, relativa a ruína das diagonais comprimidas de
           concreto.
         </p>
@@ -414,7 +416,7 @@
         {% endif %}
 
         <h6 class="text-center">Cálculo da armadura transversal</h6>
-        <p class="text-justify">V<sub>sd</sub> = V<sub>c</sub> + V<sub>sw</sub>. Onde,</p>
+        <p class="text-justify">V<sub>sd</sub> = V<sub>c</sub> + V<sub>sw</sub>, onde</p>
         <p>V<sub>c</sub>: parcela da força cortante absorvida por mecanismos
           complementares ao da treliça.</p>
           <p class="font-italic"><strong>Mecanismos:</strong></p>
@@ -460,10 +462,14 @@
                 </p>
                 <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9&#x22C5;
                   d&#x22C5;&#402<sub>ywd</sub>&#x22C5;(sen(&#593;) + cos(&#593;))) =
-                  {{info['Vsw']|round(3,'common')}}/(0.9&#x22C5;{{info['d']}} &#x22C5;
-                  {{info['fywd']|round(3,'common')}}&#x22C5;(sen({{info['a']}}) +
+                  {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                  {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
                   cos({{info['a']}}))) = <b>{{(info['Aswcalc']*100)|round(2,'common')}} cm²/m</b>
                   < {{(info['Aswmin']*100)|round(2,'common')}} = A<sub>swmin</sub>/S
+                </p>
+
+                <p class="text-center">Área da armadura transversal: <b>A<sub>sw</sub>/S</b> =
+                  A<sub>swmin</sub>/S = <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>
                 </p>
               {% else %}
                 <p class="text-justify">Sendo: <b>V<sub>sw</sub></b> = V<sub>sd</sub> -
