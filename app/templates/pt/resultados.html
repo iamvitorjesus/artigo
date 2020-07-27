@@ -610,23 +610,24 @@
       </div>
 
       <div class="col-lg-6">
-        {% if info['dcg'] > (info['h']*0,1)%}
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <h4 class="alert-heading">Seção com muitas camadas</h4>
-            <p>A maior quantidade de camadas afasta o centro de gravidade da armadura
-              tracionada (d<sub>cg</sub>) do bordo mais tracionado. Para os cálculos
-              uma hipotese adotada foi de que o d<sub>cg</sub> é menor ou igual 10% de h.
-            </p>
-            <p class="text-center"><strong>{{info['dcg']}} > {{info['h']*0.1}}</strong></p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <hr>
-            <p class="mb-0">
-            </p>
-          </div>
+        {% if 'ol' in info %}
+          {% if info['dcg'] > (info['h']*0,1)%}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <h4 class="alert-heading">Seção com muitas camadas</h4>
+              <p>A maior quantidade de camadas afasta o centro de gravidade da armadura
+                tracionada (d<sub>cg</sub>) do bordo mais tracionado. Para os cálculos
+                uma hipotese adotada foi de que o d<sub>cg</sub> é menor ou igual 10% de h.
+              </p>
+              <p class="text-center"><strong>{{info['dcg']}} > {{info['h']*0.1}}</strong></p>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <hr>
+              <p class="mb-0"> a
+              </p>
+            </div>
+          {% endif %}
         {% endif %}
-
 
 
             <!--  -->
