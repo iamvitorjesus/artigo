@@ -471,8 +471,8 @@
                 </p>
                 <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9&#x22C5;
                   d&#x22C5;&#402<sub>ywd</sub>&#x22C5;(sen(&#593;) + cos(&#593;))) =
-                  {{info['Vsw']|round(3,'common')}}/(0.9&#x22C5;{{info['d']}} &#x22C5;
-                  {{info['fywd']|round(3,'common')}}&#x22C5;(sen({{info['a']}}) +
+                  {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                  {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
                   cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>.
                 </p>
               {% endif %}
@@ -514,16 +514,18 @@
 
               <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;
                 &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywd</sub> =
-                0.2&#x22C5;{{info['fctm']|round(3,'common')}}&#x22C5;{{info['bw']}}&#x22C5;
+                0.2 &#x22C5; {{info['fctm']|round(3,'common')}} &#x22C5; {{info['bw']}}&#x22C5;
                 sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
                 <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
               </p>
 
-              <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9&#x22C5;
-                d&#x22C5;&#402<sub>ywd</sub>&#x22C5;(sen(&#593;) + cos(&#593;))) =
-                {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}}&#x22C5;
-                {{info['fywd']|round(3,'common')}}&#x22C5;(sen({{info['a']}}) +
-                cos({{info['a']}}))) = <b>{{(info['Aswcalc']*100)|round(2,'common')}} cm²/m</b>.
+              <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5; d
+                &#x22C5; &#402<sub>ywd</sub> &#x22C5;
+                (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen(&#593;)) =
+                {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                {{info['fywd']|round(3,'common')}} &#x22C5; (cotan({{info['t']}}) +
+                cotan({{info['a']}})) &#x22C5; sen({{info['a']}})) = {{(info['Asw'])|
+                round(4,'common')}} cm²/cm = <b>{{(info['Asw']*100)|round(4,'common')}} cm²/m</b>
               </p>
             {% endif %}
           {% elif info['Vsd'] == info['Vrd2']%}
@@ -536,12 +538,15 @@
               |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
             </p>
 
-            <p class="text-justify"><b>A<sub>sw</sub>/S</b> = V<sub>sw</sub>/(0.9 &#x22C5;
-              d &#x22C5; &#402<sub>ywd</sub> &#x22C5;(sen(&#593;) + cos(&#593;))) =
+            <p class="text-justify">Área da armadura transversal: <b>A<sub>sw</sub>/S</b> =
+              V<sub>sw</sub>/(0.9 &#x22C5; d &#x22C5; &#402<sub>ywd</sub> &#x22C5;
+              (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen(&#593;)) =
               {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
-              {{info['fywd']|round(3,'common')}} &#x22C5; (sen({{info['a']}}) +
-              cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(4,'common')}} cm²/m</b>.
+              {{info['fywd']|round(3,'common')}} &#x22C5; (cotan({{info['t']}}) +
+              cotan({{info['a']}})) &#x22C5; sen({{info['a']}})) = {{(info['Asw'])|
+              round(4,'common')}} cm²/cm = <b>{{(info['Aswcalc']*100)|round(4,'common')}} cm²/m</b>.
             </p>
+
           {% elif info['Vsd'] > info['Vc0']%}
             <p class="text-justify">V<sub>c</sub> = V<sub>c1</sub>, sendo:
               V<sub>c1</sub> = V<sub>c0</sub> &#x22C5; (V<sub>rd2</sub> -
@@ -549,7 +554,7 @@
               <strong>&#10230;</strong> para V<sub>sd</sub> > V<sub>c0</sub>
               <strong>&#10230;</strong>
               <b>V<sub>c0</sub></b> = 0.6&#x22C5;&#402<sub>ctd</sub>&#x22C5;b<sub>w</sub>&#x22C5;d =
-              0.6 &#x22C5; {{info['fctd']|round(3, 'common')}} &#x22C5; {{info['bw']}} &#x22C5;
+              0.6 &#x22C5; {{info['fctd']|round(4, 'common')}} &#x22C5; {{info['bw']}} &#x22C5;
                 {{info['d']}} = <b>{{info['Vc0']|round(2,'common')}} kN</b> <
                 {{info['Vsd']|round(2,'common')}} kN.
             </p>
@@ -563,23 +568,34 @@
               |round(2,'common')}} = <b>{{info['Vsw']|round(2,'common')}} kN</b>.
             </p>
 
-            {% if info['Aswmin'] >= info['Asw'] %}
-              <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;
-                &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywd</sub> =
+            {% if info['Aswmin'] >= info['Aswcalc'] %}
+              <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;&#402
+                <sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywd</sub> =
                 0.2&#x22C5;{{info['fctm']|round(3,'common')}}&#x22C5;{{info['bw']}}&#x22C5;
                 sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
                 <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
               </p>
+
+              <p class="text-justify"><b>A<sub>sw</sub>/S</b> =
+                V<sub>sw</sub>/(0.9 &#x22C5; d &#x22C5; &#402<sub>ywd</sub> &#x22C5;
+                (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen(&#593;)) = {{info['Vsw']|round(3,'common')}}/
+                (0.9 &#x22C5; {{info['d']}} &#x22C5; {{info['fywd']|round(3,'common')}}
+                &#x22C5; (cotan({{info['t']}}) + cotan({{info['a']}})) &#x22C5; sen({{info['a']}}))
+                = {{(info['Aswcalc'])|round(4,'common')}} cm²/cm =
+                <b>{{(info['Aswcalc']*100)|round(4,'common')}} cm²/m</b>.
+              </p>
+
               <p class="text-justify">Área da armadura transversal: <b>A<sub>sw</sub>/S</b> =
                 A<sub>swmin</sub>/S = <b>{{(info['Asw']*100)|round(2,'common')}} cm²/m</b>
               </p>
             {% else %}
               <p class="text-justify">Área da armadura transversal: <b>A<sub>sw</sub>/S</b> =
-                V<sub>sw</sub>/(0.9 &#x22C5;
-                d&#x22C5;&#402<sub>ywd</sub>&#x22C5;(sen(&#593;) + cos(&#593;))) =
-                {{info['Vsw']|round(3,'common')}}/(0.9&#x22C5;{{info['d']}} &#x22C5;
-                {{info['fywd']|round(3,'common')}}&#x22C5;(sen({{info['a']}}) +
-                cos({{info['a']}}))) = <b>{{(info['Asw']*100)|round(4,'common')}} cm²/m</b>.
+                V<sub>sw</sub>/(0.9 &#x22C5; d &#x22C5; &#402<sub>ywd</sub> &#x22C5;
+                (cotan(&#415;) + cotan(&#593;)) &#x22C5; sen(&#593;)) =
+                {{info['Vsw']|round(3,'common')}}/(0.9 &#x22C5; {{info['d']}} &#x22C5;
+                {{info['fywd']|round(3,'common')}} &#x22C5; (cotan({{info['t']}}) +
+                cotan({{info['a']}})) &#x22C5; sen({{info['a']}})) = {{(info['Asw'])|
+                round(4,'common')}} cm²/cm = <b>{{(info['Asw']*100)|round(4,'common')}} cm²/m</b>.
               </p>
             {% endif %}
           {% endif %}
