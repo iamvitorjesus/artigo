@@ -381,7 +381,7 @@
           </li>
           <li class="list-group-item">Aço:
             <b>&#402<sub>ywd</sub></b> = &#402<sub>ywk</sub>/&#611<sub>s</sub> =
-            {{info['fywk']}}/{{info['gc']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.</li>
+            {{info['fywk']}}/{{info['gs']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.</li>
           <li class="list-group-item">Carregamento:
             <b>V<sub>sd</sub></b> = V<sub>k</sub> &#x22C5; &#611<sub>f</sub> =
             {{info['Vk']}} &#x22C5; {{info['gf']}} = <b>{{(info['Vsd'])|round(3,'common')}} MPa</b>.
@@ -610,10 +610,21 @@
       </div>
 
       <div class="col-lg-6">
-
-
-
-
+        {% if info['dcg'] > (info['h']*0,1)%}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Seção com muitas camadas</h4>
+            <p>A maior quantidade de camadas afasta o centro de gravidade da armadura tracionada
+              do bordo mais tracionado.
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <hr>
+            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things
+              nice and tidy.
+            </p>
+          </div>
+        {% endif %}
 
 
 
