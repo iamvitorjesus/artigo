@@ -380,8 +380,16 @@
             = <b>{{(info['fcd2'])|round(3,'common')}} kN/cm²</b>.
           </li>
           <li class="list-group-item">Aço:
-            <b>&#402<sub>ywd</sub></b> = &#402<sub>ywk</sub>/&#611<sub>s</sub> =
-            {{info['fywk']}}/{{info['gs']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.</li>
+            {% if info['fywk']/info['gs'] > 43.5 %}
+              o item 17 da NBR 6118 limita a resistência de cálculo no escoamento do aço a 435 MPa,
+              como &#402<sub>ywk</sub>/&#611<sub>s</sub> = {{info['fywd']*10}} > 435 MPa,
+              <b>&#402<sub>ywd</sub></b> = <b>435 MPa</b>.
+
+            {% else %}
+              <b>&#402<sub>ywd</sub></b> = &#402<sub>ywk</sub>/&#611<sub>s</sub> =
+              {{info['fywk']}}/{{info['gs']}} = {{(info['fywd']*10)|round(3,'common')}} MPa.
+            {% endif %}
+          </li>
           <li class="list-group-item">Carregamento:
             <b>V<sub>sd</sub></b> = V<sub>k</sub> &#x22C5; &#611<sub>f</sub> =
             {{info['Vk']}} &#x22C5; {{info['gf']}} = <b>{{(info['Vsd'])|round(3,'common')}} MPa</b>.
