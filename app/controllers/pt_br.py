@@ -33,7 +33,7 @@ def novoprojeto():
             value = request.form[info]
             if info != "t" and 'd_':
                 if value == '' or ' ':
-                    return redirect(url_for("erroP"))
+                    return redirect(url_for("erroPreenchimento"))
 
             if value.count('-') != 0:
                 value = value.split('-')
@@ -374,5 +374,5 @@ def erroBiela():
 
 
 @app.route("/erroP", methods = ["GET"])
-def erroP():
+def erroPreenchimento():
     return render_template('pt/erroPreenchimento.html', logo = logo)
