@@ -382,7 +382,7 @@
           <li class="list-group-item">Aço:
             {% if info['fywk']/info['gs'] > 435 %}
               o item 17 da NBR 6118 limita a resistência de cálculo no escoamento do aço a 435 MPa,
-              como &#402<sub>ywk</sub>/&#611<sub>s</sub> = {{info['fywd']*10}} > 435 MPa,
+              como &#402<sub>ywk</sub>/&#611<sub>s</sub> = {{info['fywk']/info['gs']}} > 435 MPa,
               <b>&#402<sub>ywd</sub></b> = <b>435 MPa</b>.
 
             {% else %}
@@ -450,7 +450,7 @@
           <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;
             &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywk</sub> =
             0.2&#x22C5;{{info['fctm']|round(3,'common')}}&#x22C5;{{info['bw']}}&#x22C5;
-            sen({{info['a']}})/{{info['fywk']|round(2, 'common')}} =
+            sen({{info['a']}})/{{(info['fywk']/10)|round(2, 'common')}} =
             <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
           </p>
 
@@ -513,7 +513,8 @@
               <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;
                 &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywk</sub> =
                 0.2&#x22C5;{{info['fctm']|round(3,'common')}}&#x22C5;{{info['bw']}}&#x22C5;
-                sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
+                sen({{info['a']}})/{{(info['fywk']/10)|round(2, 'common')}} =
+                {{(info['Aswmin'])|round(2,'common')}} cm²/cm =
                 <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
               </p>
 
@@ -529,7 +530,7 @@
               <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;
                 &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywk</sub> =
                 0.2 &#x22C5; {{info['fctm']|round(3,'common')}} &#x22C5; {{info['bw']}}&#x22C5;
-                sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
+                sen({{info['a']}})/{{(info['fywk']/10)|round(2, 'common')}} =
                 <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
               </p>
 
@@ -586,7 +587,7 @@
               <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;&#402
                 <sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywk</sub> =
                 0.2&#x22C5;{{info['fctm']|round(3,'common')}}&#x22C5;{{info['bw']}}&#x22C5;
-                sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
+                sen({{info['a']}})/{{(info['fywk']/10)|round(2, 'common')}} =
                 <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
               </p>
 
