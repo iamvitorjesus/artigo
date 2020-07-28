@@ -370,8 +370,6 @@ def erroMomento():
 def erroBiela():
     return render_template('pt/erroBiela.html', logo = logo)
 
-    return render_template('pt/erroMomento.html', logo = logo)
-
 
 @app.route("/erroP", methods = ["GET"])
 def erroPreenchimento():
