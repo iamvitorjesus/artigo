@@ -15,26 +15,6 @@ logo = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon8.png')
 logocilamce = os.path.join(app.config['UPLOAD_FOLDER'], 'logocilamce2020_online.png')
 distribuicao = os.path.join(app.config['UPLOAD_FOLDER'], 'distrib.jpeg')
 
-def virgula(value):
-
-    if value.count('-') != 0:
-        value = value.split('-')
-        value = value[1]
-        if value.find(',') != -1:
-            value = value.replace(',','.')
-        value = (-1)*float(value)
-
-    else:
-        x = value
-        if x.count(',') != 0:
-            value = value.replace(',','.')
-            value = float(value)
-        elif value.count('.') != 0:
-            value = float(value)
-        else:
-            if value.isnumeric() == True:
-                value = float(value)
-
 
 #model_prediction = False
 @app.route("/")
@@ -51,6 +31,9 @@ def novoprojeto():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
+            if info != "t" and 'd_':
+                if value == '' or ' ':
+                    return redirect(url_for("erroP"))
 
             if value.count('-') != 0:
                 value = value.split('-')
@@ -226,7 +209,6 @@ def exemplo4():
         dimen = {}
         for info in request.form:           #retira informação dos inputs
             value = request.form[info]
-
             if value.count('-') != 0:
                 value = value.split('-')
                 value = value[1]
@@ -387,3 +369,10 @@ def erroMomento():
 @app.route("/erroB", methods = ["GET"])
 def erroBiela():
     return render_template('pt/erroBiela.html', logo = logo)
+
+    return render_template('pt/erroMomento.html', logo = logo)
+
+
+@app.route("/erroP", methods = ["GET"])
+def erroP():
+    return render_template('pt/erroPreenchimento.html', logo = logo)
