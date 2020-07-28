@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import math
 
-'CORTANTE'
 'Método de calculo I'
 def cortanteM1(Dic):
     from viga.flexaosimples import flexaosimples
@@ -69,13 +68,15 @@ def cortanteM1(Dic):
 
     Sec['Aswcalc'] = Asw
 
-    Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywd
+    Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywk
     Sec["Aswmin"] = Aswmin
     if Asw <= Aswmin:
         Asw = Aswmin
 
     Sec["Asw"] = Asw
     return(Sec)
+
+
 
 
 'Método de calculo II'
@@ -158,7 +159,7 @@ def cortanteM2(Dic):
     Sec['Vsw'] = Vsw
     Sec['Aswcalc'] = Asw
 
-    Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywd
+    Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywk
     Sec["Aswmin"] = Aswmin
     if Asw <= Aswmin:
         Asw = Aswmin

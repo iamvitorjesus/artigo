@@ -448,9 +448,9 @@
           </p>
 
           <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;
-            &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywd</sub> =
+            &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywk</sub> =
             0.2&#x22C5;{{info['fctm']|round(3,'common')}}&#x22C5;{{info['bw']}}&#x22C5;
-            sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
+            sen({{info['a']}})/{{info['fywk']|round(2, 'common')}} =
             <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
           </p>
 
@@ -511,7 +511,7 @@
               </p>
 
               <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;
-                &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywd</sub> =
+                &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywk</sub> =
                 0.2&#x22C5;{{info['fctm']|round(3,'common')}}&#x22C5;{{info['bw']}}&#x22C5;
                 sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
                 <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
@@ -527,7 +527,7 @@
               </p>
 
               <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;
-                &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywd</sub> =
+                &#402<sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywk</sub> =
                 0.2 &#x22C5; {{info['fctm']|round(3,'common')}} &#x22C5; {{info['bw']}}&#x22C5;
                 sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
                 <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
@@ -584,7 +584,7 @@
 
             {% if info['Aswmin'] >= info['Aswcalc'] %}
               <p class="text-justify"><b>A<sub>swmin</sub>/S</b> = 0.2&#x22C5;&#402
-                <sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywd</sub> =
+                <sub>ctm</sub>&#x22C5;b<sub>w</sub>&#x22C5;sen(&#593;)/&#402<sub>ywk</sub> =
                 0.2&#x22C5;{{info['fctm']|round(3,'common')}}&#x22C5;{{info['bw']}}&#x22C5;
                 sen({{info['a']}})/{{info['fywd']|round(2, 'common')}} =
                 <b>{{(info['Aswmin']*100)|round(2,'common')}} cm²/m</b>.
@@ -631,7 +631,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
               <hr>
-              <p class="mb-0"> a
+              <p class="mb-0"> Tente usar um diâmetro
               </p>
             </div>
           {% endif %}
