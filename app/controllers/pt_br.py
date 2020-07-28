@@ -33,7 +33,7 @@ def novoprojeto():
             value = request.form[info]
             if info != "t" and 'd_':
                 if value == '' or ' ':
-                    return redirect(url_for("erroPreenchimento"))
+                    return redirect(url_for("erroPreen"))
 
             if value.count('-') != 0:
                 value = value.split('-')
@@ -363,14 +363,14 @@ def menu():
 
 @app.route("/erroM", methods = ["GET"])
 def erroMomento():
-    return render_template('pt/erroMomento.html', logo = logo)
+    return render_template('pt/erromomento.html', logo = logo)
 
 
 @app.route("/erroB", methods = ["GET"])
 def erroBiela():
-    return render_template('pt/erroBiela.html', logo = logo)
+    return render_template('pt/errobiela.html', logo = logo)
 
 
 @app.route("/erroP", methods = ["GET"])
-def erroPreenchimento():
-    return render_template('pt/erroPreenchimento.html', logo = logo)
+def erroPreen():
+    return render_template('pt/erropreen.html', logo = logo)
