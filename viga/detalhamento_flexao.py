@@ -203,6 +203,8 @@ def detalhamento_flexao(Dic):
 
         # Armadura Tracionada
     Yp = [] #Posição da armadura simples
+
+    Yp.append(yi)
     ahult = 0
     if nc*nbmax != nb:
         k = nc - 1
@@ -226,8 +228,10 @@ def detalhamento_flexao(Dic):
             xi = c + Sec['ot'] + (Sec['ol']/2)
             if Sec['Mk'] < 0:
                 yi +=  (Sec['ol'] + ave)
+                Yp.append(yi)
             else:
                 yi -=  (Sec['ol'] + ave)
+                Yp.append(yi)
             k = 0
             cam += 1
         i += 1
@@ -300,20 +304,19 @@ def detalhamento_flexao(Dic):
     cm = 1
     l = 0
 
+    w = 1
+    for y in Yp:
+        y = h - y
+        ln = len(Yp) - w
 
-    while cm < nc:
-        p = Pi[l][1]
-        for pos in Pi:
-            if pos[1] != p:
-                p = pos[1]
-                break
-            l += 1
-        if cm == nc:
-            somaprod = (h - pos[1])*nbult
-            print(somaprod)
+        if ln > 0:
+            prod = y*nbmax
+            somaprod = somaprod + prod
         else:
-            somaprod = (h - pos[1])*nbmax
-        cm += 1
+            prod = y*(nb - ((nc-1)*nbmax))
+            somaprod = somaprod + prod
+        w = w + 1
+    Sec['dcg'] = round(somaprod/(nb*10),2)
 
-    Sec['dcg'] = somaprod/(nb*10)
+
     return (Sec)
