@@ -56,7 +56,8 @@
               </div>
 
               <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)"
+                (with dot and two decimal places)" data-toggle="tooltip"
+                data-placement="top" title="Resistência Característica do Concreto"
                 placeholder="Resistência Característica do Concreto" name="fck" min="20" max="90" value="20">
 
               <div class="input-group-append">
@@ -78,7 +79,8 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                  (with dot and two decimal places)"
+                  (with dot and two decimal places)" data-toggle="tooltip"
+                  data-placement="top" title="Resistência Característica do Aço"
                   placeholder="Resistência Característica do Aço" name="fyk" value="500">
 
               <div class="input-group-append">
@@ -100,7 +102,8 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)"
+                (with dot and two decimal places)" data-toggle="tooltip"
+                data-placement="top" title="Resistência Característica do Estribo"
                 placeholder="Resistência Característica do Estribo" name="fywk" value="500">
 
               <div class="input-group-append">
@@ -120,7 +123,8 @@
                 <div class="input-group-prepend"><span class="input-group-text">E<sub>s</sub></span></div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                  (with dot and two decimal places)"
+                  (with dot and two decimal places)" data-toggle="tooltip"
+                  data-placement="top" title="Módulo de Elasticidade do Aço"
                   placeholder="Módulo de Elasticidade do Aço" name="Es" value="210">
 
               <div class="input-group-append">
@@ -142,7 +146,8 @@
               </div>
 
               <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)"
+                (with dot and two decimal places)" data-toggle="tooltip"
+                data-placement="top" title="Ângulo do Estriboo"
                 placeholder="Ângulo do Estribo " name="a" value="90">
 
               <div class="input-group-append">
@@ -177,10 +182,12 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Momento fletor " name="Mk" value="30">
+                (with dot and two decimal places)" data-toggle="tooltip"
+                data-placement="top" title="Momento Fletor Característico"
+                placeholder="Momento fletor" name="Mk" value="30">
 
               <div class="input-group-append">
-                <select class="custom-select" id="inputGroupSelect01" name="unitMk">
+                <select class="custom-select" id="inputGroupSelect01" name="unitMk" >
                   <option value="1">kN&#x22C5;m</option>
                   <option value="2">kN&#x22C5;cm</option>
                   <option value="3">tf&#x22C5;m</option>
@@ -202,7 +209,9 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Cortante" name="Vk" value="30">
+                (with dot and two decimal places)" data-toggle="tooltip"
+                data-placement="top" title="Cortante Característico"
+                placeholder="Cortante característico" name="Vk" value="30">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitVk">
@@ -274,7 +283,9 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Base" name="bw" value='15'>
+                (with dot and two decimal places)" data-toggle="tooltip"
+                data-placement="top" title="Base da Seção Transversal"
+                placeholder="Base" name="bw" value='15'>
 
               <div class="input-group-append">
                 <select class="custom-select" name="unitbw">
@@ -293,7 +304,9 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Altura" name="h" value="40">
+                (with dot and two decimal places)" data-toggle="tooltip"
+                data-placement="top" title="Altura da Seção Transversal"
+                placeholder="Altura" name="h" value="40">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unith">
@@ -312,7 +325,9 @@
               </div>
 
               <input type="number" class="form-control" aria-label="Dollar amount
-              (with dot and two decimal places)" min='0' placeholder= "Vão Livre" name="l0" value="4">
+              (with dot and two decimal places)" min='0' data-toggle="tooltip"
+              data-placement="top" title="Vão Livre"
+              placeholder= "Vão Livre" name="l0" value="4">
 
               <div class="input-group-append">
                 <select class="custom-select" name="unitl0">
@@ -331,7 +346,9 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Apoio da Direita" name="t1" value="30">
+                (with dot and two decimal places)" data-toggle="tooltip"
+                data-placement="top" title="Apoio da Direita"
+                placeholder="Apoio da Direita" name="t1" value="30">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitt1">
@@ -349,7 +366,9 @@
               </div>
 
                 <input type="number" class="form-control"aria-label="Dollar amount
-                (with dot and two decimal places)" placeholder="Apoio da Esquerda" name="t2" value="30">
+                (with dot and two decimal places)" data-toggle="tooltip"
+                data-placement="top" title="Apoio da Esquerda"
+                placeholder="Apoio da Esquerda" name="t2" value="30">
 
               <div class="input-group-append">
                 <select class="custom-select" id="inputGroupSelect01" name="unitt2">
@@ -459,7 +478,10 @@
                 <span class="input-group-text">d'</span>
               </div>
 
-                <input type="number" class="form-control" aria-label="Dollar amount
+                <input type="number" class="form-control" data-toggle="tooltip"
+                data-placement="top" title="Distância entre a borda mais tracionada e o centro
+                de gravidade da armadura tracionada"
+                aria-label="Dollar amount
                 (with dot and two decimal places)" min="0" placeholder="Parâmetro d'" value="4"
                 name="d_" id='d_'>
 
