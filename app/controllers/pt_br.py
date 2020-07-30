@@ -29,12 +29,13 @@ def inicio():
 def novoprojeto():
     if request.method == "POST":
         dimen = {}
-        for info in request.form:           #retira informação dos inputs
+        for info in request.form:   #retira informação dos inputs
             value = request.form[info]
-            if info != "t" and 'd_':
+            if info != "t" and 'd_': # Filtro que impede o avanço do programa se houver campos inputs em branco
                 if value == '' or ' ':
                     return redirect(url_for("erroPreen"))
-
+            # Números negativos são interpretados como string pelo html
+            # É necessário o tratamento desses dados
             if value.count('-') != 0:
                 value = value.split('-')
                 value = value[1]
