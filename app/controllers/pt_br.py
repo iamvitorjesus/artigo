@@ -34,7 +34,6 @@ def novoprojeto():
         dimen = {}
 
         for info in request.form:   #retira informação dos inputs
-            print(info)
             value = request.form[info]
 
             # Números negativos são interpretados como string pelo html
