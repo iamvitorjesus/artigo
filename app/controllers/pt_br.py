@@ -15,6 +15,9 @@ logo = os.path.join(app.config['UPLOAD_FOLDER'], 'ReCon8.png')
 logocilamce = os.path.join(app.config['UPLOAD_FOLDER'], 'logocilamce2020_online.png')
 distribuicao = os.path.join(app.config['UPLOAD_FOLDER'], 'distrib.jpeg')
 
+var = ["fck","unitfck","fyk","unitfyk","fywk","unitfywk","Es","unitEs","a",
+"Brita","Mk","unitMk","Vk","unitVk","carregamento","gf","bw","unitbw","h",
+"unith","l0","unitl0","t1","unitt1","t2","unitt2","Modelo","CAA"]
 
 #model_prediction = False
 @app.route("/")
@@ -29,11 +32,11 @@ def inicio():
 def novoprojeto():
     if request.method == "POST":
         dimen = {}
+
         for info in request.form:   #retira informação dos inputs
+            print(info)
             value = request.form[info]
-            if info != "t" and 'd_': # Filtro que impede o avanço do programa se houver campos inputs em branco
-                if value == '' or ' ':
-                    return redirect(url_for("erroPreen"))
+
             # Números negativos são interpretados como string pelo html
             # É necessário o tratamento desses dados
             if value.count('-') != 0:
