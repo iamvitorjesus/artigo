@@ -62,9 +62,14 @@ def novoprojeto():
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
-        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+        elif Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
             #É necessário um redimencionamento ou aumento do fck''')
             return redirect(url_for("erroBiela"))
+        elif Dic['t'] > 45 or  Dic['t'] < 30:
+            return redirect(url_for("erroAnguloBiela.html"))
+
+        elif Dic['fck'] < 20 or  Dic['fck'] > 90:
+            return redirect(url_for("errofck"))
 
         session["dic"] = Dic
         return redirect(url_for("resultados"))
@@ -72,7 +77,6 @@ def novoprojeto():
         if "user" in session:
             return redirect(url_for("resultados"))
         return render_template('pt/novoprojeto.html', logo = logo)
-
 
 
 @app.route("/exemplo1", methods = ["POST", "GET"])
@@ -108,9 +112,15 @@ def exemplo1():
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
-        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+        elif Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
             #É necessário um redimencionamento ou aumento do fck''')
             return redirect(url_for("erroBiela"))
+
+        elif Dic['t'] > 45 or  Dic['t'] < 30:
+            return redirect(url_for("erroAnguloBiela"))
+
+        elif Dic['fck'] < 20 or  Dic['fck'] > 90:
+            return redirect(url_for("errofck"))
 
         session["dic"] = Dic
         return redirect(url_for("resultados"))
@@ -151,9 +161,15 @@ def exemplo2():
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
-        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+        elif Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
             #É necessário um redimencionamento ou aumento do fck''')
             return redirect(url_for("erroBiela"))
+
+        elif Dic['t'] > 45 or  Dic['t'] < 30:
+            return redirect(url_for("erroAnguloBiela"))
+
+        elif Dic['fck'] < 20 or  Dic['fck'] > 90:
+            return redirect(url_for("errofck"))
 
         session["dic"] = Dic
         return redirect(url_for("resultados"))
@@ -194,9 +210,15 @@ def exemplo3():
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
-        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+        elif Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
             #É necessário um redimencionamento ou aumento do fck''')
             return redirect(url_for("erroBiela"))
+
+        elif Dic['t'] > 45 or  Dic['t'] < 30:
+            return redirect(url_for("erroAnguloBiela"))
+
+        elif Dic['fck'] < 20 or  Dic['fck'] > 90:
+            return redirect(url_for("errofck"))
 
         session["dic"] = Dic
         return redirect(url_for("resultados"))
@@ -236,9 +258,15 @@ def exemplo4():
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
-        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+        elif Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
             #É necessário um redimencionamento ou aumento do fck''')
             return redirect(url_for("erroBiela"))
+
+        elif Dic['t'] > 45 or  Dic['t'] < 30:
+            return redirect(url_for("erroAnguloBiela"))
+
+        elif Dic['fck'] < 20 or  Dic['fck'] > 90:
+            return redirect(url_for("errofck"))
 
         session["dic"] = Dic
         return redirect(url_for("resultados"))
@@ -279,9 +307,15 @@ def exemplo5():
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
-        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+        elif Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
             #É necessário um redimencionamento ou aumento do fck''')
             return redirect(url_for("erroBiela"))
+
+        elif Dic['t'] > 45 or  Dic['t'] < 30:
+            return redirect(url_for("erroAnguloBiela"))
+
+        elif Dic['fck'] < 20 or  Dic['fck'] > 90:
+            return redirect(url_for("errofck"))
 
         session["dic"] = Dic
         return redirect(url_for("resultados"))
@@ -322,9 +356,15 @@ def exemplo6():
         if Dic['As'] + Dic['Ass'] >= 0.04*Dic['bw']*Dic['h']: #Verificação da Armadura Máxima
             return redirect(url_for("erroMomento"))
 
-        if Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
+        elif Dic['Vsd'] >= Dic['Vrd2']: # As bielas serão esmagadas.
             #É necessário um redimencionamento ou aumento do fck''')
             return redirect(url_for("erroBiela"))
+
+        elif Dic['t'] > 45 or  Dic['t'] < 30:
+            return redirect(url_for("erroAnguloBiela"))
+
+        elif Dic['fck'] < 20 or  Dic['fck'] > 90:
+            return redirect(url_for("errofck"))
 
         session["dic"] = Dic
         return redirect(url_for("resultados"))
@@ -377,3 +417,11 @@ def erroBiela():
 @app.route("/erroP", methods = ["GET"])
 def erroPreen():
     return render_template('pt/erropreen.html', logo = logo)
+
+@app.route("/erroA", methods = ["GET"])
+def erroAnguloBiela():
+    return render_template('pt/erroangulobiela.html', logo = logo)
+
+@app.route("/erroF", methods = ["GET"])
+def errofck():
+    return render_template('pt/errofck.html', logo = logo)

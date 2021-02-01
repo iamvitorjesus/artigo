@@ -143,8 +143,8 @@
         </div>
         <p>As normas brasileiras classificam o concreto estrutural em dois grupos, com base na
           resistência característica do material. 20 MPa &#8804; &#402<sub>ck</sub> &#8804; 50
-          MPa pertencem ao <em>grupo &#8544;</em> enquanto concretos com &#402<sub>ck</sub> &#62; 50
-          pertencem ao <em>grupo &#8545;</em>.
+          MPa pertencem ao <em>grupo &#8544;</em> enquanto concretos com &#402<sub>ck</sub> entre 50 e 90
+          MPa pertencem ao <em>grupo &#8545;</em>.
         </p>
           <p></p>
 
@@ -210,7 +210,7 @@
 
           <h6 class="text-center">Domínio de deformação</h6>
           <p class="text-justify">O valor x<sub>2lim</sub> delimita os domínos 2 e 3,
-            e para os concretos do Grupo &#8545; de resistência (f<sub>ck</sub> > 50 MPa)
+            e para os concretos do Grupo &#8545; de resistência (90 MPa > f<sub>ck</sub> > 50 MPa)
             depende da deformação especifica máxima do concreto
             {{(info['eu']/(info['eu']+0.01))|round(3, 'common')}}&#x22C5;d</p>
 
@@ -218,8 +218,7 @@
             round(3, 'common')}}&#x22C5;{{info['d']}} = <b>{{info['x2lim']|round(2, 'common')}} cm</b>.</p>
 
           <p class="text-justify">O valor x<sub>3lim</sub> delimita os domínos 3 e 4,
-            e para os concretos do Grupo &#8544; e aço CA-{{(info['fyk']/10)|round|int}}
-            é fixo e igual a {{(info['eu']/(info['eu']+info['eyd']))|round(3, 'common')}}&#x22C5;d.
+            e para os concretos do Grupo &#8545; depende do &#402<sub>ck</sub>.
           </p>
 
           <p class="text-justify"><b>x<sub>3lim</sub></b> = {{(info['eu']/(info['eu']+info['eyd']))|
