@@ -406,12 +406,12 @@ def menu():
 
 @app.route("/erroM", methods = ["GET"])
 def erroMomento():
-    return render_template('pt/erromomento.html', logo = logo)
+    return render_template('pt/erroMomento.html', logo = logo)
 
 
 @app.route("/erroB", methods = ["GET"])
 def erroBiela():
-    return render_template('pt/errobiela.html', logo = logo)
+    return render_template('pt/erroBiela.html', logo = logo)
 
 
 @app.route("/erroP", methods = ["GET"])
@@ -420,7 +420,7 @@ def erroPreen():
 
 @app.route("/erroA", methods = ["GET"])
 def erroAnguloBiela():
-    return render_template('pt/erroangulobiela.html', logo = logo)
+    return render_template('pt/erroAnguloBiela.html', logo = logo)
 
 @app.route("/erroF", methods = ["GET"])
 def errofck():
