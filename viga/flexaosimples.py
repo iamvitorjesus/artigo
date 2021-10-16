@@ -8,12 +8,13 @@ def flexaosimples(Dic):
 
     c = Dic['c']
 
-    d1 = c + 1
+    d2 = c + 1
     Dic["d1"] = d1
-    if 'parametrod_'  in Dic:
-        Dic['d1'] = Dic['d_']
-    d2 = Dic['d1']
     Dic["d2"] = d2
+    if 'parametrod_'  in Dic:
+        Dic['d1'] = Dic['d_'] # Distância do centro de gravidade da armadura comprimida até a borda comprimida da seção
+        Dic['d2'] = Dic['d__']
+
 
         # Materiais
     if Dic['carregamento'] == 1:
@@ -44,7 +45,7 @@ def flexaosimples(Dic):
     # TRATAMENTO DE DADOS
     Msd = Mk*gf # kN.cm
     Dic["Msd"] = Msd
-    d = h - Dic['d1'] # cm
+    d = h - Dic['d2'] # cm
     Dic["d"] = d
 
     fcd = fck/(gc*10) # kN/cm²
@@ -87,13 +88,13 @@ def flexaosimples(Dic):
     'Cálculo da Armadura'
     xlim = nlim*d
     Dic['xlim'] = xlim
-    Msdlim = y*ac*nlim*(d**2)*bw*fcd*(1-(0.4*nlim))
+    Msdlim = y*ac*nlim*(d**2)*bw*fcd*(1-((y/2)*nlim))
     Dic['Msdlim'] = Msdlim
     cal = 0
     if Msdlim >= Msd:
         # Armadura simples
         x = (d/y)*(1-((1-((2*Msd)/(bw*(d**2)*ac*fcd)))**(0.5))) # Linha Neutra
-        As = Msd/(fyd*(d-(0.4*x)))
+        As = Msd/(fyd*(d-((y/2)*x)))
         Dic['ols'] = 8.0
         Ass = 2*(math.pi)*((0.8)**2)/4 # Porta estribo
     else:
@@ -104,9 +105,9 @@ def flexaosimples(Dic):
         Dic['Md1'] = Md1
         Md2 = Msd - Md1
         Dic['Md2'] = Md2
-        As1 = Md1/(fyd*(d-(0.4*x)))
-        As2 = Md2/(fyd*(d-d2))
-        es = ((xlim - d2)*eu)/xlim # deformação sofrida pela armadura superior
+        As1 = Md1/(fyd*(d-((y/2)*x)))
+        As2 = Md2/(fyd*(d-Dic['d1']))
+        es = ((xlim - Dic['d1'])*eu)/xlim # deformação sofrida pela armadura superior
         Dic['As1'] = As1
         Dic['As2'] = As2
         Dic['es'] = es
@@ -115,7 +116,7 @@ def flexaosimples(Dic):
         else:
             Dsd = es*(Es*100) #kN/cm²
         Dic['Dsd'] = Dsd # Tensão proporcional a deformação sofrida pela armadura superior (Lei de Hooke)
-        Ass = Md2/(Dsd*(d-d2))
+        Ass = Md2/(Dsd*(d-Dic['d1']))
         As = As1 + As2
 
     Dic['cal'] = cal

@@ -16,8 +16,10 @@
     var x2 = document.getElementById("parametrod_").value;
       if (x2 == 'on'){
         document.getElementById("d_").disabled=false;
+        document.getElementById("d__").disabled=false;
       } if (x2 == 'off') {
         document.getElementById("d_").disabled=true;
+        document.getElementById("d__").disabled=true;
   }}
 
 </script>
@@ -472,6 +474,22 @@
 
                 <input type="number" class="form-control" aria-label="Dollar amount
                 (with dot and two decimal places)" min="0" placeholder="Parâmetro d'" name="d_" id='d_' disabled>
+
+              <div class="input-group-append">
+                <span class="input-group-text">cm</span>
+              </div>
+            </div>
+          </div><p></p>
+
+          <div class="row marketing">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">d"</span>
+              </div>
+
+                <input type="number" class="form-control" aria-label="Dollar amount
+                (with dot and two decimal places)" min="0" placeholder="Parâmetro d''" name="d__" id='d__' disabled>
 
               <div class="input-group-append">
                 <span class="input-group-text">cm</span>
