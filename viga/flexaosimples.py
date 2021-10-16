@@ -9,7 +9,7 @@ def flexaosimples(Dic):
     c = Dic['c']
 
     d2 = c + 1
-    Dic["d1"] = d1
+    Dic["d1"] = d2
     Dic["d2"] = d2
     if 'parametrod_'  in Dic:
         Dic['d1'] = Dic['d_'] # Distância do centro de gravidade da armadura comprimida até a borda comprimida da seção
