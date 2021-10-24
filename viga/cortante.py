@@ -9,13 +9,10 @@ def cortanteM1(Dic):
     a2 = min( Sec['t2']/2,0.3*Sec['h'])
     Sec['a1'] = a1
     Sec['a2'] = a2
-
+    fctm = Sec['fctm']
     l0 = Sec['l0']
     lef = (100*l0) + a1 + a2
     Sec['lef'] = lef
-
-    fctm = 0.3*(Sec['fck']**(2/3))/10 #kN/cm²
-    Sec['fctm'] = fctm
 
     fywk = Sec['fywk']
     fywd = fywk/(Sec['gs']*10)# kN/cm²
@@ -68,7 +65,7 @@ def cortanteM1(Dic):
 
     Sec['Aswcalc'] = Asw
 
-    Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/fywk
+    Aswmin = 0.2*fctm*Sec['bw']*math.sin(math.radians(a))/(fywk/10)
     Sec["Aswmin"] = Aswmin
     if Asw <= Aswmin:
         Asw = Aswmin

@@ -50,7 +50,8 @@
           </li>
         </ul>
 
-        <p class="text-justify">A NBR 6118 estabelece uma vida útil de projeto mínima de 50 anos
+        <p class="text-justify">De acordo com IBRACON, as diretrizes da NBR 6118 estão
+          associadas a uma vida útil de projeto mínima de 50 anos
           para as estruturas de edifícios convencionais. Para garantir esse requisito a
           armadura deve estar devidamente protegida de intempéries e ações corrosivas.
           Nesse sentido a norma estabelece um cobrimento nominal representado pela letra
@@ -113,13 +114,13 @@
             as barras longitudinais para o cálculo do valor da altura útil <em>'d'</em> entre a
             borda mais comprimida da seção e o centro de gravidade da armadura tracionada.
             Considerando-se apenas uma camada para a armadura de flexão tem-se:
-            <b>d</b> = h - (c + Ø<sub>t</sub> + (Ø<sub>l</sub>/2))={{info['h']}} - {{info['d1']}} =
+            <b>d</b> = h - (c + Ø<sub>t</sub> + (Ø<sub>l</sub>/2))={{info['h']}} - {{info['d2']}} =
             <b>{{info['d']}} cm</b>.
           {% else %}
-            O parametro d' que representa a distância entre a borda mais tracionada e o centro
-            de gravidade da armadura tracionada foi determinado manualmente d' = {{info['d_']}} cm.
+            O parametro d'' que representa a distância entre a borda mais tracionada e o centro
+            de gravidade da armadura tracionada foi determinado manualmente d'' = {{info['d__']}} cm.
             Portanto altura útil entre a borda mais comprimida da seção e o centro de gravidade
-            da armadura tracionada: <b>d</b> = h - d' = {{info['h']}} - {{info['d1']}} = <b>{{info['d']}} cm</b>.
+            da armadura tracionada: <b>d</b> = h - d'' = {{info['h']}} - {{info['d2']}} = <b>{{info['d']}} cm</b>.
           {% endif %}
         </p>
 
